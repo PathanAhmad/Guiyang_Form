@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:6000/api',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -58,9 +58,18 @@ export const formsAPI = {
   // Get submission by token
   getSubmission: (token) => api.get(`/forms/submission/${token}`),
   
+  // Update submission status
+  updateStatus: (token, status) => api.patch(`/forms/submission/${token}/status`, { status }),
+  
   // Get submissions by form type
   getSubmissions: (formType, page = 1, limit = 10) => 
     api.get(`/forms/submissions/${formType}?page=${page}&limit=${limit}`),
+  
+  // Get next waiting token for a form type
+  getNextInQueue: (formType) => api.get(`/forms/queue/${formType}/next`),
+  
+  // Get queue status for all form types
+  getQueueStatus: () => api.get('/forms/queue/status'),
   
   // Get counters
   getCounters: () => api.get('/forms/counters'),

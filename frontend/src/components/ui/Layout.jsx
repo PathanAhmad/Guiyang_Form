@@ -7,9 +7,10 @@ const Layout = ({ children }) => {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Demo Request', href: '/demo' },
-    { name: 'System Showcase', href: '/showcase' },
-    { name: 'Fast-Track', href: '/fasttrack' },
+    { name: '🎯 Demo Request', href: '/demo' },
+    { name: '🚀 System Showcase', href: '/showcase' },
+    { name: '⚡ Fast-Track', href: '/fasttrack' },
+    { name: '📊 Queue Dashboard', href: '/queue' },
   ];
 
   const isActive = (href) => {

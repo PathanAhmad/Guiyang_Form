@@ -6,12 +6,47 @@ A Node.js backend service for handling form submissions with Discord webhook int
 
 - ✅ Three form types: Demo, Showcase, Fast-Track
 - ✅ Automatic token generation (D-001, S-001, F-001)
-- ✅ Discord webhook integration
+- ✅ **Queue Processing System** with automatic next-token notifications
+- ✅ Discord webhook integration with queue status updates
 - ✅ MongoDB data persistence
 - ✅ Input validation with Joi
 - ✅ Comprehensive error handling
 - ✅ RESTful API endpoints
 - ✅ Automated testing suite
+
+## Queue Processing System
+
+The system now includes **automatic queue management** that processes tokens in First-In-First-Out (FIFO) order:
+
+### How It Works:
+1. **Token Creation**: New submissions are assigned sequential tokens and start with status `'waiting'`
+2. **Status Updates**: Tokens can be updated to: `'contacted'`, `'completed'`, or `'cancelled'`
+3. **Automatic Next Token**: When a token is marked as `'completed'` or `'cancelled'`, the system:
+   - Automatically finds the next `'waiting'` token in the queue
+   - Sends a Discord notification about the next token ready for contact
+   - Returns the next token information in the API response
+
+### Queue Status Tracking:
+- View waiting count for each form type
+- See who's next in line with waiting time
+- Get detailed information about the next token to process
+
+### Discord Integration:
+- **Form Submissions**: Send rich messages with interactive buttons
+- **Interactive Buttons**: Click to update status directly from Discord
+  - 📞 "Mark as Contacted" - Updates waiting → contacted
+  - ✅ "Mark as Completed" - Updates contacted → completed  
+  - ❌ "Cancel" - Updates any status → cancelled
+  - 📊 "Check Status" - Shows current token information
+- **Status Updates**: Automatic notifications when status changes
+- **Next in Queue**: Automatic notifications when tokens are completed
+- **Queue Management**: Real-time Discord integration with queue processing
+
+### Frontend Dashboard:
+- **Queue Dashboard**: `/queue` - Real-time queue management interface
+- **Status Updates**: Click buttons to update token status
+- **Next Token**: See and manage next-in-queue automatically
+- **Multi-Form Support**: Separate queues for Demo, Showcase, Fast-Track
 
 ## Form Types
 
@@ -94,6 +129,11 @@ npm test
 - `GET /api/forms/counters` - Get token counter status
 - `GET /api/forms/health` - Health check
 
+### Queue Management
+- `PATCH /api/forms/submission/:token/status` - Update submission status
+- `GET /api/forms/queue/:formType/next` - Get next waiting token for a form type
+- `GET /api/forms/queue/status` - Get queue status for all form types
+
 ### Discord Testing
 - `GET /api/discord/status` - Check webhook configuration
 - `POST /api/discord/test/:formType` - Test specific webhook
@@ -130,6 +170,37 @@ curl -X POST http://localhost:3000/api/forms/fasttrack \
 ### Test Discord Webhook
 ```bash
 curl -X POST http://localhost:3000/api/discord/test/demo
+```
+
+### Update Token Status
+```bash
+# Mark token as contacted
+curl -X PATCH http://localhost:3000/api/forms/submission/D-001/status \
+  -H "Content-Type: application/json" \
+  -d '{"status": "contacted"}'
+
+# Mark token as completed (triggers next-in-queue notification)
+curl -X PATCH http://localhost:3000/api/forms/submission/D-001/status \
+  -H "Content-Type: application/json" \
+  -d '{"status": "completed"}'
+```
+
+### Check Queue Status
+```bash
+# Get next token in demo queue
+curl -X GET http://localhost:3000/api/forms/queue/demo/next
+
+# Get overall queue status
+curl -X GET http://localhost:3000/api/forms/queue/status
+```
+
+### Test the Complete System
+```bash
+# Test Discord buttons and queue processing
+node test-discord-buttons.js
+
+# Test comprehensive integration
+npm test -- test-discord-integration.js
 ```
 
 ## Project Structure

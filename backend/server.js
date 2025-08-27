@@ -10,6 +10,7 @@ const { errorHandler, notFoundHandler } = require('./middleware/validation');
 // Import routes
 const formsRoutes = require('./routes/forms');
 const discordRoutes = require('./routes/discord');
+const discordInteractionsRoutes = require('./routes/discord-interactions');
 
 // Initialize Express app
 const app = express();
@@ -23,7 +24,7 @@ app.use(helmet({
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://yourdomain.com'] // Configure your frontend domain
-    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173', 'http://127.0.0.1:3000', 'http://127.0.0.1:5173'],
+    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3500', 'http://localhost:5173', 'http://127.0.0.1:3000', 'http://127.0.0.1:3500', 'http://127.0.0.1:5173'],
   credentials: true
 }));
 
@@ -55,6 +56,7 @@ app.get('/', (req, res) => {
 // API Routes
 app.use('/api/forms', formsRoutes);
 app.use('/api/discord', discordRoutes);
+app.use('/api/discord', discordInteractionsRoutes);
 
 // 404 handler
 app.use(notFoundHandler);
