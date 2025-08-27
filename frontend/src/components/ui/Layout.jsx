@@ -30,9 +30,9 @@ const Layout = ({ children }) => {
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center">
                 <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">G</span>
+                  <span className="text-white font-bold text-lg">S</span>
                 </div>
-                <span className="ml-2 text-xl font-semibold text-gray-900">Guiyang Forms</span>
+                <span className="ml-2 text-xl font-semibold text-gray-900">Spark-OS</span>
               </Link>
             </div>
 
@@ -104,15 +104,7 @@ const Layout = ({ children }) => {
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-12">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-sm text-gray-500">
-            <p>&copy; 2024 Guiyang Forms. All rights reserved.</p>
-            <p className="mt-1">Built with React, Vite, and Tailwind CSS</p>
-          </div>
-        </div>
-      </footer>
+
     </div>
   );
 };
