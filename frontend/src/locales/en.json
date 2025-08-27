@@ -1,10 +1,10 @@
 {
   "navigation": {
     "home": "Home",
-    "sparkieDemo": "🎯 Sparkie Demo",
-    "systemShowcase": "🚀 System Showcase",
-    "fastTrack": "⚡ Fast Track",
-    "queueDashboard": "📊 Queue Dashboard"
+    "sparkieDemo": "Sparkie Demo",
+    "systemShowcase": "System Showcase",
+    "fastTrack": "Fast Track",
+    "queueDashboard": "Queue Dashboard"
   },
   "common": {
     "getStarted": "Get Started",

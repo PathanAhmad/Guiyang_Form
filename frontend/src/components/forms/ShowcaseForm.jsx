@@ -233,7 +233,255 @@ const ShowcaseForm = ({ onSuccess }) => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+          {/* Industry Background Section */}
+          <div className="border-b border-gray-200 pb-8">
+            <h3 className="text-lg font-medium text-gray-900 mb-6">{t('forms.showcase.sections.industry')}</h3>
+            
+            <div className="space-y-6">
+              <Radio.Group
+                name="workInEducation"
+                label={t('forms.showcase.fields.workInEducation.label')}
+                value={values.workInEducation}
+                onChange={(e) => handleChange('workInEducation', e.target.value)}
+                error={errors.workInEducation}
+                required
+                options={[
+                  { value: 'yes', label: t('forms.showcase.fields.workInEducation.options.yes') },
+                  { value: 'no', label: t('forms.showcase.fields.workInEducation.options.no') }
+                ]}
+              />
+
+              {values.workInEducation === 'yes' && (
+                <>
+                  <Checkbox.Group
+                    name="educationFields"
+                    label={t('forms.showcase.fields.educationFields.label')}
+                    values={values.educationFields}
+                    onChange={(newValues) => handleChange('educationFields', newValues)}
+                    error={errors.educationFields}
+                    otherOption={true}
+                    otherValue={otherFields.educationFieldsOther}
+                    onOtherChange={(value) => handleOtherFieldChange('educationFieldsOther', value)}
+                    otherPlaceholder={t('forms.showcase.fields.educationFieldsOther.placeholder')}
+                    options={[
+                      { value: 'k12', label: t('forms.showcase.fields.educationFields.options.k12') },
+                      { value: 'specialEducation', label: t('forms.showcase.fields.educationFields.options.specialEducation') },
+                      { value: 'preschool', label: t('forms.showcase.fields.educationFields.options.preschool') },
+                      { value: 'higherEducation', label: t('forms.showcase.fields.educationFields.options.higherEducation') },
+                      { value: 'privateTutoring', label: t('forms.showcase.fields.educationFields.options.privateTutoring') },
+                      { value: 'edtech', label: t('forms.showcase.fields.educationFields.options.edtech') },
+                      { value: 'contentCreation', label: t('forms.showcase.fields.educationFields.options.contentCreation') },
+                      { value: 'government', label: t('forms.showcase.fields.educationFields.options.government') },
+                      { value: 'nonprofit', label: t('forms.showcase.fields.educationFields.options.nonprofit') },
+                      { value: 'parent', label: t('forms.showcase.fields.educationFields.options.parent') },
+                      { value: 'other', label: t('forms.showcase.fields.educationFields.options.other') }
+                    ]}
+                  />
+
+                  <Radio.Group
+                    name="primaryRole"
+                    label={t('forms.showcase.fields.primaryRole.label')}
+                    value={values.primaryRole}
+                    onChange={(e) => handleChange('primaryRole', e.target.value)}
+                    error={errors.primaryRole}
+                    required
+                    options={[
+                      { value: 'administrator', label: t('forms.showcase.fields.primaryRole.options.administrator') },
+                      { value: 'teacher', label: t('forms.showcase.fields.primaryRole.options.teacher') },
+                      { value: 'specialEdCoordinator', label: t('forms.showcase.fields.primaryRole.options.specialEdCoordinator') },
+                      { value: 'techDirector', label: t('forms.showcase.fields.primaryRole.options.techDirector') },
+                      { value: 'curriculumDeveloper', label: t('forms.showcase.fields.primaryRole.options.curriculumDeveloper') },
+                      { value: 'parent', label: t('forms.showcase.fields.primaryRole.options.parent') },
+                      { value: 'investor', label: t('forms.showcase.fields.primaryRole.options.investor') },
+                      { value: 'researcher', label: t('forms.showcase.fields.primaryRole.options.researcher') },
+                      { value: 'other', label: t('forms.showcase.fields.primaryRole.options.other') }
+                    ]}
+                  />
+
+                  {values.primaryRole === 'other' && (
+                    <Input
+                      name="primaryRoleOther"
+                      value={otherFields.primaryRoleOther}
+                      onChange={(e) => handleOtherFieldChange('primaryRoleOther', e.target.value)}
+                      placeholder={t('forms.showcase.fields.primaryRoleOther.placeholder')}
+                      className="ml-6 max-w-md"
+                    />
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* SparkOS Interest Section */}
+          <div className="border-b border-gray-200 pb-8">
+            <h3 className="text-lg font-medium text-gray-900 mb-6">{t('forms.showcase.sections.interest')}</h3>
+            
+            <div className="space-y-6">
+              <Checkbox.Group
+                name="sparkosUsage"
+                label={t('forms.showcase.fields.sparkosUsage.label')}
+                values={values.sparkosUsage}
+                onChange={(newValues) => handleChange('sparkosUsage', newValues)}
+                error={errors.sparkosUsage}
+                otherOption={true}
+                otherValue={otherFields.sparkosUsageOther}
+                onOtherChange={(value) => handleOtherFieldChange('sparkosUsageOther', value)}
+                otherPlaceholder={t('forms.showcase.fields.sparkosUsageOther.placeholder')}
+                options={[
+                  { value: 'classroom', label: t('forms.showcase.fields.sparkosUsage.options.classroom') },
+                  { value: 'homelearning', label: t('forms.showcase.fields.sparkosUsage.options.homelearning') },
+                  { value: 'specialEducation', label: t('forms.showcase.fields.sparkosUsage.options.specialEducation') },
+                  { value: 'afterschool', label: t('forms.showcase.fields.sparkosUsage.options.afterschool') },
+                  { value: 'therapeuticIntervention', label: t('forms.showcase.fields.sparkosUsage.options.therapeuticIntervention') },
+                  { value: 'assessment', label: t('forms.showcase.fields.sparkosUsage.options.assessment') },
+                  { value: 'teacherTraining', label: t('forms.showcase.fields.sparkosUsage.options.teacherTraining') },
+                  { value: 'lmsIntegration', label: t('forms.showcase.fields.sparkosUsage.options.lmsIntegration') },
+                  { value: 'research', label: t('forms.showcase.fields.sparkosUsage.options.research') },
+                  { value: 'other', label: t('forms.showcase.fields.sparkosUsage.options.other') }
+                ]}
+              />
+
+              <Checkbox.Group
+                name="ageGroups"
+                label={t('forms.showcase.fields.ageGroups.label')}
+                values={values.ageGroups}
+                onChange={(newValues) => handleChange('ageGroups', newValues)}
+                error={errors.ageGroups}
+                options={[
+                  { value: 'preschool', label: t('forms.showcase.fields.ageGroups.options.preschool') },
+                  { value: 'earlyElementary', label: t('forms.showcase.fields.ageGroups.options.earlyElementary') },
+                  { value: 'lateElementary', label: t('forms.showcase.fields.ageGroups.options.lateElementary') },
+                  { value: 'middleSchool', label: t('forms.showcase.fields.ageGroups.options.middleSchool') },
+                  { value: 'highSchool', label: t('forms.showcase.fields.ageGroups.options.highSchool') },
+                  { value: 'mixedAges', label: t('forms.showcase.fields.ageGroups.options.mixedAges') }
+                ]}
+              />
+
+              <Radio.Group
+                name="neurodiversityWork"
+                label={t('forms.showcase.fields.neurodiversityWork.label')}
+                value={values.neurodiversityWork}
+                onChange={(e) => handleChange('neurodiversityWork', e.target.value)}
+                error={errors.neurodiversityWork}
+                options={[
+                  { value: 'frequently', label: t('forms.showcase.fields.neurodiversityWork.options.frequently') },
+                  { value: 'occasionally', label: t('forms.showcase.fields.neurodiversityWork.options.occasionally') },
+                  { value: 'interestedNo', label: t('forms.showcase.fields.neurodiversityWork.options.interestedNo') },
+                  { value: 'no', label: t('forms.showcase.fields.neurodiversityWork.options.no') }
+                ]}
+              />
+
+              {(values.neurodiversityWork === 'frequently' || values.neurodiversityWork === 'occasionally') && (
+                <Checkbox.Group
+                  name="supportedConditions"
+                  label={t('forms.showcase.fields.supportedConditions.label')}
+                  values={values.supportedConditions}
+                  onChange={(newValues) => handleChange('supportedConditions', newValues)}
+                  error={errors.supportedConditions}
+                  otherOption={true}
+                  otherValue={otherFields.supportedConditionsOther}
+                  onOtherChange={(value) => handleOtherFieldChange('supportedConditionsOther', value)}
+                  otherPlaceholder={t('forms.showcase.fields.supportedConditionsOther.placeholder')}
+                  options={[
+                    { value: 'adhd', label: t('forms.showcase.fields.supportedConditions.options.adhd') },
+                    { value: 'autism', label: t('forms.showcase.fields.supportedConditions.options.autism') },
+                    { value: 'learningDisabilities', label: t('forms.showcase.fields.supportedConditions.options.learningDisabilities') },
+                    { value: 'dyslexia', label: t('forms.showcase.fields.supportedConditions.options.dyslexia') },
+                    { value: 'processingDisorders', label: t('forms.showcase.fields.supportedConditions.options.processingDisorders') },
+                    { value: 'other', label: t('forms.showcase.fields.supportedConditions.options.other') }
+                  ]}
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Specific Interest Points Section */}
+          <div className="border-b border-gray-200 pb-8">
+            <h3 className="text-lg font-medium text-gray-900 mb-6">{t('forms.showcase.sections.features')}</h3>
+            
+            <div className="space-y-6">
+              <Checkbox.Group
+                name="featuresInterest"
+                label={t('forms.showcase.fields.featuresInterest.label')}
+                values={values.featuresInterest}
+                onChange={(newValues) => handleChange('featuresInterest', newValues)}
+                error={errors.featuresInterest}
+                required
+                maxSelection={3}
+                options={[
+                  { value: 'voiceEmotion', label: t('forms.showcase.fields.featuresInterest.options.voiceEmotion') },
+                  { value: 'videoEmotion', label: t('forms.showcase.fields.featuresInterest.options.videoEmotion') },
+                  { value: 'adaptiveLearning', label: t('forms.showcase.fields.featuresInterest.options.adaptiveLearning') },
+                  { value: 'progressTracking', label: t('forms.showcase.fields.featuresInterest.options.progressTracking') },
+                  { value: 'personalizedCurriculum', label: t('forms.showcase.fields.featuresInterest.options.personalizedCurriculum') },
+                  { value: 'multisensoryLearning', label: t('forms.showcase.fields.featuresInterest.options.multisensoryLearning') },
+                  { value: 'collaboration', label: t('forms.showcase.fields.featuresInterest.options.collaboration') },
+                  { value: 'behaviorInsights', label: t('forms.showcase.fields.featuresInterest.options.behaviorInsights') }
+                ]}
+              />
+
+              <Radio.Group
+                name="implementationTimeline"
+                label={t('forms.showcase.fields.implementationTimeline.label')}
+                value={values.implementationTimeline}
+                onChange={(e) => handleChange('implementationTimeline', e.target.value)}
+                error={errors.implementationTimeline}
+                required
+                options={[
+                  { value: 'immediate', label: t('forms.showcase.fields.implementationTimeline.options.immediate') },
+                  { value: 'shortTerm', label: t('forms.showcase.fields.implementationTimeline.options.shortTerm') },
+                  { value: 'mediumTerm', label: t('forms.showcase.fields.implementationTimeline.options.mediumTerm') },
+                  { value: 'longTerm', label: t('forms.showcase.fields.implementationTimeline.options.longTerm') },
+                  { value: 'research', label: t('forms.showcase.fields.implementationTimeline.options.research') }
+                ]}
+              />
+
+              <Radio.Group
+                name="pilotInterest"
+                label={t('forms.showcase.fields.pilotInterest.label')}
+                value={values.pilotInterest}
+                onChange={(e) => handleChange('pilotInterest', e.target.value)}
+                error={errors.pilotInterest}
+                required
+                options={[
+                  { value: 'yes', label: t('forms.showcase.fields.pilotInterest.options.yes') },
+                  { value: 'no', label: t('forms.showcase.fields.pilotInterest.options.no') },
+                  { value: 'maybe', label: t('forms.showcase.fields.pilotInterest.options.maybe') }
+                ]}
+              />
+            </div>
+          </div>
+
+          {/* Additional Information Section */}
+          <div className="pb-8">
+            <h3 className="text-lg font-medium text-gray-900 mb-6">{t('forms.showcase.sections.additional')}</h3>
+            
+            <div className="space-y-6">
+              <Textarea
+                name="currentChallenges"
+                label={t('forms.showcase.fields.currentChallenges.label')}
+                value={values.currentChallenges}
+                onChange={(e) => handleChange('currentChallenges', e.target.value)}
+                onBlur={() => handleBlur('currentChallenges')}
+                error={errors.currentChallenges}
+                placeholder={t('forms.showcase.fields.currentChallenges.placeholder')}
+                rows={4}
+              />
+
+              <Textarea
+                name="additionalComments"
+                label={t('forms.showcase.fields.additionalComments.label')}
+                value={values.additionalComments}
+                onChange={(e) => handleChange('additionalComments', e.target.value)}
+                onBlur={() => handleBlur('additionalComments')}
+                error={errors.additionalComments}
+                placeholder={t('forms.showcase.fields.additionalComments.placeholder')}
+                rows={4}
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
             <Button
               type="submit"
               loading={isSubmitting}

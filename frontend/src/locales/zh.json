@@ -1,10 +1,10 @@
 {
   "navigation": {
     "home": "主页",
-    "sparkieDemo": "🎯 Sparkie 演示",
-    "systemShowcase": "🚀 系统展示",
-    "fastTrack": "⚡ 快速通道",
-    "queueDashboard": "📊 队列仪表板"
+    "sparkieDemo": "Sparkie 演示",
+    "systemShowcase": "系统展示",
+    "fastTrack": "快速通道",
+    "queueDashboard": "队列仪表板"
   },
   "common": {
     "getStarted": "开始使用",

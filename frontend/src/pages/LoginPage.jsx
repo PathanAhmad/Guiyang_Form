@@ -72,14 +72,11 @@ const LoginPage = () => {
         {/* Logo and Title */}
         <div className="text-center mb-8">
           <div className="flex justify-center items-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3">
-              <span className="text-white font-bold text-3xl transform -rotate-3">S</span>
-            </div>
-            <div className="ml-4">
-              <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                Spark-OS
-              </div>
-            </div>
+            <img
+              src="/sparkOS.png"
+              alt="Spark-OS"
+              className="h-16 md:h-20 w-auto"
+            />
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             Admin Dashboard

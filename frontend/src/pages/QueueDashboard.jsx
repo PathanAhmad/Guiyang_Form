@@ -30,16 +30,16 @@ const QueueDashboard = ({ onBack }) => {
   };
 
   const formTypes = [
-    { key: 'demo', label: 'Sparkie Demo', emoji: '🎯' },
-    { key: 'showcase', label: 'System Showcase', emoji: '🚀' },
-    { key: 'fasttrack', label: 'Fast-Track', emoji: '⚡' }
+    { key: 'demo', label: 'Sparkie Demo' },
+    { key: 'showcase', label: 'System Showcase' },
+    { key: 'fasttrack', label: 'Fast-Track' }
   ];
 
   const statusOptions = [
-    { key: 'waiting', label: 'Waiting', emoji: '⏳', color: 'text-yellow-600' },
-    { key: 'contacted', label: 'Contacted', emoji: '📞', color: 'text-blue-600' },
-    { key: 'completed', label: 'Completed', emoji: '✅', color: 'text-green-600' },
-    { key: 'cancelled', label: 'Cancelled', emoji: '❌', color: 'text-red-600' }
+    { key: 'waiting', label: 'Waiting', color: 'text-primary-200' },
+    { key: 'contacted', label: 'Contacted', color: 'text-primary-400' },
+    { key: 'completed', label: 'Completed', color: 'text-green-600' },
+    { key: 'cancelled', label: 'Cancelled', color: 'text-red-600' }
   ];
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const QueueDashboard = ({ onBack }) => {
     const statusInfo = statusOptions.find(s => s.key === status) || statusOptions[0];
     return (
       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${statusInfo.color} bg-gray-100`}>
-        {statusInfo.emoji} {statusInfo.label}
+        {statusInfo.label}
       </span>
     );
   };
@@ -119,7 +119,7 @@ const QueueDashboard = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-primary-50/40 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
@@ -133,7 +133,7 @@ const QueueDashboard = ({ onBack }) => {
               {/* User Info */}
               <div className="text-right">
                 <p className="text-sm font-medium text-gray-900">
-                  👤 {user?.userid}
+                  {user?.userid}
                 </p>
                 <p className="text-xs text-gray-500 capitalize">
                   {user?.role} Access
@@ -146,7 +146,6 @@ const QueueDashboard = ({ onBack }) => {
                 variant="outline"
                 className="bg-white hover:bg-red-50 border-gray-300 text-gray-700 hover:text-red-700 hover:border-red-300 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
               >
-                <span className="mr-2">🚪</span>
                 Logout
               </Button>
               
@@ -156,7 +155,6 @@ const QueueDashboard = ({ onBack }) => {
                 variant="outline"
                 className="bg-white hover:bg-gray-50 border-gray-300 text-gray-700 hover:text-gray-900 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
               >
-                <span className="mr-2">🌐</span>
                 Main Site
               </Button>
             </div>
@@ -173,9 +171,9 @@ const QueueDashboard = ({ onBack }) => {
               <Card key={formType.key} className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-medium text-gray-900">
-                    {formType.emoji} {formType.label}
+                    {formType.label}
                   </h3>
-                  <span className="text-2xl font-bold text-blue-600">
+                  <span className="text-2xl font-bold text-primary-400">
                     {status.waitingCount || 0}
                   </span>
                 </div>
@@ -183,10 +181,10 @@ const QueueDashboard = ({ onBack }) => {
                 {nextInQueue ? (
                   <div className="space-y-2">
                     <p className="text-sm font-medium text-gray-700">Next in queue:</p>
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="font-medium text-blue-900">{nextInQueue.token}</p>
-                      <p className="text-sm text-blue-700">{nextInQueue.name}</p>
-                      <p className="text-xs text-blue-600">
+                    <div className="bg-primary-50 p-3 rounded-lg">
+                      <p className="font-medium text-primary-500">{nextInQueue.token}</p>
+                      <p className="text-sm text-primary-400">{nextInQueue.name}</p>
+                      <p className="text-xs text-primary-400">
                         Waiting: {nextInQueue.waitingTime}
                       </p>
                     </div>
@@ -197,7 +195,7 @@ const QueueDashboard = ({ onBack }) => {
                       disabled={updating === nextInQueue.token}
                       className="w-full"
                     >
-                      {updating === nextInQueue.token ? '⏳' : '📞'} Mark as Contacted
+                      {updating === nextInQueue.token ? 'Updating…' : 'Mark as Contacted'}
                     </Button>
                   </div>
                 ) : (
@@ -222,7 +220,7 @@ const QueueDashboard = ({ onBack }) => {
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  {formType.emoji} {formType.label}
+                  {formType.label}
                 </button>
               ))}
             </nav>
@@ -233,7 +231,6 @@ const QueueDashboard = ({ onBack }) => {
         <Card>
           <div className="px-6 py-4 border-b border-gray-200">
             <h3 className="text-lg font-medium text-gray-900">
-              {formTypes.find(f => f.key === selectedFormType)?.emoji} {' '}
               {formTypes.find(f => f.key === selectedFormType)?.label} Submissions
             </h3>
           </div>
@@ -300,7 +297,7 @@ const QueueDashboard = ({ onBack }) => {
                               size="sm"
                               disabled={updating === submission.token}
                             >
-                              {updating === submission.token ? '⏳' : '📞'} Contact
+                              {updating === submission.token ? 'Updating…' : 'Contact'}
                             </Button>
                             <Button
                               onClick={() => updateSubmissionStatus(submission.token, 'cancelled')}
@@ -309,7 +306,7 @@ const QueueDashboard = ({ onBack }) => {
                               disabled={updating === submission.token}
                               className="text-red-600 border-red-300 hover:bg-red-50"
                             >
-                              ❌ Cancel
+                              Cancel
                             </Button>
                           </>
                         )}
@@ -321,7 +318,7 @@ const QueueDashboard = ({ onBack }) => {
                               size="sm"
                               disabled={updating === submission.token}
                             >
-                              {updating === submission.token ? '⏳' : '✅'} Complete
+                              {updating === submission.token ? 'Updating…' : 'Complete'}
                             </Button>
                             <Button
                               onClick={() => updateSubmissionStatus(submission.token, 'cancelled')}
@@ -330,7 +327,7 @@ const QueueDashboard = ({ onBack }) => {
                               disabled={updating === submission.token}
                               className="text-red-600 border-red-300 hover:bg-red-50"
                             >
-                              ❌ Cancel
+                              Cancel
                             </Button>
                           </>
                         )}

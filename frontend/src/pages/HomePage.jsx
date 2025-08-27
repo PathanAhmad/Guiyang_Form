@@ -10,33 +10,33 @@ const HomePage = ({ onCardSelect }) => {
       id: 'demo',
       title: t('homepage.forms.demo.title'),
       description: t('homepage.forms.demo.description'),
-      icon: '🎯',
+      icon: '',
       href: '/demo',
-      color: 'bg-blue-50 border-blue-200',
+      color: 'bg-primary-50 border-primary-400',
       buttonColor: 'primary'
     },
     {
       id: 'showcase',
       title: t('homepage.forms.showcase.title'),
       description: t('homepage.forms.showcase.description'),
-      icon: '🌟',
+      icon: '',
       href: '/showcase',
-      color: 'bg-purple-50 border-purple-200',
+      color: 'bg-primary-300/30 border-primary-300',
       buttonColor: 'primary'
     },
     {
       id: 'fasttrack',
       title: t('homepage.forms.fasttrack.title'),
       description: t('homepage.forms.fasttrack.description'),
-      icon: '⚡',
+      icon: '',
       href: '/fasttrack',
-      color: 'bg-green-50 border-green-200',
+      color: 'bg-primary-200/20 border-primary-200',
       buttonColor: 'primary'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/20 to-primary-400/20">
       {/* Header with Logo */}
       <div className="text-center py-16">
         {/* SparkOS Logo */}
@@ -61,9 +61,9 @@ const HomePage = ({ onCardSelect }) => {
       <div className="max-w-7xl mx-auto px-4 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {formTypes.map((form) => (
-            <Card key={form.id} className={`hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer ${form.color} border-2`}>
+            <Card key={form.id} className={`hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer ${form.color} border-2`}> 
               <Card.Body className="text-center p-8" onClick={() => onCardSelect(form.id)}>
-                <div className="text-6xl mb-6">{form.icon}</div>
+                <div className="text-6xl mb-6"></div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {form.title}
                 </h3>
