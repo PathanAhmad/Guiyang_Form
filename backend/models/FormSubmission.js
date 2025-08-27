@@ -46,6 +46,11 @@ const formSubmissionSchema = new mongoose.Schema({
     trim: true,
     maxlength: 100
   },
+  areaOfInterest: {
+    type: String,
+    trim: true,
+    maxlength: 200
+  },
   message: {
     type: String,
     trim: true,

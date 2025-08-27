@@ -44,6 +44,10 @@ const validationSchemas = {
         'string.min': 'Role must be at least 2 characters long',
         'string.max': 'Role must not exceed 100 characters'
       }),
+    areaOfInterest: Joi.string().trim().max(200).optional()
+      .messages({
+        'string.max': 'Area of interest must not exceed 200 characters'
+      }),
     message: Joi.string().trim().max(1000).optional()
       .messages({
         'string.max': 'Message must not exceed 1000 characters'

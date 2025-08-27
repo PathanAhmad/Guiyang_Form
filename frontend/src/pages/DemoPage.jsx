@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import DemoForm from '../components/forms/DemoForm';
 
 const DemoPage = () => {
+  const { t } = useTranslation();
+  
   const handleSuccess = (data) => {
     console.log('Demo form submitted successfully:', data);
   };
@@ -9,11 +12,10 @@ const DemoPage = () => {
     <div className="max-w-2xl mx-auto">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          Request Sparkie Demo
+          {t('pages.demo.title')}
         </h1>
         <p className="text-gray-600">
-          Fill out the form below to request a personalized demo of our Sparkie system.
-          Our team will contact you to schedule a convenient time for your demonstration.
+          {t('pages.demo.description')}
         </p>
       </div>
       

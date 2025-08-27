@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useForm } from '../../hooks/useForm';
 import { useFormSubmission } from '../../hooks/useApi';
 import { validateDemoForm } from '../../utils/validation';
@@ -8,6 +9,7 @@ import Button from '../ui/Button';
 import Card from '../ui/Card';
 
 const DemoForm = ({ onSuccess }) => {
+  const { t } = useTranslation();
   const { submitForm, isSubmitting, submitError, submitSuccess, submissionData } = useFormSubmission();
   
   const {
@@ -54,18 +56,18 @@ const DemoForm = ({ onSuccess }) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Demo Request Submitted!</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t('forms.demo.successTitle')}</h3>
           <p className="text-gray-600 mb-4">
-            Thank you for your interest in our Sparkie demo. We'll be in touch soon!
+            {t('forms.demo.successMessage')}
           </p>
           {submissionData?.data?.token && (
             <p className="text-sm text-gray-500 mb-4">
-              Reference Token: <span className="font-mono font-medium">{submissionData.data.token}</span>
+              {t('misc.referenceToken')}: <span className="font-mono font-medium">{submissionData.data.token}</span>
             </p>
           )}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button onClick={handleReset} variant="outline">
-              Submit Another Request
+              {t('common.submitAnotherRequest')}
             </Button>
           </div>
         </Card.Body>
@@ -76,9 +78,9 @@ const DemoForm = ({ onSuccess }) => {
   return (
     <Card className="animate-fade-in">
       <Card.Header>
-        <h2 className="text-xl font-semibold text-gray-900">Request Sparkie Demo</h2>
+        <h2 className="text-xl font-semibold text-gray-900">{t('forms.demo.title')}</h2>
         <p className="text-gray-600 mt-1">
-          Get a personalized demo of our Sparkie system and see how it can benefit your business.
+          {t('forms.demo.subtitle')}
         </p>
       </Card.Header>
       
@@ -91,7 +93,7 @@ const DemoForm = ({ onSuccess }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L3.334 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
                 <div className="ml-3">
-                  <h3 className="text-sm font-medium text-red-800">Submission Error</h3>
+                  <h3 className="text-sm font-medium text-red-800">{t('forms.errors.submissionError')}</h3>
                   <p className="text-sm text-red-700 mt-1">{submitError}</p>
                 </div>
               </div>
@@ -101,38 +103,38 @@ const DemoForm = ({ onSuccess }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
               name="name"
-              label="Full Name"
+              label={t('forms.demo.fields.name.label')}
               required
               value={values.name}
               onChange={(e) => handleChange('name', e.target.value)}
               onBlur={() => handleBlur('name')}
               error={errors.name}
-              placeholder="Enter your full name"
+              placeholder={t('forms.demo.fields.name.placeholder')}
             />
             
             <Input
               name="email"
               type="email"
-              label="Email Address"
+              label={t('forms.demo.fields.email.label')}
               required
               value={values.email}
               onChange={(e) => handleChange('email', e.target.value)}
               onBlur={() => handleBlur('email')}
               error={errors.email}
-              placeholder="Enter your email address"
+              placeholder={t('forms.demo.fields.email.placeholder')}
             />
           </div>
           
           <Input
             name="phone"
             type="tel"
-            label="Phone Number"
+            label={t('forms.demo.fields.phone.label')}
             value={values.phone}
             onChange={(e) => handleChange('phone', e.target.value)}
             onBlur={() => handleBlur('phone')}
             error={errors.phone}
-            placeholder="Enter your phone number (optional)"
-            hint="We'll use this for scheduling the demo call"
+            placeholder={t('forms.demo.fields.phone.placeholder')}
+            hint={t('forms.demo.fields.phone.hint')}
           />
 
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
@@ -141,7 +143,7 @@ const DemoForm = ({ onSuccess }) => {
               loading={isSubmitting}
               className="flex-1"
             >
-              {isSubmitting ? 'Submitting...' : 'Request Demo'}
+              {isSubmitting ? t('common.submitting') : t('forms.demo.requestDemo')}
             </Button>
             <Button
               type="button"
@@ -149,7 +151,7 @@ const DemoForm = ({ onSuccess }) => {
               onClick={handleReset}
               disabled={isSubmitting}
             >
-              Clear Form
+              {t('common.clearForm')}
             </Button>
           </div>
         </form>

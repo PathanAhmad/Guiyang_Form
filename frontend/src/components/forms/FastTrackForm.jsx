@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useForm } from '../../hooks/useForm';
 import { useFormSubmission } from '../../hooks/useApi';
 import { validateFasttrackForm } from '../../utils/validation';
@@ -9,6 +10,7 @@ import Button from '../ui/Button';
 import Card from '../ui/Card';
 
 const FastTrackForm = ({ onSuccess }) => {
+  const { t } = useTranslation();
   const { submitForm, isSubmitting, submitError, submitSuccess, submissionData } = useFormSubmission();
   
   const {
@@ -58,18 +60,18 @@ const FastTrackForm = ({ onSuccess }) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Fast-Track Application Submitted!</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t('forms.fasttrack.successTitle')}</h3>
           <p className="text-gray-600 mb-4">
-            Thank you for your fast-track application. Our priority support team will contact you within 24 hours!
+            {t('forms.fasttrack.successMessage')}
           </p>
           {submissionData?.data?.token && (
             <p className="text-sm text-gray-500 mb-4">
-              Reference Token: <span className="font-mono font-medium">{submissionData.data.token}</span>
+              {t('misc.referenceToken')}: <span className="font-mono font-medium">{submissionData.data.token}</span>
             </p>
           )}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button onClick={handleReset} variant="outline">
-              Submit Another Application
+              {t('common.submitAnotherRequest')}
             </Button>
           </div>
         </Card.Body>
@@ -80,9 +82,9 @@ const FastTrackForm = ({ onSuccess }) => {
   return (
     <Card className="animate-fade-in">
       <Card.Header>
-        <h2 className="text-xl font-semibold text-gray-900">Fast-Track Application</h2>
+        <h2 className="text-xl font-semibold text-gray-900">{t('forms.fasttrack.title')}</h2>
         <p className="text-gray-600 mt-1">
-          Express your interest for priority access and consultation. Get expedited support and personalized attention.
+          {t('forms.fasttrack.subtitle')}
         </p>
       </Card.Header>
       
@@ -95,7 +97,7 @@ const FastTrackForm = ({ onSuccess }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L3.334 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
                 <div className="ml-3">
-                  <h3 className="text-sm font-medium text-red-800">Submission Error</h3>
+                  <h3 className="text-sm font-medium text-red-800">{t('forms.errors.submissionError')}</h3>
                   <p className="text-sm text-red-700 mt-1">{submitError}</p>
                 </div>
               </div>
@@ -105,25 +107,25 @@ const FastTrackForm = ({ onSuccess }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input
               name="name"
-              label="Full Name"
+              label={t('forms.fasttrack.fields.name.label')}
               required
               value={values.name}
               onChange={(e) => handleChange('name', e.target.value)}
               onBlur={() => handleBlur('name')}
               error={errors.name}
-              placeholder="Enter your full name"
+              placeholder={t('forms.fasttrack.fields.name.placeholder')}
             />
             
             <Input
               name="email"
               type="email"
-              label="Email Address"
+              label={t('forms.fasttrack.fields.email.label')}
               required
               value={values.email}
               onChange={(e) => handleChange('email', e.target.value)}
               onBlur={() => handleBlur('email')}
               error={errors.email}
-              placeholder="Enter your email address"
+              placeholder={t('forms.fasttrack.fields.email.placeholder')}
             />
           </div>
 
@@ -131,48 +133,46 @@ const FastTrackForm = ({ onSuccess }) => {
             <Input
               name="phone"
               type="tel"
-              label="Phone Number"
+              label={t('forms.fasttrack.fields.phone.label')}
               value={values.phone}
               onChange={(e) => handleChange('phone', e.target.value)}
               onBlur={() => handleBlur('phone')}
               error={errors.phone}
-              placeholder="Enter your phone number"
-              hint="For urgent priority support contact"
+              placeholder={t('forms.fasttrack.fields.phone.placeholder')}
             />
             
             <Input
               name="company"
-              label="Company"
+              label={t('forms.fasttrack.fields.company.label')}
               required
               value={values.company}
               onChange={(e) => handleChange('company', e.target.value)}
               onBlur={() => handleBlur('company')}
               error={errors.company}
-              placeholder="Enter your company name"
+              placeholder={t('forms.fasttrack.fields.company.placeholder')}
             />
           </div>
           
           <Input
             name="role"
-            label="Role/Position"
+            label={t('forms.fasttrack.fields.role.label')}
             required
             value={values.role}
             onChange={(e) => handleChange('role', e.target.value)}
             onBlur={() => handleBlur('role')}
             error={errors.role}
-            placeholder="Enter your role or position"
-            hint="e.g., CEO, CTO, Product Manager, etc."
+            placeholder={t('forms.fasttrack.fields.role.placeholder')}
           />
           
           <Textarea
             name="message"
-            label="Message"
+            label={t('forms.fasttrack.fields.message.label')}
             value={values.message}
             onChange={(e) => handleChange('message', e.target.value)}
             onBlur={() => handleBlur('message')}
             error={errors.message}
-            placeholder="Tell us about your specific needs, timeline, or any questions..."
-            hint="Optional - help us understand your requirements better (max 1000 characters)"
+            placeholder={t('forms.fasttrack.fields.message.placeholder')}
+            hint={t('forms.fasttrack.fields.message.hint')}
             rows={4}
           />
 
@@ -182,7 +182,7 @@ const FastTrackForm = ({ onSuccess }) => {
               loading={isSubmitting}
               className="flex-1"
             >
-              {isSubmitting ? 'Submitting...' : 'Submit Fast-Track Application'}
+              {isSubmitting ? t('common.submitting') : t('forms.fasttrack.submitApplication')}
             </Button>
             <Button
               type="button"
@@ -190,7 +190,7 @@ const FastTrackForm = ({ onSuccess }) => {
               onClick={handleReset}
               disabled={isSubmitting}
             >
-              Clear Form
+              {t('common.clearForm')}
             </Button>
           </div>
         </form>

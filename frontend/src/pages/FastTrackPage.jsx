@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import FastTrackForm from '../components/forms/FastTrackForm';
 
 const FastTrackPage = () => {
+  const { t } = useTranslation();
+  
   const handleSuccess = (data) => {
     console.log('Fast-track form submitted successfully:', data);
   };
@@ -9,11 +12,10 @@ const FastTrackPage = () => {
     <div className="max-w-2xl mx-auto">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
-          Fast-Track Application
+          {t('pages.fasttrack.title')}
         </h1>
         <p className="text-gray-600">
-          Apply for priority access and expedited support. Our fast-track program 
-          provides personalized consultation and priority handling for qualified applicants.
+          {t('pages.fasttrack.description')}
         </p>
       </div>
       

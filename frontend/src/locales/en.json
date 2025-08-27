@@ -1,0 +1,211 @@
+{
+  "navigation": {
+    "home": "Home",
+    "sparkieDemo": "🎯 Sparkie Demo",
+    "systemShowcase": "🚀 System Showcase",
+    "fastTrack": "⚡ Fast Track",
+    "queueDashboard": "📊 Queue Dashboard"
+  },
+  "common": {
+    "getStarted": "Get Started",
+    "submitAnotherRequest": "Submit Another Request",
+    "clearForm": "Clear Form",
+    "submitting": "Submitting...",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "required": "Required",
+    "optional": "Optional",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "reset": "Reset",
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh"
+  },
+  "homepage": {
+    "title": "WELCOME TO GUIYANG BIG DATA EXHIBITION",
+    "subtitle": "Spark-OS team is here to provide you with excellent service. Please select from the following services to begin your experience.",
+    "stats": {
+      "processing": "24/7",
+      "processingLabel": "Processing",
+      "speed": "Fast",
+      "speedLabel": "Response Time",
+      "security": "Secure",
+      "securityLabel": "Data Processing"
+    },
+    "forms": {
+      "demo": {
+        "title": "Sparkie Demo",
+        "description": "Get personalized demo access to our Sparkie system and see how our solutions can benefit your business."
+      },
+      "showcase": {
+        "title": "System Showcase",
+        "description": "Explore our system capabilities through an interactive showcase and discover what we can do for you."
+      },
+      "fasttrack": {
+        "title": "Fast Track Enquiry",
+        "description": "Express your interest in priority access and consultation. Get expedited support and personalized attention."
+      }
+    }
+  },
+  "forms": {
+    "demo": {
+      "title": "Apply for Sparkie Demo",
+      "subtitle": "Get personalized demo access to our Sparkie system and see how our solutions can benefit your business.",
+      "successTitle": "Sparkie Demo Application Submitted!",
+      "successMessage": "Thank you for your interest in our Sparkie demo. We will be in touch with you soon!",
+      "requestDemo": "Request Demo",
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Enter your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email address"
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": "Enter your phone number (optional)",
+          "hint": "We'll use this to schedule your demo call"
+        }
+      }
+    },
+    "showcase": {
+      "title": "Apply for System Showcase",
+      "subtitle": "Get personalized access to our system showcase and see how our solutions can benefit your business.",
+      "successTitle": "System Showcase Application Submitted!",
+      "successMessage": "Thank you for your interest in our system showcase. We will be in touch with you soon!",
+      "requestShowcase": "Request Showcase",
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Enter your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email address"
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": "Enter your phone number (optional)",
+          "hint": "We'll use this to schedule your showcase call"
+        }
+      }
+    },
+    "fasttrack": {
+      "title": "Fast Track Application",
+      "subtitle": "Apply for priority access and expedited support. Get personalized consultation and priority processing.",
+      "successTitle": "Fast Track Application Submitted!",
+      "successMessage": "Thank you for your fast track application. We will review and get back to you soon!",
+      "submitApplication": "Submit Application",
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Enter your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email address"
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": "Enter your phone number (optional)"
+        },
+        "company": {
+          "label": "Company/Organization",
+          "placeholder": "Enter your company or organization name"
+        },
+        "role": {
+          "label": "Your Position/Role",
+          "placeholder": "Enter your position or role"
+        },
+        "areaOfInterest": {
+          "label": "Area of Interest",
+          "placeholder": "Select or enter your area of technical interest"
+        },
+        "message": {
+          "label": "Additional Information",
+          "placeholder": "Tell us about your specific needs and requirements (optional)",
+          "hint": "Help us better understand your requirements"
+        }
+      }
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 2 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "phoneInvalid": "Please enter a valid phone number",
+      "companyRequired": "Company/Organization is required",
+      "roleRequired": "Position/Role is required"
+    },
+    "errors": {
+      "submissionError": "Submission Error",
+      "networkError": "Network error. Please try again.",
+      "serverError": "Server error. Please try again later.",
+      "unknownError": "An unexpected error occurred. Please try again."
+    }
+  },
+  "pages": {
+    "demo": {
+      "title": "Apply for Sparkie Demo",
+      "description": "Get personalized demo access to our Sparkie system. Learn how our solutions can benefit your business through real examples and interactive features."
+    },
+    "showcase": {
+      "title": "Apply for System Showcase",
+      "description": "Get access to our interactive system showcase and explore all the features and capabilities we offer. Perfect for evaluating our solutions."
+    },
+    "fasttrack": {
+      "title": "Fast Track Application",
+      "description": "Apply for priority access and expedited support. Our fast track program provides personalized consultation and priority processing for eligible applicants."
+    }
+  },
+  "queue": {
+    "title": "Queue Dashboard",
+    "subtitle": "Manage and monitor form submission queue",
+    "loading": "Loading queue data...",
+    "error": "Error loading queue data",
+    "noData": "No queue data available",
+    "refresh": "Refresh Data",
+    "columns": {
+      "token": "Token",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "status": "Status",
+      "submittedAt": "Submitted At",
+      "actions": "Actions"
+    },
+    "statuses": {
+      "waiting": "Waiting",
+      "contacted": "Contacted",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "actions": {
+      "markContacted": "Mark as Contacted",
+      "markCompleted": "Mark as Completed",
+      "cancel": "Cancel",
+      "view": "View Details"
+    }
+  },
+  "misc": {
+    "referenceToken": "Reference Token",
+    "openMainMenu": "Open main menu",
+    "companyName": "Spark-OS",
+    "tokenInstructions": "Please screenshot and save this token - required for demo participation",
+    "importantNotice": "IMPORTANT NOTICE",
+    "screenshotReminder": "Demo cannot proceed without showing this token"
+  }
+}

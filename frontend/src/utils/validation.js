@@ -76,6 +76,14 @@ export const validateMessage = (message) => {
 };
 
 /**
+ * Validate area of interest field (for fast-track form)
+ */
+export const validateAreaOfInterest = (areaOfInterest) => {
+  if (areaOfInterest && areaOfInterest.length > 200) return 'Area of interest is too long (max 200 characters)';
+  return '';
+};
+
+/**
  * Validate demo form
  */
 export const validateDemoForm = (data) => {
@@ -128,6 +136,7 @@ export const validateFasttrackForm = (data) => {
   errors.phone = validatePhone(data.phone);
   errors.company = validateCompany(data.company);
   errors.role = validateRole(data.role);
+  errors.areaOfInterest = validateAreaOfInterest(data.areaOfInterest);
   errors.message = validateMessage(data.message);
   
   // Remove empty error messages

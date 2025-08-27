@@ -4,7 +4,7 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useToast } from '../hooks/useToast';
 
-const QueueDashboard = () => {
+const QueueDashboard = ({ onBack }) => {
   const [queueStatus, setQueueStatus] = useState({});
   const [submissions, setSubmissions] = useState([]);
   const [selectedFormType, setSelectedFormType] = useState('demo');
