@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from './contexts/AuthContext';
 import Layout from './components/ui/Layout';
 import HomePage from './pages/HomePage';
 import UnifiedForm from './components/forms/UnifiedForm';
+import DemoForm from './components/forms/DemoForm';
+import ShowcaseForm from './components/forms/ShowcaseForm';
 import TokenDisplay from './components/ui/TokenDisplay';
 
 function MainApp() {
+  const { t } = useTranslation();
   const [currentView, setCurrentView] = useState('home'); // 'home', 'form', 'token'
   const [selectedFormType, setSelectedFormType] = useState(null); // 'demo', 'showcase', 'fasttrack'
   const [submissionData, setSubmissionData] = useState(null);
@@ -31,13 +35,51 @@ function MainApp() {
   const renderCurrentView = () => {
     switch (currentView) {
       case 'form':
-        return (
-          <UnifiedForm 
-            formType={selectedFormType}
-            onSuccess={handleFormSuccess}
-            onBack={handleBackToHome}
-          />
-        );
+        // Use comprehensive forms for demo and showcase, UnifiedForm for fasttrack
+        if (selectedFormType === 'demo') {
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8">
+              <div className="max-w-4xl mx-auto px-4">
+                <button
+                  onClick={handleBackToHome}
+                  className="mb-8 flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                  {t('common.back')}
+                </button>
+                <DemoForm onSuccess={handleFormSuccess} />
+              </div>
+            </div>
+          );
+        } else if (selectedFormType === 'showcase') {
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8">
+              <div className="max-w-4xl mx-auto px-4">
+                <button
+                  onClick={handleBackToHome}
+                  className="mb-8 flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                  {t('common.back')}
+                </button>
+                <ShowcaseForm onSuccess={handleFormSuccess} />
+              </div>
+            </div>
+          );
+        } else {
+          // Use UnifiedForm for fasttrack (which only needs basic fields)
+          return (
+            <UnifiedForm 
+              formType={selectedFormType}
+              onSuccess={handleFormSuccess}
+              onBack={handleBackToHome}
+            />
+          );
+        }
       case 'token':
         return (
           <TokenDisplay 
