@@ -8,6 +8,9 @@ const TokenDisplay = ({ submissionData, formType, onBackToHome }) => {
 
   const getSuccessTitle = () => t(`forms.${formType}.successTitle`);
   const getSuccessMessage = () => t(`forms.${formType}.successMessage`);
+  // Support both flattened and nested response shapes
+  const token = submissionData?.token ?? submissionData?.data?.token;
+  const submittedAt = submissionData?.submittedAt ?? submissionData?.data?.submittedAt;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8 relative">
@@ -33,13 +36,13 @@ const TokenDisplay = ({ submissionData, formType, onBackToHome }) => {
             </p>
 
             {/* Token Display */}
-            {submissionData?.token && (
+            {token && (
               <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200 rounded-2xl p-8 mb-8">
                 <p className="text-sm text-gray-600 mb-2">
                   {t('misc.referenceToken')}:
                 </p>
                 <div className="text-4xl font-bold font-mono text-blue-600 bg-white rounded-lg py-4 px-6 border-2 border-blue-300 mb-6 tracking-wider shadow-inner">
-                  {submissionData.token}
+                  {token}
                 </div>
                 
                 {/* Important Instructions */}
@@ -73,9 +76,9 @@ const TokenDisplay = ({ submissionData, formType, onBackToHome }) => {
             )}
 
             {/* Additional Information */}
-            {submissionData?.submittedAt && (
+            {submittedAt && (
               <div className="text-sm text-gray-500 mb-8">
-                <p>Submitted: {new Date(submissionData.submittedAt).toLocaleString()}</p>
+                <p>Submitted: {new Date(submittedAt).toLocaleString()}</p>
                 <p>Form Type: {formType.charAt(0).toUpperCase() + formType.slice(1)}</p>
               </div>
             )}
