@@ -41,14 +41,11 @@ const HomePage = ({ onCardSelect }) => {
       <div className="text-center py-16">
         {/* SparkOS Logo */}
         <div className="flex justify-center items-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-3">
-            <span className="text-white font-bold text-3xl transform -rotate-3">S</span>
-          </div>
-          <div className="ml-4">
-            <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Spark-OS
-            </div>
-          </div>
+          <img
+            src="/sparkOS.png"
+            alt={t('misc.companyName')}
+            className="h-20 md:h-24 w-auto"
+          />
         </div>
 
         {/* Welcome Message */}

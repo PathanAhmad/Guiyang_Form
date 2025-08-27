@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const config = require('./config/environment');
 const { errorHandler, notFoundHandler } = require('./middleware/validation');
@@ -60,6 +61,22 @@ app.use('/api/forms', formsRoutes);
 app.use('/api/discord', discordRoutes);
 app.use('/api/discord', discordInteractionsRoutes);
 app.use('/api/auth', authRoutes);
+
+// In production, serve the frontend and provide SPA fallback for non-API routes
+if (process.env.NODE_ENV === 'production') {
+  const frontendDistPath = path.resolve(__dirname, '../frontend/dist');
+
+  // Serve static assets
+  app.use(express.static(frontendDistPath));
+
+  // SPA fallback: send index.html for any non-API route
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
 
 // 404 handler
 app.use(notFoundHandler);
