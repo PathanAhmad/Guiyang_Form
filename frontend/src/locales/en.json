@@ -30,7 +30,9 @@
     "reset": "Reset",
     "search": "Search",
     "filter": "Filter",
-    "refresh": "Refresh"
+    "refresh": "Refresh",
+    "backToHome": "Back to Home",
+    "printToken": "Print Token"
   },
   "homepage": {
     "title": "WELCOME TO GUIYANG BIG DATA EXHIBITION",

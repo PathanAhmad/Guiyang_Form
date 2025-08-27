@@ -30,7 +30,9 @@
     "reset": "重置",
     "search": "搜索",
     "filter": "筛选",
-    "refresh": "刷新"
+    "refresh": "刷新",
+    "backToHome": "返回首页",
+    "printToken": "打印令牌"
   },
   "homepage": {
     "title": "欢迎参加贵阳大数据博览会",

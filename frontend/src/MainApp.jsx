@@ -7,6 +7,7 @@ import UnifiedForm from './components/forms/UnifiedForm';
 import DemoForm from './components/forms/DemoForm';
 import ShowcaseForm from './components/forms/ShowcaseForm';
 import TokenDisplay from './components/ui/TokenDisplay';
+import LanguageToggle from './components/ui/LanguageToggle';
 
 function MainApp() {
   const { t } = useTranslation();
@@ -38,7 +39,12 @@ function MainApp() {
         // Use comprehensive forms for demo and showcase, UnifiedForm for fasttrack
         if (selectedFormType === 'demo') {
           return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8 relative">
+              {/* Language Toggle - Fixed Position */}
+              <div className="fixed top-6 right-6 z-50">
+                <LanguageToggle />
+              </div>
+              
               <div className="max-w-4xl mx-auto px-4">
                 <button
                   onClick={handleBackToHome}
@@ -55,7 +61,12 @@ function MainApp() {
           );
         } else if (selectedFormType === 'showcase') {
           return (
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8 relative">
+              {/* Language Toggle - Fixed Position */}
+              <div className="fixed top-6 right-6 z-50">
+                <LanguageToggle />
+              </div>
+              
               <div className="max-w-4xl mx-auto px-4">
                 <button
                   onClick={handleBackToHome}

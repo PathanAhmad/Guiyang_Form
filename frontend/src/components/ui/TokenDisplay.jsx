@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import Button from './Button';
 import Card from './Card';
+import LanguageToggle from './LanguageToggle';
 
 const TokenDisplay = ({ submissionData, formType, onBackToHome }) => {
   const { t } = useTranslation();
@@ -9,7 +10,12 @@ const TokenDisplay = ({ submissionData, formType, onBackToHome }) => {
   const getSuccessMessage = () => t(`forms.${formType}.successMessage`);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8 relative">
+      {/* Language Toggle - Fixed Position */}
+      <div className="fixed top-6 right-6 z-50">
+        <LanguageToggle />
+      </div>
+      
       <div className="max-w-2xl mx-auto px-4">
         <Card className="animate-fade-in shadow-2xl border-2 border-green-200">
           <Card.Body className="text-center py-12 px-8">
@@ -82,7 +88,7 @@ const TokenDisplay = ({ submissionData, formType, onBackToHome }) => {
                 size="lg"
                 className="text-lg py-4 px-8"
               >
-                Back to Home
+                {t('common.backToHome')}
               </Button>
               <Button 
                 onClick={() => window.print()} 
@@ -90,7 +96,7 @@ const TokenDisplay = ({ submissionData, formType, onBackToHome }) => {
                 size="lg"
                 className="text-lg py-4 px-8"
               >
-                Print Token
+                {t('common.printToken')}
               </Button>
             </div>
 

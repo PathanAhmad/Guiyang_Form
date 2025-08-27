@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import LanguageToggle from '../components/ui/LanguageToggle';
 
 const HomePage = ({ onCardSelect }) => {
   const { t } = useTranslation();
@@ -36,7 +37,12 @@ const HomePage = ({ onCardSelect }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/20 to-primary-400/20">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/20 to-primary-400/20 relative">
+      {/* Language Toggle - Fixed Position */}
+      <div className="absolute top-6 right-6 z-10">
+        <LanguageToggle />
+      </div>
+      
       {/* Header with Logo */}
       <div className="text-center py-16">
         {/* SparkOS Logo */}

@@ -8,6 +8,7 @@ import Input from '../ui/Input';
 import Textarea from '../ui/Textarea';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
+import LanguageToggle from '../ui/LanguageToggle';
 
 const UnifiedForm = ({ formType, onSuccess, onBack }) => {
   const { t } = useTranslation();
@@ -110,7 +111,12 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 py-8 relative">
+      {/* Language Toggle - Fixed Position */}
+      <div className="fixed top-6 right-6 z-50">
+        <LanguageToggle />
+      </div>
+      
       <div className="max-w-2xl mx-auto px-4">
         {/* Back Button */}
         <button
