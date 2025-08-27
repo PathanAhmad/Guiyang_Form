@@ -512,8 +512,13 @@
       "markContacted": "Mark as Contacted",
       "markCompleted": "Mark as Completed",
       "cancel": "Cancel",
-      "view": "View Details"
-    }
+      "view": "View Details",
+      "contact": "Contact",
+      "complete": "Complete"
+    },
+    "markAsContacted": "Mark as Contacted",
+    "noTokensWaiting": "No tokens waiting",
+    "noActionsAvailable": "No actions available"
   },
   "misc": {
     "referenceToken": "Reference Token",

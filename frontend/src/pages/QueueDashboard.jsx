@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { formsAPI } from '../services/api';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
@@ -6,6 +7,7 @@ import { useToast } from '../hooks/useToast';
 import { useAuth } from '../contexts/AuthContext';
 
 const QueueDashboard = ({ onBack }) => {
+  const { t } = useTranslation();
   const [queueStatus, setQueueStatus] = useState({});
   const [submissions, setSubmissions] = useState([]);
   const [selectedFormType, setSelectedFormType] = useState('demo');
@@ -18,28 +20,28 @@ const QueueDashboard = ({ onBack }) => {
   const handleLogout = async () => {
     try {
       await logout();
-      showToast('Logged out successfully', 'success');
+      showToast(t('common.logoutSuccess'), 'success');
       // Redirect to main site after logout
       setTimeout(() => {
         window.location.href = '/';
       }, 1000);
     } catch (error) {
       console.error('Logout error:', error);
-      showToast('Logout failed', 'error');
+      showToast(t('common.logoutFailed'), 'error');
     }
   };
 
   const formTypes = [
-    { key: 'demo', label: 'Sparkie Demo' },
-    { key: 'showcase', label: 'System Showcase' },
-    { key: 'fasttrack', label: 'Fast-Track' }
+    { key: 'demo', label: t('homepage.forms.demo.title') },
+    { key: 'showcase', label: t('homepage.forms.showcase.title') },
+    { key: 'fasttrack', label: t('homepage.forms.fasttrack.title') }
   ];
 
   const statusOptions = [
-    { key: 'waiting', label: 'Waiting', color: 'text-primary-200' },
-    { key: 'contacted', label: 'Contacted', color: 'text-primary-400' },
-    { key: 'completed', label: 'Completed', color: 'text-green-600' },
-    { key: 'cancelled', label: 'Cancelled', color: 'text-red-600' }
+    { key: 'waiting', label: t('queue.statuses.waiting'), color: 'text-primary-200' },
+    { key: 'contacted', label: t('queue.statuses.contacted'), color: 'text-primary-400' },
+    { key: 'completed', label: t('queue.statuses.completed'), color: 'text-green-600' },
+    { key: 'cancelled', label: t('queue.statuses.cancelled'), color: 'text-red-600' }
   ];
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const QueueDashboard = ({ onBack }) => {
       setQueueStatus(response.data.data);
     } catch (error) {
       console.error('Failed to load queue status:', error);
-      showToast('Failed to load queue status', 'error');
+      showToast(t('queue.error'), 'error');
     }
   };
 
@@ -64,7 +66,7 @@ const QueueDashboard = ({ onBack }) => {
       setSubmissions(response.data.data.submissions);
     } catch (error) {
       console.error('Failed to load submissions:', error);
-      showToast('Failed to load submissions', 'error');
+      showToast(t('queue.error'), 'error');
     } finally {
       setLoading(false);
     }
@@ -76,12 +78,12 @@ const QueueDashboard = ({ onBack }) => {
       const response = await formsAPI.updateStatus(token, newStatus);
       
       if (response.data.success) {
-        showToast(`Token ${token} updated to ${newStatus}`, 'success');
+        showToast(`${t('queue.columns.token')} ${token} ${t('common.updated')} ${t('queue.statuses.' + newStatus)}`, 'success');
         
         // Show next in queue notification if available
         if (response.data.data.nextInQueue) {
           const next = response.data.data.nextInQueue;
-          showToast(`Next in queue: ${next.token} (${next.name})`, 'info', 5000);
+          showToast(`${t('common.nextInQueue')}: ${next.token} (${next.name})`, 'info', 5000);
         }
         
         // Reload data
@@ -89,7 +91,7 @@ const QueueDashboard = ({ onBack }) => {
       }
     } catch (error) {
       console.error('Failed to update status:', error);
-      showToast('Failed to update status', 'error');
+      showToast(t('queue.error'), 'error');
     } finally {
       setUpdating(null);
     }
@@ -125,8 +127,8 @@ const QueueDashboard = ({ onBack }) => {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-              <p className="mt-2 text-gray-600">Queue management and form submission processing</p>
+              <h1 className="text-3xl font-bold text-gray-900">{t('common.adminDashboard')}</h1>
+              <p className="mt-2 text-gray-600">{t('common.queueManagement')}</p>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -136,7 +138,7 @@ const QueueDashboard = ({ onBack }) => {
                   {user?.userid}
                 </p>
                 <p className="text-xs text-gray-500 capitalize">
-                  {user?.role} Access
+                  {user?.role} {t('common.access')}
                 </p>
               </div>
               
@@ -146,7 +148,7 @@ const QueueDashboard = ({ onBack }) => {
                 variant="outline"
                 className="bg-white hover:bg-red-50 border-gray-300 text-gray-700 hover:text-red-700 hover:border-red-300 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
               >
-                Logout
+                {t('common.logout')}
               </Button>
               
               {/* Back to Site */}
@@ -155,7 +157,7 @@ const QueueDashboard = ({ onBack }) => {
                 variant="outline"
                 className="bg-white hover:bg-gray-50 border-gray-300 text-gray-700 hover:text-gray-900 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
               >
-                Main Site
+                {t('common.mainSite')}
               </Button>
             </div>
           </div>
@@ -180,12 +182,12 @@ const QueueDashboard = ({ onBack }) => {
                 
                 {nextInQueue ? (
                   <div className="space-y-2">
-                    <p className="text-sm font-medium text-gray-700">Next in queue:</p>
+                    <p className="text-sm font-medium text-gray-700">{t('common.nextInQueue')}:</p>
                     <div className="bg-primary-50 p-3 rounded-lg">
                       <p className="font-medium text-primary-500">{nextInQueue.token}</p>
                       <p className="text-sm text-primary-400">{nextInQueue.name}</p>
                       <p className="text-xs text-primary-400">
-                        Waiting: {nextInQueue.waitingTime}
+                        {t('queue.columns.waitingTime')}: {nextInQueue.waitingTime}
                       </p>
                     </div>
                     <Button
@@ -195,11 +197,11 @@ const QueueDashboard = ({ onBack }) => {
                       disabled={updating === nextInQueue.token}
                       className="w-full"
                     >
-                      {updating === nextInQueue.token ? 'Updating…' : 'Mark as Contacted'}
+                      {updating === nextInQueue.token ? t('common.updating') : t('queue.actions.markContacted')}
                     </Button>
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-500">No tokens waiting</p>
+                  <p className="text-sm text-gray-500">{t('queue.noTokensWaiting')}</p>
                 )}
               </Card>
             );
@@ -231,18 +233,18 @@ const QueueDashboard = ({ onBack }) => {
         <Card>
           <div className="px-6 py-4 border-b border-gray-200">
             <h3 className="text-lg font-medium text-gray-900">
-              {formTypes.find(f => f.key === selectedFormType)?.label} Submissions
+              {formTypes.find(f => f.key === selectedFormType)?.label} {t('queue.submissions')}
             </h3>
           </div>
 
           {loading ? (
             <div className="p-8 text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-2 text-gray-500">Loading submissions...</p>
+              <p className="mt-2 text-gray-500">{t('queue.loadingSubmissions')}</p>
             </div>
           ) : submissions.length === 0 ? (
             <div className="p-8 text-center text-gray-500">
-              No submissions found for {formTypes.find(f => f.key === selectedFormType)?.label}
+              {t('queue.noSubmissionsFound')} {formTypes.find(f => f.key === selectedFormType)?.label}
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -250,19 +252,19 @@ const QueueDashboard = ({ onBack }) => {
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Token
+                      {t('queue.columns.token')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Contact Info
+                      {t('queue.columns.contactInfo')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
+                      {t('queue.columns.status')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Waiting Time
+                      {t('queue.columns.waitingTime')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
+                      {t('queue.columns.actions')}
                     </th>
                   </tr>
                 </thead>
@@ -297,7 +299,7 @@ const QueueDashboard = ({ onBack }) => {
                               size="sm"
                               disabled={updating === submission.token}
                             >
-                              {updating === submission.token ? 'Updating…' : 'Contact'}
+                              {updating === submission.token ? t('common.updating') : t('queue.actions.contact')}
                             </Button>
                             <Button
                               onClick={() => updateSubmissionStatus(submission.token, 'cancelled')}
@@ -306,7 +308,7 @@ const QueueDashboard = ({ onBack }) => {
                               disabled={updating === submission.token}
                               className="text-red-600 border-red-300 hover:bg-red-50"
                             >
-                              Cancel
+                              {t('queue.actions.cancel')}
                             </Button>
                           </>
                         )}
@@ -318,7 +320,7 @@ const QueueDashboard = ({ onBack }) => {
                               size="sm"
                               disabled={updating === submission.token}
                             >
-                              {updating === submission.token ? 'Updating…' : 'Complete'}
+                              {updating === submission.token ? t('common.updating') : t('queue.actions.complete')}
                             </Button>
                             <Button
                               onClick={() => updateSubmissionStatus(submission.token, 'cancelled')}
@@ -327,12 +329,12 @@ const QueueDashboard = ({ onBack }) => {
                               disabled={updating === submission.token}
                               className="text-red-600 border-red-300 hover:bg-red-50"
                             >
-                              Cancel
+                              {t('queue.actions.cancel')}
                             </Button>
                           </>
                         )}
                         {(submission.status === 'completed' || submission.status === 'cancelled') && (
-                          <span className="text-gray-400">No actions available</span>
+                          <span className="text-gray-400">{t('queue.noActionsAvailable')}</span>
                         )}
                       </td>
                     </tr>
