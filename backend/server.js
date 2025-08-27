@@ -11,6 +11,7 @@ const { errorHandler, notFoundHandler } = require('./middleware/validation');
 const formsRoutes = require('./routes/forms');
 const discordRoutes = require('./routes/discord');
 const discordInteractionsRoutes = require('./routes/discord-interactions');
+const { router: authRoutes } = require('./routes/auth');
 
 // Initialize Express app
 const app = express();
@@ -48,6 +49,7 @@ app.get('/', (req, res) => {
     endpoints: {
       forms: '/api/forms',
       discord: '/api/discord',
+      auth: '/api/auth',
       health: '/api/forms/health'
     }
   });
@@ -57,6 +59,7 @@ app.get('/', (req, res) => {
 app.use('/api/forms', formsRoutes);
 app.use('/api/discord', discordRoutes);
 app.use('/api/discord', discordInteractionsRoutes);
+app.use('/api/auth', authRoutes);
 
 // 404 handler
 app.use(notFoundHandler);
@@ -133,6 +136,9 @@ const startServer = async () => {
     console.log('   GET  /api/forms/submissions/:formType - Get submissions by type');
     console.log('   POST /api/discord/test/:formType - Test Discord webhook');
     console.log('   GET  /api/discord/status - Check webhook status');
+    console.log('   POST /api/auth/login - Admin login');
+    console.log('   POST /api/auth/verify - Verify admin token');
+    console.log('   POST /api/auth/logout - Admin logout');
     console.log('\n✨ Ready to accept form submissions!');
   });
   

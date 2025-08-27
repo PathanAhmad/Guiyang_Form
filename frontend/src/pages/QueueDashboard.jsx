@@ -3,6 +3,7 @@ import { formsAPI } from '../services/api';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useToast } from '../hooks/useToast';
+import { useAuth } from '../contexts/AuthContext';
 
 const QueueDashboard = ({ onBack }) => {
   const [queueStatus, setQueueStatus] = useState({});
@@ -12,6 +13,21 @@ const QueueDashboard = ({ onBack }) => {
   const [updating, setUpdating] = useState(null);
   
   const { showToast } = useToast();
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      showToast('Logged out successfully', 'success');
+      // Redirect to main site after logout
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1000);
+    } catch (error) {
+      console.error('Logout error:', error);
+      showToast('Logout failed', 'error');
+    }
+  };
 
   const formTypes = [
     { key: 'demo', label: 'Sparkie Demo', emoji: '🎯' },
@@ -109,17 +125,41 @@ const QueueDashboard = ({ onBack }) => {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Queue Dashboard</h1>
-              <p className="mt-2 text-gray-600">Manage form submissions and queue processing</p>
+              <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+              <p className="mt-2 text-gray-600">Queue management and form submission processing</p>
             </div>
-            <Button
-              onClick={onBack}
-              variant="outline"
-              className="bg-white hover:bg-gray-50 border-gray-300 text-gray-700 hover:text-gray-900 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
-            >
-              <span className="mr-2">←</span>
-              Back to Forms
-            </Button>
+            
+            <div className="flex items-center space-x-4">
+              {/* User Info */}
+              <div className="text-right">
+                <p className="text-sm font-medium text-gray-900">
+                  👤 {user?.userid}
+                </p>
+                <p className="text-xs text-gray-500 capitalize">
+                  {user?.role} Access
+                </p>
+              </div>
+              
+              {/* Logout Button */}
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                className="bg-white hover:bg-red-50 border-gray-300 text-gray-700 hover:text-red-700 hover:border-red-300 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
+              >
+                <span className="mr-2">🚪</span>
+                Logout
+              </Button>
+              
+              {/* Back to Site */}
+              <Button
+                onClick={() => window.location.href = '/'}
+                variant="outline"
+                className="bg-white hover:bg-gray-50 border-gray-300 text-gray-700 hover:text-gray-900 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
+              >
+                <span className="mr-2">🌐</span>
+                Main Site
+              </Button>
+            </div>
           </div>
         </div>
 

@@ -60,15 +60,30 @@
   },
   "forms": {
     "demo": {
-      "title": "Apply for Sparkie Demo",
-      "subtitle": "Get personalized demo access to our Sparkie system and see how our solutions can benefit your business.",
-      "successTitle": "Sparkie Demo Application Submitted!",
-      "successMessage": "Thank you for your interest in our Sparkie demo. We will be in touch with you soon!",
-      "requestDemo": "Request Demo",
+      "title": "2025 China International Big Data Industry Expo - SPARKOS Intent Form",
+      "subtitle": "Please complete this comprehensive form to express your interest in SPARKOS and help us understand your specific needs.",
+      "successTitle": "SPARKOS Intent Form Submitted!",
+      "successMessage": "Thank you for your interest in SPARKOS. Our team will review your form and contact you within 3-5 business days to discuss how SPARKOS can support your educational goals.",
+      "requestDemo": "Submit Intent Form",
+      "sections": {
+        "contact": "Contact Information",
+        "industry": "Industry Background",
+        "interest": "SparkOS Interest",
+        "features": "Specific Interest Points",
+        "additional": "Additional Information"
+      },
       "fields": {
         "name": {
           "label": "Name",
-          "placeholder": "Enter your name"
+          "placeholder": "Enter your full name"
+        },
+        "institution": {
+          "label": "Institution/Organization",
+          "placeholder": "Enter your institution or organization name"
+        },
+        "position": {
+          "label": "Position/Title",
+          "placeholder": "Enter your position or title"
         },
         "email": {
           "label": "Email",
@@ -76,21 +91,173 @@
         },
         "phone": {
           "label": "Phone Number",
-          "placeholder": "Enter your phone number (optional)",
-          "hint": "We'll use this to schedule your demo call"
+          "placeholder": "Enter your phone number"
+        },
+        "country": {
+          "label": "Country/Region",
+          "placeholder": "Enter your country or region"
+        },
+        "workInEducation": {
+          "label": "Are you currently working in the education industry?",
+          "options": {
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "educationFields": {
+          "label": "If yes, please indicate your field(s): (Multiple selection allowed)",
+          "options": {
+            "k12": "K-12 Schools/Primary & Secondary Education",
+            "specialEducation": "Special Education Services",
+            "preschool": "Early Childhood Education (Kindergarten)",
+            "higherEducation": "Higher Education/University",
+            "privateTutoring": "Private Tutoring/Learning Centers",
+            "edtech": "Educational Technology Development",
+            "contentCreation": "Educational Content Creation",
+            "government": "Government Education Department",
+            "nonprofit": "Non-profit Educational Organization",
+            "parent": "Parent/Caregiver",
+            "other": "Other"
+          }
+        },
+        "primaryRole": {
+          "label": "What is your primary role? (Single selection)",
+          "options": {
+            "administrator": "Administrator/Principal",
+            "teacher": "Teacher/Educator",
+            "specialEdCoordinator": "Special Education Coordinator",
+            "techDirector": "Technology Director",
+            "curriculumDeveloper": "Curriculum Developer",
+            "parent": "Parent/Guardian",
+            "investor": "Investor/Business Development",
+            "researcher": "Researcher",
+            "other": "Other"
+          }
+        },
+        "sparkosUsage": {
+          "label": "How do you plan to use SparkOS? (Multiple selection allowed)",
+          "options": {
+            "classroom": "Classroom Use",
+            "homelearning": "Home Learning Support",
+            "specialEducation": "Special Education Programs",
+            "afterschool": "After-school Tutoring",
+            "therapeuticIntervention": "Therapeutic Learning Intervention",
+            "assessment": "Assessment & Progress Tracking",
+            "teacherTraining": "Teacher Training & Development",
+            "lmsIntegration": "Integration with Existing Learning Management Systems",
+            "research": "Research Purposes",
+            "other": "Other"
+          }
+        },
+        "ageGroups": {
+          "label": "What age groups of children do you primarily serve? (Multiple selection allowed)",
+          "options": {
+            "preschool": "Preschool Children (3-5 years)",
+            "earlyElementary": "Early Elementary (6-8 years)",
+            "lateElementary": "Late Elementary (9-11 years)",
+            "middleSchool": "Middle School (12-14 years)",
+            "highSchool": "High School (15-18 years)",
+            "mixedAges": "Mixed Age Groups"
+          }
+        },
+        "neurodiversityWork": {
+          "label": "Do you currently work with neurodivergent children?",
+          "options": {
+            "frequently": "Yes, frequently",
+            "occasionally": "Yes, occasionally",
+            "interestedNo": "No, but interested",
+            "no": "No"
+          }
+        },
+        "supportedConditions": {
+          "label": "If yes, which conditions do you primarily support? (Multiple selection allowed)",
+          "options": {
+            "adhd": "Attention Deficit Hyperactivity Disorder (ADHD)",
+            "autism": "Autism Spectrum Disorder",
+            "learningDisabilities": "Learning Disabilities",
+            "dyslexia": "Dyslexia",
+            "processingDisorders": "Processing Disorders",
+            "other": "Other"
+          }
+        },
+        "featuresInterest": {
+          "label": "Which SparkOS features are you most interested in? (Select up to 3)",
+          "options": {
+            "voiceEmotion": "Voice Emotion Analysis",
+            "videoEmotion": "Video Emotion Recognition",
+            "adaptiveLearning": "Adaptive Learning Algorithms",
+            "progressTracking": "Progress Tracking & Analytics",
+            "personalizedCurriculum": "Personalized Curriculum Matching",
+            "multisensoryLearning": "Multi-sensory Learning Approaches",
+            "collaboration": "Parent/Teacher Collaboration Tools",
+            "behaviorInsights": "Real-time Behavioral Insights"
+          }
+        },
+        "implementationTimeline": {
+          "label": "What is your potential implementation timeline?",
+          "options": {
+            "immediate": "Immediate (within 3 months)",
+            "shortTerm": "Short-term (3-6 months)",
+            "mediumTerm": "Medium-term (6-12 months)",
+            "longTerm": "Long-term (12+ months)",
+            "research": "Research/Exploration phase only"
+          }
+        },
+        "pilotInterest": {
+          "label": "Are you interested in pilot projects or demonstrations?",
+          "options": {
+            "yes": "Yes",
+            "no": "No",
+            "maybe": "Maybe"
+          }
+        },
+        "currentChallenges": {
+          "label": "Current challenges in education: (Optional)",
+          "placeholder": "Please describe any current challenges you face in education that SparkOS might help address"
+        },
+        "additionalComments": {
+          "label": "Other comments or questions:",
+          "placeholder": "Please share any additional comments, questions, or specific requirements"
+        },
+        "educationFieldsOther": {
+          "placeholder": "Please specify other education field"
+        },
+        "primaryRoleOther": {
+          "placeholder": "Please specify other role"
+        },
+        "sparkosUsageOther": {
+          "placeholder": "Please specify other usage"
+        },
+        "supportedConditionsOther": {
+          "placeholder": "Please specify other conditions"
         }
       }
     },
     "showcase": {
-      "title": "Apply for System Showcase",
-      "subtitle": "Get personalized access to our system showcase and see how our solutions can benefit your business.",
-      "successTitle": "System Showcase Application Submitted!",
-      "successMessage": "Thank you for your interest in our system showcase. We will be in touch with you soon!",
-      "requestShowcase": "Request Showcase",
+      "title": "2025 China International Big Data Industry Expo - SPARKOS Intent Form",
+      "subtitle": "Please complete this comprehensive form to express your interest in SPARKOS and help us understand your specific needs.",
+      "successTitle": "SPARKOS Intent Form Submitted!",
+      "successMessage": "Thank you for your interest in SPARKOS. Our team will review your form and contact you within 3-5 business days to discuss how SPARKOS can support your educational goals.",
+      "requestShowcase": "Submit Intent Form",
+      "sections": {
+        "contact": "Contact Information",
+        "industry": "Industry Background",
+        "interest": "SparkOS Interest",
+        "features": "Specific Interest Points",
+        "additional": "Additional Information"
+      },
       "fields": {
         "name": {
           "label": "Name",
-          "placeholder": "Enter your name"
+          "placeholder": "Enter your full name"
+        },
+        "institution": {
+          "label": "Institution/Organization",
+          "placeholder": "Enter your institution or organization name"
+        },
+        "position": {
+          "label": "Position/Title",
+          "placeholder": "Enter your position or title"
         },
         "email": {
           "label": "Email",
@@ -98,8 +265,145 @@
         },
         "phone": {
           "label": "Phone Number",
-          "placeholder": "Enter your phone number (optional)",
-          "hint": "We'll use this to schedule your showcase call"
+          "placeholder": "Enter your phone number"
+        },
+        "country": {
+          "label": "Country/Region",
+          "placeholder": "Enter your country or region"
+        },
+        "workInEducation": {
+          "label": "Are you currently working in the education industry?",
+          "options": {
+            "yes": "Yes",
+            "no": "No"
+          }
+        },
+        "educationFields": {
+          "label": "If yes, please indicate your field(s): (Multiple selection allowed)",
+          "options": {
+            "k12": "K-12 Schools/Primary & Secondary Education",
+            "specialEducation": "Special Education Services",
+            "preschool": "Early Childhood Education (Kindergarten)",
+            "higherEducation": "Higher Education/University",
+            "privateTutoring": "Private Tutoring/Learning Centers",
+            "edtech": "Educational Technology Development",
+            "contentCreation": "Educational Content Creation",
+            "government": "Government Education Department",
+            "nonprofit": "Non-profit Educational Organization",
+            "parent": "Parent/Caregiver",
+            "other": "Other"
+          }
+        },
+        "primaryRole": {
+          "label": "What is your primary role? (Single selection)",
+          "options": {
+            "administrator": "Administrator/Principal",
+            "teacher": "Teacher/Educator",
+            "specialEdCoordinator": "Special Education Coordinator",
+            "techDirector": "Technology Director",
+            "curriculumDeveloper": "Curriculum Developer",
+            "parent": "Parent/Guardian",
+            "investor": "Investor/Business Development",
+            "researcher": "Researcher",
+            "other": "Other"
+          }
+        },
+        "sparkosUsage": {
+          "label": "How do you plan to use SparkOS? (Multiple selection allowed)",
+          "options": {
+            "classroom": "Classroom Use",
+            "homelearning": "Home Learning Support",
+            "specialEducation": "Special Education Programs",
+            "afterschool": "After-school Tutoring",
+            "therapeuticIntervention": "Therapeutic Learning Intervention",
+            "assessment": "Assessment & Progress Tracking",
+            "teacherTraining": "Teacher Training & Development",
+            "lmsIntegration": "Integration with Existing Learning Management Systems",
+            "research": "Research Purposes",
+            "other": "Other"
+          }
+        },
+        "ageGroups": {
+          "label": "What age groups of children do you primarily serve? (Multiple selection allowed)",
+          "options": {
+            "preschool": "Preschool Children (3-5 years)",
+            "earlyElementary": "Early Elementary (6-8 years)",
+            "lateElementary": "Late Elementary (9-11 years)",
+            "middleSchool": "Middle School (12-14 years)",
+            "highSchool": "High School (15-18 years)",
+            "mixedAges": "Mixed Age Groups"
+          }
+        },
+        "neurodiversityWork": {
+          "label": "Do you currently work with neurodivergent children?",
+          "options": {
+            "frequently": "Yes, frequently",
+            "occasionally": "Yes, occasionally",
+            "interestedNo": "No, but interested",
+            "no": "No"
+          }
+        },
+        "supportedConditions": {
+          "label": "If yes, which conditions do you primarily support? (Multiple selection allowed)",
+          "options": {
+            "adhd": "Attention Deficit Hyperactivity Disorder (ADHD)",
+            "autism": "Autism Spectrum Disorder",
+            "learningDisabilities": "Learning Disabilities",
+            "dyslexia": "Dyslexia",
+            "processingDisorders": "Processing Disorders",
+            "other": "Other"
+          }
+        },
+        "featuresInterest": {
+          "label": "Which SparkOS features are you most interested in? (Select up to 3)",
+          "options": {
+            "voiceEmotion": "Voice Emotion Analysis",
+            "videoEmotion": "Video Emotion Recognition",
+            "adaptiveLearning": "Adaptive Learning Algorithms",
+            "progressTracking": "Progress Tracking & Analytics",
+            "personalizedCurriculum": "Personalized Curriculum Matching",
+            "multisensoryLearning": "Multi-sensory Learning Approaches",
+            "collaboration": "Parent/Teacher Collaboration Tools",
+            "behaviorInsights": "Real-time Behavioral Insights"
+          }
+        },
+        "implementationTimeline": {
+          "label": "What is your potential implementation timeline?",
+          "options": {
+            "immediate": "Immediate (within 3 months)",
+            "shortTerm": "Short-term (3-6 months)",
+            "mediumTerm": "Medium-term (6-12 months)",
+            "longTerm": "Long-term (12+ months)",
+            "research": "Research/Exploration phase only"
+          }
+        },
+        "pilotInterest": {
+          "label": "Are you interested in pilot projects or demonstrations?",
+          "options": {
+            "yes": "Yes",
+            "no": "No",
+            "maybe": "Maybe"
+          }
+        },
+        "currentChallenges": {
+          "label": "Current challenges in education: (Optional)",
+          "placeholder": "Please describe any current challenges you face in education that SparkOS might help address"
+        },
+        "additionalComments": {
+          "label": "Other comments or questions:",
+          "placeholder": "Please share any additional comments, questions, or specific requirements"
+        },
+        "educationFieldsOther": {
+          "placeholder": "Please specify other education field"
+        },
+        "primaryRoleOther": {
+          "placeholder": "Please specify other role"
+        },
+        "sparkosUsageOther": {
+          "placeholder": "Please specify other usage"
+        },
+        "supportedConditionsOther": {
+          "placeholder": "Please specify other conditions"
         }
       }
     },
@@ -148,7 +452,16 @@
       "emailInvalid": "Please enter a valid email address",
       "phoneInvalid": "Please enter a valid phone number",
       "companyRequired": "Company/Organization is required",
-      "roleRequired": "Position/Role is required"
+      "roleRequired": "Position/Role is required",
+      "institutionRequired": "Institution/Organization is required",
+      "positionRequired": "Position/Title is required",
+      "phoneRequired": "Phone Number is required",
+      "countryRequired": "Country/Region is required",
+      "workInEducationRequired": "Please indicate if you work in education",
+      "primaryRoleRequired": "Please select your primary role",
+      "featuresMaxSelection": "Please select up to 3 features only",
+      "implementationTimelineRequired": "Please select your implementation timeline",
+      "pilotInterestRequired": "Please indicate your interest in pilot projects"
     },
     "errors": {
       "submissionError": "Submission Error",

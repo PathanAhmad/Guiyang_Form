@@ -93,5 +93,49 @@ export const discordAPI = {
   sendCustomTest: (data) => api.post('/discord/custom-test', data),
 };
 
+// Authentication API endpoints
+export const authAPI = {
+  // Login with credentials
+  login: (credentials) => api.post('/auth/login', credentials),
+  
+  // Verify token
+  verify: (token) => api.post('/auth/verify', { token }),
+  
+  // Logout
+  logout: () => api.post('/auth/logout'),
+};
+
+// Function to set auth token in axios headers
+export const setAuthToken = (token) => {
+  if (token) {
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  } else {
+    delete api.defaults.headers.common['Authorization'];
+  }
+};
+
+// Function to get current auth token from localStorage
+export const getAuthToken = () => {
+  return localStorage.getItem('admin_token');
+};
+
+// Function to save auth token to localStorage
+export const saveAuthToken = (token) => {
+  localStorage.setItem('admin_token', token);
+  setAuthToken(token);
+};
+
+// Function to remove auth token
+export const removeAuthToken = () => {
+  localStorage.removeItem('admin_token');
+  setAuthToken(null);
+};
+
+// Initialize auth token on app start if it exists
+const savedToken = getAuthToken();
+if (savedToken) {
+  setAuthToken(savedToken);
+}
+
 // Main API instance export
 export default api;

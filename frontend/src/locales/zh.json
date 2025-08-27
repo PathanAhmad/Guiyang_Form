@@ -60,15 +60,30 @@
   },
   "forms": {
     "demo": {
-      "title": "申请 Sparkie 演示",
-      "subtitle": "获取我们 Sparkie 系统的个性化演示，了解它如何为您的业务带来好处。",
-      "successTitle": "Sparkie 演示申请已提交！",
-      "successMessage": "感谢您对我们 Sparkie 演示的关注。我们很快会与您联系！",
-      "requestDemo": "申请演示",
+      "title": "2025中国国际大数据产业博览会 - SPARKOS 意向表",
+      "subtitle": "请完成这份综合表格，表达您对SPARKOS的兴趣，并帮助我们了解您的具体需求。",
+      "successTitle": "SPARKOS 意向表已提交！",
+      "successMessage": "感谢您对SPARKOS的关注。我们的团队将在3-5个工作日内审核您的表格并与您联系，探讨SPARKOS如何支持您的教育目标。",
+      "requestDemo": "提交意向表",
+      "sections": {
+        "contact": "联系信息",
+        "industry": "行业背景",
+        "interest": "对SparkOS的兴趣",
+        "features": "具体兴趣点",
+        "additional": "其他信息"
+      },
       "fields": {
         "name": {
           "label": "姓名",
-          "placeholder": "请输入您的姓名"
+          "placeholder": "请输入您的全名"
+        },
+        "institution": {
+          "label": "机构",
+          "placeholder": "请输入您的机构或组织名称"
+        },
+        "position": {
+          "label": "职位/头衔",
+          "placeholder": "请输入您的职位或头衔"
         },
         "email": {
           "label": "电子邮箱",
@@ -76,21 +91,173 @@
         },
         "phone": {
           "label": "电话号码",
-          "placeholder": "请输入您的电话号码（选填）",
-          "hint": "我们将使用此信息安排演示通话"
+          "placeholder": "请输入您的电话号码"
+        },
+        "country": {
+          "label": "国家/地区",
+          "placeholder": "请输入您的国家或地区"
+        },
+        "workInEducation": {
+          "label": "您目前是否在教育行业工作？",
+          "options": {
+            "yes": "是",
+            "no": "否"
+          }
+        },
+        "educationFields": {
+          "label": "若是，请注明您的领域：（可多选）",
+          "options": {
+            "k12": "K-12学校/基础与中等教育",
+            "specialEducation": "特殊教育服务",
+            "preschool": "学前教育（幼儿园）",
+            "higherEducation": "高等教育/大学",
+            "privateTutoring": "私人补习/学习中心",
+            "edtech": "教育科技开发",
+            "contentCreation": "教育内容创作",
+            "government": "政府教育部门",
+            "nonprofit": "非营利教育组织",
+            "parent": "家长/照护者",
+            "other": "其他"
+          }
+        },
+        "primaryRole": {
+          "label": "您的主要角色是？（单选）",
+          "options": {
+            "administrator": "管理人员/校长",
+            "teacher": "教师/教育者",
+            "specialEdCoordinator": "特殊教育协调员",
+            "techDirector": "技术主管",
+            "curriculumDeveloper": "课程开发人员",
+            "parent": "家长/监护人",
+            "investor": "投资者/业务发展",
+            "researcher": "研究人员",
+            "other": "其他"
+          }
+        },
+        "sparkosUsage": {
+          "label": "您打算如何使用SparkOS？（可多选）",
+          "options": {
+            "classroom": "教室使用",
+            "homelearning": "居家学习支持",
+            "specialEducation": "特殊教育项目",
+            "afterschool": "课后辅导",
+            "therapeuticIntervention": "治疗性学习干预",
+            "assessment": "评估与进展追踪",
+            "teacherTraining": "教师培训与发展",
+            "lmsIntegration": "与现有学习管理系统整合",
+            "research": "研究用途",
+            "other": "其他"
+          }
+        },
+        "ageGroups": {
+          "label": "您主要服务的儿童年龄段是？（可多选）",
+          "options": {
+            "preschool": "学前儿童（3-5岁）",
+            "earlyElementary": "小学低年级（6-8岁）",
+            "lateElementary": "小学高年级（9-11岁）",
+            "middleSchool": "初中（12-14岁）",
+            "highSchool": "高中（15-18岁）",
+            "mixedAges": "混龄组"
+          }
+        },
+        "neurodiversityWork": {
+          "label": "您目前是否与神经多样性儿童一起工作？",
+          "options": {
+            "frequently": "是，经常",
+            "occasionally": "是，偶尔",
+            "interestedNo": "否，但感兴趣",
+            "no": "否"
+          }
+        },
+        "supportedConditions": {
+          "label": "若是，您主要支持哪些状况？（可多选）",
+          "options": {
+            "adhd": "注意力缺陷多动障碍（ADHD）",
+            "autism": "自闭症谱系障碍",
+            "learningDisabilities": "学习障碍",
+            "dyslexia": "阅读障碍（Dyslexia）",
+            "processingDisorders": "处理障碍",
+            "other": "其他"
+          }
+        },
+        "featuresInterest": {
+          "label": "您对SparkOS哪些功能最感兴趣？（最多选3项）",
+          "options": {
+            "voiceEmotion": "语音情绪分析",
+            "videoEmotion": "视频情绪识别",
+            "adaptiveLearning": "自适应学习算法",
+            "progressTracking": "进展追踪与分析",
+            "personalizedCurriculum": "个性化课程匹配",
+            "multisensoryLearning": "多感官学习方式",
+            "collaboration": "家长/教师协作工具",
+            "behaviorInsights": "实时行为洞察"
+          }
+        },
+        "implementationTimeline": {
+          "label": "您的潜在实施时间表是？",
+          "options": {
+            "immediate": "立即（3个月内）",
+            "shortTerm": "短期（3-6个月）",
+            "mediumTerm": "中期（6-12个月）",
+            "longTerm": "长期（12个月以上）",
+            "research": "仅处于研究/探索阶段"
+          }
+        },
+        "pilotInterest": {
+          "label": "您是否对试点项目或演示感兴趣？",
+          "options": {
+            "yes": "是",
+            "no": "否",
+            "maybe": "可能"
+          }
+        },
+        "currentChallenges": {
+          "label": "当前在教育中面临的挑战：（选填）",
+          "placeholder": "请描述您目前在教育中面临的任何挑战，SparkOS可能有助于解决"
+        },
+        "additionalComments": {
+          "label": "其他意见或问题：",
+          "placeholder": "请分享任何其他意见、问题或具体要求"
+        },
+        "educationFieldsOther": {
+          "placeholder": "请具体说明其他教育领域"
+        },
+        "primaryRoleOther": {
+          "placeholder": "请具体说明其他角色"
+        },
+        "sparkosUsageOther": {
+          "placeholder": "请具体说明其他用途"
+        },
+        "supportedConditionsOther": {
+          "placeholder": "请具体说明其他状况"
         }
       }
     },
     "showcase": {
-      "title": "申请系统展示",
-      "subtitle": "获取我们系统功能的个性化展示，了解它如何为您的业务带来好处。",
-      "successTitle": "系统展示申请已提交！",
-      "successMessage": "感谢您对我们系统展示的关注。我们很快会与您联系！",
-      "requestShowcase": "申请展示",
+      "title": "2025中国国际大数据产业博览会 - SPARKOS 意向表",
+      "subtitle": "请完成这份综合表格，表达您对SPARKOS的兴趣，并帮助我们了解您的具体需求。",
+      "successTitle": "SPARKOS 意向表已提交！",
+      "successMessage": "感谢您对SPARKOS的关注。我们的团队将在3-5个工作日内审核您的表格并与您联系，探讨SPARKOS如何支持您的教育目标。",
+      "requestShowcase": "提交意向表",
+      "sections": {
+        "contact": "联系信息",
+        "industry": "行业背景",
+        "interest": "对SparkOS的兴趣",
+        "features": "具体兴趣点",
+        "additional": "其他信息"
+      },
       "fields": {
         "name": {
           "label": "姓名",
-          "placeholder": "请输入您的姓名"
+          "placeholder": "请输入您的全名"
+        },
+        "institution": {
+          "label": "机构",
+          "placeholder": "请输入您的机构或组织名称"
+        },
+        "position": {
+          "label": "职位/头衔",
+          "placeholder": "请输入您的职位或头衔"
         },
         "email": {
           "label": "电子邮箱",
@@ -98,8 +265,145 @@
         },
         "phone": {
           "label": "电话号码",
-          "placeholder": "请输入您的电话号码（选填）",
-          "hint": "我们将使用此信息安排展示通话"
+          "placeholder": "请输入您的电话号码"
+        },
+        "country": {
+          "label": "国家/地区",
+          "placeholder": "请输入您的国家或地区"
+        },
+        "workInEducation": {
+          "label": "您目前是否在教育行业工作？",
+          "options": {
+            "yes": "是",
+            "no": "否"
+          }
+        },
+        "educationFields": {
+          "label": "若是，请注明您的领域：（可多选）",
+          "options": {
+            "k12": "K-12学校/基础与中等教育",
+            "specialEducation": "特殊教育服务",
+            "preschool": "学前教育（幼儿园）",
+            "higherEducation": "高等教育/大学",
+            "privateTutoring": "私人补习/学习中心",
+            "edtech": "教育科技开发",
+            "contentCreation": "教育内容创作",
+            "government": "政府教育部门",
+            "nonprofit": "非营利教育组织",
+            "parent": "家长/照护者",
+            "other": "其他"
+          }
+        },
+        "primaryRole": {
+          "label": "您的主要角色是？（单选）",
+          "options": {
+            "administrator": "管理人员/校长",
+            "teacher": "教师/教育者",
+            "specialEdCoordinator": "特殊教育协调员",
+            "techDirector": "技术主管",
+            "curriculumDeveloper": "课程开发人员",
+            "parent": "家长/监护人",
+            "investor": "投资者/业务发展",
+            "researcher": "研究人员",
+            "other": "其他"
+          }
+        },
+        "sparkosUsage": {
+          "label": "您打算如何使用SparkOS？（可多选）",
+          "options": {
+            "classroom": "教室使用",
+            "homelearning": "居家学习支持",
+            "specialEducation": "特殊教育项目",
+            "afterschool": "课后辅导",
+            "therapeuticIntervention": "治疗性学习干预",
+            "assessment": "评估与进展追踪",
+            "teacherTraining": "教师培训与发展",
+            "lmsIntegration": "与现有学习管理系统整合",
+            "research": "研究用途",
+            "other": "其他"
+          }
+        },
+        "ageGroups": {
+          "label": "您主要服务的儿童年龄段是？（可多选）",
+          "options": {
+            "preschool": "学前儿童（3-5岁）",
+            "earlyElementary": "小学低年级（6-8岁）",
+            "lateElementary": "小学高年级（9-11岁）",
+            "middleSchool": "初中（12-14岁）",
+            "highSchool": "高中（15-18岁）",
+            "mixedAges": "混龄组"
+          }
+        },
+        "neurodiversityWork": {
+          "label": "您目前是否与神经多样性儿童一起工作？",
+          "options": {
+            "frequently": "是，经常",
+            "occasionally": "是，偶尔",
+            "interestedNo": "否，但感兴趣",
+            "no": "否"
+          }
+        },
+        "supportedConditions": {
+          "label": "若是，您主要支持哪些状况？（可多选）",
+          "options": {
+            "adhd": "注意力缺陷多动障碍（ADHD）",
+            "autism": "自闭症谱系障碍",
+            "learningDisabilities": "学习障碍",
+            "dyslexia": "阅读障碍（Dyslexia）",
+            "processingDisorders": "处理障碍",
+            "other": "其他"
+          }
+        },
+        "featuresInterest": {
+          "label": "您对SparkOS哪些功能最感兴趣？（最多选3项）",
+          "options": {
+            "voiceEmotion": "语音情绪分析",
+            "videoEmotion": "视频情绪识别",
+            "adaptiveLearning": "自适应学习算法",
+            "progressTracking": "进展追踪与分析",
+            "personalizedCurriculum": "个性化课程匹配",
+            "multisensoryLearning": "多感官学习方式",
+            "collaboration": "家长/教师协作工具",
+            "behaviorInsights": "实时行为洞察"
+          }
+        },
+        "implementationTimeline": {
+          "label": "您的潜在实施时间表是？",
+          "options": {
+            "immediate": "立即（3个月内）",
+            "shortTerm": "短期（3-6个月）",
+            "mediumTerm": "中期（6-12个月）",
+            "longTerm": "长期（12个月以上）",
+            "research": "仅处于研究/探索阶段"
+          }
+        },
+        "pilotInterest": {
+          "label": "您是否对试点项目或演示感兴趣？",
+          "options": {
+            "yes": "是",
+            "no": "否",
+            "maybe": "可能"
+          }
+        },
+        "currentChallenges": {
+          "label": "当前在教育中面临的挑战：（选填）",
+          "placeholder": "请描述您目前在教育中面临的任何挑战，SparkOS可能有助于解决"
+        },
+        "additionalComments": {
+          "label": "其他意见或问题：",
+          "placeholder": "请分享任何其他意见、问题或具体要求"
+        },
+        "educationFieldsOther": {
+          "placeholder": "请具体说明其他教育领域"
+        },
+        "primaryRoleOther": {
+          "placeholder": "请具体说明其他角色"
+        },
+        "sparkosUsageOther": {
+          "placeholder": "请具体说明其他用途"
+        },
+        "supportedConditionsOther": {
+          "placeholder": "请具体说明其他状况"
         }
       }
     },
@@ -148,7 +452,16 @@
       "emailInvalid": "请输入有效的电子邮箱地址",
       "phoneInvalid": "请输入有效的电话号码",
       "companyRequired": "公司/组织为必填项",
-      "roleRequired": "职位/角色为必填项"
+      "roleRequired": "职位/角色为必填项",
+      "institutionRequired": "机构/组织为必填项",
+      "positionRequired": "职位/头衔为必填项",
+      "phoneRequired": "电话号码为必填项",
+      "countryRequired": "国家/地区为必填项",
+      "workInEducationRequired": "请表明您是否在教育行业工作",
+      "primaryRoleRequired": "请选择您的主要角色",
+      "featuresMaxSelection": "请最多只选3个功能",
+      "implementationTimelineRequired": "请选择您的实施时间表",
+      "pilotInterestRequired": "请表明您对试点项目的兴趣"
     },
     "errors": {
       "submissionError": "提交错误",

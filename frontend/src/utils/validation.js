@@ -84,14 +84,136 @@ export const validateAreaOfInterest = (areaOfInterest) => {
 };
 
 /**
- * Validate demo form
+ * Validate institution field
+ */
+export const validateInstitution = (institution) => {
+  if (!institution) return 'Institution/Organization is required';
+  if (institution.trim().length < 2) return 'Institution name must be at least 2 characters';
+  if (institution.trim().length > 150) return 'Institution name is too long';
+  return '';
+};
+
+/**
+ * Validate position field
+ */
+export const validatePosition = (position) => {
+  if (!position) return 'Position/Title is required';
+  if (position.trim().length < 2) return 'Position must be at least 2 characters';
+  if (position.trim().length > 100) return 'Position is too long';
+  return '';
+};
+
+/**
+ * Validate country field
+ */
+export const validateCountry = (country) => {
+  if (!country) return 'Country/Region is required';
+  if (country.trim().length < 2) return 'Country/Region must be at least 2 characters';
+  if (country.trim().length > 100) return 'Country/Region is too long';
+  return '';
+};
+
+/**
+ * Validate required phone for comprehensive forms
+ */
+export const validateRequiredPhone = (phone) => {
+  if (!phone) return 'Phone number is required';
+  if (phone.length < 10) return 'Phone number must be at least 10 digits';
+  if (phone.length > 20) return 'Phone number is too long';
+  return '';
+};
+
+/**
+ * Validate work in education field
+ */
+export const validateWorkInEducation = (workInEducation) => {
+  if (!workInEducation || (workInEducation !== 'yes' && workInEducation !== 'no')) {
+    return 'Please indicate if you work in education';
+  }
+  return '';
+};
+
+/**
+ * Validate primary role field
+ */
+export const validatePrimaryRole = (primaryRole, workInEducation) => {
+  if (workInEducation === 'yes' && !primaryRole) {
+    return 'Please select your primary role';
+  }
+  return '';
+};
+
+/**
+ * Validate features interest (max 3 selections)
+ */
+export const validateFeaturesInterest = (featuresInterest) => {
+  if (!featuresInterest || featuresInterest.length === 0) {
+    return 'Please select at least one feature of interest';
+  }
+  if (featuresInterest.length > 3) {
+    return 'Please select up to 3 features only';
+  }
+  return '';
+};
+
+/**
+ * Validate implementation timeline
+ */
+export const validateImplementationTimeline = (timeline) => {
+  if (!timeline) return 'Please select your implementation timeline';
+  return '';
+};
+
+/**
+ * Validate pilot interest
+ */
+export const validatePilotInterest = (pilotInterest) => {
+  if (!pilotInterest) return 'Please indicate your interest in pilot projects';
+  return '';
+};
+
+/**
+ * Validate current challenges field (optional)
+ */
+export const validateCurrentChallenges = (challenges) => {
+  if (challenges && challenges.length > 2000) return 'Current challenges description is too long (max 2000 characters)';
+  return '';
+};
+
+/**
+ * Validate additional comments field (optional)
+ */
+export const validateAdditionalComments = (comments) => {
+  if (comments && comments.length > 2000) return 'Additional comments are too long (max 2000 characters)';
+  return '';
+};
+
+/**
+ * Validate comprehensive demo form
  */
 export const validateDemoForm = (data) => {
   const errors = {};
   
+  // Contact Information (all required)
   errors.name = validateName(data.name);
   errors.email = validateEmail(data.email);
-  errors.phone = validatePhone(data.phone);
+  errors.phone = validateRequiredPhone(data.phone);
+  errors.institution = validateInstitution(data.institution);
+  errors.position = validatePosition(data.position);
+  errors.country = validateCountry(data.country);
+  
+  // Industry Background
+  errors.workInEducation = validateWorkInEducation(data.workInEducation);
+  errors.primaryRole = validatePrimaryRole(data.primaryRole, data.workInEducation);
+  
+  // SparkOS Interest
+  errors.featuresInterest = validateFeaturesInterest(data.featuresInterest);
+  errors.implementationTimeline = validateImplementationTimeline(data.implementationTimeline);
+  errors.pilotInterest = validatePilotInterest(data.pilotInterest);
+  
+  // Optional fields
+  errors.currentChallenges = validateCurrentChallenges(data.currentChallenges);
+  errors.additionalComments = validateAdditionalComments(data.additionalComments);
   
   // Remove empty error messages
   Object.keys(errors).forEach(key => {
@@ -105,14 +227,31 @@ export const validateDemoForm = (data) => {
 };
 
 /**
- * Validate showcase form
+ * Validate comprehensive showcase form
  */
 export const validateShowcaseForm = (data) => {
   const errors = {};
   
+  // Contact Information (all required)
   errors.name = validateName(data.name);
   errors.email = validateEmail(data.email);
-  errors.phone = validatePhone(data.phone);
+  errors.phone = validateRequiredPhone(data.phone);
+  errors.institution = validateInstitution(data.institution);
+  errors.position = validatePosition(data.position);
+  errors.country = validateCountry(data.country);
+  
+  // Industry Background
+  errors.workInEducation = validateWorkInEducation(data.workInEducation);
+  errors.primaryRole = validatePrimaryRole(data.primaryRole, data.workInEducation);
+  
+  // SparkOS Interest
+  errors.featuresInterest = validateFeaturesInterest(data.featuresInterest);
+  errors.implementationTimeline = validateImplementationTimeline(data.implementationTimeline);
+  errors.pilotInterest = validatePilotInterest(data.pilotInterest);
+  
+  // Optional fields
+  errors.currentChallenges = validateCurrentChallenges(data.currentChallenges);
+  errors.additionalComments = validateAdditionalComments(data.additionalComments);
   
   // Remove empty error messages
   Object.keys(errors).forEach(key => {

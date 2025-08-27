@@ -1,71 +1,39 @@
-import { useState } from 'react';
-import Layout from './components/ui/Layout';
-import HomePage from './pages/HomePage';
-import UnifiedForm from './components/forms/UnifiedForm';
-import TokenDisplay from './components/ui/TokenDisplay';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+
+// Page components
+import MainApp from './MainApp';
+import LoginPage from './pages/LoginPage';
 import QueueDashboard from './pages/QueueDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-  const [currentView, setCurrentView] = useState('home'); // 'home', 'form', 'token', 'queue'
-  const [selectedFormType, setSelectedFormType] = useState(null); // 'demo', 'showcase', 'fasttrack'
-  const [submissionData, setSubmissionData] = useState(null);
-
-  const handleCardSelect = (formType) => {
-    setSelectedFormType(formType);
-    setCurrentView('form');
-  };
-
-  const handleFormSuccess = (data) => {
-    setSubmissionData(data);
-    setCurrentView('token');
-  };
-
-  const handleBackToHome = () => {
-    setCurrentView('home');
-    setSelectedFormType(null);
-    setSubmissionData(null);
-  };
-
-  const handleViewQueue = () => {
-    setCurrentView('queue');
-  };
-
-  const renderCurrentView = () => {
-    switch (currentView) {
-      case 'form':
-        return (
-          <UnifiedForm 
-            formType={selectedFormType}
-            onSuccess={handleFormSuccess}
-            onBack={handleBackToHome}
-          />
-        );
-      case 'token':
-        return (
-          <TokenDisplay 
-            submissionData={submissionData}
-            formType={selectedFormType}
-            onBackToHome={handleBackToHome}
-          />
-        );
-      case 'queue':
-        return (
-          <QueueDashboard onBack={handleBackToHome} />
-        );
-      default:
-        return (
-          <HomePage 
-            onCardSelect={handleCardSelect}
-            onViewQueue={handleViewQueue}
-          />
-        );
-    }
-  };
-
   return (
-    <Layout showNavigation={currentView === 'queue'}>
-      {renderCurrentView()}
-    </Layout>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Main application routes (forms, etc.) */}
+          <Route path="/*" element={<MainApp />} />
+          
+          {/* Admin login route */}
+          <Route path="/admin/login" element={<LoginPage />} />
+          
+          {/* Protected admin dashboard route */}
+          <Route 
+            path="/queuedashboard" 
+            element={
+              <ProtectedRoute>
+                <QueueDashboard />
+              </ProtectedRoute>
+            } 
+          />
+          
+          {/* Redirect /admin to /admin/login */}
+          <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

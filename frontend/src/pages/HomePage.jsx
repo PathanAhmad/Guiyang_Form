@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 
-const HomePage = ({ onCardSelect, onViewQueue }) => {
+const HomePage = ({ onCardSelect }) => {
   const { t } = useTranslation();
   
   const formTypes = [
@@ -79,23 +79,6 @@ const HomePage = ({ onCardSelect, onViewQueue }) => {
               </Card.Body>
             </Card>
           ))}
-        </div>
-        
-        {/* Queue Dashboard Access - Professional admin button */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center justify-center p-1 bg-gradient-to-r from-slate-100 to-gray-100 rounded-xl shadow-sm">
-            <Button
-              onClick={onViewQueue}
-              variant="outline"
-              className="bg-white hover:bg-gray-50 border-gray-200 text-gray-700 hover:text-gray-900 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
-            >
-              <span className="mr-2">📊</span>
-              {t('navigation.queueDashboard')}
-            </Button>
-          </div>
-          <p className="mt-3 text-sm text-gray-500">
-            Admin access for queue management
-          </p>
         </div>
       </div>
     </div>

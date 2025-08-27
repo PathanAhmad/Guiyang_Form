@@ -4,6 +4,7 @@ const FormSubmission = require('../models/FormSubmission');
 const TokenCounter = require('../models/TokenCounter');
 const discordService = require('../services/discordService');
 const { validateFormSubmission } = require('../middleware/validation');
+const { authenticateAdmin } = require('./auth');
 
 /**
  * Helper function to process form submission
@@ -106,8 +107,8 @@ router.get('/submission/:token', async (req, res) => {
   }
 });
 
-// Route: Update submission status
-router.patch('/submission/:token/status', async (req, res) => {
+// Route: Update submission status (Admin only)
+router.patch('/submission/:token/status', authenticateAdmin, async (req, res) => {
   try {
     const { token } = req.params;
     const { status } = req.body;
@@ -192,8 +193,8 @@ router.patch('/submission/:token/status', async (req, res) => {
   }
 });
 
-// Route: Get next waiting token for a form type
-router.get('/queue/:formType/next', async (req, res) => {
+// Route: Get next waiting token for a form type (Admin only)
+router.get('/queue/:formType/next', authenticateAdmin, async (req, res) => {
   try {
     const { formType } = req.params;
     
@@ -237,8 +238,8 @@ router.get('/queue/:formType/next', async (req, res) => {
   }
 });
 
-// Route: Get queue status for all form types
-router.get('/queue/status', async (req, res) => {
+// Route: Get queue status for all form types (Admin only)
+router.get('/queue/status', authenticateAdmin, async (req, res) => {
   try {
     const queueStatus = {};
     
@@ -305,8 +306,8 @@ function getWaitingTime(submittedAt) {
   }
 }
 
-// Route: Get all submissions for a form type (with pagination)
-router.get('/submissions/:formType', async (req, res) => {
+// Route: Get all submissions for a form type (with pagination) (Admin only)
+router.get('/submissions/:formType', authenticateAdmin, async (req, res) => {
   try {
     const { formType } = req.params;
     const page = parseInt(req.query.page) || 1;
@@ -352,8 +353,8 @@ router.get('/submissions/:formType', async (req, res) => {
   }
 });
 
-// Route: Get token counters status
-router.get('/counters', async (req, res) => {
+// Route: Get token counters status (Admin only)
+router.get('/counters', authenticateAdmin, async (req, res) => {
   try {
     const counters = await TokenCounter.find().sort({ formType: 1 }).lean();
     
