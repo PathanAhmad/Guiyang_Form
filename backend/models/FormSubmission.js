@@ -35,7 +35,24 @@ const formSubmissionSchema = new mongoose.Schema({
     unique: true
   },
   
-  // Extra fields for Fast-Track form
+  // Contact Information (all forms)
+  institution: {
+    type: String,
+    trim: true,
+    maxlength: 200
+  },
+  position: {
+    type: String,
+    trim: true,
+    maxlength: 100
+  },
+  country: {
+    type: String,
+    trim: true,
+    maxlength: 100
+  },
+  
+  // Fast-Track specific fields
   company: {
     type: String,
     trim: true,
@@ -55,6 +72,85 @@ const formSubmissionSchema = new mongoose.Schema({
     type: String,
     trim: true,
     maxlength: 1000
+  },
+  
+  // Demo/Showcase Industry Background
+  workInEducation: {
+    type: String,
+    enum: ['yes', 'no', '']
+  },
+  educationFields: [{
+    type: String,
+    trim: true
+  }],
+  educationFieldsOther: {
+    type: String,
+    trim: true,
+    maxlength: 200
+  },
+  primaryRole: {
+    type: String,
+    trim: true,
+    maxlength: 100
+  },
+  primaryRoleOther: {
+    type: String,
+    trim: true,
+    maxlength: 200
+  },
+  
+  // Demo/Showcase SparkOS Interest
+  sparkosUsage: [{
+    type: String,
+    trim: true
+  }],
+  sparkosUsageOther: {
+    type: String,
+    trim: true,
+    maxlength: 200
+  },
+  ageGroups: [{
+    type: String,
+    trim: true
+  }],
+  neurodiversityWork: {
+    type: String,
+    enum: ['frequently', 'occasionally', 'interestedNo', 'no', '']
+  },
+  supportedConditions: [{
+    type: String,
+    trim: true
+  }],
+  supportedConditionsOther: {
+    type: String,
+    trim: true,
+    maxlength: 200
+  },
+  
+  // Demo/Showcase Feature Interest
+  featuresInterest: [{
+    type: String,
+    trim: true
+  }],
+  implementationTimeline: {
+    type: String,
+    enum: ['immediate', 'shortTerm', 'mediumTerm', 'longTerm', 'research', '']
+  },
+  pilotInterest: {
+    type: String,
+    enum: ['yes', 'no', 'maybe', '']
+  },
+  
+  // Demo/Showcase Additional Information
+  currentChallenges: {
+    type: String,
+    trim: true,
+    maxlength: 2000
+  },
+  additionalComments: {
+    type: String,
+    trim: true,
+    maxlength: 2000
   },
   
   // Status tracking

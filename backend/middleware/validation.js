@@ -20,15 +20,44 @@ const commonSchema = {
     })
 };
 
+// Extended validation schemas
+const demoShowcaseSchema = {
+  ...commonSchema,
+  // Contact information
+  institution: Joi.string().trim().min(2).max(200).optional().allow(''),
+  position: Joi.string().trim().min(2).max(100).optional().allow(''),
+  country: Joi.string().trim().min(2).max(100).optional().allow(''),
+  
+  // Industry background
+  workInEducation: Joi.string().valid('yes', 'no', '').optional().allow(''),
+  educationFields: Joi.array().items(Joi.string().trim()).optional(),
+  educationFieldsOther: Joi.string().trim().max(200).optional().allow(''),
+  primaryRole: Joi.string().trim().max(100).optional().allow(''),
+  primaryRoleOther: Joi.string().trim().max(200).optional().allow(''),
+  
+  // SparkOS Interest
+  sparkosUsage: Joi.array().items(Joi.string().trim()).optional(),
+  sparkosUsageOther: Joi.string().trim().max(200).optional().allow(''),
+  ageGroups: Joi.array().items(Joi.string().trim()).optional(),
+  neurodiversityWork: Joi.string().valid('frequently', 'occasionally', 'interestedNo', 'no', '').optional().allow(''),
+  supportedConditions: Joi.array().items(Joi.string().trim()).optional(),
+  supportedConditionsOther: Joi.string().trim().max(200).optional().allow(''),
+  
+  // Feature Interest
+  featuresInterest: Joi.array().items(Joi.string().trim()).optional(),
+  implementationTimeline: Joi.string().valid('immediate', 'shortTerm', 'mediumTerm', 'longTerm', 'research', '').optional().allow(''),
+  pilotInterest: Joi.string().valid('yes', 'no', 'maybe', '').optional().allow(''),
+  
+  // Additional Information
+  currentChallenges: Joi.string().trim().max(2000).optional().allow(''),
+  additionalComments: Joi.string().trim().max(2000).optional().allow('')
+};
+
 // Validation schemas for each form type
 const validationSchemas = {
-  demo: Joi.object({
-    ...commonSchema
-  }),
+  demo: Joi.object(demoShowcaseSchema),
   
-  showcase: Joi.object({
-    ...commonSchema
-  }),
+  showcase: Joi.object(demoShowcaseSchema),
   
   fasttrack: Joi.object({
     ...commonSchema,
@@ -44,11 +73,7 @@ const validationSchemas = {
         'string.min': 'Role must be at least 2 characters long',
         'string.max': 'Role must not exceed 100 characters'
       }),
-    areaOfInterest: Joi.string().trim().max(200).optional()
-      .messages({
-        'string.max': 'Area of interest must not exceed 200 characters'
-      }),
-    message: Joi.string().trim().max(1000).optional()
+    message: Joi.string().trim().max(1000).optional().allow('')
       .messages({
         'string.max': 'Message must not exceed 1000 characters'
       })
