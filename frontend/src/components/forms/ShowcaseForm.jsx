@@ -5,6 +5,9 @@ import { useFormSubmission } from '../../hooks/useApi';
 import { validateShowcaseForm } from '../../utils/validation';
 import { formsAPI } from '../../services/api';
 import Input from '../ui/Input';
+import Radio from '../ui/Radio';
+import Checkbox from '../ui/Checkbox';
+import Textarea from '../ui/Textarea';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
 
@@ -12,6 +15,14 @@ const ShowcaseForm = ({ onSuccess }) => {
   const { t } = useTranslation();
   const { submitForm, isSubmitting, submitError, submitSuccess, submissionData } = useFormSubmission();
   
+  // Additional state for "other" options
+  const [otherFields, setOtherFields] = useState({
+    educationFieldsOther: '',
+    primaryRoleOther: '',
+    sparkosUsageOther: '',
+    supportedConditionsOther: ''
+  });
+
   const {
     values,
     errors,
@@ -21,9 +32,33 @@ const ShowcaseForm = ({ onSuccess }) => {
     reset
   } = useForm(
     {
+      // Contact Information
       name: '',
+      institution: '',
+      position: '',
       email: '',
-      phone: ''
+      phone: '',
+      country: '',
+      
+      // Industry Background
+      workInEducation: '',
+      educationFields: [],
+      primaryRole: '',
+      
+      // SparkOS Interest
+      sparkosUsage: [],
+      ageGroups: [],
+      neurodiversityWork: '',
+      supportedConditions: [],
+      
+      // Specific Interest Points
+      featuresInterest: [],
+      implementationTimeline: '',
+      pilotInterest: '',
+      
+      // Additional Information
+      currentChallenges: '',
+      additionalComments: ''
     },
     validateShowcaseForm
   );
@@ -36,7 +71,13 @@ const ShowcaseForm = ({ onSuccess }) => {
       return;
     }
 
-    const result = await submitForm(() => formsAPI.submitShowcase(values));
+    // Prepare submission data with "other" fields
+    const submissionData = {
+      ...values,
+      ...otherFields
+    };
+
+    const result = await submitForm(() => formsAPI.submitShowcase(submissionData));
     
     if (result.success && onSuccess) {
       onSuccess(result.data);
@@ -45,6 +86,19 @@ const ShowcaseForm = ({ onSuccess }) => {
 
   const handleReset = () => {
     reset();
+    setOtherFields({
+      educationFieldsOther: '',
+      primaryRoleOther: '',
+      sparkosUsageOther: '',
+      supportedConditionsOther: ''
+    });
+  };
+
+  const handleOtherFieldChange = (field, value) => {
+    setOtherFields(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
   if (submitSuccess) {
@@ -61,9 +115,14 @@ const ShowcaseForm = ({ onSuccess }) => {
             {t('forms.showcase.successMessage')}
           </p>
           {submissionData?.data?.token && (
-            <p className="text-sm text-gray-500 mb-4">
-              {t('misc.referenceToken')}: <span className="font-mono font-medium">{submissionData.data.token}</span>
-            </p>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-blue-900 font-medium mb-2">{t('misc.importantNotice')}</p>
+              <p className="text-sm text-blue-800 mb-2">{t('misc.tokenInstructions')}</p>
+              <p className="text-lg font-mono font-bold text-blue-900 bg-white px-3 py-2 rounded border">
+                {submissionData.data.token}
+              </p>
+              <p className="text-xs text-blue-700 mt-2">{t('misc.screenshotReminder')}</p>
+            </div>
           )}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button onClick={handleReset} variant="outline">
@@ -85,7 +144,7 @@ const ShowcaseForm = ({ onSuccess }) => {
       </Card.Header>
       
       <Card.Body>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-8">
           {submitError && (
             <div className="bg-red-50 border border-red-200 rounded-md p-4">
               <div className="flex">
@@ -100,42 +159,79 @@ const ShowcaseForm = ({ onSuccess }) => {
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Input
-              name="name"
-              label={t('forms.showcase.fields.name.label')}
-              required
-              value={values.name}
-              onChange={(e) => handleChange('name', e.target.value)}
-              onBlur={() => handleBlur('name')}
-              error={errors.name}
-              placeholder={t('forms.showcase.fields.name.placeholder')}
-            />
-            
-            <Input
-              name="email"
-              type="email"
-              label={t('forms.showcase.fields.email.label')}
-              required
-              value={values.email}
-              onChange={(e) => handleChange('email', e.target.value)}
-              onBlur={() => handleBlur('email')}
-              error={errors.email}
-              placeholder={t('forms.showcase.fields.email.placeholder')}
-            />
+          {/* Contact Information Section */}
+          <div className="border-b border-gray-200 pb-8">
+            <h3 className="text-lg font-medium text-gray-900 mb-6">{t('forms.showcase.sections.contact')}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Input
+                name="name"
+                label={t('forms.showcase.fields.name.label')}
+                required
+                value={values.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                onBlur={() => handleBlur('name')}
+                error={errors.name}
+                placeholder={t('forms.showcase.fields.name.placeholder')}
+              />
+              
+              <Input
+                name="institution"
+                label={t('forms.showcase.fields.institution.label')}
+                required
+                value={values.institution}
+                onChange={(e) => handleChange('institution', e.target.value)}
+                onBlur={() => handleBlur('institution')}
+                error={errors.institution}
+                placeholder={t('forms.showcase.fields.institution.placeholder')}
+              />
+              
+              <Input
+                name="position"
+                label={t('forms.showcase.fields.position.label')}
+                required
+                value={values.position}
+                onChange={(e) => handleChange('position', e.target.value)}
+                onBlur={() => handleBlur('position')}
+                error={errors.position}
+                placeholder={t('forms.showcase.fields.position.placeholder')}
+              />
+              
+              <Input
+                name="email"
+                type="email"
+                label={t('forms.showcase.fields.email.label')}
+                required
+                value={values.email}
+                onChange={(e) => handleChange('email', e.target.value)}
+                onBlur={() => handleBlur('email')}
+                error={errors.email}
+                placeholder={t('forms.showcase.fields.email.placeholder')}
+              />
+              
+              <Input
+                name="phone"
+                type="tel"
+                label={t('forms.showcase.fields.phone.label')}
+                required
+                value={values.phone}
+                onChange={(e) => handleChange('phone', e.target.value)}
+                onBlur={() => handleBlur('phone')}
+                error={errors.phone}
+                placeholder={t('forms.showcase.fields.phone.placeholder')}
+              />
+              
+              <Input
+                name="country"
+                label={t('forms.showcase.fields.country.label')}
+                required
+                value={values.country}
+                onChange={(e) => handleChange('country', e.target.value)}
+                onBlur={() => handleBlur('country')}
+                error={errors.country}
+                placeholder={t('forms.showcase.fields.country.placeholder')}
+              />
+            </div>
           </div>
-          
-          <Input
-            name="phone"
-            type="tel"
-            label={t('forms.showcase.fields.phone.label')}
-            value={values.phone}
-            onChange={(e) => handleChange('phone', e.target.value)}
-            onBlur={() => handleBlur('phone')}
-            error={errors.phone}
-            placeholder={t('forms.showcase.fields.phone.placeholder')}
-            hint={t('forms.showcase.fields.phone.hint')}
-          />
 
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button
