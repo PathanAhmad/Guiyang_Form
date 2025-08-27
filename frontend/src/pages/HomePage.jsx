@@ -81,14 +81,21 @@ const HomePage = ({ onCardSelect, onViewQueue }) => {
           ))}
         </div>
         
-        {/* Queue Dashboard Access - Subtle admin button */}
+        {/* Queue Dashboard Access - Professional admin button */}
         <div className="mt-16 text-center">
-          <button 
-            onClick={onViewQueue}
-            className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200 underline"
-          >
-            {t('navigation.queueDashboard')}
-          </button>
+          <div className="inline-flex items-center justify-center p-1 bg-gradient-to-r from-slate-100 to-gray-100 rounded-xl shadow-sm">
+            <Button
+              onClick={onViewQueue}
+              variant="outline"
+              className="bg-white hover:bg-gray-50 border-gray-200 text-gray-700 hover:text-gray-900 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
+            >
+              <span className="mr-2">📊</span>
+              {t('navigation.queueDashboard')}
+            </Button>
+          </div>
+          <p className="mt-3 text-sm text-gray-500">
+            Admin access for queue management
+          </p>
         </div>
       </div>
     </div>

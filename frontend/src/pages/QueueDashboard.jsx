@@ -107,8 +107,20 @@ const QueueDashboard = ({ onBack }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Queue Dashboard</h1>
-          <p className="mt-2 text-gray-600">Manage form submissions and queue processing</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Queue Dashboard</h1>
+              <p className="mt-2 text-gray-600">Manage form submissions and queue processing</p>
+            </div>
+            <Button
+              onClick={onBack}
+              variant="outline"
+              className="bg-white hover:bg-gray-50 border-gray-300 text-gray-700 hover:text-gray-900 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
+            >
+              <span className="mr-2">←</span>
+              Back to Forms
+            </Button>
+          </div>
         </div>
 
         {/* Queue Overview Cards */}
