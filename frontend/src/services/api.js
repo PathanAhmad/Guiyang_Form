@@ -1,0 +1,88 @@
+import axios from 'axios';
+
+// Create axios instance with base configuration
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Request interceptor for logging
+api.interceptors.request.use(
+  (config) => {
+    console.log(`🌐 API Request: ${config.method?.toUpperCase()} ${config.url}`);
+    return config;
+  },
+  (error) => {
+    console.error('❌ API Request Error:', error);
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor for error handling
+api.interceptors.response.use(
+  (response) => {
+    console.log(`✅ API Response: ${response.config.method?.toUpperCase()} ${response.config.url}`);
+    return response;
+  },
+  (error) => {
+    console.error('❌ API Response Error:', error.response?.data || error.message);
+    
+    // Handle different error types
+    if (error.response) {
+      // Server responded with error status
+      const errorMessage = error.response.data?.error || error.response.data?.message || 'Server error occurred';
+      error.message = errorMessage;
+    } else if (error.request) {
+      // Network error
+      error.message = 'Network error - please check your connection';
+    }
+    
+    return Promise.reject(error);
+  }
+);
+
+// Form submission endpoints
+export const formsAPI = {
+  // Submit demo form
+  submitDemo: (data) => api.post('/forms/demo', data),
+  
+  // Submit showcase form
+  submitShowcase: (data) => api.post('/forms/showcase', data),
+  
+  // Submit fast-track form
+  submitFasttrack: (data) => api.post('/forms/fasttrack', data),
+  
+  // Get submission by token
+  getSubmission: (token) => api.get(`/forms/submission/${token}`),
+  
+  // Get submissions by form type
+  getSubmissions: (formType, page = 1, limit = 10) => 
+    api.get(`/forms/submissions/${formType}?page=${page}&limit=${limit}`),
+  
+  // Get counters
+  getCounters: () => api.get('/forms/counters'),
+  
+  // Health check
+  health: () => api.get('/forms/health'),
+};
+
+// Discord API endpoints  
+export const discordAPI = {
+  // Test webhook for specific form type
+  testWebhook: (formType) => api.post(`/discord/test/${formType}`),
+  
+  // Test all webhooks
+  testAllWebhooks: () => api.post('/discord/test-all'),
+  
+  // Get webhook status
+  getStatus: () => api.get('/discord/status'),
+  
+  // Send custom test message
+  sendCustomTest: (data) => api.post('/discord/custom-test', data),
+};
+
+// Main API instance export
+export default api;
