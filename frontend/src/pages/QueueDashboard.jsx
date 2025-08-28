@@ -50,6 +50,32 @@ const QueueDashboard = ({ onBack }) => {
     loadSubmissions();
   }, [selectedFormType]);
 
+  // Lightweight polling to silently refresh data without affecting loading states
+  useEffect(() => {
+    let isMounted = true;
+    const REFRESH_INTERVAL_MS = 10000;
+
+    const refreshSilently = async () => {
+      try {
+        const [qsResp, subsResp] = await Promise.all([
+          formsAPI.getQueueStatus(),
+          formsAPI.getSubmissions(selectedFormType, 1, 50)
+        ]);
+        if (!isMounted) return;
+        setQueueStatus(qsResp.data.data);
+        setSubmissions(subsResp.data.data.submissions);
+      } catch (error) {
+        console.error('Silent refresh failed:', error);
+      }
+    };
+
+    const intervalId = setInterval(refreshSilently, REFRESH_INTERVAL_MS);
+    return () => {
+      isMounted = false;
+      clearInterval(intervalId);
+    };
+  }, [selectedFormType]);
+
   const loadQueueStatus = async () => {
     try {
       const response = await formsAPI.getQueueStatus();
