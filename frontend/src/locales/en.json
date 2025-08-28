@@ -32,7 +32,17 @@
     "filter": "Filter",
     "refresh": "Refresh",
     "backToHome": "Back to Home",
-    "printToken": "Print Token"
+    "printToken": "Print Token",
+    "logoutSuccess": "Logout successful",
+    "logoutFailed": "Logout failed",
+    "updating": "Updating...",
+    "updated": "updated to",
+    "logout": "Logout",
+    "mainSite": "Main Site",
+    "adminDashboard": "Admin Dashboard",
+    "queueManagement": "Queue management and form submission processing",
+    "access": "access",
+    "nextInQueue": "Next in Queue"
   },
   "homepage": {
     "title": "WELCOME TO GUIYANG BIG DATA EXHIBITION",
@@ -493,6 +503,9 @@
     "error": "Error loading queue data",
     "noData": "No queue data available",
     "refresh": "Refresh Data",
+    "submissions": "Submissions",
+    "loadingSubmissions": "Loading submissions...",
+    "noSubmissionsFound": "No submissions found for",
     "columns": {
       "token": "Token",
       "name": "Name",
@@ -500,6 +513,8 @@
       "phone": "Phone",
       "status": "Status",
       "submittedAt": "Submitted At",
+      "waitingTime": "Waiting Time",
+      "contactInfo": "Contact Info",
       "actions": "Actions"
     },
     "statuses": {
