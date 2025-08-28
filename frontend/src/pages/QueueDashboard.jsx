@@ -5,6 +5,7 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useToast } from '../hooks/useToast';
 import { useAuth } from '../contexts/AuthContext';
+import { formatDate } from '../utils/format';
 
 const QueueDashboard = ({ onBack }) => {
   const { t } = useTranslation();
@@ -274,7 +275,7 @@ const QueueDashboard = ({ onBack }) => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="font-medium text-gray-900">{submission.token}</div>
                         <div className="text-sm text-gray-500">
-                          {new Date(submission.submittedAt).toLocaleDateString()}
+                          {formatDate(submission.submittedAt)}
                         </div>
                       </td>
                       <td className="px-6 py-4">
