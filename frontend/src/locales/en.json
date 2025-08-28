@@ -75,7 +75,7 @@
       "title": "2025 China International Big Data Industry Expo - SPARKOS Intent Form",
       "subtitle": "Please complete this comprehensive form to express your interest in SPARKOS and help us understand your specific needs.",
       "successTitle": "SPARKOS Intent Form Submitted!",
-      "successMessage": "Thank you for your interest in SPARKOS. Our team will review your form and contact you within 3-5 business days to discuss how SPARKOS can support your educational goals.",
+      "successMessage": "Thank you for your interest in SPARKOS. You are now in the live expo queue. Please keep your token ready; our team will call your token shortly.",
       "requestDemo": "Submit Intent Form",
       "sections": {
         "contact": "Contact Information",
@@ -249,7 +249,7 @@
       "title": "2025 China International Big Data Industry Expo - SPARKOS Intent Form",
       "subtitle": "Please complete this comprehensive form to express your interest in SPARKOS and help us understand your specific needs.",
       "successTitle": "SPARKOS Intent Form Submitted!",
-      "successMessage": "Thank you for your interest in SPARKOS. Our team will review your form and contact you within 3-5 business days to discuss how SPARKOS can support your educational goals.",
+      "successMessage": "Thank you for your interest in SPARKOS. You are now in the live expo queue. Please keep your token ready; our team will call your token shortly.",
       "requestShowcase": "Submit Intent Form",
       "sections": {
         "contact": "Contact Information",
@@ -423,7 +423,7 @@
       "title": "Fast Track Application",
       "subtitle": "Apply for priority access and expedited support. Get personalized consultation and priority processing.",
       "successTitle": "Fast Track Application Submitted!",
-      "successMessage": "Thank you for your fast track application. We will review and get back to you soon!",
+      "successMessage": "Thank you for your fast track application. You are now in the live expo queue. Please keep your token ready; our team will call your token shortly.",
       "submitApplication": "Submit Application",
       "fields": {
         "name": {
