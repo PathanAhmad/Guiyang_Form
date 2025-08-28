@@ -160,6 +160,17 @@ const formSubmissionSchema = new mongoose.Schema({
     enum: ['waiting', 'contacted', 'completed', 'cancelled']
   },
   
+  // Status transition timestamps
+  contactedAt: {
+    type: Date
+  },
+  completedAt: {
+    type: Date
+  },
+  cancelledAt: {
+    type: Date
+  },
+  
   // Discord message tracking
   discordSent: {
     type: Boolean,

@@ -438,6 +438,10 @@
           "label": "Phone Number",
           "placeholder": "Enter your phone number (optional)"
         },
+        "country": {
+          "label": "Country/Region",
+          "placeholder": "Select your country or region"
+        },
         "company": {
           "label": "Company/Organization",
           "placeholder": "Enter your company or organization name"

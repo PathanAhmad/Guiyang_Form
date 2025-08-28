@@ -5,11 +5,13 @@ import { useFormSubmission } from '../../hooks/useApi';
 import { validateDemoForm } from '../../utils/validation';
 import { formsAPI } from '../../services/api';
 import Input from '../ui/Input';
+import Select from '../ui/Select';
 import Radio from '../ui/Radio';
 import Checkbox from '../ui/Checkbox';
 import Textarea from '../ui/Textarea';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
+import { countryOptions, getDialCodeByCountry, applyDialCodeToDigits } from '../../utils/countries';
 
 const DemoForm = ({ onSuccess }) => {
   const { t } = useTranslation();
@@ -71,9 +73,12 @@ const DemoForm = ({ onSuccess }) => {
       return;
     }
 
-    // Prepare submission data with "other" fields
+    // Prepare submission data: combine country dial code with typed phone at submit time
+    const dial = getDialCodeByCountry(values.country);
+    const composedPhone = applyDialCodeToDigits(values.phone, dial);
     const submissionData = {
       ...values,
+      phone: composedPhone,
       ...otherFields
     };
 
@@ -209,6 +214,20 @@ const DemoForm = ({ onSuccess }) => {
                 placeholder={t('forms.demo.fields.email.placeholder')}
               />
               
+              <Select
+                name="country"
+                label={t('forms.demo.fields.country.label')}
+                required
+                value={values.country}
+                onChange={(e) => {
+                  const newCountry = e.target.value;
+                  handleChange('country', newCountry);
+                }}
+                onBlur={() => handleBlur('country')}
+                error={errors.country}
+                options={[{ value: '', label: t('forms.demo.fields.country.placeholder') }, ...countryOptions]}
+              />
+
               <Input
                 name="phone"
                 type="tel"
@@ -219,17 +238,6 @@ const DemoForm = ({ onSuccess }) => {
                 onBlur={() => handleBlur('phone')}
                 error={errors.phone}
                 placeholder={t('forms.demo.fields.phone.placeholder')}
-              />
-              
-              <Input
-                name="country"
-                label={t('forms.demo.fields.country.label')}
-                required
-                value={values.country}
-                onChange={(e) => handleChange('country', e.target.value)}
-                onBlur={() => handleBlur('country')}
-                error={errors.country}
-                placeholder={t('forms.demo.fields.country.placeholder')}
               />
             </div>
           </div>

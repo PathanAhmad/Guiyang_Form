@@ -439,6 +439,10 @@
           "label": "电话号码",
           "placeholder": "请输入您的电话号码（选填）"
         },
+        "country": {
+          "label": "国家/地区",
+          "placeholder": "请选择您的国家或地区"
+        },
         "company": {
           "label": "公司/组织",
           "placeholder": "请输入您的公司或组织名称"

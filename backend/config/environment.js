@@ -5,7 +5,7 @@ module.exports = {
   MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/guiyang_forms',
   
   // Server Configuration
-  PORT: process.env.PORT || 5750,
+  PORT: process.env.PORT || 6085,
   NODE_ENV: process.env.NODE_ENV || 'development',
   
   // Discord Webhook URLs

@@ -192,7 +192,19 @@ async function handleButtonInteraction(req, res) {
     // Update the submission status
     const oldStatus = submission.status;
     submission.status = newStatus;
-    submission.updatedAt = new Date();
+    const now = new Date();
+    submission.updatedAt = now;
+
+    // Set status timestamps (first time only)
+    if (newStatus === 'contacted' && !submission.contactedAt) {
+      submission.contactedAt = now;
+    }
+    if (newStatus === 'completed' && !submission.completedAt) {
+      submission.completedAt = now;
+    }
+    if (newStatus === 'cancelled' && !submission.cancelledAt) {
+      submission.cancelledAt = now;
+    }
     await submission.save();
     
     console.log(`✅ Status updated via Discord - Token: ${token}, ${oldStatus} → ${newStatus}`);

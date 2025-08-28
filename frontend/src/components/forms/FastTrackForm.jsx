@@ -5,9 +5,11 @@ import { useFormSubmission } from '../../hooks/useApi';
 import { validateFasttrackForm } from '../../utils/validation';
 import { formsAPI } from '../../services/api';
 import Input from '../ui/Input';
+import Select from '../ui/Select';
 import Textarea from '../ui/Textarea';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
+import { countryOptions, getDialCodeByCountry, applyDialCodeToDigits } from '../../utils/countries';
 
 const FastTrackForm = ({ onSuccess }) => {
   const { t } = useTranslation();
@@ -24,6 +26,7 @@ const FastTrackForm = ({ onSuccess }) => {
     {
       name: '',
       email: '',
+      country: '',
       phone: '',
       company: '',
       role: '',
@@ -40,7 +43,11 @@ const FastTrackForm = ({ onSuccess }) => {
       return;
     }
 
-    const result = await submitForm(() => formsAPI.submitFasttrack(values));
+    const dial = getDialCodeByCountry(values.country);
+    const composedPhone = applyDialCodeToDigits(values.phone, dial);
+    const payload = { ...values, phone: composedPhone };
+
+    const result = await submitForm(() => formsAPI.submitFasttrack(payload));
     
     if (result.success && onSuccess) {
       onSuccess(result.data);
@@ -130,6 +137,19 @@ const FastTrackForm = ({ onSuccess }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Select
+              name="country"
+              label={t('forms.fasttrack.fields.country.label')}
+              value={values.country}
+              onChange={(e) => {
+                const newCountry = e.target.value;
+                handleChange('country', newCountry);
+              }}
+              onBlur={() => handleBlur('country')}
+              error={errors.country}
+              options={[{ value: '', label: t('forms.fasttrack.fields.country.placeholder') }, ...countryOptions]}
+            />
+
             <Input
               name="phone"
               type="tel"
@@ -140,7 +160,7 @@ const FastTrackForm = ({ onSuccess }) => {
               error={errors.phone}
               placeholder={t('forms.fasttrack.fields.phone.placeholder')}
             />
-            
+
             <Input
               name="company"
               label={t('forms.fasttrack.fields.company.label')}

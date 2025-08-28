@@ -133,18 +133,19 @@ const QueueDashboard = ({ onBack }) => {
     );
   };
 
-  const formatWaitingTime = (submittedAt) => {
-    const now = new Date();
-    const submitted = new Date(submittedAt);
-    const diffMs = now - submitted;
+  const formatWaitingTime = (submission) => {
+    if (!submission) return '';
+    const submitted = new Date(submission.submittedAt);
+    const endTime = submission.status === 'waiting'
+      ? new Date()
+      : new Date(submission.contactedAt || submission.completedAt || submission.cancelledAt || submission.updatedAt || submission.submittedAt);
+
+    const diffMs = endTime - submitted;
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-    
-    if (diffHours > 0) {
-      return `${diffHours}h ${diffMins}m`;
-    } else {
-      return `${diffMins}m`;
-    }
+
+    if (diffMs <= 0) return '0m';
+    return diffHours > 0 ? `${diffHours}h ${diffMins}m` : `${diffMins}m`;
   };
 
   return (
@@ -315,7 +316,7 @@ const QueueDashboard = ({ onBack }) => {
                         {getStatusDisplay(submission.status)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {formatWaitingTime(submission.submittedAt)}
+                        {formatWaitingTime(submission)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                         {submission.status === 'waiting' && (

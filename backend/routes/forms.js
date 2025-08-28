@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const FormSubmission = require('../models/FormSubmission');
 const TokenCounter = require('../models/TokenCounter');
+const GlobalCounter = require('../models/GlobalCounter');
 const discordService = require('../services/discordService');
 const { validateFormSubmission } = require('../middleware/validation');
 const { authenticateAdmin } = require('./auth');
@@ -13,8 +14,44 @@ const processFormSubmission = async (req, res) => {
   try {
     const { validatedData, formType } = req;
     
-    // Generate unique token
-    const token = await TokenCounter.getNextToken(formType);
+    // Generate unique token using global incremental counter
+    const prefixMap = { demo: 'D', showcase: 'S', fasttrack: 'F' };
+    const prefix = prefixMap[formType];
+    if (!prefix) {
+      return res.status(400).json({ success: false, error: 'Invalid form type' });
+    }
+
+    // On first use, ensure global counter starts after any existing tokens to avoid duplicates
+    try {
+      const agg = await FormSubmission.aggregate([
+        { $match: { token: { $regex: '^[A-Z]-\\d+$' } } },
+        { $project: { num: { $toInt: { $arrayElemAt: [ { $split: ['$token', '-'] }, 1 ] } } } },
+        { $sort: { num: -1 } },
+        { $limit: 1 }
+      ]);
+      if (agg && agg.length > 0 && typeof agg[0].num === 'number') {
+        await GlobalCounter.ensureAtLeast(agg[0].num);
+      }
+    } catch (initErr) {
+      console.warn('⚠️ Failed to initialize global counter from existing tokens:', initErr.message);
+    }
+
+    const globalNumber = await GlobalCounter.getNextNumber();
+    const token = `${prefix}-${globalNumber.toString().padStart(3, '0')}`;
+
+    // Update per-type counter for stats/monitoring
+    try {
+      await TokenCounter.findOneAndUpdate(
+        { formType },
+        {
+          $inc: { count: 1 },
+          $set: { prefix, lastUpdated: new Date() }
+        },
+        { new: true, upsert: true, setDefaultsOnInsert: true }
+      );
+    } catch (counterError) {
+      console.warn('⚠️ Failed to update per-type counter:', counterError.message);
+    }
     
     // Create form submission record
     const submission = new FormSubmission({
@@ -132,7 +169,19 @@ router.patch('/submission/:token/status', authenticateAdmin, async (req, res) =>
     
     const oldStatus = submission.status;
     submission.status = status;
-    submission.updatedAt = new Date();
+    const now = new Date();
+    submission.updatedAt = now;
+
+    // Set status timestamps (first time only)
+    if (status === 'contacted' && !submission.contactedAt) {
+      submission.contactedAt = now;
+    }
+    if (status === 'completed' && !submission.completedAt) {
+      submission.completedAt = now;
+    }
+    if (status === 'cancelled' && !submission.cancelledAt) {
+      submission.cancelledAt = now;
+    }
     await submission.save();
     
     console.log(`✅ Status updated - Token: ${token}, ${oldStatus} → ${status}`);
