@@ -4,6 +4,7 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { useToast } from '../hooks/useToast';
+import { assetUrl } from '../utils/assets';
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -73,7 +74,7 @@ const LoginPage = () => {
         <div className="text-center mb-8">
           <div className="flex justify-center items-center mb-6">
             <img
-              src="/sparkOS.png"
+              src={assetUrl('sparkOS.png')}
               alt="Spark-OS"
               className="h-16 md:h-20 w-auto"
             />

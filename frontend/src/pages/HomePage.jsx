@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import LanguageToggle from '../components/ui/LanguageToggle';
+import { assetUrl } from '../utils/assets';
 
 const HomePage = ({ onCardSelect }) => {
   const { t } = useTranslation();
@@ -48,7 +49,7 @@ const HomePage = ({ onCardSelect }) => {
         {/* SparkOS Logo */}
         <div className="flex justify-center items-center mb-8">
           <img
-            src="/sparkOS.png"
+            src={assetUrl('sparkOS.png')}
             alt={t('misc.companyName')}
             className="h-20 md:h-24 w-auto"
           />
