@@ -74,7 +74,7 @@ const LoginPage = () => {
         <div className="text-center mb-8">
           <div className="flex justify-center items-center mb-6">
             <img
-              src="/sparkOS.png"
+              src="/Images/sparkOS.png"
               alt="Spark-OS"
               className="h-16 md:h-20 w-auto"
             />

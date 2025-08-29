@@ -49,7 +49,7 @@ const HomePage = ({ onCardSelect }) => {
         {/* SparkOS Logo */}
         <div className="flex justify-center items-center mb-8">
           <img
-            src="/sparkOS.png"
+            src="/Images/sparkOS.png"
             alt={t('misc.companyName')}
             className="h-20 md:h-24 w-auto"
           />

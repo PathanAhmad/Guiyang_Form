@@ -25,7 +25,7 @@ const Layout = ({ children, showNavigation = false }) => {
               {/* Logo */}
               <div className="flex-shrink-0 flex items-center">
                 <img
-                  src="/sparkOS.png"
+                  src="/Images/sparkOS.png"
                   alt={t('misc.companyName')}
                   className="h-8 w-auto"
                 />
