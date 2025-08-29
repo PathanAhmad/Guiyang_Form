@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageToggle from './LanguageToggle';
-import { assetUrl } from '../../utils/assets';
+ 
 
 const Layout = ({ children, showNavigation = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,7 +25,7 @@ const Layout = ({ children, showNavigation = false }) => {
               {/* Logo */}
               <div className="flex-shrink-0 flex items-center">
                 <img
-                  src={assetUrl('sparkOS.png')}
+                  src="/sparkOS.png"
                   alt={t('misc.companyName')}
                   className="h-8 w-auto"
                 />
