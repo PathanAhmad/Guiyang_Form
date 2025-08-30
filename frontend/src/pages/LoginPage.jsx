@@ -74,7 +74,7 @@ const LoginPage = () => {
         <div className="text-center mb-8">
           <div className="flex justify-center items-center mb-6">
             <img
-              src={ (navigator.language || '').startsWith('zh') ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg' }
+              src={ (navigator.language || '').startsWith('zh') ? import.meta.env.BASE_URL + 'Images/SparkOSFullLogoChinese.svg' : import.meta.env.BASE_URL + 'Images/SparkOSFullLogo.svg' }
               alt="Spark-OS"
               className="h-16 md:h-20 w-auto"
             />

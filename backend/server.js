@@ -49,6 +49,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// Serve static assets (Images and assets) regardless of environment
+const frontendDistPath = path.resolve(__dirname, '../frontend/dist');
+app.use('/Images', express.static(path.join(frontendDistPath, 'Images')));
+app.use('/assets', express.static(path.join(frontendDistPath, 'assets')));
+
 // Health check endpoint
 app.get('/', (req, res) => {
   res.json({

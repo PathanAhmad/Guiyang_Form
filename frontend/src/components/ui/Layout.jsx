@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { assetUrl } from '../../utils/assets';
 import LanguageToggle from './LanguageToggle';
  
 
@@ -7,7 +8,7 @@ const Layout = ({ children, showNavigation = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
-  const logoSrc = i18n.language === 'zh' ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg';
+  const logoSrc = assetUrl(i18n.language === 'zh' ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg');
 
   // Simplified navigation - only show when explicitly needed (for queue dashboard)
   const navigation = [
