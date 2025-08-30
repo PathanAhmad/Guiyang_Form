@@ -49,11 +49,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve static assets (Images and assets) regardless of environment
-const frontendDistPath = path.resolve(__dirname, '../frontend/dist');
-app.use('/Images', express.static(path.join(frontendDistPath, 'Images')));
-app.use('/assets', express.static(path.join(frontendDistPath, 'assets')));
-
 // Health check endpoint
 app.get('/', (req, res) => {
   res.json({
@@ -76,21 +71,17 @@ app.use('/api/discord', discordRoutes);
 app.use('/api/discord', discordInteractionsRoutes);
 app.use('/api/auth', authRoutes);
 
-// In production, serve the frontend and provide SPA fallback for non-API routes
-if (process.env.NODE_ENV === 'production') {
-  const frontendDistPath = path.resolve(__dirname, '../frontend/dist');
-
-  // Serve static assets
-  app.use(express.static(frontendDistPath));
-
-  // SPA fallback: send index.html for any non-API route
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api')) {
-      return next();
-    }
-    res.sendFile(path.join(frontendDistPath, 'index.html'));
+// Catch-all route for undefined API routes
+app.all('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
+  // Non-API routes return 404 - frontend is served separately
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} not found. This is an API-only server.`
   });
-}
+});
 
 // 404 handler
 app.use(notFoundHandler);

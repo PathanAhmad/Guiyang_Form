@@ -4,7 +4,8 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { useToast } from '../hooks/useToast';
- 
+import { assetUrl } from '../utils/assets';
+
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -67,6 +68,9 @@ const LoginPage = () => {
     }
   };
 
+  const zh = (navigator.language || '').startsWith('zh');
+  const logoSrc = assetUrl(zh ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg');
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -74,7 +78,7 @@ const LoginPage = () => {
         <div className="text-center mb-8">
           <div className="flex justify-center items-center mb-6">
             <img
-              src={ (navigator.language || '').startsWith('zh') ? import.meta.env.BASE_URL + 'Images/SparkOSFullLogoChinese.svg' : import.meta.env.BASE_URL + 'Images/SparkOSFullLogo.svg' }
+              src={logoSrc}
               alt="Spark-OS"
               className="h-16 md:h-20 w-auto"
             />
