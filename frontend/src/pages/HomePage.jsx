@@ -5,7 +5,8 @@ import LanguageToggle from '../components/ui/LanguageToggle';
  
 
 const HomePage = ({ onCardSelect }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const logoSrc = i18n.language === 'zh' ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg';
   
   const formTypes = [
     {
@@ -49,7 +50,7 @@ const HomePage = ({ onCardSelect }) => {
         {/* SparkOS Logo */}
         <div className="flex justify-center items-center mb-8">
           <img
-            src="/Images/sparkOS.png"
+            src={logoSrc}
             alt={t('misc.companyName')}
             className="h-20 md:h-24 w-auto"
           />

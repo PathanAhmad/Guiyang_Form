@@ -5,7 +5,9 @@ import LanguageToggle from './LanguageToggle';
 
 const Layout = ({ children, showNavigation = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const logoSrc = i18n.language === 'zh' ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg';
 
   // Simplified navigation - only show when explicitly needed (for queue dashboard)
   const navigation = [
@@ -25,7 +27,7 @@ const Layout = ({ children, showNavigation = false }) => {
               {/* Logo */}
               <div className="flex-shrink-0 flex items-center">
                 <img
-                  src="/Images/sparkOS.png"
+                  src={logoSrc}
                   alt={t('misc.companyName')}
                   className="h-8 w-auto"
                 />
