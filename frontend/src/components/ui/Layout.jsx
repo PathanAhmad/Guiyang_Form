@@ -8,7 +8,9 @@ const Layout = ({ children, showNavigation = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
-  const logoSrc = assetUrl(i18n.language === 'zh' ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg');
+  const logoSrc = i18n.language === 'zh'
+    ? assetUrl('/Images/SparkOSFullLogoChinese.svg')
+    : assetUrl('/Images/SparkOSFullLogo.svg');
 
   // Simplified navigation - only show when explicitly needed (for queue dashboard)
   const navigation = [

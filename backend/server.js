@@ -13,13 +13,17 @@ const formsRoutes = require('./routes/forms');
 const discordRoutes = require('./routes/discord');
 const discordInteractionsRoutes = require('./routes/discord-interactions');
 const { router: authRoutes } = require('./routes/auth');
+const assetsRoutes = require('./routes/assets');
 
 // Initialize Express app
 const app = express();
 
 // Security middleware
 app.use(helmet({
-  contentSecurityPolicy: false // Allow for development; configure properly for production
+  contentSecurityPolicy: false, // Allow for development; configure properly for production
+  // Allow embedding cross-origin images like Cloudinary in development
+  crossOriginEmbedderPolicy: false,
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
 }));
 
 // CORS configuration
@@ -70,6 +74,7 @@ app.use('/api/forms', formsRoutes);
 app.use('/api/discord', discordRoutes);
 app.use('/api/discord', discordInteractionsRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/assets', assetsRoutes);
 
 // Catch-all route for undefined API routes
 app.all('*', (req, res, next) => {

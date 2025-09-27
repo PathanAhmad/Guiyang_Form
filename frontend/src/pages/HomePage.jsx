@@ -7,7 +7,9 @@ import LanguageToggle from '../components/ui/LanguageToggle';
 
 const HomePage = ({ onCardSelect }) => {
   const { t, i18n } = useTranslation();
-  const logoSrc = assetUrl(i18n.language === 'zh' ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg');
+  const logoSrc = i18n.language === 'zh' 
+    ? assetUrl('/Images/SparkOSFullLogoChinese.svg')
+    : assetUrl('/Images/SparkOSFullLogo.svg');
   
   const formTypes = [
     {

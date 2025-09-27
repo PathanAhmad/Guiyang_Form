@@ -1,0 +1,78 @@
+### Cursor Rules for Guiyang Form
+
+These rules guide safe, consistent edits that preserve the current architecture and reduce risk.
+
+---
+
+### Project scope and guardrails
+- **Respect existing structure**: This repo is split into `backend` (Node.js/Express/Mongoose, CommonJS) and `frontend` (React + Vite, ESM). Do not merge or refactor across packages in routine edits.
+- **No unrelated changes**: Limit edits to files directly required for the task. Do not reformat or “drive-by” refactor unrelated code.
+- **Check before creating**: Before adding any file/function, search for an existing equivalent. Prefer extension over duplication.
+- **Avoid new dependencies**: Do not add packages unless strictly necessary. If needed, propose first with rationale, alternatives, and rollback plan.
+- **Module systems**: Backend stays CommonJS (`require`/`module.exports`). Frontend stays ESM (`import`/`export`). Do not convert module systems.
+- **Indentation and formatting**: Preserve each file’s current indentation and style. Do not reformat unrelated lines.
+
+---
+
+### User-required debugging policy
+- **Trace issues to source**: When fixing bugs, identify the root cause (not symptoms). Include the minimal repro and the exact failing path.
+- **Full stack traces**: Capture and analyze the full error stack internally during debugging. Do not expose sensitive stacks to users in production responses.
+- **No undefined behavior**: Add explicit guards for null/undefined and invalid inputs. Prefer early returns and clear error handling.
+- **Explicit ownership of logic**: Keep validation in `backend/middleware/validation.js`, routing in `backend/routes`, data access in `backend/models`, and integrations in `backend/services`.
+
+---
+
+### Backend (Node.js/Express/Mongoose)
+- **Routes**: Add new endpoints in `backend/routes`, then register in `backend/server.js` under `/api/...`. Keep route handlers thin; offload validation and business logic.
+- **Validation**: Use Joi in `backend/middleware/validation.js`. Extend existing schemas or add a new typed schema function; do not validate ad hoc in route files.
+- **Error handling**: Use centralized `errorHandler` and `notFoundHandler`. For new errors, surface `success: false`, `error` message, and optional `details` consistent with existing patterns.
+- **Models**: Define Mongoose schemas in `backend/models` with `{ timestamps: true }`. Add indexes where queries depend on fields (e.g., tokens, types, created dates).
+- **Config**: Read configuration from `backend/config/environment.js`. Do not access `process.env` directly in routes or services; add config keys there.
+- **Services**: Keep Cloudinary and Discord calls inside `backend/services`. Reuse existing helpers; do not call external APIs directly from routes.
+- **Logging**: Use `console` consistently; include stack traces in logs during debugging. Avoid logging secrets or full payloads containing PII.
+- **HTTP status codes**: 2xx for success, 4xx for client errors (validation/auth), 5xx for server errors.
+
+---
+
+### Frontend (React + Vite)
+- **ESM only**: Use `import`/`export` with Vite. Keep file-based aliases consistent with `vite.config.js` (`@`, `src`, `components`, `utils`).
+- **Components and pages**: Place reusable primitives under `frontend/src/components/ui`, route-level screens under `frontend/src/pages`, and shared logic in hooks under `frontend/src/hooks`.
+- **API calls**: Use `frontend/src/services/api.js`. Centralize base URLs and headers there; do not duplicate fetch logic in components.
+- **i18n**: Add strings to `frontend/src/locales/en.json` and `zh.json`. Use `react-i18next` hooks; avoid hardcoded user-facing strings.
+- **Styling**: Prefer Tailwind utility classes already in use. Avoid introducing new styling systems.
+- **Linting**: Follow `frontend/eslint.config.js`. Do not add new linters/formatters. Fix new warnings you introduce.
+
+---
+
+### Naming and structure
+- **Files**: Components `PascalCase.jsx` (e.g., `FastTrackForm.jsx`), hooks `camelCase.js` (e.g., `useApi.js`). Keep existing conventions.
+- **Functions**: Use descriptive, intention-revealing names. Prefer early returns and guard clauses.
+- **Comments**: Keep comments focused on “why”, not “what”. Use JSDoc for exported functions where helpful.
+
+---
+
+### Safe change patterns
+- **Add a new backend route**:
+  1) Define route in `backend/routes/...`. 2) Add validation via Joi middleware. 3) Put external calls in a service. 4) Register in `backend/server.js`. 5) Ensure consistent response shape.
+- **Add a new model or field**:
+  1) Update schema in `backend/models`. 2) Add indexes if querying by the new field. 3) Update validation schema. 4) Migrate data only if necessary (provide a script separately if required).
+- **Add a new frontend page/feature**:
+  1) Create page under `frontend/src/pages`. 2) Reuse UI primitives under `components/ui`. 3) Add API methods in `services/api.js`. 4) Localize copy in `locales`.
+
+---
+
+### Risk controls
+- **No duplicate structures**: If a util/component/service exists, extend it rather than creating a parallel version.
+- **No global behavior changes**: Avoid editing CORS, security middleware, or build config unless the task explicitly requires it.
+- **No secret leakage**: Do not add secrets to source. Use environment variables and the config module.
+- **Minimal blast radius**: Keep edits small and localized; include unit-level verifications where possible.
+
+---
+
+### Acceptance checklist for each change
+- Confirm there is no existing equivalent implementation.
+- Validate inputs via the correct layer (Joi for backend requests).
+- Maintain existing response shapes and error contracts.
+- Preserve file/module styles (indentation, semicolons, module system).
+- Add i18n keys for any new UI strings.
+- Avoid adding dependencies; if necessary, justify and get approval first.

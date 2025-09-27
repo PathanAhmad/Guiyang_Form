@@ -69,7 +69,9 @@ const LoginPage = () => {
   };
 
   const zh = (navigator.language || '').startsWith('zh');
-  const logoSrc = assetUrl(zh ? '/Images/SparkOSFullLogoChinese.svg' : '/Images/SparkOSFullLogo.svg');
+  const logoSrc = zh
+    ? assetUrl('/Images/SparkOSFullLogoChinese.svg')
+    : assetUrl('/Images/SparkOSFullLogo.svg');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center p-4">
