@@ -76,3 +76,4 @@ These rules guide safe, consistent edits that preserve the current architecture 
 - Preserve file/module styles (indentation, semicolons, module system).
 - Add i18n keys for any new UI strings.
 - Avoid adding dependencies; if necessary, justify and get approval first.
+
