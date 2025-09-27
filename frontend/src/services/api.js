@@ -1,8 +1,13 @@
 import axios from 'axios';
 
 // Create axios instance with base configuration
+const envBase = import.meta.env.VITE_API_URL || '';
+const normalizedBaseUrl = envBase
+  ? `${envBase.replace(/\/+$/, '').replace(/\/api$/, '')}/api`
+  : '/api';
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL: normalizedBaseUrl,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
