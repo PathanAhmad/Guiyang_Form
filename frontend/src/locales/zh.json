@@ -529,6 +529,11 @@
       "cancel": "取消",
       "view": "查看详情"
     }
+    ,
+    "exportCsv": "导出 CSV",
+    "exportSuccess": "CSV 导出成功",
+    "exportError": "CSV 导出失败",
+    "detailsTitle": "提交详情"
   },
   "misc": {
     "referenceToken": "参考令牌",

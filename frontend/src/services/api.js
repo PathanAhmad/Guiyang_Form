@@ -79,6 +79,9 @@ export const formsAPI = {
   // Get counters
   getCounters: () => api.get('/forms/counters'),
   
+  // Export submissions as CSV (returns blob)
+  exportSubmissions: (formType) => api.get(`/forms/export/${formType}`, { responseType: 'blob' }),
+
   // Health check
   health: () => api.get('/forms/health'),
 };

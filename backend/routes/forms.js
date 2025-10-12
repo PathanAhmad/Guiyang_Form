@@ -404,6 +404,110 @@ router.get('/submissions/:formType', authenticateAdmin, async (req, res) => {
   }
 });
 
+// Route: Export all submissions as CSV for a form type (Admin only)
+router.get('/export/:formType', authenticateAdmin, async (req, res) => {
+  try {
+    const { formType } = req.params;
+
+    // Validate form type
+    if (!['demo', 'showcase', 'fasttrack'].includes(formType)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid form type'
+      });
+    }
+
+    const submissions = await FormSubmission.find({ formType })
+      .sort({ submittedAt: -1 })
+      .lean();
+
+    // Define CSV columns (fixed order for consistency)
+    const columns = [
+      'token',
+      'formType',
+      'eventLabel',
+      'name',
+      'email',
+      'phone',
+      'institution',
+      'position',
+      'country',
+      'company',
+      'role',
+      'areaOfInterest',
+      'message',
+      'workInEducation',
+      'educationFields',
+      'educationFieldsOther',
+      'primaryRole',
+      'primaryRoleOther',
+      'sparkosUsage',
+      'sparkosUsageOther',
+      'ageGroups',
+      'neurodiversityWork',
+      'supportedConditions',
+      'supportedConditionsOther',
+      'featuresInterest',
+      'implementationTimeline',
+      'pilotInterest',
+      'currentChallenges',
+      'additionalComments',
+      'status',
+      'contactedAt',
+      'completedAt',
+      'cancelledAt',
+      'submittedAt',
+      'updatedAt',
+      'discordSent'
+    ];
+
+    const escapeCSV = (value) => {
+      if (value === null || value === undefined) return '';
+      let str = '';
+      if (Array.isArray(value)) {
+        str = value.join('; ');
+      } else if (value instanceof Date) {
+        str = value.toISOString();
+      } else if (typeof value === 'object') {
+        // stringify nested objects defensively (none expected in schema)
+        try {
+          str = JSON.stringify(value);
+        } catch (e) {
+          str = String(value);
+        }
+      } else {
+        str = String(value);
+      }
+      // Escape quotes by doubling them and wrap with quotes
+      return '"' + str.replace(/"/g, '""') + '"';
+    };
+
+    // Build CSV content
+    const header = columns.join(',');
+    const rows = submissions.map((doc) => {
+      return columns.map((col) => {
+        const val = doc[col];
+        // Normalize date strings
+        if (val && (col.endsWith('At') || col === 'submittedAt' || col === 'updatedAt')) {
+          return escapeCSV(new Date(val));
+        }
+        return escapeCSV(val);
+      }).join(',');
+    });
+    const csv = [header, ...rows].join('\n');
+
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader('Content-Disposition', `attachment; filename="submissions-${formType}-${Date.now()}.csv"`);
+    return res.status(200).send(csv);
+  } catch (error) {
+    console.error('❌ Error exporting submissions CSV:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to export submissions'
+    });
+  }
+});
+
 // Route: Get token counters status (Admin only)
 router.get('/counters', authenticateAdmin, async (req, res) => {
   try {

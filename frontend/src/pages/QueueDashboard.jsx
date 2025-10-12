@@ -14,6 +14,8 @@ const QueueDashboard = ({ onBack }) => {
   const [selectedFormType, setSelectedFormType] = useState('demo');
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(null);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [selectedSubmission, setSelectedSubmission] = useState(null);
   
   const { showToast } = useToast();
   const { user, logout } = useAuth();
@@ -97,6 +99,36 @@ const QueueDashboard = ({ onBack }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleExport = async () => {
+    try {
+      const resp = await formsAPI.exportSubmissions(selectedFormType);
+      const blob = new Blob([resp.data], { type: 'text/csv;charset=utf-8;' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      const ts = new Date().toISOString().replace(/[:.]/g, '-');
+      link.setAttribute('download', `submissions-${selectedFormType}-${ts}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      showToast(t('queue.exportSuccess'), 'success');
+    } catch (error) {
+      console.error('Export error:', error);
+      showToast(t('queue.exportError'), 'error');
+    }
+  };
+
+  const openDetails = (submission) => {
+    setSelectedSubmission(submission);
+    setDetailsOpen(true);
+  };
+
+  const closeDetails = () => {
+    setDetailsOpen(false);
+    setSelectedSubmission(null);
   };
 
   const updateSubmissionStatus = async (token, newStatus) => {
@@ -260,9 +292,16 @@ const QueueDashboard = ({ onBack }) => {
         {/* Submissions Table */}
         <Card>
           <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-medium text-gray-900">
-              {formTypes.find(f => f.key === selectedFormType)?.label} {t('queue.submissions')}
-            </h3>
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-medium text-gray-900">
+                {formTypes.find(f => f.key === selectedFormType)?.label} {t('queue.submissions')}
+              </h3>
+              <div className="space-x-2">
+                <Button onClick={handleExport} variant="outline" className="bg-white">
+                  {t('queue.exportCsv')}
+                </Button>
+              </div>
+            </div>
           </div>
 
           {loading ? (
@@ -319,6 +358,13 @@ const QueueDashboard = ({ onBack }) => {
                         {formatWaitingTime(submission)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                        <Button
+                          onClick={() => openDetails(submission)}
+                          variant="outline"
+                          size="sm"
+                        >
+                          {t('queue.actions.view')}
+                        </Button>
                         {submission.status === 'waiting' && (
                           <>
                             <Button
@@ -372,6 +418,39 @@ const QueueDashboard = ({ onBack }) => {
             </div>
           )}
         </Card>
+
+        {/* Details Modal */}
+        {detailsOpen && selectedSubmission && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4">
+              <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                <h3 className="text-lg font-medium text-gray-900">
+                  {t('queue.detailsTitle')} — {selectedSubmission.token}
+                </h3>
+                <button onClick={closeDetails} className="text-gray-400 hover:text-gray-600">×</button>
+              </div>
+              <div className="p-6 max-h-[70vh] overflow-y-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  {Object.entries(selectedSubmission).map(([key, value]) => {
+                    if (['_id', '__v', 'discordError'].includes(key)) return null;
+                    const display = Array.isArray(value) ? value.join(', ') :
+                      value instanceof Date ? value.toISOString() :
+                      (value ?? '')
+                    return (
+                      <div key={key} className="">
+                        <div className="text-gray-500 uppercase tracking-wider text-xs">{key}</div>
+                        <div className="text-gray-900 break-words">{String(display)}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="px-6 py-4 border-t border-gray-200 flex justify-end">
+                <Button onClick={closeDetails}>{t('common.close')}</Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

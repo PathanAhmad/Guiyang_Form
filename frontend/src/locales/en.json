@@ -535,6 +535,10 @@
       "contact": "Contact",
       "complete": "Complete"
     },
+    "exportCsv": "Export CSV",
+    "exportSuccess": "CSV exported",
+    "exportError": "CSV export failed",
+    "detailsTitle": "Submission Details",
     "markAsContacted": "Mark as Contacted",
     "noTokensWaiting": "No tokens waiting",
     "noActionsAvailable": "No actions available"
