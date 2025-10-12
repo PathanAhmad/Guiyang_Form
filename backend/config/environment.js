@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   // MongoDB Configuration
-  MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/guiyang_forms',
+  MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/makerfaire_guangzhou_forms',
   
   // Server Configuration
   PORT: process.env.PORT || 6085,
@@ -15,8 +15,11 @@ module.exports = {
     apiSecret: process.env.CLOUDINARY_API_SECRET || '',
     url: process.env.CLOUDINARY_URL || '',
     // Default folder for organized uploads
-    folder: process.env.CLOUDINARY_FOLDER || 'guiyang_form'
+    folder: process.env.CLOUDINARY_FOLDER || 'makerfaire_guangzhou_form'
   },
+  
+  // Event / Campaign Labeling
+  EVENT_LABEL: process.env.EVENT_LABEL || 'Maker Faire Guangzhou',
   
   // Discord Webhook URLs
   DISCORD_WEBHOOKS: {

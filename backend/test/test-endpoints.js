@@ -256,7 +256,7 @@ const testValidation = async () => {
 // Main test runner
 const runAllTests = async () => {
   log.divider();
-  console.log(`${colors.cyan}🚀 Starting Guiyang Form Backend Tests${colors.reset}`);
+  console.log(`${colors.cyan}🚀 Starting Maker Faire Guangzhou Form Backend Tests${colors.reset}`);
   console.log(`${colors.cyan}📅 ${new Date().toISOString()}${colors.reset}`);
   log.divider();
   

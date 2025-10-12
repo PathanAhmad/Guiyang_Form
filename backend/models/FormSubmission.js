@@ -34,6 +34,13 @@ const formSubmissionSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+
+  // Event/Campaign label to identify the fair or campaign
+  eventLabel: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   
   // Contact Information (all forms)
   institution: {
@@ -197,5 +204,6 @@ const formSubmissionSchema = new mongoose.Schema({
 formSubmissionSchema.index({ formType: 1, submittedAt: -1 });
 formSubmissionSchema.index({ token: 1 });
 formSubmissionSchema.index({ email: 1 });
+formSubmissionSchema.index({ eventLabel: 1, submittedAt: -1 });
 
 module.exports = mongoose.model('FormSubmission', formSubmissionSchema);

@@ -1,5 +1,5 @@
 {
-  "name": "guiyang-form-backend",
+  "name": "makerfaire-guangzhou-form-backend",
   "version": "1.0.0",
   "description": "Backend for handling form submissions with Discord webhook integration",
   "main": "server.js",

@@ -4,6 +4,7 @@ const FormSubmission = require('../models/FormSubmission');
 const TokenCounter = require('../models/TokenCounter');
 const GlobalCounter = require('../models/GlobalCounter');
 const discordService = require('../services/discordService');
+const config = require('../config/environment');
 const { validateFormSubmission } = require('../middleware/validation');
 const { authenticateAdmin } = require('./auth');
 
@@ -58,6 +59,7 @@ const processFormSubmission = async (req, res) => {
       ...validatedData,
       formType,
       token,
+      eventLabel: config.EVENT_LABEL || undefined,
       status: 'waiting'
     });
     

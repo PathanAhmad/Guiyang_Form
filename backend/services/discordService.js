@@ -10,7 +10,7 @@ class DiscordService {
    * Format message for Discord based on form type and submission data
    */
   formatMessage(formType, submissionData) {
-    const { name, email, phone, token, company, role, message, status = 'waiting' } = submissionData;
+    const { name, email, phone, token, company, role, message, status = 'waiting', eventLabel } = submissionData;
     
     const formTitleMap = {
       'demo': 'Sparkie Demo Submission',
@@ -32,6 +32,9 @@ class DiscordService {
     };
     
     let discordMessage = `${emojiMap[formType]} **New ${formTitleMap[formType]}**\n`;
+    if (eventLabel) {
+      discordMessage += `🏷️ **Event:** ${eventLabel}\n`;
+    }
     discordMessage += `👤 **Name:** ${name}\n`;
     discordMessage += `📧 **Email:** ${email}\n`;
     
@@ -124,7 +127,7 @@ class DiscordService {
       
       const payload = {
         content: message,
-        username: 'Guiyang Form Bot',
+        username: 'Maker Faire Guangzhou Form Bot',
         avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png',
         components: components
       };
@@ -182,7 +185,7 @@ class DiscordService {
       
       const payload = {
         content: statusMessage,
-        username: 'Guiyang Status Bot',
+        username: 'Maker Faire Guangzhou Status Bot',
         avatar_url: 'https://cdn.discordapp.com/embed/avatars/2.png',
         components: components
       };
@@ -221,7 +224,7 @@ class DiscordService {
       
       const response = await axios.post(webhookUrl, {
         content: message,
-        username: 'Guiyang Queue Bot',
+        username: 'Maker Faire Guangzhou Queue Bot',
         avatar_url: 'https://cdn.discordapp.com/embed/avatars/1.png'
       }, {
         timeout: 10000,

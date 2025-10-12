@@ -1,6 +1,6 @@
-# Guiyang Form Backend
+# Maker Faire Guangzhou Form Backend
 
-A Node.js backend service for handling form submissions with Discord webhook integration and MongoDB storage.
+A Node.js backend service for handling form submissions with Discord webhook integration and MongoDB storage, rebranded for Maker Faire Guangzhou.
 
 ## Features
 
@@ -78,7 +78,7 @@ Create a `.env` file in the `backend` directory:
 
 ```env
 # MongoDB Configuration
-MONGO_URI=mongodb://localhost:27017/guiyang_forms
+MONGO_URI=mongodb://localhost:27017/makerfaire_guangzhou_forms
 
 # Server Configuration
 PORT=3000
@@ -329,7 +329,7 @@ Check console output for real-time monitoring.
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `MONGO_URI` | MongoDB connection string | `mongodb://localhost:27017/guiyang_forms` |
+| `MONGO_URI` | MongoDB connection string | `mongodb://localhost:27017/makerfaire_guangzhou_forms` |
 | `PORT` | Server port | `3000` |
 | `NODE_ENV` | Environment mode | `development` |
 | `DISCORD_WEBHOOK_DEMO` | Demo form webhook URL | - |
