@@ -15,7 +15,7 @@ module.exports = {
     apiSecret: process.env.CLOUDINARY_API_SECRET || '',
     url: process.env.CLOUDINARY_URL || '',
     // Default folder for organized uploads
-    folder: process.env.CLOUDINARY_FOLDER || 'makerfaire_guangzhou_form'
+    folder: process.env.CLOUDINARY_FOLDER || 'guiyang_form'
   },
   
   // Event / Campaign Labeling
