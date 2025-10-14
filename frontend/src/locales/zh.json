@@ -70,7 +70,308 @@
         "otherPlaceholder": "请注明其他设备"
       }
     },
-    "progress": { "sectionOf": "第 {{current}} / {{total}} 部分" }
+    "progress": { "sectionOf": "第 {{current}} / {{total}} 部分" },
+    "section2A": {
+      "title": "第二部分A：家长/监护人对AI的使用",
+      "aiUsage": {
+        "label": "您是否使用过任何基于AI的工具？",
+        "options": {
+          "regularly": "是——我经常使用",
+          "fewTimes": "是——我使用过几次",
+          "triedOnce": "尝试过，但现在不使用",
+          "no": "否",
+          "notSure": "不确定/不确定是否算作AI"
+        }
+      },
+      "experience": {
+        "label": "使用AI工具的总体体验",
+        "options": {
+          "veryPositive": "非常积极",
+          "somewhatPositive": "比较积极",
+          "neutral": "中立",
+          "somewhatNegative": "比较消极",
+          "veryNegative": "非常消极"
+        }
+      },
+      "confidence": {
+        "label": "对AI工作原理的理解信心",
+        "options": {
+          "notConfident": "没有信心",
+          "slightlyConfident": "略有信心",
+          "confident": "有信心",
+          "veryConfident": "非常有信心"
+        }
+      },
+      "purposes": {
+        "label": "您使用AI的典型目的",
+        "options": {
+          "workProductivity": "工作/效率",
+          "learningResearch": "学习/研究",
+          "creativeTasks": "创意任务",
+          "everydayAssistance": "日常协助",
+          "other": "其他（请说明）"
+        },
+        "otherPlaceholder": "请注明其他用途"
+      }
+    },
+    
+    "section2B": {
+      "title": "第二部分B：孩子当前对AI的使用",
+      "childUsage": {
+        "label": "您的孩子是否使用过任何基于AI的工具？",
+        "options": {
+          "school": "是——主要在学校",
+          "home": "是——主要在家",
+          "both": "是——在学校和家里都使用",
+          "triedOnce": "尝试过，但目前未使用",
+          "no": "否",
+          "notSure": "不确定"
+        }
+      },
+      "frequency": {
+        "label": "您的孩子用于学习的AI工具使用频率？",
+        "options": {
+          "rarely": "很少（少于每月一次）",
+          "monthly": "每月",
+          "weekly": "每周",
+          "severalWeekly": "每周多次",
+          "daily": "每天"
+        }
+      },
+      "purposes": {
+        "label": "孩子使用AI的目的（可多选）",
+        "options": {
+          "homework": "作业辅导/家教",
+          "language": "语言学习",
+          "research": "研究/好奇探索",
+          "practice": "练习/测验",
+          "creativityCoding": "创意/编程",
+          "writing": "内容创作或写作",
+          "accessibility": "无障碍支持（朗读、摘要等）",
+          "entertainment": "娱乐",
+          "other": "其他（请说明)"
+        },
+        "otherPlaceholder": "请注明其他目的"
+      },
+      "toolsOften": {
+        "label": "如果是，您或您的孩子最常使用哪些AI工具？",
+        "placeholder": "输入工具名称（开放式回答）"
+      },
+      "observedChanges": {
+        "label": "使用AI工具后，您是否观察到孩子学习行为的变化？",
+        "options": {
+          "improvedFocus": "注意力提升",
+          "curiosityInitiative": "更有好奇/主动性",
+          "betterTimeManagement": "时间管理更好",
+          "increasedDependency": "对AI答案依赖增加",
+          "noChange": "无明显变化",
+          "other": "其他（请说明)"
+        },
+        "otherPlaceholder": "请说明其他变化"
+      },
+      "benefits": {
+        "label": "您认为AI在儿童教育中的好处是什么？（最多选3项）",
+        "options": {
+          "personalizedPace": "个性化学习节奏",
+          "assistance247": "全天候（24/7）学习支持",
+          "instantAnswers": "即时解答与支持",
+          "adaptiveGuidance": "针对不同能力的自适应指导",
+          "emotionalSupport": "情感或激励支持",
+          "accessibilitySupports": "无障碍支持（朗读、简化文本、语言帮助）",
+          "other": "其他（请说明)"
+        },
+        "otherPlaceholder": "请注明其他好处"
+      },
+      "concerns": {
+        "label": "您对孩子在学习中使用AI有哪些担忧？（最多选3项）",
+        "options": {
+          "privacySafety": "数据隐私与安全",
+          "screenTimeDependency": "屏幕时间与依赖性",
+          "accuracyBias": "回答的准确性或偏见",
+          "reducedHumanConnection": "人与人连接减少",
+          "reducedCreativity": "创造力降低",
+          "misuseOverreliance": "滥用或过度依赖AI",
+          "other": "其他（请说明)"
+        },
+        "otherPlaceholder": "请注明其他担忧"
+      },
+      "supportTeachersParents": {
+        "label": "在您看来，AI应如何支持教师和家长参与学习过程？",
+        "placeholder": "开放式回答"
+      },
+      "guidanceConfidence": {
+        "label": "您对引导孩子负责任地使用AI的能力有多大信心？",
+        "options": {
+          "very": "非常有信心",
+          "somewhat": "比较有信心",
+          "unsure": "不确定",
+          "needSupport": "需要更多信息或支持"
+        }
+      }
+    },
+
+    "section3": {
+      "title": "第三部分：对教育中AI的看法与期望",
+      "perceivedBenefits": { "label": "您认为在教育中使用AI的主要好处是什么？" },
+      "perceivedConcerns": { "label": "您对教育中使用AI的担忧或顾虑是什么？" },
+      "humanInvolvement": {
+        "label": "在学习中使用AI时，人类参与有多重要？",
+        "options": { "very": "非常重要", "somewhat": "比较重要", "neutral": "中立", "less": "不太重要" }
+      },
+      "emotionalFocus": {
+        "label": "您认为AI能否帮助识别并支持孩子在学习中的情绪或专注需求？",
+        "options": { "yes": "是", "maybe": "可能", "no": "否", "notSure": "不确定" }
+      },
+      "likelihoodEncourage": {
+        "label": "您有多大可能鼓励孩子使用AI辅助学习系统？",
+        "options": { "veryLikely": "非常可能", "somewhatLikely": "比较可能", "neutral": "中立", "unlikely": "不太可能" }
+      },
+      "guardrails": {
+        "label": "您偏好的AI校内使用护栏（可多选）",
+        "options": {
+          "citations": "要求标注来源",
+          "showSteps": "展示过程而非仅答案",
+          "limitsTakeHome": "限制课外使用",
+          "transparency": "抄袭/AI使用透明",
+          "teacherReviewFlag": "教师复核标记",
+          "other": "其他"
+        },
+        "otherPlaceholder": "请注明其他护栏"
+      }
+    },
+
+    "section4": {
+      "title": "第四部分：使用AI前后体验",
+      "preHabits": {
+        "label": "在孩子开始使用AI之前，您如何描述TA的学习习惯？",
+        "options": {
+          "independent": "独立",
+          "needsGuidance": "需要持续指导",
+          "easilyDistracted": "容易分心",
+          "motivationStruggle": "动机薄弱",
+          "other": "其他（请说明)"
+        },
+        "otherPlaceholder": "请注明其他习惯"
+      },
+      "postImprovements": {
+        "label": "使用AI工具后，您是否注意到以下方面的改善：",
+        "options": {
+          "selfLearningCuriosity": "自主学习与好奇心",
+          "confidenceCommunication": "自信与沟通",
+          "emotionalAwareness": "学习过程中的情绪觉察",
+          "focusTimeManagement": "专注与时间管理",
+          "none": "以上皆无"
+        }
+      },
+      "engaging": {
+        "label": "AI工具是否让孩子的学习更有参与感、更有趣？",
+        "options": { "yes": "是", "somewhat": "一定程度", "no": "否" }
+      },
+      "inclusivity": {
+        "label": "您认为AI工具是否对不同学习风格或神经多样性需求具有包容性？",
+        "options": { "yes": "是", "somewhat": "一定程度", "no": "否", "notSure": "不确定" }
+      },
+      "learningConsiderations": {
+        "label": "特定学习考量（选填）",
+        "options": {
+          "adhd": "注意力缺陷多动障碍（ADHD）",
+          "autism": "自闭症",
+          "dyslexia": "阅读障碍",
+          "languageSupport": "语言支持需求",
+          "visualHearingSupport": "视觉/听觉支持",
+          "other": "其他",
+          "preferNotSay": "不愿透露"
+        }
+      }
+    },
+
+    "section5": {
+      "title": "第五部分：了解 SparkOS",
+      "heard": {
+        "label": "在本问卷之前，您是否听说过 SparkOS 或类似的包容性教育AI平台？",
+        "options": { "yes": "是", "no": "否" }
+      },
+      "distinctiveness": {
+        "label": "据您了解，SparkOS 与其他AI工具相比的独特之处是？（可多选）",
+        "options": {
+          "emotionalBehaviorUnderstanding": "不仅关注学术，还关注情绪与行为理解",
+          "inclusiveDesign": "面向神经多样与神经典型学习者共同设计",
+          "safeGuided": "提供安全且有引导的学习环境",
+          "analytics": "为教师和家长提供更好的监控分析",
+          "selfDirected": "鼓励自我主导学习与独立性",
+          "other": "其他（请说明)"
+        },
+        "otherPlaceholder": "请注明其他区别"
+      },
+      "trackingImportance": {
+        "label": "在学习过程中跟踪专注、情绪与参与度有多重要？",
+        "options": { "extremely": "极其重要", "moderately": "较为重要", "neutral": "中立", "notImportant": "不重要" }
+      },
+      "behaviorAnalysis": {
+        "label": "在确保隐私的前提下，您是否接受AI分析孩子的学习行为？",
+        "options": { "yes": "是", "maybe": "可能", "no": "否" }
+      },
+      "trustFeatures": {
+        "label": "哪些功能会让您更信任教育类AI系统？",
+        "options": {
+          "transparentPolicies": "透明数据政策",
+          "parentalDashboards": "家长仪表板",
+          "childSafeModes": "儿童安全聊天模式",
+          "offlineModes": "离线/低连接模式",
+          "certifiedEducators": "与认证教育者合作",
+          "educatorOversight": "学校批准/教育者监督",
+          "dataMinimization": "严格的数据最小化与本地处理（尽可能）",
+          "optInConsent": "对任何数据共享明确选择同意",
+          "other": "其他（请说明)"
+        },
+        "otherPlaceholder": "请注明其他功能"
+      },
+      "expectedOutcomes": {
+        "label": "您对 SparkOS 期望的结果（最多选3项）",
+        "options": {
+          "betterFocusHabits": "更好的专注与学习习惯",
+          "improvedGradesSkills": "成绩/技能提升",
+          "greaterMotivation": "动机增强",
+          "earlyFlags": "早期预警（困难/不投入）",
+          "moreIndependence": "更强独立性",
+          "betterVisibility": "更佳家校可见性"
+        }
+      },
+      "likelihoodTry": { "label": "总体尝试 SparkOS 的可能性（0–10）" }
+    },
+
+    "section6": {
+      "title": "第六部分：展望未来",
+      "aiRole": {
+        "label": "未来五年，AI在您孩子教育中应扮演什么角色？",
+        "options": {
+          "supplementary": "辅助性学习工具",
+          "assistant": "核心教学助理",
+          "tutor": "个性化导师",
+          "monitoring": "监测与进度分析工具",
+          "other": "其他（请说明)"
+        },
+        "otherPlaceholder": "请注明其他角色"
+      },
+      "considerSparkOS": {
+        "label": "您是否会考虑在未来为孩子使用 SparkOS？",
+        "options": {
+          "definitelyYes": "一定会",
+          "maybe": "视安全与效果而定",
+          "notSure": "尚不确定",
+          "no": "不会"
+        }
+      },
+      "additionalThoughts": { "label": "关于教育中AI的其他想法或期待" },
+      "contactEmail": { "label": "邮箱（选填）", "placeholder": "your@email.com" }
+    },
+
+    "optional": {
+      "title": "可选部分：开放反馈",
+      "supportTrainingNeeds": { "label": "什么样的支持或培训能帮助您引导孩子更负责任地使用AI？" },
+      "empathyFocusOpinion": { "label": "教育中的AI是否也应关注同理心、心理健康与创造力？" },
+      "idealAiCompanion": { "label": "用一句话描述一下您理想的AI学习伙伴。" }
+    }
   },
   "common": {
     "getStarted": "开始使用",
