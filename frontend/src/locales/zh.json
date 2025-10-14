@@ -17,6 +17,10 @@
     },
     "section1": {
       "title": "第一部分：背景信息",
+      "name": { "label": "姓名", "placeholder": "请输入您的姓名" },
+      "contactEmail": { "label": "邮箱（选填）", "placeholder": "请输入您的邮箱" },
+      "country": { "label": "国家/国籍", "placeholder": "请选择您的国家" },
+      "age": { "label": "年龄（选填）", "placeholder": "请输入您的年龄" },
       "relationship": {
         "label": "您与学生的关系？",
         "options": { "parent": "家长", "guardian": "监护人", "other": "其他（请说明）" },

@@ -18,6 +18,10 @@
     "progress": { "sectionOf": "Section {{current}} of {{total}}" },
     "section1": {
       "title": "Section 1: Background Information",
+      "name": { "label": "Name", "placeholder": "Enter your name" },
+      "contactEmail": { "label": "Email (optional)", "placeholder": "Enter your email address" },
+      "country": { "label": "Country / Nationality", "placeholder": "Select your country" },
+      "age": { "label": "Age (optional)", "placeholder": "Enter your age" },
       "relationship": {
         "label": "What is your relationship to the student?",
         "options": { "parent": "Parent", "guardian": "Guardian", "other": "Other (please specify)" },

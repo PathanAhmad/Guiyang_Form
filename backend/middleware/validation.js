@@ -89,6 +89,12 @@ const validationSchemas = {
     confirmAdult: Joi.boolean().valid(true).required()
       .messages({ 'any.only': 'You must confirm you are 18 or older' }),
 
+    // Respondent info
+    name: Joi.string().trim().min(2).max(100).required(),
+    contactEmail: Joi.string().email().trim().lowercase().optional().allow(''),
+    country: Joi.string().trim().min(2).max(100).required(),
+    age: Joi.number().integer().min(18).max(100).optional().allow(null, ''),
+
     // Section 1: Background
     contactPhone: Joi.string().trim().min(10).max(20).optional().allow(''),
     relationship: Joi.string().trim().valid('parent', 'guardian', 'other').required(),

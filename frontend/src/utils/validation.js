@@ -299,6 +299,19 @@ export const validateParentSurveyForm = (data) => {
   if (!data.consentParticipate) errors.consentParticipate = 'Consent is required';
   if (!data.confirmAdult) errors.confirmAdult = 'Must confirm 18+ as parent/guardian';
 
+  // New respondent fields
+  if (!data.name || data.name.trim().length < 2) errors.name = 'Name must be at least 2 characters';
+  if (data.contactEmail && !EMAIL_REGEX.test(data.contactEmail)) {
+    errors.contactEmail = 'Please enter a valid email address';
+  }
+  if (!data.country) errors.country = 'Country is required';
+  if (data.age) {
+    const ageNum = Number(data.age);
+    if (Number.isNaN(ageNum) || ageNum < 18 || ageNum > 100) {
+      errors.age = 'Please enter a valid age (18-100)';
+    }
+  }
+
   // Optional phone format check
   const phoneError = validatePhone(data.contactPhone);
   if (phoneError) errors.contactPhone = phoneError;
@@ -333,10 +346,7 @@ export const validateParentSurveyForm = (data) => {
     errors.expectedOutcomes = 'Select up to 3 outcomes';
   }
 
-  // Email format if provided
-  if (data.contactEmail && !EMAIL_REGEX.test(data.contactEmail)) {
-    errors.contactEmail = 'Please enter a valid email address';
-  }
+  // Email format handled above
 
   // Remove empty error messages (safety)
   Object.keys(errors).forEach((k) => { if (!errors[k]) delete errors[k]; });

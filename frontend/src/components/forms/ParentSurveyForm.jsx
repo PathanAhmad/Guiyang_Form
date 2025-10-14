@@ -10,6 +10,8 @@ import Checkbox from '../ui/Checkbox';
 import Radio from '../ui/Radio';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
+import Select from '../ui/Select';
+import { countryOptions } from '../../utils/countries';
 
 const ParentSurveyForm = ({ onSuccess }) => {
   const { t } = useTranslation();
@@ -17,8 +19,13 @@ const ParentSurveyForm = ({ onSuccess }) => {
 
   const { values, errors, handleChange, validate, setFieldErrors } = useForm(
     {
+      // Respondent info
+      name: '',
       consentParticipate: false,
       confirmAdult: false,
+      contactEmail: '',
+      country: '',
+      age: '',
       contactPhone: '',
       relationship: '',
       relationshipOther: '',
@@ -89,13 +96,13 @@ const ParentSurveyForm = ({ onSuccess }) => {
   // Section configuration and navigation
   const sections = useMemo(() => [
     { id: 'intro', titleKey: 'parentSurvey.intro.title', fields: ['consentParticipate','confirmAdult'] },
-    { id: 'section1', titleKey: 'parentSurvey.section1.title', fields: ['contactPhone','relationship','relationshipOther','childAgeRange','schoolingLevel','aiFamiliarity','childDevices','childDevicesOther'] },
+    { id: 'section1', titleKey: 'parentSurvey.section1.title', fields: ['name','contactEmail','country','age','contactPhone','relationship','relationshipOther','childAgeRange','schoolingLevel','aiFamiliarity','childDevices','childDevicesOther'] },
     { id: 'section2A', titleKey: 'parentSurvey.section2A.title', fields: ['parentAiUsageFrequency','parentAiExperience','parentAiConfidence','parentAiPurposes','parentAiPurposesOther'] },
     { id: 'section2B', titleKey: 'parentSurvey.section2B.title', fields: ['childAiUsageLocation','childAiFrequency','childAiPurposes','childAiPurposesOther','childAiToolsOften','childObservedChanges','childObservedChangesOther','childBenefits','childBenefitsOther','childConcerns','childConcernsOther','aiSupportTeachersParents','parentGuidanceConfidence'] },
     { id: 'section3', titleKey: 'parentSurvey.section3.title', fields: ['perceivedBenefits','perceivedConcerns','importanceHumanInvolvement','aiSupportEmotionalFocus','likelihoodEncourageAi','preferredGuardrails','preferredGuardrailsOther'] },
     { id: 'section4', titleKey: 'parentSurvey.section4.title', fields: ['preAiLearningHabits','preAiLearningHabitsOther','postAiImprovements','engagingEnjoyable','aiInclusivity','specificLearningConsiderations'] },
     { id: 'section5', titleKey: 'parentSurvey.section5.title', fields: ['heardOfSparkOS','sparkosDistinctiveness','sparkosDistinctivenessOther','importanceTrackingFocusEmotion','comfortableBehaviorAnalysis','trustFeatures','trustFeaturesOther','expectedOutcomes','likelihoodTrySparkOS'] },
-    { id: 'section6', titleKey: 'parentSurvey.section6.title', fields: ['aiRoleNextFiveYears','aiRoleNextFiveYearsOther','considerSparkOSFuture','additionalThoughts','contactEmail'] },
+    { id: 'section6', titleKey: 'parentSurvey.section6.title', fields: ['aiRoleNextFiveYears','aiRoleNextFiveYearsOther','considerSparkOSFuture','additionalThoughts'] },
     { id: 'optional', titleKey: 'parentSurvey.optional.title', fields: ['supportTrainingNeeds','empathyFocusOpinion','idealAiCompanion'] },
   ], []);
 
@@ -153,7 +160,6 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Intro */}
           {currentSection.id === 'intro' && (
             <div>
-              <h2 className="text-xl font-semibold mb-2">{t('parentSurvey.intro.title')}</h2>
               <p className="text-gray-600 mb-3">{t('parentSurvey.intro.description')}</p>
               <div className="space-y-2">
                 <Checkbox 
@@ -175,8 +181,43 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Section 1: Background Information */}
           {currentSection.id === 'section1' && (
           <div>
-            <h3 className="font-semibold mb-4">{t('parentSurvey.section1.title')}</h3>
             <div className="space-y-6">
+              <Input
+                name="name"
+                label={t('parentSurvey.section1.name.label')}
+                placeholder={t('parentSurvey.section1.name.placeholder')}
+                value={values.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                className="max-w-md"
+              />
+              <Input
+                type="email"
+                name="contactEmail"
+                label={t('parentSurvey.section1.contactEmail.label')}
+                placeholder={t('parentSurvey.section1.contactEmail.placeholder')}
+                value={values.contactEmail}
+                onChange={(e) => handleChange('contactEmail', e.target.value)}
+                className="max-w-md"
+              />
+              <Select
+                name="country"
+                label={t('parentSurvey.section1.country.label')}
+                value={values.country}
+                onChange={(e) => handleChange('country', e.target.value)}
+                options={[{ value: '', label: t('parentSurvey.section1.country.placeholder') }, ...countryOptions.map(o => ({ value: o.value, label: o.value }))]}
+                className="max-w-md"
+              />
+              <Input
+                type="number"
+                name="age"
+                label={t('parentSurvey.section1.age.label')}
+                placeholder={t('parentSurvey.section1.age.placeholder')}
+                value={values.age}
+                min={0}
+                max={120}
+                onChange={(e) => handleChange('age', e.target.value)}
+                className="max-w-[160px]"
+              />
               <Input
                 name="contactPhone"
                 label={t('parentSurvey.section1.contactPhone.label')}

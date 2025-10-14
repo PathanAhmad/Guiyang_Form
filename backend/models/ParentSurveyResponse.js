@@ -5,6 +5,12 @@ const parentSurveyResponseSchema = new mongoose.Schema({
   consentParticipate: { type: Boolean, required: true },
   confirmAdult: { type: Boolean, required: true },
 
+  // Respondent info
+  name: { type: String, trim: true },
+  contactEmail: { type: String, trim: true, lowercase: true },
+  country: { type: String, trim: true },
+  age: { type: Number, min: 18, max: 100 },
+
   // Section 1: Background Information
   contactPhone: { type: String, trim: true },
   relationship: { type: String, trim: true }, // parent | guardian | other
