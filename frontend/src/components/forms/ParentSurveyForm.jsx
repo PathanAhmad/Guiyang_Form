@@ -84,7 +84,6 @@ const ParentSurveyForm = ({ onSuccess }) => {
       aiRoleNextFiveYearsOther: '',
       considerSparkOSFuture: '',
       additionalThoughts: '',
-      contactEmail: '',
       // Optional
       supportTrainingNeeds: '',
       empathyFocusOpinion: '',
@@ -204,7 +203,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section1.country.label')}
                 value={values.country}
                 onChange={(e) => handleChange('country', e.target.value)}
-                options={[{ value: '', label: t('parentSurvey.section1.country.placeholder') }, ...countryOptions.map(o => ({ value: o.value, label: o.value }))]}
+                options={[
+                  { value: '', label: t('parentSurvey.section1.country.placeholder') },
+                  ...countryOptions.map(o => ({ value: o.value, label: t(`countryNames.${o.value}`, { defaultValue: o.value }) }))
+                ]}
                 className="max-w-md"
               />
               <Input
@@ -311,7 +313,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Section 2A: Parent/Guardian AI Usage */}
           {currentSection.id === 'section2A' && (
           <div>
-            <h3 className="font-semibold mb-4">{t('parentSurvey.section2A.title')}</h3>
+            {/* Section title is already shown in the progress indicator; avoid duplicate heading */}
             <div className="space-y-6">
               <Radio.Group
                 name="parentAiUsageFrequency"
@@ -378,7 +380,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Section 2B: Current AI Usage by Child */}
           {currentSection.id === 'section2B' && (
           <div>
-            <h3 className="font-semibold mb-4">{t('parentSurvey.section2B.title')}</h3>
+            {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
               <Radio.Group
                 name="childAiUsageLocation"
@@ -527,7 +529,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Section 3: Perception and Expectations */}
           {currentSection.id === 'section3' && (
           <div>
-            <h3 className="font-semibold mb-4">{t('parentSurvey.section3.title')}</h3>
+            {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
               <Textarea
                 name="perceivedBenefits"
@@ -607,7 +609,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Section 4: Experience Before and After Using AI */}
           {currentSection.id === 'section4' && (
           <div>
-            <h3 className="font-semibold mb-4">{t('parentSurvey.section4.title')}</h3>
+            {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
               <Radio.Group
                 name="preAiLearningHabits"
@@ -693,7 +695,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Section 5: Understanding SparkOS */}
           {currentSection.id === 'section5' && (
           <div>
-            <h3 className="font-semibold mb-4">{t('parentSurvey.section5.title')}</h3>
+            {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
               <Radio.Group
                 name="heardOfSparkOS"
@@ -805,7 +807,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Section 6: Looking Ahead */}
           {currentSection.id === 'section6' && (
           <div>
-            <h3 className="font-semibold mb-4">{t('parentSurvey.section6.title')}</h3>
+            {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
               <Radio.Group
                 name="aiRoleNextFiveYears"
@@ -850,14 +852,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('additionalThoughts', e.target.value)}
               />
 
-              <Input
-                type="email"
-                name="contactEmail"
-                label={t('parentSurvey.section6.contactEmail.label')}
-                placeholder={t('parentSurvey.section6.contactEmail.placeholder')}
-                value={values.contactEmail}
-                onChange={(e) => handleChange('contactEmail', e.target.value)}
-              />
+              {/* Email is collected in Section 1; duplicate removed */}
             </div>
           </div>
           )}
@@ -865,7 +860,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
           {/* Optional Feedback */}
           {currentSection.id === 'optional' && (
           <div>
-            <h3 className="font-semibold mb-4">{t('parentSurvey.optional.title')}</h3>
+            {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
               <Textarea
                 name="supportTrainingNeeds"

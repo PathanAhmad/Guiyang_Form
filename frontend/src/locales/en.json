@@ -890,5 +890,19 @@
     "tokenInstructions": "Please screenshot and save this token - required for demo participation",
     "importantNotice": "IMPORTANT NOTICE",
     "screenshotReminder": "Demo cannot proceed without showing this token"
+  },
+  "countryNames": {
+    "China": "China",
+    "United States": "United States",
+    "United Kingdom": "United Kingdom",
+    "Canada": "Canada",
+    "India": "India",
+    "Australia": "Australia",
+    "Singapore": "Singapore",
+    "Japan": "Japan",
+    "Germany": "Germany",
+    "France": "France",
+    "Hong Kong": "Hong Kong",
+    "Taiwan": "Taiwan"
   }
 }
