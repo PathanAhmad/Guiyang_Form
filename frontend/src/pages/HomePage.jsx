@@ -1,15 +1,16 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { assetUrl } from '../utils/assets';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import LanguageToggle from '../components/ui/LanguageToggle';
+import LogoEn from '@/Images/SparkOSFullLogo.svg';
+import LogoZh from '@/Images/SparkOSFullLogoChinese.svg';
  
 
 const HomePage = ({ onCardSelect }) => {
   const { t, i18n } = useTranslation();
-  const logoSrc = i18n.language === 'zh' 
-    ? assetUrl('/Images/SparkOSFullLogoChinese.svg')
-    : assetUrl('/Images/SparkOSFullLogo.svg');
+  const [logoError, setLogoError] = useState(false);
+  const logoSrc = i18n.language === 'zh' ? LogoZh : LogoEn;
   
   const formTypes = [
     {
@@ -38,6 +39,15 @@ const HomePage = ({ onCardSelect }) => {
       href: '/fasttrack',
       color: 'bg-primary-200/20 border-primary-200',
       buttonColor: 'primary'
+    },
+    {
+      id: 'parentSurvey',
+      title: t('homepage.forms.parentSurvey.title'),
+      description: t('homepage.forms.parentSurvey.description'),
+      icon: '',
+      href: '/parent-survey',
+      color: 'bg-primary-100/30 border-primary-400',
+      buttonColor: 'primary'
     }
   ];
 
@@ -52,11 +62,18 @@ const HomePage = ({ onCardSelect }) => {
       <div className="text-center py-16">
         {/* SparkOS Logo */}
         <div className="flex justify-center items-center mb-8">
-          <img
-            src={logoSrc}
-            alt={t('misc.companyName')}
-            className="h-20 md:h-24 w-auto"
-          />
+          {logoError ? (
+            <div className="text-3xl md:text-4xl font-bold tracking-widest text-gray-900">
+              {t('misc.companyName')}
+            </div>
+          ) : (
+            <img
+              src={logoSrc}
+              alt={t('misc.companyName')}
+              className="h-20 md:h-24 w-auto"
+              onError={() => setLogoError(true)}
+            />
+          )}
         </div>
 
         {/* Welcome Message */}
@@ -70,20 +87,22 @@ const HomePage = ({ onCardSelect }) => {
 
       {/* Service Cards */}
       <div className="max-w-7xl mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {formTypes.map((form) => (
-            <Card key={form.id} className={`hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer ${form.color} border-2`}> 
-              <Card.Body className="text-center p-8" onClick={() => onCardSelect(form.id)}>
+            <Card key={form.id} className={`h-full hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer ${form.color} border-2`}> 
+              <Card.Body className="text-center p-8 flex flex-col h-full" onClick={() => onCardSelect(form.id)}>
                 <div className="text-6xl mb-6"></div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   {form.title}
                 </h3>
-                <p className="text-gray-700 mb-8 text-lg leading-relaxed">
+                <p className="text-gray-700 mb-8 text-lg leading-relaxed flex-1">
                   {form.description}
                 </p>
-                <Button variant={form.buttonColor} className="w-full text-lg py-3">
+                <div className="mt-auto">
+                  <Button variant={form.buttonColor} className="w-full text-lg py-3">
                   {t('common.getStarted')}
-                </Button>
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           ))}

@@ -6,6 +6,68 @@
     "fastTrack": "快速通道",
     "queueDashboard": "队列仪表板"
   },
+  "parentSurvey": {
+    "pageTitle": "家长/监护人问卷",
+    "pageSubtitle": "帮助我们了解对教育中AI的看法与使用。",
+    "intro": {
+      "title": "关于本问卷（5–7分钟）",
+      "description": "我们正在了解家庭对教育中AI的看法与使用情况，以及SparkOS如何支持不同的学习需求。答案将严格保密，仅以汇总形式分析。",
+      "consent": "我已阅读以上信息并同意参与。",
+      "adult": "我已年满18岁，并以家长/监护人身份作答。"
+    },
+    "section1": {
+      "title": "第一部分：背景信息",
+      "relationship": {
+        "label": "您与学生的关系？",
+        "options": { "parent": "家长", "guardian": "监护人", "other": "其他（请说明）" },
+        "otherPlaceholder": "请填写关系"
+      },
+      "childAgeRange": {
+        "label": "您的孩子年龄？",
+        "options": {
+          "5_10": "5–10岁",
+          "11_15": "11–15岁",
+          "16_18": "16–18岁",
+          "above18": "18岁以上",
+          "preferNotSay": "不愿透露"
+        }
+      },
+      "schoolingLevel": {
+        "label": "您的孩子目前就读的学段？",
+        "options": {
+          "primary": "小学",
+          "secondary": "中学",
+          "higherSecondary": "高中/预科",
+          "university": "大学/学院"
+        }
+      },
+      "aiFamiliarity": {
+        "label": "您对人工智能（AI）的熟悉程度？",
+        "options": {
+          "notFamiliar": "不熟悉",
+          "somewhat": "有些熟悉",
+          "familiar": "熟悉",
+          "very": "非常熟悉"
+        }
+      },
+      "contactPhone": {
+        "label": "联系电话（选填）",
+        "placeholder": "请输入您的电话号码"
+      },
+      "childDevices": {
+        "label": "孩子主要用于学习的设备（可多选）",
+        "options": {
+          "laptop": "笔记本/台式机",
+          "tablet": "平板",
+          "smartphone": "手机",
+          "schoolDevice": "学校设备",
+          "other": "其他"
+        },
+        "otherPlaceholder": "请注明其他设备"
+      }
+    },
+    "progress": { "sectionOf": "第 {{current}} / {{total}} 部分" }
+  },
   "common": {
     "getStarted": "开始使用",
     "submitAnotherRequest": "提交另一个请求",
@@ -68,6 +130,10 @@
       "fasttrack": {
         "title": "快速通道申请",
         "description": "表达您对优先访问和咨询的兴趣。获得加急支持和个性化关注。"
+      },
+      "parentSurvey": {
+        "title": "家长/监护人问卷",
+        "description": "分享您对教育中人工智能的看法，帮助我们了解需求、关注点与兴趣。"
       }
     }
   },

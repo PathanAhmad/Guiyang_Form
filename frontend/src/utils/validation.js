@@ -288,3 +288,61 @@ export const validateFasttrackForm = (data) => {
     errors
   };
 };
+
+/**
+ * Validate Parent/Guardian Survey form (client-side minimal mirror of Joi)
+ */
+export const validateParentSurveyForm = (data) => {
+  const errors = {};
+
+  // Consent required
+  if (!data.consentParticipate) errors.consentParticipate = 'Consent is required';
+  if (!data.confirmAdult) errors.confirmAdult = 'Must confirm 18+ as parent/guardian';
+
+  // Optional phone format check
+  const phoneError = validatePhone(data.contactPhone);
+  if (phoneError) errors.contactPhone = phoneError;
+
+  // Background required
+  if (!data.relationship) errors.relationship = 'Relationship is required';
+  if (data.relationship === 'other' && !data.relationshipOther) errors.relationshipOther = 'Please specify your relationship';
+  if (!data.childAgeRange) errors.childAgeRange = 'Child age is required';
+  if (!data.schoolingLevel) errors.schoolingLevel = 'Schooling level is required';
+  if (!data.aiFamiliarity) errors.aiFamiliarity = 'AI familiarity is required';
+
+  // Section 2B selections with caps
+  if (Array.isArray(data.childBenefits) && data.childBenefits.length > 3) {
+    errors.childBenefits = 'Select up to 3 benefits';
+  }
+  if (Array.isArray(data.childConcerns) && data.childConcerns.length > 3) {
+    errors.childConcerns = 'Select up to 3 concerns';
+  }
+
+  // Section 3 guardrails optional; no caps here, but validate preferredGuardrailsOther
+  if (Array.isArray(data.preferredGuardrails) && data.preferredGuardrails.includes('other') && !data.preferredGuardrailsOther) {
+    errors.preferredGuardrailsOther = 'Please specify other guardrail';
+  }
+
+  // Section 4 other when selected
+  if (data.preAiLearningHabits === 'other' && !data.preAiLearningHabitsOther) {
+    errors.preAiLearningHabitsOther = 'Please specify other learning habit';
+  }
+
+  // Section 5 caps
+  if (Array.isArray(data.expectedOutcomes) && data.expectedOutcomes.length > 3) {
+    errors.expectedOutcomes = 'Select up to 3 outcomes';
+  }
+
+  // Email format if provided
+  if (data.contactEmail && !EMAIL_REGEX.test(data.contactEmail)) {
+    errors.contactEmail = 'Please enter a valid email address';
+  }
+
+  // Remove empty error messages (safety)
+  Object.keys(errors).forEach((k) => { if (!errors[k]) delete errors[k]; });
+
+  return {
+    isValid: Object.keys(errors).length === 0,
+    errors
+  };
+};

@@ -86,6 +86,11 @@ export const formsAPI = {
   health: () => api.get('/forms/health'),
 };
 
+// Parent/Guardian Survey API
+export const parentSurveyAPI = {
+  submit: (data) => api.post('/parent-survey', data),
+};
+
 // Discord API endpoints  
 export const discordAPI = {
   // Test webhook for specific form type

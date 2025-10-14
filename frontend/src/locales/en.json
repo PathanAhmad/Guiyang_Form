@@ -6,6 +6,363 @@
     "fastTrack": "Fast Track",
     "queueDashboard": "Queue Dashboard"
   },
+  "parentSurvey": {
+    "pageTitle": "Parent / Guardian Survey",
+    "pageSubtitle": "Help us understand perceptions and use of AI in education.",
+    "intro": {
+      "title": "About this survey (5–7 minutes)",
+      "description": "We’re learning how families perceive and use AI in education and how SparkOS can support different learning needs. Responses are confidential and analyzed in aggregate only.",
+      "consent": "I have read the information above and consent to participate.",
+      "adult": "I am 18 years or older and responding as a parent/guardian."
+    },
+    "progress": { "sectionOf": "Section {{current}} of {{total}}" },
+    "section1": {
+      "title": "Section 1: Background Information",
+      "relationship": {
+        "label": "What is your relationship to the student?",
+        "options": { "parent": "Parent", "guardian": "Guardian", "other": "Other (please specify)" },
+        "otherPlaceholder": "Please specify your relationship"
+      },
+      "childAgeRange": {
+        "label": "How old is your child?",
+        "options": {
+          "5_10": "5–10 years",
+          "11_15": "11–15 years",
+          "16_18": "16–18 years",
+          "above18": "Above 18 years",
+          "preferNotSay": "Prefer not to say"
+        }
+      },
+      "schoolingLevel": {
+        "label": "Which level of schooling is your child currently in?",
+        "options": {
+          "primary": "Primary",
+          "secondary": "Secondary",
+          "higherSecondary": "Higher Secondary / Pre-University",
+          "university": "University / College"
+        }
+      },
+      "aiFamiliarity": {
+        "label": "How familiar are you with Artificial Intelligence (AI)?",
+        "options": {
+          "notFamiliar": "Not familiar",
+          "somewhat": "Somewhat familiar",
+          "familiar": "Familiar",
+          "very": "Very familiar"
+        }
+      },
+      "contactPhone": {
+        "label": "Contact phone (optional)",
+        "placeholder": "Enter your phone number"
+      },
+      "childDevices": {
+        "label": "Devices your child mainly uses for study (select all that apply)",
+        "options": {
+          "laptop": "Laptop/desktop",
+          "tablet": "Tablet",
+          "smartphone": "Smartphone",
+          "schoolDevice": "School device",
+          "other": "Other"
+        },
+        "otherPlaceholder": "Please specify other device"
+      }
+    },
+    "section2A": {
+      "title": "Section 2A: Parent/ Guardian AI usage",
+      "aiUsage": {
+        "label": "Have you used any AI-based tools?",
+        "options": {
+          "regularly": "Yes — I use them regularly",
+          "fewTimes": "Yes — I’ve used them a few times",
+          "triedOnce": "I tried once, but don’t use them now",
+          "no": "No",
+          "notSure": "Not sure / I’m not sure those count as AI"
+        }
+      },
+      "experience": {
+        "label": "Overall experience using AI tools",
+        "options": {
+          "veryPositive": "Very positive",
+          "somewhatPositive": "Somewhat positive",
+          "neutral": "Neutral",
+          "somewhatNegative": "Somewhat negative",
+          "veryNegative": "Very negative"
+        }
+      },
+      "confidence": {
+        "label": "Confidence in understanding how AI works",
+        "options": {
+          "notConfident": "Not confident",
+          "slightlyConfident": "Slightly confident",
+          "confident": "Confident",
+          "veryConfident": "Very confident"
+        }
+      },
+      "purposes": {
+        "label": "Typical purposes you use AI for",
+        "options": {
+          "workProductivity": "Work/productivity",
+          "learningResearch": "Learning/research",
+          "creativeTasks": "Creative tasks",
+          "everydayAssistance": "Everyday assistance",
+          "other": "Other (specify)"
+        },
+        "otherPlaceholder": "Please specify other purpose"
+      }
+    },
+    "section2B": {
+      "title": "Section 2B: Current AI Usage by Child",
+      "childUsage": {
+        "label": "Has your child used any AI-based tools?",
+        "options": {
+          "school": "Yes — mainly at school",
+          "home": "Yes — mainly at home",
+          "both": "Yes — both at school and at home",
+          "triedOnce": "Tried once, but not using now",
+          "no": "No",
+          "notSure": "Not sure"
+        }
+      },
+      "frequency": {
+        "label": "How often does your child use AI tools for learning?",
+        "options": {
+          "rarely": "Rarely (less than monthly)",
+          "monthly": "Monthly",
+          "weekly": "Weekly",
+          "severalWeekly": "Several times weekly",
+          "daily": "Daily"
+        }
+      },
+      "purposes": {
+        "label": "Purposes for your child’s AI use (select all that apply)",
+        "options": {
+          "homework": "Homework help / tutoring",
+          "language": "Language learning",
+          "research": "Research / curiosity",
+          "practice": "Practice/quizzes",
+          "creativityCoding": "Creativity/coding",
+          "writing": "Content creation or writing",
+          "accessibility": "Accessibility support (read-aloud, summaries, etc.)",
+          "entertainment": "Entertainment",
+          "other": "Other (please specify)"
+        },
+        "otherPlaceholder": "Please specify other purpose"
+      },
+      "toolsOften": {
+        "label": "If yes, which AI tools have you or your child used most often?",
+        "placeholder": "Type names of tools (open response)"
+      },
+      "observedChanges": {
+        "label": "Have you observed any changes in your child’s learning behavior after using AI tools?",
+        "options": {
+          "improvedFocus": "Improved focus",
+          "curiosityInitiative": "More curiosity/initiative",
+          "betterTimeManagement": "Better time management",
+          "increasedDependency": "Increased dependency on AI answers",
+          "noChange": "No noticeable change",
+          "other": "Other (please explain)"
+        },
+        "otherPlaceholder": "Please explain other changes"
+      },
+      "benefits": {
+        "label": "What do you think are the benefits of using AI in education for children? (select up to 3)",
+        "options": {
+          "personalizedPace": "Personalized learning pace",
+          "assistance247": "24/7 learning assistance",
+          "instantAnswers": "Instant answers and support",
+          "adaptiveGuidance": "Adaptive guidance for different abilities",
+          "emotionalSupport": "Emotional or motivational support",
+          "accessibilitySupports": "Accessibility supports (read-aloud, simplified text, language help)",
+          "other": "Other (please specify)"
+        },
+        "otherPlaceholder": "Please specify other benefit"
+      },
+      "concerns": {
+        "label": "What concerns do you have about your child using AI in learning? (select up to 3)",
+        "options": {
+          "privacySafety": "Data privacy and safety",
+          "screenTimeDependency": "Screen time and dependency",
+          "accuracyBias": "Accuracy or bias in responses",
+          "reducedHumanConnection": "Reduced human connection",
+          "reducedCreativity": "Reduced creativity",
+          "misuseOverreliance": "Misuse or overreliance on AI",
+          "other": "Other (please specify)"
+        },
+        "otherPlaceholder": "Please specify other concern"
+      },
+      "supportTeachersParents": {
+        "label": "In your opinion, how should AI support teachers and parents in the learning process?",
+        "placeholder": "Open response"
+      },
+      "guidanceConfidence": {
+        "label": "How confident are you in your ability to guide your child in using AI responsibly?",
+        "options": {
+          "very": "Very confident",
+          "somewhat": "Somewhat confident",
+          "unsure": "Unsure",
+          "needSupport": "Need more information or support"
+        }
+      }
+    },
+    "section3": {
+      "title": "Section 3: Perception and Expectations of AI in Education",
+      "perceivedBenefits": { "label": "What do you believe are the main benefits of using AI in education?" },
+      "perceivedConcerns": { "label": "What are your concerns or fears about AI use in education?" },
+      "humanInvolvement": {
+        "label": "How important is human involvement when AI is used for learning?",
+        "options": { "very": "Very important", "somewhat": "Somewhat important", "neutral": "Neutral", "less": "Less important" }
+      },
+      "emotionalFocus": {
+        "label": "Do you believe AI can help identify and support your child’s emotional or focus needs while learning?",
+        "options": { "yes": "Yes", "maybe": "Maybe", "no": "No", "notSure": "Not sure" }
+      },
+      "likelihoodEncourage": {
+        "label": "How likely are you to encourage your child to use AI-assisted learning systems?",
+        "options": { "veryLikely": "Very likely", "somewhatLikely": "Somewhat likely", "neutral": "Neutral", "unlikely": "Unlikely" }
+      },
+      "guardrails": {
+        "label": "Preferred guardrails for AI in schoolwork (select all that apply)",
+        "options": {
+          "citations": "Source citations required",
+          "showSteps": "Show steps, not just answers",
+          "limitsTakeHome": "Limits on take-home use",
+          "transparency": "Plagiarism/AI-use transparency",
+          "teacherReviewFlag": "Teacher review flag",
+          "other": "Other"
+        },
+        "otherPlaceholder": "Please specify other guardrail"
+      }
+    },
+    "section4": {
+      "title": "Section 4: Experience Before and After Using AI",
+      "preHabits": {
+        "label": "Before your child started using AI, how would you describe their learning habits?",
+        "options": {
+          "independent": "Independent",
+          "needsGuidance": "Needs constant guidance",
+          "easilyDistracted": "Easily distracted",
+          "motivationStruggle": "Struggles with motivation",
+          "other": "Other (please specify)"
+        },
+        "otherPlaceholder": "Please specify other habit"
+      },
+      "postImprovements": {
+        "label": "After using AI tools, have you noticed improvements in:",
+        "options": {
+          "selfLearningCuriosity": "Self-learning and curiosity",
+          "confidenceCommunication": "Confidence and communication",
+          "emotionalAwareness": "Emotional awareness during study",
+          "focusTimeManagement": "Focus and time management",
+          "none": "None of the above"
+        }
+      },
+      "engaging": {
+        "label": "Have AI tools made your child’s learning experience more engaging and enjoyable?",
+        "options": { "yes": "Yes", "somewhat": "Somewhat", "no": "No" }
+      },
+      "inclusivity": {
+        "label": "Do you feel AI tools are inclusive for different learning styles or neurodiverse needs?",
+        "options": { "yes": "Yes", "somewhat": "Somewhat", "no": "No", "notSure": "Not sure" }
+      },
+      "learningConsiderations": {
+        "label": "Specific learning considerations (optional)",
+        "options": {
+          "adhd": "ADHD",
+          "autism": "Autism",
+          "dyslexia": "Dyslexia",
+          "languageSupport": "Language support needs",
+          "visualHearingSupport": "Visual/hearing support",
+          "other": "Other",
+          "preferNotSay": "Prefer not to say"
+        }
+      }
+    },
+    "section5": {
+      "title": "Section 5: Understanding SparkOS",
+      "heard": {
+        "label": "Before this survey, had you heard of SparkOS or similar inclusive EdTech AI platforms?",
+        "options": { "yes": "Yes", "no": "No" }
+      },
+      "distinctiveness": {
+        "label": "From your understanding, how is SparkOS distinct from other AI tools? (Select all that apply)",
+        "options": {
+          "emotionalBehaviorUnderstanding": "Focuses on emotional and behavioral understanding, not just academics",
+          "inclusiveDesign": "Designed for neurodiverse and neurotypical learners alike",
+          "safeGuided": "Offers a safe and guided learning environment",
+          "analytics": "Provides teacher and parent analytics for better monitoring",
+          "selfDirected": "Encourages self-directed learning and independence",
+          "other": "Other (please specify)"
+        },
+        "otherPlaceholder": "Please specify other distinction"
+      },
+      "trackingImportance": {
+        "label": "How important is it to track focus, emotion, and engagement during learning sessions?",
+        "options": { "extremely": "Extremely important", "moderately": "Moderately important", "neutral": "Neutral", "notImportant": "Not important" }
+      },
+      "behaviorAnalysis": {
+        "label": "Would you be comfortable with AI analyzing your child’s study behavior, if privacy is ensured?",
+        "options": { "yes": "Yes", "maybe": "Maybe", "no": "No" }
+      },
+      "trustFeatures": {
+        "label": "What features would make you trust an educational AI system more?",
+        "options": {
+          "transparentPolicies": "Transparent data policies",
+          "parentalDashboards": "Parental dashboards",
+          "childSafeModes": "Child-safe chat modes",
+          "offlineModes": "Offline/low-connectivity modes",
+          "certifiedEducators": "Collaboration with certified educators",
+          "educatorOversight": "School-approved/educator oversight",
+          "dataMinimization": "Strict data minimization & local processing when possible",
+          "optInConsent": "Clear opt-in consent for any data sharing",
+          "other": "Other (please specify)"
+        },
+        "otherPlaceholder": "Please specify other feature"
+      },
+      "expectedOutcomes": {
+        "label": "Outcomes you expect from SparkOS (select up to 3)",
+        "options": {
+          "betterFocusHabits": "Better focus & study habits",
+          "improvedGradesSkills": "Improved grades/skills",
+          "greaterMotivation": "Greater motivation",
+          "earlyFlags": "Early flags for struggle/disengagement",
+          "moreIndependence": "More independence",
+          "betterVisibility": "Better parent-teacher visibility"
+        }
+      },
+      "likelihoodTry": { "label": "Overall likelihood to try SparkOS (0–10)" }
+    },
+    "section6": {
+      "title": "Section 6: Looking Ahead",
+      "aiRole": {
+        "label": "What role should AI play in your child’s education over the next five years?",
+        "options": {
+          "supplementary": "Supplementary learning aid",
+          "assistant": "Core teaching assistant",
+          "tutor": "Personalized tutor",
+          "monitoring": "Monitoring and progress analytics tool",
+          "other": "Other (please specify)"
+        },
+        "otherPlaceholder": "Please specify other role"
+      },
+      "considerSparkOS": {
+        "label": "Would you consider SparkOS for your child’s future learning experience?",
+        "options": {
+          "definitelyYes": "Definitely yes",
+          "maybe": "Maybe, depending on safety and results",
+          "notSure": "Not sure yet",
+          "no": "No"
+        }
+      },
+      "additionalThoughts": { "label": "Additional thoughts or expectations for AI in education" },
+      "contactEmail": { "label": "Email (optional)", "placeholder": "your@email.com" }
+    },
+    "optional": {
+      "title": "Optional Section: Open Feedback",
+      "supportTrainingNeeds": { "label": "What support or training would help you guide your child in using AI responsibly?" },
+      "empathyFocusOpinion": { "label": "Should AI in education also focus on empathy, mental well-being and creativity?" },
+      "idealAiCompanion": { "label": "In one sentence, describe your ideal AI-based learning companion for your child." }
+    }
+  },
   "common": {
     "getStarted": "Get Started",
     "submitAnotherRequest": "Submit Another Request",
@@ -67,6 +424,10 @@
       "fasttrack": {
         "title": "Fast Track Enquiry",
         "description": "Express your interest in priority access and consultation. Get expedited support and personalized attention."
+      },
+      "parentSurvey": {
+        "title": "Parent/Guardian Survey",
+        "description": "Share your views on AI in education. Help us understand needs, concerns, and interest areas."
       }
     }
   },
@@ -426,39 +787,14 @@
       "successMessage": "Thank you for your fast track application. You are now in the live expo queue. Please keep your token ready; our team will call your token shortly.",
       "submitApplication": "Submit Application",
       "fields": {
-        "name": {
-          "label": "Name",
-          "placeholder": "Enter your name"
-        },
-        "email": {
-          "label": "Email",
-          "placeholder": "Enter your email address"
-        },
-        "phone": {
-          "label": "Phone Number",
-          "placeholder": "Enter your phone number (optional)"
-        },
-        "country": {
-          "label": "Country/Region",
-          "placeholder": "Select your country or region"
-        },
-        "company": {
-          "label": "Company/Organization",
-          "placeholder": "Enter your company or organization name"
-        },
-        "role": {
-          "label": "Your Position/Role",
-          "placeholder": "Enter your position or role"
-        },
-        "areaOfInterest": {
-          "label": "Area of Interest",
-          "placeholder": "Select or enter your area of technical interest"
-        },
-        "message": {
-          "label": "Additional Information",
-          "placeholder": "Tell us about your specific needs and requirements (optional)",
-          "hint": "Help us better understand your requirements"
-        }
+        "name": { "label": "Name", "placeholder": "Enter your name" },
+        "email": { "label": "Email", "placeholder": "Enter your email address" },
+        "phone": { "label": "Phone Number", "placeholder": "Enter your phone number (optional)" },
+        "country": { "label": "Country/Region", "placeholder": "Select your country or region" },
+        "company": { "label": "Company/Organization", "placeholder": "Enter your company or organization name" },
+        "role": { "label": "Your Position/Role", "placeholder": "Enter your position or role" },
+        "areaOfInterest": { "label": "Area of Interest", "placeholder": "Select or enter your area of technical interest" },
+        "message": { "label": "Additional Information", "placeholder": "Tell us about your specific needs and requirements (optional)", "hint": "Help us better understand your requirements" }
       }
     },
     "validation": {
