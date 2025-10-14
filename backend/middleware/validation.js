@@ -79,6 +79,87 @@ const validationSchemas = {
       .messages({
         'string.max': 'Message must not exceed 1000 characters'
       })
+  }),
+
+  // Parent/Guardian Survey
+  parentSurvey: Joi.object({
+    // Consent
+    consentParticipate: Joi.boolean().valid(true).required()
+      .messages({ 'any.only': 'Consent to participate is required' }),
+    confirmAdult: Joi.boolean().valid(true).required()
+      .messages({ 'any.only': 'You must confirm you are 18 or older' }),
+
+    // Section 1: Background
+    contactPhone: Joi.string().trim().min(10).max(20).optional().allow(''),
+    relationship: Joi.string().trim().valid('parent', 'guardian', 'other').required(),
+    relationshipOther: Joi.string().trim().max(200).optional().allow(''),
+    childAgeRange: Joi.string().trim().valid('5-10', '11-15', '16-18', 'above18', 'preferNotSay').required(),
+    schoolingLevel: Joi.string().trim().valid('primary', 'secondary', 'higherSecondary', 'university').required(),
+    aiFamiliarity: Joi.string().trim().valid('notFamiliar', 'somewhat', 'familiar', 'very').required(),
+    childDevices: Joi.array().items(Joi.string().trim()).optional(),
+    childDevicesOther: Joi.string().trim().max(200).optional().allow(''),
+
+    // Section 2A: Parent/Guardian AI usage
+    parentAiUsageFrequency: Joi.string().trim().valid('regularly', 'fewTimes', 'triedOnce', 'no', 'notSure').optional(),
+    parentAiExperience: Joi.string().trim().valid('veryPositive', 'somewhatPositive', 'neutral', 'somewhatNegative', 'veryNegative').optional(),
+    parentAiConfidence: Joi.string().trim().valid('notConfident', 'slightlyConfident', 'confident', 'veryConfident').optional(),
+    parentAiPurposes: Joi.array().items(Joi.string().trim()).optional(),
+    parentAiPurposesOther: Joi.string().trim().max(200).optional().allow(''),
+
+    // Section 2B: Child usage
+    childAiUsageLocation: Joi.string().trim().valid('school', 'home', 'both', 'triedOnce', 'no', 'notSure').optional(),
+    childAiFrequency: Joi.string().trim().valid('rarely', 'monthly', 'weekly', 'severalWeekly', 'daily').optional(),
+    childAiPurposes: Joi.array().items(Joi.string().trim()).optional(),
+    childAiPurposesOther: Joi.string().trim().max(200).optional().allow(''),
+    childAiToolsOften: Joi.string().trim().max(1000).optional().allow(''),
+    childObservedChanges: Joi.array().items(Joi.string().trim()).optional(),
+    childObservedChangesOther: Joi.string().trim().max(200).optional().allow(''),
+    childBenefits: Joi.array().items(Joi.string().trim()).optional(),
+    childBenefitsOther: Joi.string().trim().max(200).optional().allow(''),
+    childConcerns: Joi.array().items(Joi.string().trim()).optional(),
+    childConcernsOther: Joi.string().trim().max(200).optional().allow(''),
+    aiSupportTeachersParents: Joi.string().trim().max(2000).optional().allow(''),
+    parentGuidanceConfidence: Joi.string().trim().valid('very', 'somewhat', 'unsure', 'needSupport').optional(),
+
+    // Section 3: Perceptions
+    perceivedBenefits: Joi.string().trim().max(2000).optional().allow(''),
+    perceivedConcerns: Joi.string().trim().max(2000).optional().allow(''),
+    importanceHumanInvolvement: Joi.string().trim().valid('very', 'somewhat', 'neutral', 'less').optional(),
+    aiSupportEmotionalFocus: Joi.string().trim().valid('yes', 'maybe', 'no', 'notSure').optional(),
+    likelihoodEncourageAi: Joi.string().trim().valid('veryLikely', 'somewhatLikely', 'neutral', 'unlikely').optional(),
+    preferredGuardrails: Joi.array().items(Joi.string().trim()).optional(),
+    preferredGuardrailsOther: Joi.string().trim().max(200).optional().allow(''),
+
+    // Section 4: Experience
+    preAiLearningHabits: Joi.string().trim().valid('independent', 'needsGuidance', 'easilyDistracted', 'motivationStruggle', 'other').optional(),
+    preAiLearningHabitsOther: Joi.string().trim().max(200).optional().allow(''),
+    postAiImprovements: Joi.array().items(Joi.string().trim()).optional(),
+    engagingEnjoyable: Joi.string().trim().valid('yes', 'somewhat', 'no').optional(),
+    aiInclusivity: Joi.string().trim().valid('yes', 'somewhat', 'no', 'notSure').optional(),
+    specificLearningConsiderations: Joi.array().items(Joi.string().trim()).optional(),
+
+    // Section 5: SparkOS
+    heardOfSparkOS: Joi.string().trim().valid('yes', 'no').optional(),
+    sparkosDistinctiveness: Joi.array().items(Joi.string().trim()).optional(),
+    sparkosDistinctivenessOther: Joi.string().trim().max(200).optional().allow(''),
+    importanceTrackingFocusEmotion: Joi.string().trim().valid('extremely', 'moderately', 'neutral', 'notImportant').optional(),
+    comfortableBehaviorAnalysis: Joi.string().trim().valid('yes', 'maybe', 'no').optional(),
+    trustFeatures: Joi.array().items(Joi.string().trim()).optional(),
+    trustFeaturesOther: Joi.string().trim().max(200).optional().allow(''),
+    expectedOutcomes: Joi.array().items(Joi.string().trim()).max(3).optional(),
+    likelihoodTrySparkOS: Joi.number().integer().min(0).max(10).optional(),
+
+    // Section 6: Looking Ahead
+    aiRoleNextFiveYears: Joi.string().trim().valid('supplementary', 'assistant', 'tutor', 'monitoring', 'other').optional(),
+    aiRoleNextFiveYearsOther: Joi.string().trim().max(200).optional().allow(''),
+    considerSparkOSFuture: Joi.string().trim().valid('definitelyYes', 'maybe', 'notSure', 'no').optional(),
+    additionalThoughts: Joi.string().trim().max(4000).optional().allow(''),
+    contactEmail: Joi.string().email().trim().lowercase().optional().allow(''),
+
+    // Optional open feedback
+    supportTrainingNeeds: Joi.string().trim().max(2000).optional().allow(''),
+    empathyFocusOpinion: Joi.string().trim().max(2000).optional().allow(''),
+    idealAiCompanion: Joi.string().trim().max(500).optional().allow('')
   })
 };
 

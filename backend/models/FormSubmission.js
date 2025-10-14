@@ -25,7 +25,7 @@ const formSubmissionSchema = new mongoose.Schema({
   formType: {
     type: String,
     required: true,
-    enum: ['demo', 'showcase', 'fasttrack']
+    enum: ['demo', 'showcase', 'fasttrack', 'parentSurvey']
   },
   
   // Generated token
