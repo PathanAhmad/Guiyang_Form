@@ -27,6 +27,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
       country: '',
       age: '',
       contactPhone: '',
+      wechatId: '',
       relationship: '',
       relationshipOther: '',
       childAgeRange: '',
@@ -69,21 +70,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
       engagingEnjoyable: '',
       aiInclusivity: '',
       specificLearningConsiderations: [],
-      // Section 5
-      heardOfSparkOS: '',
-      sparkosDistinctiveness: [],
-      sparkosDistinctivenessOther: '',
-      importanceTrackingFocusEmotion: '',
-      comfortableBehaviorAnalysis: '',
-      trustFeatures: [],
-      trustFeaturesOther: '',
-      expectedOutcomes: [],
-      likelihoodTrySparkOS: 0,
-      // Section 6
+      // Section 5 (formerly Section 6)
       aiRoleNextFiveYears: '',
       aiRoleNextFiveYearsOther: '',
       considerSparkOSFuture: '',
-      additionalThoughts: '',
       // Optional
       supportTrainingNeeds: '',
       empathyFocusOpinion: '',
@@ -95,14 +85,13 @@ const ParentSurveyForm = ({ onSuccess }) => {
   // Section configuration and navigation
   const sections = useMemo(() => [
     { id: 'intro', titleKey: 'parentSurvey.intro.title', fields: ['consentParticipate','confirmAdult'] },
-    { id: 'section1', titleKey: 'parentSurvey.section1.title', fields: ['name','contactEmail','country','age','contactPhone','relationship','relationshipOther','childAgeRange','schoolingLevel','aiFamiliarity','childDevices','childDevicesOther'] },
+    { id: 'section1', titleKey: 'parentSurvey.section1.title', fields: ['name','contactEmail','country','age','contactPhone','wechatId','relationship','relationshipOther','childAgeRange','schoolingLevel','aiFamiliarity','childDevices','childDevicesOther'] },
     { id: 'section2A', titleKey: 'parentSurvey.section2A.title', fields: ['parentAiUsageFrequency','parentAiExperience','parentAiConfidence','parentAiPurposes','parentAiPurposesOther'] },
     { id: 'section2B', titleKey: 'parentSurvey.section2B.title', fields: ['childAiUsageLocation','childAiFrequency','childAiPurposes','childAiPurposesOther','childAiToolsOften','childObservedChanges','childObservedChangesOther','childBenefits','childBenefitsOther','childConcerns','childConcernsOther','aiSupportTeachersParents','parentGuidanceConfidence'] },
     { id: 'section3', titleKey: 'parentSurvey.section3.title', fields: ['perceivedBenefits','perceivedConcerns','importanceHumanInvolvement','aiSupportEmotionalFocus','likelihoodEncourageAi','preferredGuardrails','preferredGuardrailsOther'] },
     { id: 'section4', titleKey: 'parentSurvey.section4.title', fields: ['preAiLearningHabits','preAiLearningHabitsOther','postAiImprovements','engagingEnjoyable','aiInclusivity','specificLearningConsiderations'] },
-    { id: 'section5', titleKey: 'parentSurvey.section5.title', fields: ['heardOfSparkOS','sparkosDistinctiveness','sparkosDistinctivenessOther','importanceTrackingFocusEmotion','comfortableBehaviorAnalysis','trustFeatures','trustFeaturesOther','expectedOutcomes','likelihoodTrySparkOS'] },
-    { id: 'section6', titleKey: 'parentSurvey.section6.title', fields: ['aiRoleNextFiveYears','aiRoleNextFiveYearsOther','considerSparkOSFuture','additionalThoughts'] },
-    { id: 'optional', titleKey: 'parentSurvey.optional.title', fields: ['supportTrainingNeeds','empathyFocusOpinion','idealAiCompanion'] },
+    { id: 'section5', titleKey: 'parentSurvey.section6.title', fields: ['aiRoleNextFiveYears','aiRoleNextFiveYearsOther','considerSparkOSFuture'] },
+    { id: 'section6', titleKey: 'parentSurvey.optional.title', fields: ['supportTrainingNeeds','empathyFocusOpinion','idealAiCompanion'] },
   ], []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -226,6 +215,14 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 placeholder={t('parentSurvey.section1.contactPhone.placeholder')}
                 value={values.contactPhone}
                 onChange={(e) => handleChange('contactPhone', e.target.value)}
+                className="max-w-md"
+              />
+              <Input
+                name="wechatId"
+                label={t('parentSurvey.section1.wechatId.label')}
+                placeholder={t('parentSurvey.section1.wechatId.placeholder')}
+                value={values.wechatId}
+                onChange={(e) => handleChange('wechatId', e.target.value)}
                 className="max-w-md"
               />
               <Radio.Group
@@ -692,120 +689,9 @@ const ParentSurveyForm = ({ onSuccess }) => {
           </div>
           )}
 
-          {/* Section 5: Understanding SparkOS */}
+
+          {/* Section 5: Looking Ahead */}
           {currentSection.id === 'section5' && (
-          <div>
-            {/* Section title already shown above; remove duplicate heading */}
-            <div className="space-y-6">
-              <Radio.Group
-                name="heardOfSparkOS"
-                label={t('parentSurvey.section5.heard.label')}
-                value={values.heardOfSparkOS}
-                onChange={(e) => handleChange('heardOfSparkOS', e.target.value)}
-                options={[
-                  { value: 'yes', label: t('parentSurvey.section5.heard.options.yes') },
-                  { value: 'no', label: t('parentSurvey.section5.heard.options.no') }
-                ]}
-              />
-
-              <Checkbox.Group
-                name="sparkosDistinctiveness"
-                label={t('parentSurvey.section5.distinctiveness.label')}
-                values={values.sparkosDistinctiveness}
-                onChange={(newValues) => handleChange('sparkosDistinctiveness', newValues)}
-                otherOption={true}
-                otherValue={values.sparkosDistinctivenessOther}
-                onOtherChange={(val) => handleChange('sparkosDistinctivenessOther', val)}
-                otherPlaceholder={t('parentSurvey.section5.distinctiveness.otherPlaceholder')}
-                options={[
-                  { value: 'emotionalBehaviorUnderstanding', label: t('parentSurvey.section5.distinctiveness.options.emotionalBehaviorUnderstanding') },
-                  { value: 'inclusiveDesign', label: t('parentSurvey.section5.distinctiveness.options.inclusiveDesign') },
-                  { value: 'safeGuided', label: t('parentSurvey.section5.distinctiveness.options.safeGuided') },
-                  { value: 'analytics', label: t('parentSurvey.section5.distinctiveness.options.analytics') },
-                  { value: 'selfDirected', label: t('parentSurvey.section5.distinctiveness.options.selfDirected') },
-                  { value: 'other', label: t('parentSurvey.section5.distinctiveness.options.other') }
-                ]}
-              />
-
-              <Radio.Group
-                name="importanceTrackingFocusEmotion"
-                label={t('parentSurvey.section5.trackingImportance.label')}
-                value={values.importanceTrackingFocusEmotion}
-                onChange={(e) => handleChange('importanceTrackingFocusEmotion', e.target.value)}
-                options={[
-                  { value: 'extremely', label: t('parentSurvey.section5.trackingImportance.options.extremely') },
-                  { value: 'moderately', label: t('parentSurvey.section5.trackingImportance.options.moderately') },
-                  { value: 'neutral', label: t('parentSurvey.section5.trackingImportance.options.neutral') },
-                  { value: 'notImportant', label: t('parentSurvey.section5.trackingImportance.options.notImportant') }
-                ]}
-              />
-
-              <Radio.Group
-                name="comfortableBehaviorAnalysis"
-                label={t('parentSurvey.section5.behaviorAnalysis.label')}
-                value={values.comfortableBehaviorAnalysis}
-                onChange={(e) => handleChange('comfortableBehaviorAnalysis', e.target.value)}
-                options={[
-                  { value: 'yes', label: t('parentSurvey.section5.behaviorAnalysis.options.yes') },
-                  { value: 'maybe', label: t('parentSurvey.section5.behaviorAnalysis.options.maybe') },
-                  { value: 'no', label: t('parentSurvey.section5.behaviorAnalysis.options.no') }
-                ]}
-              />
-
-              <Checkbox.Group
-                name="trustFeatures"
-                label={t('parentSurvey.section5.trustFeatures.label')}
-                values={values.trustFeatures}
-                onChange={(newValues) => handleChange('trustFeatures', newValues)}
-                otherOption={true}
-                otherValue={values.trustFeaturesOther}
-                onOtherChange={(val) => handleChange('trustFeaturesOther', val)}
-                otherPlaceholder={t('parentSurvey.section5.trustFeatures.otherPlaceholder')}
-                options={[
-                  { value: 'transparentPolicies', label: t('parentSurvey.section5.trustFeatures.options.transparentPolicies') },
-                  { value: 'parentalDashboards', label: t('parentSurvey.section5.trustFeatures.options.parentalDashboards') },
-                  { value: 'childSafeModes', label: t('parentSurvey.section5.trustFeatures.options.childSafeModes') },
-                  { value: 'offlineModes', label: t('parentSurvey.section5.trustFeatures.options.offlineModes') },
-                  { value: 'certifiedEducators', label: t('parentSurvey.section5.trustFeatures.options.certifiedEducators') },
-                  { value: 'educatorOversight', label: t('parentSurvey.section5.trustFeatures.options.educatorOversight') },
-                  { value: 'dataMinimization', label: t('parentSurvey.section5.trustFeatures.options.dataMinimization') },
-                  { value: 'optInConsent', label: t('parentSurvey.section5.trustFeatures.options.optInConsent') },
-                  { value: 'other', label: t('parentSurvey.section5.trustFeatures.options.other') }
-                ]}
-              />
-
-              <Checkbox.Group
-                name="expectedOutcomes"
-                label={t('parentSurvey.section5.expectedOutcomes.label')}
-                values={values.expectedOutcomes}
-                onChange={(newValues) => handleChange('expectedOutcomes', newValues)}
-                maxSelection={3}
-                options={[
-                  { value: 'betterFocusHabits', label: t('parentSurvey.section5.expectedOutcomes.options.betterFocusHabits') },
-                  { value: 'improvedGradesSkills', label: t('parentSurvey.section5.expectedOutcomes.options.improvedGradesSkills') },
-                  { value: 'greaterMotivation', label: t('parentSurvey.section5.expectedOutcomes.options.greaterMotivation') },
-                  { value: 'earlyFlags', label: t('parentSurvey.section5.expectedOutcomes.options.earlyFlags') },
-                  { value: 'moreIndependence', label: t('parentSurvey.section5.expectedOutcomes.options.moreIndependence') },
-                  { value: 'betterVisibility', label: t('parentSurvey.section5.expectedOutcomes.options.betterVisibility') }
-                ]}
-              />
-
-              <Input
-                type="number"
-                name="likelihoodTrySparkOS"
-                label={t('parentSurvey.section5.likelihoodTry.label')}
-                value={values.likelihoodTrySparkOS}
-                min={0}
-                max={10}
-                onChange={(e) => handleChange('likelihoodTrySparkOS', Number(e.target.value))}
-                className="max-w-[120px]"
-              />
-            </div>
-          </div>
-          )}
-
-          {/* Section 6: Looking Ahead */}
-          {currentSection.id === 'section6' && (
           <div>
             {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
@@ -845,20 +731,13 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 ]}
               />
 
-              <Textarea
-                name="additionalThoughts"
-                label={t('parentSurvey.section6.additionalThoughts.label')}
-                value={values.additionalThoughts}
-                onChange={(e) => handleChange('additionalThoughts', e.target.value)}
-              />
-
               {/* Email is collected in Section 1; duplicate removed */}
             </div>
           </div>
           )}
 
-          {/* Optional Feedback */}
-          {currentSection.id === 'optional' && (
+          {/* Section 6: Optional Feedback */}
+          {currentSection.id === 'section6' && (
           <div>
             {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">

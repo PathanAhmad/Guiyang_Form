@@ -18,9 +18,9 @@
     "section1": {
       "title": "第一部分：背景信息",
       "name": { "label": "姓名", "placeholder": "请输入您的姓名" },
-      "contactEmail": { "label": "邮箱（选填）", "placeholder": "请输入您的邮箱" },
+      "contactEmail": { "label": "邮箱", "placeholder": "请输入您的邮箱" },
       "country": { "label": "国家/国籍", "placeholder": "请选择您的国家" },
-      "age": { "label": "年龄（选填）", "placeholder": "请输入您的年龄" },
+      "age": { "label": "年龄", "placeholder": "请输入您的年龄" },
       "relationship": {
         "label": "您与学生的关系？",
         "options": { "parent": "家长", "guardian": "监护人", "other": "其他（请说明）" },
@@ -55,8 +55,12 @@
         }
       },
       "contactPhone": {
-        "label": "联系电话（选填）",
+        "label": "联系电话",
         "placeholder": "请输入您的电话号码"
+      },
+      "wechatId": {
+        "label": "微信号",
+        "placeholder": "请输入您的微信号"
       },
       "childDevices": {
         "label": "孩子主要用于学习的设备（可多选）",

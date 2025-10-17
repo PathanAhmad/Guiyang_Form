@@ -19,9 +19,9 @@
     "section1": {
       "title": "Section 1: Background Information",
       "name": { "label": "Name", "placeholder": "Enter your name" },
-      "contactEmail": { "label": "Email (optional)", "placeholder": "Enter your email address" },
+      "contactEmail": { "label": "Email", "placeholder": "Enter your email address" },
       "country": { "label": "Country / Nationality", "placeholder": "Select your country" },
-      "age": { "label": "Age (optional)", "placeholder": "Enter your age" },
+      "age": { "label": "Age", "placeholder": "Enter your age" },
       "relationship": {
         "label": "What is your relationship to the student?",
         "options": { "parent": "Parent", "guardian": "Guardian", "other": "Other (please specify)" },
@@ -56,8 +56,12 @@
         }
       },
       "contactPhone": {
-        "label": "Contact phone (optional)",
+        "label": "Contact phone",
         "placeholder": "Enter your phone number"
+      },
+      "wechatId": {
+        "label": "WeChat ID",
+        "placeholder": "Enter your WeChat ID"
       },
       "childDevices": {
         "label": "Devices your child mainly uses for study (select all that apply)",

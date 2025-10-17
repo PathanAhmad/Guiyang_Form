@@ -91,12 +91,33 @@ const validationSchemas = {
 
     // Respondent info
     name: Joi.string().trim().min(2).max(100).required(),
-    contactEmail: Joi.string().email().trim().lowercase().optional().allow(''),
+    contactEmail: Joi.string().email().trim().lowercase().required()
+      .messages({
+        'string.email': 'Please provide a valid email address',
+        'string.empty': 'Email is required'
+      }),
     country: Joi.string().trim().min(2).max(100).required(),
-    age: Joi.number().integer().min(18).max(100).optional().allow(null, ''),
+    age: Joi.number().integer().min(18).max(100).required()
+      .messages({
+        'number.base': 'Age is required',
+        'number.integer': 'Age must be a whole number',
+        'number.min': 'Age must be at least 18',
+        'number.max': 'Age must not exceed 100'
+      }),
 
     // Section 1: Background
-    contactPhone: Joi.string().trim().min(10).max(20).optional().allow(''),
+    contactPhone: Joi.string().trim().min(10).max(20).required()
+      .messages({
+        'string.empty': 'Contact phone is required',
+        'string.min': 'Phone number must be at least 10 characters long',
+        'string.max': 'Phone number must not exceed 20 characters'
+      }),
+    wechatId: Joi.string().trim().min(1).max(100).required()
+      .messages({
+        'string.empty': 'WeChat ID is required',
+        'string.min': 'WeChat ID must be at least 1 character long',
+        'string.max': 'WeChat ID must not exceed 100 characters'
+      }),
     relationship: Joi.string().trim().valid('parent', 'guardian', 'other').required(),
     relationshipOther: Joi.string().trim().max(200).optional().allow(''),
     childAgeRange: Joi.string().trim().valid('5-10', '11-15', '16-18', 'above18', 'preferNotSay').required(),
@@ -144,22 +165,11 @@ const validationSchemas = {
     aiInclusivity: Joi.string().trim().valid('yes', 'somewhat', 'no', 'notSure').optional(),
     specificLearningConsiderations: Joi.array().items(Joi.string().trim()).optional(),
 
-    // Section 5: SparkOS
-    heardOfSparkOS: Joi.string().trim().valid('yes', 'no').optional(),
-    sparkosDistinctiveness: Joi.array().items(Joi.string().trim()).optional(),
-    sparkosDistinctivenessOther: Joi.string().trim().max(200).optional().allow(''),
-    importanceTrackingFocusEmotion: Joi.string().trim().valid('extremely', 'moderately', 'neutral', 'notImportant').optional(),
-    comfortableBehaviorAnalysis: Joi.string().trim().valid('yes', 'maybe', 'no').optional(),
-    trustFeatures: Joi.array().items(Joi.string().trim()).optional(),
-    trustFeaturesOther: Joi.string().trim().max(200).optional().allow(''),
-    expectedOutcomes: Joi.array().items(Joi.string().trim()).max(3).optional(),
-    likelihoodTrySparkOS: Joi.number().integer().min(0).max(10).optional(),
 
-    // Section 6: Looking Ahead
+    // Section 5: Looking Ahead (formerly Section 6)
     aiRoleNextFiveYears: Joi.string().trim().valid('supplementary', 'assistant', 'tutor', 'monitoring', 'other').optional(),
     aiRoleNextFiveYearsOther: Joi.string().trim().max(200).optional().allow(''),
     considerSparkOSFuture: Joi.string().trim().valid('definitelyYes', 'maybe', 'notSure', 'no').optional(),
-    additionalThoughts: Joi.string().trim().max(4000).optional().allow(''),
     contactEmail: Joi.string().email().trim().lowercase().optional().allow(''),
 
     // Optional open feedback

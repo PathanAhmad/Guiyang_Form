@@ -13,6 +13,7 @@ const parentSurveyResponseSchema = new mongoose.Schema({
 
   // Section 1: Background Information
   contactPhone: { type: String, trim: true },
+  wechatId: { type: String, trim: true },
   relationship: { type: String, trim: true }, // parent | guardian | other
   relationshipOther: { type: String, trim: true },
   childAgeRange: { type: String, trim: true }, // 5-10 | 11-15 | 16-18 | above18 | preferNotSay
@@ -60,22 +61,11 @@ const parentSurveyResponseSchema = new mongoose.Schema({
   aiInclusivity: { type: String, trim: true },
   specificLearningConsiderations: [{ type: String, trim: true }],
 
-  // Section 5: Understanding SparkOS
-  heardOfSparkOS: { type: String, trim: true }, // yes | no
-  sparkosDistinctiveness: [{ type: String, trim: true }],
-  sparkosDistinctivenessOther: { type: String, trim: true },
-  importanceTrackingFocusEmotion: { type: String, trim: true },
-  comfortableBehaviorAnalysis: { type: String, trim: true },
-  trustFeatures: [{ type: String, trim: true }],
-  trustFeaturesOther: { type: String, trim: true },
-  expectedOutcomes: [{ type: String, trim: true }],
-  likelihoodTrySparkOS: { type: Number, min: 0, max: 10 },
 
-  // Section 6: Looking Ahead
+  // Section 5: Looking Ahead (formerly Section 6)
   aiRoleNextFiveYears: { type: String, trim: true },
   aiRoleNextFiveYearsOther: { type: String, trim: true },
   considerSparkOSFuture: { type: String, trim: true },
-  additionalThoughts: { type: String, trim: true },
   contactEmail: { type: String, trim: true, lowercase: true },
 
   // Optional Open Feedback

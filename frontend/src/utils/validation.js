@@ -301,20 +301,34 @@ export const validateParentSurveyForm = (data) => {
 
   // New respondent fields
   if (!data.name || data.name.trim().length < 2) errors.name = 'Name must be at least 2 characters';
-  if (data.contactEmail && !EMAIL_REGEX.test(data.contactEmail)) {
+  if (!data.contactEmail) {
+    errors.contactEmail = 'Email is required';
+  } else if (!EMAIL_REGEX.test(data.contactEmail)) {
     errors.contactEmail = 'Please enter a valid email address';
   }
   if (!data.country) errors.country = 'Country is required';
-  if (data.age) {
+  if (!data.age) {
+    errors.age = 'Age is required';
+  } else {
     const ageNum = Number(data.age);
     if (Number.isNaN(ageNum) || ageNum < 18 || ageNum > 100) {
       errors.age = 'Please enter a valid age (18-100)';
     }
   }
 
-  // Optional phone format check
-  const phoneError = validatePhone(data.contactPhone);
-  if (phoneError) errors.contactPhone = phoneError;
+  // Required phone validation
+  if (!data.contactPhone) {
+    errors.contactPhone = 'Contact phone is required';
+  } else if (data.contactPhone.length < 10 || data.contactPhone.length > 20) {
+    errors.contactPhone = 'Phone number must be 10-20 characters';
+  }
+
+  // Required WeChat ID validation
+  if (!data.wechatId || data.wechatId.trim().length === 0) {
+    errors.wechatId = 'WeChat ID is required';
+  } else if (data.wechatId.length > 100) {
+    errors.wechatId = 'WeChat ID must not exceed 100 characters';
+  }
 
   // Background required
   if (!data.relationship) errors.relationship = 'Relationship is required';
@@ -341,10 +355,6 @@ export const validateParentSurveyForm = (data) => {
     errors.preAiLearningHabitsOther = 'Please specify other learning habit';
   }
 
-  // Section 5 caps
-  if (Array.isArray(data.expectedOutcomes) && data.expectedOutcomes.length > 3) {
-    errors.expectedOutcomes = 'Select up to 3 outcomes';
-  }
 
   // Email format handled above
 
