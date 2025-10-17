@@ -10,8 +10,8 @@
     "pageTitle": "Parent / Guardian Survey",
     "pageSubtitle": "Help us understand perceptions and use of AI in education.",
     "intro": {
-      "title": "About this survey (5–7 minutes)",
-      "description": "We’re learning how families perceive and use AI in education and how SparkOS can support different learning needs. Responses are confidential and analyzed in aggregate only.",
+      "title": "Survey information & consent",
+      "description": "This survey explores how families engage with AI in education and how SparkOS can better support different learning needs. All responses are confidential and used only in aggregate form. By continuing, you agree to share your responses for this purpose.",
       "consent": "I have read the information above and consent to participate.",
       "adult": "I am 18 years or older and responding as a parent/guardian."
     },
