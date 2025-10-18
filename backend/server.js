@@ -44,6 +44,12 @@ app.use(cors({
   credentials: true
 }));
 
+// Explicitly handle preflight requests with correct CORS headers
+app.options('*', cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 // Body parsing middleware
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
