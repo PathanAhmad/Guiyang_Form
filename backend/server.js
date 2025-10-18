@@ -29,7 +29,12 @@ app.use(helmet({
 
 // CORS configuration
 const isProduction = process.env.NODE_ENV === 'production';
-const defaultProdOrigins = ['https://sparkie-user-form.onrender.com', 'https://guiyang-form.onrender.com'];
+const defaultProdOrigins = [
+  'https://sparkie-user-form.onrender.com',
+  'https://guiyang-form.onrender.com',
+  'https://sparkos.info',
+  'https://www.sparkos.info'
+];
 const defaultDevOrigins = [
   'http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173',
   'http://127.0.0.1:3000', 'http://127.0.0.1:5173'
