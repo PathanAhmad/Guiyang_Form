@@ -10,7 +10,9 @@ const Radio = ({
   error, 
   disabled = false,
   className = '',
-  required = false
+  required = false,
+  onBlur,
+  onFocus
 }) => {
   const id = useId();
   const radioId = `${id}-${value}`;
@@ -32,6 +34,8 @@ const Radio = ({
             ${error ? 'border-red-300' : 'border-gray-300'}
             ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
           `}
+          onBlur={onBlur}
+          onFocus={onFocus}
         />
         <label 
           htmlFor={radioId}
@@ -41,7 +45,9 @@ const Radio = ({
           `}
         >
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && (
+            <span className={`${error ? 'text-red-500' : 'text-gray-400'} ml-1`}>*</span>
+          )}
         </label>
       </div>
       {error && (
@@ -61,14 +67,18 @@ const RadioGroup = ({
   error, 
   disabled = false,
   required = false,
-  className = ''
+  className = '',
+  onBlur,
+  onFocus
 }) => {
   return (
     <div className={className}>
       {label && (
         <label className="block text-sm font-medium text-gray-700 mb-3">
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && (
+            <span className={`${error ? 'text-red-500' : 'text-gray-400'} ml-1`}>*</span>
+          )}
         </label>
       )}
       <div className="space-y-2">
@@ -81,6 +91,10 @@ const RadioGroup = ({
             checked={value === option.value}
             onChange={onChange}
             disabled={disabled}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            required={required}
+            error={error}
           />
         ))}
       </div>

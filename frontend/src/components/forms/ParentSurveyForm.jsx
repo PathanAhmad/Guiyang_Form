@@ -46,18 +46,14 @@ const ParentSurveyForm = ({ onSuccess }) => {
       childAiFrequency: '',
       childAiPurposes: [],
       childAiPurposesOther: '',
-      childAiToolsOften: '',
       childObservedChanges: [],
       childObservedChangesOther: '',
       childBenefits: [],
       childBenefitsOther: '',
       childConcerns: [],
       childConcernsOther: '',
-      aiSupportTeachersParents: '',
       parentGuidanceConfidence: '',
       // Section 3
-      perceivedBenefits: '',
-      perceivedConcerns: '',
       importanceHumanInvolvement: '',
       aiSupportEmotionalFocus: '',
       likelihoodEncourageAi: '',
@@ -75,9 +71,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
       aiRoleNextFiveYearsOther: '',
       considerSparkOSFuture: '',
       // Optional
-      supportTrainingNeeds: '',
-      empathyFocusOpinion: '',
-      idealAiCompanion: ''
+      additionalFeedback: ''
     },
     validateParentSurveyForm
   );
@@ -87,15 +81,29 @@ const ParentSurveyForm = ({ onSuccess }) => {
     { id: 'intro', titleKey: 'parentSurvey.intro.title', fields: ['consentParticipate','confirmAdult'] },
     { id: 'section1', titleKey: 'parentSurvey.section1.title', fields: ['name','contactEmail','country','age','contactPhone','wechatId','relationship','relationshipOther','childAgeRange','schoolingLevel','aiFamiliarity','childDevices','childDevicesOther'] },
     { id: 'section2A', titleKey: 'parentSurvey.section2A.title', fields: ['parentAiUsageFrequency','parentAiExperience','parentAiConfidence','parentAiPurposes','parentAiPurposesOther'] },
-    { id: 'section2B', titleKey: 'parentSurvey.section2B.title', fields: ['childAiUsageLocation','childAiFrequency','childAiPurposes','childAiPurposesOther','childAiToolsOften','childObservedChanges','childObservedChangesOther','childBenefits','childBenefitsOther','childConcerns','childConcernsOther','aiSupportTeachersParents','parentGuidanceConfidence'] },
-    { id: 'section3', titleKey: 'parentSurvey.section3.title', fields: ['perceivedBenefits','perceivedConcerns','importanceHumanInvolvement','aiSupportEmotionalFocus','likelihoodEncourageAi','preferredGuardrails','preferredGuardrailsOther'] },
+    { id: 'section2B', titleKey: 'parentSurvey.section2B.title', fields: ['childAiUsageLocation','childAiFrequency','childAiPurposes','childAiPurposesOther','childObservedChanges','childObservedChangesOther','childBenefits','childBenefitsOther','childConcerns','childConcernsOther','parentGuidanceConfidence'] },
+    { id: 'section3', titleKey: 'parentSurvey.section3.title', fields: ['importanceHumanInvolvement','aiSupportEmotionalFocus','likelihoodEncourageAi','preferredGuardrails','preferredGuardrailsOther'] },
     { id: 'section4', titleKey: 'parentSurvey.section4.title', fields: ['preAiLearningHabits','preAiLearningHabitsOther','postAiImprovements','engagingEnjoyable','aiInclusivity','specificLearningConsiderations'] },
     { id: 'section5', titleKey: 'parentSurvey.section6.title', fields: ['aiRoleNextFiveYears','aiRoleNextFiveYearsOther','considerSparkOSFuture'] },
-    { id: 'section6', titleKey: 'parentSurvey.optional.title', fields: ['supportTrainingNeeds','empathyFocusOpinion','idealAiCompanion'] },
+    { id: 'section6', titleKey: 'parentSurvey.optional.title', fields: ['additionalFeedback'] },
   ], []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSections = sections.length;
+
+  const [touched, setTouched] = useState({});
+
+  // Define required fields per section in order (for progressive highlighting)
+  const requiredFieldsBySection = useMemo(() => ({
+    intro: ['consentParticipate', 'confirmAdult'],
+    section1: ['name','contactEmail','country','age','contactPhone','wechatId','relationship','childAgeRange','schoolingLevel','aiFamiliarity'],
+    section2A: ['parentAiUsageFrequency','parentAiExperience','parentAiConfidence'],
+    section2B: ['childAiUsageLocation','childAiFrequency'],
+    section3: ['importanceHumanInvolvement','aiSupportEmotionalFocus','likelihoodEncourageAi'],
+    section4: ['preAiLearningHabits','engagingEnjoyable','aiInclusivity'],
+    section5: ['aiRoleNextFiveYears','considerSparkOSFuture'],
+    section6: []
+  }), []);
 
   const sectionValidation = useMemo(() => {
     const v = validateParentSurveyForm(values);
@@ -114,8 +122,35 @@ const ParentSurveyForm = ({ onSuccess }) => {
 
   const isCurrentSectionValid = useMemo(() => Object.keys(currentSectionErrors).length === 0, [currentSectionErrors]);
 
+  const markTouched = (field) => setTouched((prev) => ({ ...prev, [field]: true }));
+  const shouldShowError = (field) => {
+    return Boolean(sectionValidation.errors?.[field]) && Boolean(touched[field]);
+  };
+
+  const handleFocus = (field) => {
+    const reqList = requiredFieldsBySection[currentSection.id] || [];
+    const idx = reqList.indexOf(field);
+    if (idx > -1) {
+      const toTouch = reqList.slice(0, idx);
+      if (toTouch.length) {
+        setTouched((prev) => {
+          const next = { ...prev };
+          toTouch.forEach((f) => { next[f] = true; });
+          return next;
+        });
+      }
+    }
+  };
+
   const goNext = () => {
-    if (!isCurrentSectionValid) return; // gate progression
+    if (!isCurrentSectionValid) {
+      // Mark all required fields in this section as touched to reveal errors
+      const reqList = requiredFieldsBySection[currentSection.id] || [];
+      if (reqList.length) {
+        setTouched((prev) => ({ ...prev, ...reqList.reduce((acc, f) => (acc[f]=true, acc), {}) }));
+      }
+      return; // gate progression
+    }
     setCurrentIndex((idx) => Math.min(idx + 1, totalSections - 1));
   };
 
@@ -182,13 +217,21 @@ const ParentSurveyForm = ({ onSuccess }) => {
                   name="consentParticipate"
                   checked={values.consentParticipate}
                   onChange={(e) => handleChange('consentParticipate', e.target.checked)}
+                  onBlur={() => markTouched('consentParticipate')}
+                  onFocus={() => handleFocus('consentParticipate')}
                   label={t('parentSurvey.intro.consent')}
+                  required
+                  error={shouldShowError('consentParticipate') ? sectionValidation.errors.consentParticipate : undefined}
                 />
                 <Checkbox 
                   name="confirmAdult"
                   checked={values.confirmAdult}
                   onChange={(e) => handleChange('confirmAdult', e.target.checked)}
+                  onBlur={() => markTouched('confirmAdult')}
+                  onFocus={() => handleFocus('confirmAdult')}
                   label={t('parentSurvey.intro.adult')}
+                  required
+                  error={shouldShowError('confirmAdult') ? sectionValidation.errors.confirmAdult : undefined}
                 />
               </div>
             </div>
@@ -204,6 +247,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 placeholder={t('parentSurvey.section1.name.placeholder')}
                 value={values.name}
                 onChange={(e) => handleChange('name', e.target.value)}
+                onBlur={() => markTouched('name')}
+                onFocus={() => handleFocus('name')}
+                required
+                error={shouldShowError('name') ? sectionValidation.errors.name : undefined}
                 className="max-w-md"
               />
               <Input
@@ -213,6 +260,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 placeholder={t('parentSurvey.section1.contactEmail.placeholder')}
                 value={values.contactEmail}
                 onChange={(e) => handleChange('contactEmail', e.target.value)}
+                onBlur={() => markTouched('contactEmail')}
+                onFocus={() => handleFocus('contactEmail')}
+                required
+                error={shouldShowError('contactEmail') ? sectionValidation.errors.contactEmail : undefined}
                 className="max-w-md"
               />
               <Select
@@ -220,6 +271,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section1.country.label')}
                 value={values.country}
                 onChange={(e) => handleChange('country', e.target.value)}
+                onBlur={() => markTouched('country')}
+                onFocus={() => handleFocus('country')}
+                required
+                error={shouldShowError('country') ? sectionValidation.errors.country : undefined}
                 options={[
                   { value: '', label: t('parentSurvey.section1.country.placeholder') },
                   ...countryOptions.map(o => ({ value: o.value, label: t(`countryNames.${o.value}`, { defaultValue: o.value }) }))
@@ -232,9 +287,11 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section1.age.label')}
                 placeholder={t('parentSurvey.section1.age.placeholder')}
                 value={values.age}
-                min={0}
-                max={120}
                 onChange={(e) => handleChange('age', e.target.value)}
+                onBlur={() => markTouched('age')}
+                onFocus={() => handleFocus('age')}
+                required
+                error={shouldShowError('age') ? sectionValidation.errors.age : undefined}
                 className="max-w-[160px]"
               />
               <Input
@@ -243,6 +300,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 placeholder={t('parentSurvey.section1.contactPhone.placeholder')}
                 value={values.contactPhone}
                 onChange={(e) => handleChange('contactPhone', e.target.value)}
+                onBlur={() => markTouched('contactPhone')}
+                onFocus={() => handleFocus('contactPhone')}
+                required
+                error={shouldShowError('contactPhone') ? sectionValidation.errors.contactPhone : undefined}
                 className="max-w-md"
               />
               <Input
@@ -251,6 +312,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 placeholder={t('parentSurvey.section1.wechatId.placeholder')}
                 value={values.wechatId}
                 onChange={(e) => handleChange('wechatId', e.target.value)}
+                onBlur={() => markTouched('wechatId')}
+                onFocus={() => handleFocus('wechatId')}
+                required
+                error={shouldShowError('wechatId') ? sectionValidation.errors.wechatId : undefined}
                 className="max-w-md"
               />
               <Radio.Group
@@ -258,6 +323,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section1.relationship.label')}
                 value={values.relationship}
                 onChange={(e) => handleChange('relationship', e.target.value)}
+                onBlur={() => markTouched('relationship')}
+                onFocus={() => handleFocus('relationship')}
+                required
+                error={shouldShowError('relationship') ? sectionValidation.errors.relationship : undefined}
                 options={[
                   { value: 'parent', label: t('parentSurvey.section1.relationship.options.parent') },
                   { value: 'guardian', label: t('parentSurvey.section1.relationship.options.guardian') },
@@ -269,6 +338,8 @@ const ParentSurveyForm = ({ onSuccess }) => {
                   name="relationshipOther"
                   value={values.relationshipOther}
                   onChange={(e) => handleChange('relationshipOther', e.target.value)}
+                  onBlur={() => markTouched('relationshipOther')}
+                  error={shouldShowError('relationshipOther') ? sectionValidation.errors.relationshipOther : undefined}
                   placeholder={t('parentSurvey.section1.relationship.otherPlaceholder')}
                   className="ml-6 max-w-md"
                 />
@@ -279,6 +350,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section1.childAgeRange.label')}
                 value={values.childAgeRange}
                 onChange={(e) => handleChange('childAgeRange', e.target.value)}
+                onBlur={() => markTouched('childAgeRange')}
+                onFocus={() => handleFocus('childAgeRange')}
+                required
+                error={shouldShowError('childAgeRange') ? sectionValidation.errors.childAgeRange : undefined}
                 options={[
                   { value: '5-10', label: t('parentSurvey.section1.childAgeRange.options.5_10') },
                   { value: '11-15', label: t('parentSurvey.section1.childAgeRange.options.11_15') },
@@ -293,6 +368,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section1.schoolingLevel.label')}
                 value={values.schoolingLevel}
                 onChange={(e) => handleChange('schoolingLevel', e.target.value)}
+                onBlur={() => markTouched('schoolingLevel')}
+                onFocus={() => handleFocus('schoolingLevel')}
+                required
+                error={shouldShowError('schoolingLevel') ? sectionValidation.errors.schoolingLevel : undefined}
                 options={[
                   { value: 'primary', label: t('parentSurvey.section1.schoolingLevel.options.primary') },
                   { value: 'secondary', label: t('parentSurvey.section1.schoolingLevel.options.secondary') },
@@ -306,6 +385,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section1.aiFamiliarity.label')}
                 value={values.aiFamiliarity}
                 onChange={(e) => handleChange('aiFamiliarity', e.target.value)}
+                onBlur={() => markTouched('aiFamiliarity')}
+                onFocus={() => handleFocus('aiFamiliarity')}
+                required
+                error={shouldShowError('aiFamiliarity') ? sectionValidation.errors.aiFamiliarity : undefined}
                 options={[
                   { value: 'notFamiliar', label: t('parentSurvey.section1.aiFamiliarity.options.notFamiliar') },
                   { value: 'somewhat', label: t('parentSurvey.section1.aiFamiliarity.options.somewhat') },
@@ -345,6 +428,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section2A.aiUsage.label')}
                 value={values.parentAiUsageFrequency}
                 onChange={(e) => handleChange('parentAiUsageFrequency', e.target.value)}
+                onBlur={() => markTouched('parentAiUsageFrequency')}
+                onFocus={() => handleFocus('parentAiUsageFrequency')}
+                required
+                error={shouldShowError('parentAiUsageFrequency') ? sectionValidation.errors.parentAiUsageFrequency : undefined}
                 options={[
                   { value: 'regularly', label: t('parentSurvey.section2A.aiUsage.options.regularly') },
                   { value: 'fewTimes', label: t('parentSurvey.section2A.aiUsage.options.fewTimes') },
@@ -359,6 +446,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section2A.experience.label')}
                 value={values.parentAiExperience}
                 onChange={(e) => handleChange('parentAiExperience', e.target.value)}
+                onBlur={() => markTouched('parentAiExperience')}
+                onFocus={() => handleFocus('parentAiExperience')}
+                required
+                error={shouldShowError('parentAiExperience') ? sectionValidation.errors.parentAiExperience : undefined}
                 options={[
                   { value: 'veryPositive', label: t('parentSurvey.section2A.experience.options.veryPositive') },
                   { value: 'somewhatPositive', label: t('parentSurvey.section2A.experience.options.somewhatPositive') },
@@ -373,6 +464,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 label={t('parentSurvey.section2A.confidence.label')}
                 value={values.parentAiConfidence}
                 onChange={(e) => handleChange('parentAiConfidence', e.target.value)}
+                onBlur={() => markTouched('parentAiConfidence')}
+                onFocus={() => handleFocus('parentAiConfidence')}
+                required
+                error={shouldShowError('parentAiConfidence') ? sectionValidation.errors.parentAiConfidence : undefined}
                 options={[
                   { value: 'notConfident', label: t('parentSurvey.section2A.confidence.options.notConfident') },
                   { value: 'slightlyConfident', label: t('parentSurvey.section2A.confidence.options.slightlyConfident') },
@@ -458,13 +553,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 ]}
               />
 
-              <Textarea
-                name="childAiToolsOften"
-                label={t('parentSurvey.section2B.toolsOften.label')}
-                placeholder={t('parentSurvey.section2B.toolsOften.placeholder')}
-                value={values.childAiToolsOften}
-                onChange={(e) => handleChange('childAiToolsOften', e.target.value)}
-              />
+              {/* Removed open-ended childAiToolsOften */}
 
               <Checkbox.Group
                 name="childObservedChanges"
@@ -527,13 +616,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 ]}
               />
 
-              <Textarea
-                name="aiSupportTeachersParents"
-                label={t('parentSurvey.section2B.supportTeachersParents.label')}
-                placeholder={t('parentSurvey.section2B.supportTeachersParents.placeholder')}
-                value={values.aiSupportTeachersParents}
-                onChange={(e) => handleChange('aiSupportTeachersParents', e.target.value)}
-              />
+              {/* Removed open-ended aiSupportTeachersParents */}
 
               <Radio.Group
                 name="parentGuidanceConfidence"
@@ -556,19 +639,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
           <div>
             {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
-              <Textarea
-                name="perceivedBenefits"
-                label={t('parentSurvey.section3.perceivedBenefits.label')}
-                value={values.perceivedBenefits}
-                onChange={(e) => handleChange('perceivedBenefits', e.target.value)}
-              />
-
-              <Textarea
-                name="perceivedConcerns"
-                label={t('parentSurvey.section3.perceivedConcerns.label')}
-                value={values.perceivedConcerns}
-                onChange={(e) => handleChange('perceivedConcerns', e.target.value)}
-              />
+              {/* Removed open-ended perceivedBenefits and perceivedConcerns */}
 
               <Radio.Group
                 name="importanceHumanInvolvement"
@@ -748,14 +819,18 @@ const ParentSurveyForm = ({ onSuccess }) => {
 
               <Radio.Group
                 name="considerSparkOSFuture"
-                label={t('parentSurvey.section5.considerSparkOS.label')}
+                label={t('parentSurvey.section5.considerSparkOS.label', { defaultValue: 'Would you consider SparkOS for your child’s future learning experience?' })}
                 value={values.considerSparkOSFuture}
                 onChange={(e) => handleChange('considerSparkOSFuture', e.target.value)}
+                onBlur={() => markTouched('considerSparkOSFuture')}
+                onFocus={() => handleFocus('considerSparkOSFuture')}
+                required
+                error={shouldShowError('considerSparkOSFuture') ? sectionValidation.errors.considerSparkOSFuture : undefined}
                 options={[
-                  { value: 'definitelyYes', label: t('parentSurvey.section5.considerSparkOS.options.definitelyYes') },
-                  { value: 'maybe', label: t('parentSurvey.section5.considerSparkOS.options.maybe') },
-                  { value: 'notSure', label: t('parentSurvey.section5.considerSparkOS.options.notSure') },
-                  { value: 'no', label: t('parentSurvey.section5.considerSparkOS.options.no') }
+                  { value: 'definitelyYes', label: t('parentSurvey.section5.considerSparkOS.options.definitelyYes', { defaultValue: 'Definitely yes' }) },
+                  { value: 'maybe', label: t('parentSurvey.section5.considerSparkOS.options.maybe', { defaultValue: 'Maybe' }) },
+                  { value: 'notSure', label: t('parentSurvey.section5.considerSparkOS.options.notSure', { defaultValue: 'Not sure' }) },
+                  { value: 'no', label: t('parentSurvey.section5.considerSparkOS.options.no', { defaultValue: 'No' }) }
                 ]}
               />
 
@@ -770,24 +845,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
             {/* Section title already shown above; remove duplicate heading */}
             <div className="space-y-6">
               <Textarea
-                name="supportTrainingNeeds"
-                label={t('parentSurvey.optional.supportTrainingNeeds.label')}
-                value={values.supportTrainingNeeds}
-                onChange={(e) => handleChange('supportTrainingNeeds', e.target.value)}
-              />
-
-              <Textarea
-                name="empathyFocusOpinion"
-                label={t('parentSurvey.optional.empathyFocusOpinion.label')}
-                value={values.empathyFocusOpinion}
-                onChange={(e) => handleChange('empathyFocusOpinion', e.target.value)}
-              />
-
-              <Input
-                name="idealAiCompanion"
-                label={t('parentSurvey.optional.idealAiCompanion.label')}
-                value={values.idealAiCompanion}
-                onChange={(e) => handleChange('idealAiCompanion', e.target.value)}
+                name="additionalFeedback"
+                label={t('parentSurvey.section6.additionalThoughts.label', { defaultValue: t('parentSurvey.optional.idealAiCompanion.label') })}
+                value={values.additionalFeedback}
+                onChange={(e) => handleChange('additionalFeedback', e.target.value)}
               />
             </div>
           </div>

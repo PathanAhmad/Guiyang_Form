@@ -311,8 +311,8 @@ export const validateParentSurveyForm = (data) => {
     errors.age = 'Age is required';
   } else {
     const ageNum = Number(data.age);
-    if (Number.isNaN(ageNum) || ageNum < 18 || ageNum > 100) {
-      errors.age = 'Please enter a valid age (18-100)';
+    if (Number.isNaN(ageNum) || !Number.isInteger(ageNum)) {
+      errors.age = 'Age must be a whole number';
     }
   }
 
@@ -337,6 +337,29 @@ export const validateParentSurveyForm = (data) => {
   if (!data.schoolingLevel) errors.schoolingLevel = 'Schooling level is required';
   if (!data.aiFamiliarity) errors.aiFamiliarity = 'AI familiarity is required';
 
+  // Section 2A: Require basic selections
+  if (!data.parentAiUsageFrequency) errors.parentAiUsageFrequency = 'Please select your AI usage';
+  if (!data.parentAiExperience) errors.parentAiExperience = 'Please select your experience';
+  if (!data.parentAiConfidence) errors.parentAiConfidence = 'Please select your confidence';
+
+  // Section 2B: Require location and frequency
+  if (!data.childAiUsageLocation) errors.childAiUsageLocation = 'Please select where your child uses AI';
+  if (!data.childAiFrequency) errors.childAiFrequency = 'Please select usage frequency';
+
+  // Section 3: Require core opinions
+  if (!data.importanceHumanInvolvement) errors.importanceHumanInvolvement = 'Please select an option';
+  if (!data.aiSupportEmotionalFocus) errors.aiSupportEmotionalFocus = 'Please select an option';
+  if (!data.likelihoodEncourageAi) errors.likelihoodEncourageAi = 'Please select an option';
+
+  // Section 4: Require core experience answers
+  if (!data.preAiLearningHabits) errors.preAiLearningHabits = 'Please select an option';
+  if (!data.engagingEnjoyable) errors.engagingEnjoyable = 'Please select an option';
+  if (!data.aiInclusivity) errors.aiInclusivity = 'Please select an option';
+
+  // Section 5: Require forward-looking opinions
+  if (!data.aiRoleNextFiveYears) errors.aiRoleNextFiveYears = 'Please select a role';
+  if (!data.considerSparkOSFuture) errors.considerSparkOSFuture = 'Please select one';
+
   // Section 2B selections with caps
   if (Array.isArray(data.childBenefits) && data.childBenefits.length > 3) {
     errors.childBenefits = 'Select up to 3 benefits';
@@ -356,6 +379,8 @@ export const validateParentSurveyForm = (data) => {
   }
 
 
+  // Removed open-ended fields: perceivedBenefits, perceivedConcerns, childAiToolsOften, aiSupportTeachersParents,
+  // supportTrainingNeeds, empathyFocusOpinion, idealAiCompanion
   // Email format handled above
 
   // Remove empty error messages (safety)

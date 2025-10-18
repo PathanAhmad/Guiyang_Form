@@ -157,10 +157,7 @@
         },
         "otherPlaceholder": "请注明其他目的"
       },
-      "toolsOften": {
-        "label": "如果是，您或您的孩子最常使用哪些AI工具？",
-        "placeholder": "输入工具名称（开放式回答）"
-      },
+      
       "observedChanges": {
         "label": "使用AI工具后，您是否观察到孩子学习行为的变化？",
         "options": {
@@ -199,10 +196,7 @@
         },
         "otherPlaceholder": "请注明其他担忧"
       },
-      "supportTeachersParents": {
-        "label": "在您看来，AI应如何支持教师和家长参与学习过程？",
-        "placeholder": "开放式回答"
-      },
+      
       "guidanceConfidence": {
         "label": "您对引导孩子负责任地使用AI的能力有多大信心？",
         "options": {
@@ -216,8 +210,7 @@
 
     "section3": {
       "title": "第三部分：对教育中AI的看法与期望",
-      "perceivedBenefits": { "label": "您认为在教育中使用AI的主要好处是什么？" },
-      "perceivedConcerns": { "label": "您对教育中使用AI的担忧或顾虑是什么？" },
+      
       "humanInvolvement": {
         "label": "在学习中使用AI时，人类参与有多重要？",
         "options": { "very": "非常重要", "somewhat": "比较重要", "neutral": "中立", "less": "不太重要" }

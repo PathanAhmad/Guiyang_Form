@@ -9,7 +9,7 @@ const parentSurveyResponseSchema = new mongoose.Schema({
   name: { type: String, trim: true },
   contactEmail: { type: String, trim: true, lowercase: true },
   country: { type: String, trim: true },
-  age: { type: Number, min: 18, max: 100 },
+  age: { type: Number },
 
   // Section 1: Background Information
   contactPhone: { type: String, trim: true },
@@ -34,19 +34,18 @@ const parentSurveyResponseSchema = new mongoose.Schema({
   childAiFrequency: { type: String, trim: true },
   childAiPurposes: [{ type: String, trim: true }],
   childAiPurposesOther: { type: String, trim: true },
-  childAiToolsOften: { type: String, trim: true },
+  // childAiToolsOften removed
   childObservedChanges: [{ type: String, trim: true }],
   childObservedChangesOther: { type: String, trim: true },
   childBenefits: [{ type: String, trim: true }],
   childBenefitsOther: { type: String, trim: true },
   childConcerns: [{ type: String, trim: true }],
   childConcernsOther: { type: String, trim: true },
-  aiSupportTeachersParents: { type: String, trim: true },
+  // aiSupportTeachersParents removed
   parentGuidanceConfidence: { type: String, trim: true },
 
   // Section 3: Perception and Expectations
-  perceivedBenefits: { type: String, trim: true },
-  perceivedConcerns: { type: String, trim: true },
+  // perceivedBenefits/perceivedConcerns removed
   importanceHumanInvolvement: { type: String, trim: true },
   aiSupportEmotionalFocus: { type: String, trim: true },
   likelihoodEncourageAi: { type: String, trim: true },
@@ -69,9 +68,7 @@ const parentSurveyResponseSchema = new mongoose.Schema({
   contactEmail: { type: String, trim: true, lowercase: true },
 
   // Optional Open Feedback
-  supportTrainingNeeds: { type: String, trim: true },
-  empathyFocusOpinion: { type: String, trim: true },
-  idealAiCompanion: { type: String, trim: true },
+  additionalFeedback: { type: String, trim: true },
 
   // Metadata
   submittedAt: { type: Date, default: Date.now },

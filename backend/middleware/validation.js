@@ -97,12 +97,10 @@ const validationSchemas = {
         'string.empty': 'Email is required'
       }),
     country: Joi.string().trim().min(2).max(100).required(),
-    age: Joi.number().integer().min(18).max(100).required()
+    age: Joi.number().integer().required()
       .messages({
         'number.base': 'Age is required',
-        'number.integer': 'Age must be a whole number',
-        'number.min': 'Age must be at least 18',
-        'number.max': 'Age must not exceed 100'
+        'number.integer': 'Age must be a whole number'
       }),
 
     // Section 1: Background
@@ -138,19 +136,18 @@ const validationSchemas = {
     childAiFrequency: Joi.string().trim().valid('rarely', 'monthly', 'weekly', 'severalWeekly', 'daily').optional(),
     childAiPurposes: Joi.array().items(Joi.string().trim()).optional(),
     childAiPurposesOther: Joi.string().trim().max(200).optional().allow(''),
-    childAiToolsOften: Joi.string().trim().max(1000).optional().allow(''),
+    // childAiToolsOften removed
     childObservedChanges: Joi.array().items(Joi.string().trim()).optional(),
     childObservedChangesOther: Joi.string().trim().max(200).optional().allow(''),
     childBenefits: Joi.array().items(Joi.string().trim()).optional(),
     childBenefitsOther: Joi.string().trim().max(200).optional().allow(''),
     childConcerns: Joi.array().items(Joi.string().trim()).optional(),
     childConcernsOther: Joi.string().trim().max(200).optional().allow(''),
-    aiSupportTeachersParents: Joi.string().trim().max(2000).optional().allow(''),
+    // aiSupportTeachersParents removed
     parentGuidanceConfidence: Joi.string().trim().valid('very', 'somewhat', 'unsure', 'needSupport').optional(),
 
     // Section 3: Perceptions
-    perceivedBenefits: Joi.string().trim().max(2000).optional().allow(''),
-    perceivedConcerns: Joi.string().trim().max(2000).optional().allow(''),
+    // perceivedBenefits/perceivedConcerns removed
     importanceHumanInvolvement: Joi.string().trim().valid('very', 'somewhat', 'neutral', 'less').optional(),
     aiSupportEmotionalFocus: Joi.string().trim().valid('yes', 'maybe', 'no', 'notSure').optional(),
     likelihoodEncourageAi: Joi.string().trim().valid('veryLikely', 'somewhatLikely', 'neutral', 'unlikely').optional(),
@@ -173,9 +170,7 @@ const validationSchemas = {
     contactEmail: Joi.string().email().trim().lowercase().optional().allow(''),
 
     // Optional open feedback
-    supportTrainingNeeds: Joi.string().trim().max(2000).optional().allow(''),
-    empathyFocusOpinion: Joi.string().trim().max(2000).optional().allow(''),
-    idealAiCompanion: Joi.string().trim().max(500).optional().allow('')
+    additionalFeedback: Joi.string().trim().max(2000).optional().allow('')
   })
 };
 

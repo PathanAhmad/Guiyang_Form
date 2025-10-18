@@ -156,10 +156,7 @@
         },
         "otherPlaceholder": "Please specify other purpose"
       },
-      "toolsOften": {
-        "label": "If yes, which AI tools have you or your child used most often?",
-        "placeholder": "Type names of tools (open response)"
-      },
+      
       "observedChanges": {
         "label": "Have you observed any changes in your child’s learning behavior after using AI tools?",
         "options": {
@@ -198,10 +195,7 @@
         },
         "otherPlaceholder": "Please specify other concern"
       },
-      "supportTeachersParents": {
-        "label": "In your opinion, how should AI support teachers and parents in the learning process?",
-        "placeholder": "Open response"
-      },
+      
       "guidanceConfidence": {
         "label": "How confident are you in your ability to guide your child in using AI responsibly?",
         "options": {
@@ -214,8 +208,7 @@
     },
     "section3": {
       "title": "Section 3: Perception and Expectations of AI in Education",
-      "perceivedBenefits": { "label": "What do you believe are the main benefits of using AI in education?" },
-      "perceivedConcerns": { "label": "What are your concerns or fears about AI use in education?" },
+      
       "humanInvolvement": {
         "label": "How important is human involvement when AI is used for learning?",
         "options": { "very": "Very important", "somewhat": "Somewhat important", "neutral": "Neutral", "less": "Less important" }

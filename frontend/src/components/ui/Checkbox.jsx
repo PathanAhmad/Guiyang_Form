@@ -11,7 +11,9 @@ const Checkbox = ({
   error, 
   disabled = false,
   className = '',
-  required = false
+  required = false,
+  onBlur,
+  onFocus
 }) => {
   const id = useId();
   const checkboxId = `${id}-${value}`;
@@ -33,6 +35,8 @@ const Checkbox = ({
             ${error ? 'border-red-300' : 'border-gray-300'}
             ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
           `}
+          onBlur={onBlur}
+          onFocus={onFocus}
         />
         <label 
           htmlFor={checkboxId}
@@ -42,7 +46,9 @@ const Checkbox = ({
           `}
         >
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && (
+            <span className={`${error ? 'text-red-500' : 'text-gray-400'} ml-1`}>*</span>
+          )}
         </label>
       </div>
       {error && (
@@ -67,7 +73,9 @@ const CheckboxGroup = ({
   otherOption = false,
   otherValue = '',
   onOtherChange = () => {},
-  otherPlaceholder = 'Please specify'
+  otherPlaceholder = 'Please specify',
+  onBlur,
+  onFocus
 }) => {
   const [showOtherInput, setShowOtherInput] = useState(
     otherOption && values.includes('other')
@@ -101,7 +109,9 @@ const CheckboxGroup = ({
       {label && (
         <label className="block text-sm font-medium text-gray-700 mb-3">
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && (
+            <span className={`${error ? 'text-red-500' : 'text-gray-400'} ml-1`}>*</span>
+          )}
           {maxSelection && (
             <span className="text-sm text-gray-500 ml-2">
               (Select up to {maxSelection})
@@ -127,6 +137,10 @@ const CheckboxGroup = ({
                 checked={isChecked}
                 onChange={(e) => handleCheckboxChange(option.value, e.target.checked)}
                 disabled={isDisabled}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                required={required}
+                error={error}
               />
               {/* Show other input if this is the "other" option and it's checked */}
               {option.value === 'other' && showOtherInput && (

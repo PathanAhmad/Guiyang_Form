@@ -16,7 +16,9 @@ const Input = forwardRef(({
       {label && (
         <label htmlFor={inputId} className="form-label">
           {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
+          {required && (
+            <span className={`${error ? 'text-red-500' : 'text-gray-400'} ml-1`}>*</span>
+          )}
         </label>
       )}
       
