@@ -370,7 +370,26 @@
       "idealAiCompanion": { "label": "用一句话描述一下您理想的AI学习伙伴。" }
     },
     "successTitle": "调查提交成功！",
-    "successMessage": "感谢您分享关于AI教育的宝贵见解。您的反馈将帮助我们为像您这样的家庭改进SparkOS。"
+    "successMessage": "感谢您分享关于AI教育的宝贵见解。您的反馈将帮助我们为像您这样的家庭改进SparkOS。",
+    "validation": {
+      "consentRequired": "必须同意参与",
+      "adultRequired": "必须确认您已年满18岁并以家长/监护人身份作答",
+      "nameRequired": "姓名为必填项",
+      "nameMinLength": "姓名必须至少包含2个字符",
+      "emailRequired": "邮箱为必填项",
+      "emailInvalid": "请输入有效的邮箱地址",
+      "countryRequired": "国家为必填项",
+      "ageRequired": "年龄为必填项",
+      "ageInvalid": "年龄必须是整数",
+      "phoneRequired": "联系电话为必填项",
+      "phoneInvalid": "电话号码必须是10-20个字符",
+      "wechatRequired": "微信号为必填项",
+      "wechatTooLong": "微信号不得超过100个字符",
+      "selectOption": "请选择一个选项",
+      "selectUpTo3": "最多选择3项",
+      "specifyOther": "请具体说明",
+      "requiredField": "*必填项"
+    }
   },
   "common": {
     "getStarted": "开始使用",

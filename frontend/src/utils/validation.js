@@ -330,35 +330,18 @@ export const validateParentSurveyForm = (data) => {
     errors.wechatId = 'WeChat ID must not exceed 100 characters';
   }
 
-  // Background required
-  if (!data.relationship) errors.relationship = 'Relationship is required';
+  // Background optional for MCQ
   if (data.relationship === 'other' && !data.relationshipOther) errors.relationshipOther = 'Please specify your relationship';
-  if (!data.childAgeRange) errors.childAgeRange = 'Child age is required';
-  if (!data.schoolingLevel) errors.schoolingLevel = 'Schooling level is required';
-  if (!data.aiFamiliarity) errors.aiFamiliarity = 'AI familiarity is required';
 
-  // Section 2A: Require basic selections
-  if (!data.parentAiUsageFrequency) errors.parentAiUsageFrequency = 'Please select your AI usage';
-  if (!data.parentAiExperience) errors.parentAiExperience = 'Please select your experience';
-  if (!data.parentAiConfidence) errors.parentAiConfidence = 'Please select your confidence';
+  // Section 2A: optional
 
-  // Section 2B: Require location and frequency
-  if (!data.childAiUsageLocation) errors.childAiUsageLocation = 'Please select where your child uses AI';
-  if (!data.childAiFrequency) errors.childAiFrequency = 'Please select usage frequency';
+  // Section 2B: optional
 
-  // Section 3: Require core opinions
-  if (!data.importanceHumanInvolvement) errors.importanceHumanInvolvement = 'Please select an option';
-  if (!data.aiSupportEmotionalFocus) errors.aiSupportEmotionalFocus = 'Please select an option';
-  if (!data.likelihoodEncourageAi) errors.likelihoodEncourageAi = 'Please select an option';
+  // Section 3: optional
 
-  // Section 4: Require core experience answers
-  if (!data.preAiLearningHabits) errors.preAiLearningHabits = 'Please select an option';
-  if (!data.engagingEnjoyable) errors.engagingEnjoyable = 'Please select an option';
-  if (!data.aiInclusivity) errors.aiInclusivity = 'Please select an option';
+  // Section 4: optional
 
-  // Section 5: Require forward-looking opinions
-  if (!data.aiRoleNextFiveYears) errors.aiRoleNextFiveYears = 'Please select a role';
-  if (!data.considerSparkOSFuture) errors.considerSparkOSFuture = 'Please select one';
+  // Section 5: optional
 
   // Section 2B selections with caps
   if (Array.isArray(data.childBenefits) && data.childBenefits.length > 3) {

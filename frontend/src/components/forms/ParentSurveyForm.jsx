@@ -96,12 +96,13 @@ const ParentSurveyForm = ({ onSuccess }) => {
   // Define required fields per section in order (for progressive highlighting)
   const requiredFieldsBySection = useMemo(() => ({
     intro: ['consentParticipate', 'confirmAdult'],
-    section1: ['name','contactEmail','country','age','contactPhone','wechatId','relationship','childAgeRange','schoolingLevel','aiFamiliarity'],
-    section2A: ['parentAiUsageFrequency','parentAiExperience','parentAiConfidence'],
-    section2B: ['childAiUsageLocation','childAiFrequency'],
-    section3: ['importanceHumanInvolvement','aiSupportEmotionalFocus','likelihoodEncourageAi'],
-    section4: ['preAiLearningHabits','engagingEnjoyable','aiInclusivity'],
-    section5: ['aiRoleNextFiveYears','considerSparkOSFuture'],
+    // Only non-MCQ fields remain required
+    section1: ['name','contactEmail','country','age','contactPhone','wechatId'],
+    section2A: [],
+    section2B: [],
+    section3: [],
+    section4: [],
+    section5: [],
     section6: []
   }), []);
 
@@ -126,6 +127,43 @@ const ParentSurveyForm = ({ onSuccess }) => {
   const shouldShowError = (field) => {
     return Boolean(sectionValidation.errors?.[field]) && Boolean(touched[field]);
   };
+
+  // Translate backend/client validation messages to i18n
+  const translateError = (message) => {
+    if (!message) return undefined;
+    const msg = String(message);
+    const lower = msg.toLowerCase();
+    // Normalize any required-type messages to generic required copy
+    if (
+      lower.includes('is required') ||
+      lower.includes('must confirm') ||
+      lower.includes('consent') ||
+      lower.includes('required')
+    ) {
+      return t('parentSurvey.validation.requiredField', { defaultValue: '*Required Field' });
+    }
+    if (lower.includes('must be at least') && lower.includes('characters')) {
+      return t('parentSurvey.validation.nameMinLength');
+    }
+    if (lower.includes('valid email')) {
+      return t('parentSurvey.validation.emailInvalid');
+    }
+    if (lower.includes('whole number')) {
+      return t('parentSurvey.validation.ageInvalid');
+    }
+    if (lower.includes('phone number')) {
+      return t('parentSurvey.validation.phoneInvalid');
+    }
+    if (lower.includes('select up to 3')) {
+      return t('parentSurvey.validation.selectUpTo3');
+    }
+    if (lower.includes('please specify')) {
+      return t('parentSurvey.validation.specifyOther');
+    }
+    return msg; // fallback
+  };
+
+  const fieldError = (field) => (shouldShowError(field) ? translateError(sectionValidation.errors[field]) : undefined);
 
   const handleFocus = (field) => {
     const reqList = requiredFieldsBySection[currentSection.id] || [];
@@ -221,7 +259,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                   onFocus={() => handleFocus('consentParticipate')}
                   label={t('parentSurvey.intro.consent')}
                   required
-                  error={shouldShowError('consentParticipate') ? sectionValidation.errors.consentParticipate : undefined}
+                  error={fieldError('consentParticipate')}
                 />
                 <Checkbox 
                   name="confirmAdult"
@@ -231,7 +269,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                   onFocus={() => handleFocus('confirmAdult')}
                   label={t('parentSurvey.intro.adult')}
                   required
-                  error={shouldShowError('confirmAdult') ? sectionValidation.errors.confirmAdult : undefined}
+                  error={fieldError('confirmAdult')}
                 />
               </div>
             </div>
@@ -250,7 +288,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onBlur={() => markTouched('name')}
                 onFocus={() => handleFocus('name')}
                 required
-                error={shouldShowError('name') ? sectionValidation.errors.name : undefined}
+                error={fieldError('name')}
                 className="max-w-md"
               />
               <Input
@@ -263,7 +301,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onBlur={() => markTouched('contactEmail')}
                 onFocus={() => handleFocus('contactEmail')}
                 required
-                error={shouldShowError('contactEmail') ? sectionValidation.errors.contactEmail : undefined}
+                error={fieldError('contactEmail')}
                 className="max-w-md"
               />
               <Select
@@ -274,7 +312,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onBlur={() => markTouched('country')}
                 onFocus={() => handleFocus('country')}
                 required
-                error={shouldShowError('country') ? sectionValidation.errors.country : undefined}
+                error={fieldError('country')}
                 options={[
                   { value: '', label: t('parentSurvey.section1.country.placeholder') },
                   ...countryOptions.map(o => ({ value: o.value, label: t(`countryNames.${o.value}`, { defaultValue: o.value }) }))
@@ -291,7 +329,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onBlur={() => markTouched('age')}
                 onFocus={() => handleFocus('age')}
                 required
-                error={shouldShowError('age') ? sectionValidation.errors.age : undefined}
+                error={fieldError('age')}
                 className="max-w-[160px]"
               />
               <Input
@@ -303,8 +341,9 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onBlur={() => markTouched('contactPhone')}
                 onFocus={() => handleFocus('contactPhone')}
                 required
-                error={shouldShowError('contactPhone') ? sectionValidation.errors.contactPhone : undefined}
+                error={fieldError('contactPhone')}
                 className="max-w-md"
+                showCountryCode
               />
               <Input
                 name="wechatId"
@@ -315,7 +354,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onBlur={() => markTouched('wechatId')}
                 onFocus={() => handleFocus('wechatId')}
                 required
-                error={shouldShowError('wechatId') ? sectionValidation.errors.wechatId : undefined}
+                error={fieldError('wechatId')}
                 className="max-w-md"
               />
               <Radio.Group
@@ -325,8 +364,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('relationship', e.target.value)}
                 onBlur={() => markTouched('relationship')}
                 onFocus={() => handleFocus('relationship')}
-                required
-                error={shouldShowError('relationship') ? sectionValidation.errors.relationship : undefined}
+                error={fieldError('relationship')}
                 options={[
                   { value: 'parent', label: t('parentSurvey.section1.relationship.options.parent') },
                   { value: 'guardian', label: t('parentSurvey.section1.relationship.options.guardian') },
@@ -339,7 +377,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                   value={values.relationshipOther}
                   onChange={(e) => handleChange('relationshipOther', e.target.value)}
                   onBlur={() => markTouched('relationshipOther')}
-                  error={shouldShowError('relationshipOther') ? sectionValidation.errors.relationshipOther : undefined}
+                  error={fieldError('relationshipOther')}
                   placeholder={t('parentSurvey.section1.relationship.otherPlaceholder')}
                   className="ml-6 max-w-md"
                 />
@@ -352,8 +390,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('childAgeRange', e.target.value)}
                 onBlur={() => markTouched('childAgeRange')}
                 onFocus={() => handleFocus('childAgeRange')}
-                required
-                error={shouldShowError('childAgeRange') ? sectionValidation.errors.childAgeRange : undefined}
+                error={fieldError('childAgeRange')}
                 options={[
                   { value: '5-10', label: t('parentSurvey.section1.childAgeRange.options.5_10') },
                   { value: '11-15', label: t('parentSurvey.section1.childAgeRange.options.11_15') },
@@ -370,8 +407,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('schoolingLevel', e.target.value)}
                 onBlur={() => markTouched('schoolingLevel')}
                 onFocus={() => handleFocus('schoolingLevel')}
-                required
-                error={shouldShowError('schoolingLevel') ? sectionValidation.errors.schoolingLevel : undefined}
+                error={fieldError('schoolingLevel')}
                 options={[
                   { value: 'primary', label: t('parentSurvey.section1.schoolingLevel.options.primary') },
                   { value: 'secondary', label: t('parentSurvey.section1.schoolingLevel.options.secondary') },
@@ -387,8 +423,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('aiFamiliarity', e.target.value)}
                 onBlur={() => markTouched('aiFamiliarity')}
                 onFocus={() => handleFocus('aiFamiliarity')}
-                required
-                error={shouldShowError('aiFamiliarity') ? sectionValidation.errors.aiFamiliarity : undefined}
+                error={fieldError('aiFamiliarity')}
                 options={[
                   { value: 'notFamiliar', label: t('parentSurvey.section1.aiFamiliarity.options.notFamiliar') },
                   { value: 'somewhat', label: t('parentSurvey.section1.aiFamiliarity.options.somewhat') },
@@ -430,8 +465,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('parentAiUsageFrequency', e.target.value)}
                 onBlur={() => markTouched('parentAiUsageFrequency')}
                 onFocus={() => handleFocus('parentAiUsageFrequency')}
-                required
-                error={shouldShowError('parentAiUsageFrequency') ? sectionValidation.errors.parentAiUsageFrequency : undefined}
+                error={fieldError('parentAiUsageFrequency')}
                 options={[
                   { value: 'regularly', label: t('parentSurvey.section2A.aiUsage.options.regularly') },
                   { value: 'fewTimes', label: t('parentSurvey.section2A.aiUsage.options.fewTimes') },
@@ -448,8 +482,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('parentAiExperience', e.target.value)}
                 onBlur={() => markTouched('parentAiExperience')}
                 onFocus={() => handleFocus('parentAiExperience')}
-                required
-                error={shouldShowError('parentAiExperience') ? sectionValidation.errors.parentAiExperience : undefined}
+                error={fieldError('parentAiExperience')}
                 options={[
                   { value: 'veryPositive', label: t('parentSurvey.section2A.experience.options.veryPositive') },
                   { value: 'somewhatPositive', label: t('parentSurvey.section2A.experience.options.somewhatPositive') },
@@ -466,8 +499,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('parentAiConfidence', e.target.value)}
                 onBlur={() => markTouched('parentAiConfidence')}
                 onFocus={() => handleFocus('parentAiConfidence')}
-                required
-                error={shouldShowError('parentAiConfidence') ? sectionValidation.errors.parentAiConfidence : undefined}
+                error={fieldError('parentAiConfidence')}
                 options={[
                   { value: 'notConfident', label: t('parentSurvey.section2A.confidence.options.notConfident') },
                   { value: 'slightlyConfident', label: t('parentSurvey.section2A.confidence.options.slightlyConfident') },
@@ -824,8 +856,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
                 onChange={(e) => handleChange('considerSparkOSFuture', e.target.value)}
                 onBlur={() => markTouched('considerSparkOSFuture')}
                 onFocus={() => handleFocus('considerSparkOSFuture')}
-                required
-                error={shouldShowError('considerSparkOSFuture') ? sectionValidation.errors.considerSparkOSFuture : undefined}
+                error={fieldError('considerSparkOSFuture')}
                 options={[
                   { value: 'definitelyYes', label: t('parentSurvey.section5.considerSparkOS.options.definitelyYes', { defaultValue: 'Definitely yes' }) },
                   { value: 'maybe', label: t('parentSurvey.section5.considerSparkOS.options.maybe', { defaultValue: 'Maybe' }) },

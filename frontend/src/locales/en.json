@@ -364,7 +364,26 @@
       "idealAiCompanion": { "label": "In one sentence, describe your ideal AI-based learning companion for your child." }
     },
     "successTitle": "Survey Submitted Successfully!",
-    "successMessage": "Thank you for sharing your valuable insights about AI in education. Your responses will help us improve SparkOS for families like yours."
+    "successMessage": "Thank you for sharing your valuable insights about AI in education. Your responses will help us improve SparkOS for families like yours.",
+    "validation": {
+      "consentRequired": "*Required Field",
+      "adultRequired": "*Required Field",
+      "nameRequired": "*Required Field",
+      "nameMinLength": "Name must be at least 2 characters",
+      "emailRequired": "*Required Field",
+      "emailInvalid": "Please enter a valid email address",
+      "countryRequired": "*Required Field",
+      "ageRequired": "*Required Field",
+      "ageInvalid": "Age must be a whole number",
+      "phoneRequired": "*Required Field",
+      "phoneInvalid": "Phone number must be 10-20 characters",
+      "wechatRequired": "*Required Field",
+      "wechatTooLong": "WeChat ID must not exceed 100 characters",
+      "selectOption": "Please select an option",
+      "selectUpTo3": "Please select up to 3 items",
+      "specifyOther": "Please specify",
+      "requiredField": "*Required Field"
+    }
   },
   "common": {
     "getStarted": "Get Started",
