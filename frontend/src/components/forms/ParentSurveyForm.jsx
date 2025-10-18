@@ -15,7 +15,7 @@ import { countryOptions } from '../../utils/countries';
 
 const ParentSurveyForm = ({ onSuccess }) => {
   const { t } = useTranslation();
-  const { submitForm, isSubmitting, submitError, submitSuccess } = useFormSubmission();
+  const { submitForm, isSubmitting, submitError, submitSuccess, submissionData } = useFormSubmission();
 
   const { values, errors, handleChange, validate, setFieldErrors } = useForm(
     {
@@ -129,6 +129,34 @@ const ParentSurveyForm = ({ onSuccess }) => {
     const result = await submitForm(() => parentSurveyAPI.submit(values));
     if (result.success && onSuccess) onSuccess(result.data);
   };
+
+  if (submitSuccess) {
+    return (
+      <Card className="animate-fade-in">
+        <Card.Body className="text-center py-8">
+          <div className="mx-auto flex items-center justify-center w-12 h-12 rounded-full bg-green-100 mb-4">
+            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t('parentSurvey.successTitle')}</h3>
+          <p className="text-gray-600 mb-4">
+            {t('parentSurvey.successMessage')}
+          </p>
+          {submissionData?.data?.token && (
+            <p className="text-sm text-gray-500 mb-4">
+              {t('misc.referenceToken')}: <span className="font-mono font-medium">{submissionData.data.token}</span>
+            </p>
+          )}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button onClick={() => onSuccess && onSuccess(submissionData?.data)} variant="outline">
+              {t('common.backToHome')}
+            </Button>
+          </div>
+        </Card.Body>
+      </Card>
+    );
+  }
 
   return (
     <Card>
@@ -720,14 +748,14 @@ const ParentSurveyForm = ({ onSuccess }) => {
 
               <Radio.Group
                 name="considerSparkOSFuture"
-                label={t('parentSurvey.section6.considerSparkOS.label')}
+                label={t('parentSurvey.section5.considerSparkOS.label')}
                 value={values.considerSparkOSFuture}
                 onChange={(e) => handleChange('considerSparkOSFuture', e.target.value)}
                 options={[
-                  { value: 'definitelyYes', label: t('parentSurvey.section6.considerSparkOS.options.definitelyYes') },
-                  { value: 'maybe', label: t('parentSurvey.section6.considerSparkOS.options.maybe') },
-                  { value: 'notSure', label: t('parentSurvey.section6.considerSparkOS.options.notSure') },
-                  { value: 'no', label: t('parentSurvey.section6.considerSparkOS.options.no') }
+                  { value: 'definitelyYes', label: t('parentSurvey.section5.considerSparkOS.options.definitelyYes') },
+                  { value: 'maybe', label: t('parentSurvey.section5.considerSparkOS.options.maybe') },
+                  { value: 'notSure', label: t('parentSurvey.section5.considerSparkOS.options.notSure') },
+                  { value: 'no', label: t('parentSurvey.section5.considerSparkOS.options.no') }
                 ]}
               />
 
@@ -783,7 +811,6 @@ const ParentSurveyForm = ({ onSuccess }) => {
           </div>
 
           {submitError && <p className="text-red-600 mt-2">{submitError}</p>}
-          {submitSuccess && <p className="text-green-600 mt-2">{t('common.success')}</p>}
         </form>
       </Card.Body>
     </Card>

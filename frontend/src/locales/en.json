@@ -369,7 +369,9 @@
       "supportTrainingNeeds": { "label": "What support or training would help you guide your child in using AI responsibly?" },
       "empathyFocusOpinion": { "label": "Should AI in education also focus on empathy, mental well-being and creativity?" },
       "idealAiCompanion": { "label": "In one sentence, describe your ideal AI-based learning companion for your child." }
-    }
+    },
+    "successTitle": "Survey Submitted Successfully!",
+    "successMessage": "Thank you for sharing your valuable insights about AI in education. Your responses will help us improve SparkOS for families like yours."
   },
   "common": {
     "getStarted": "Get Started",

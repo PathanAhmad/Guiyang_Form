@@ -375,7 +375,9 @@
       "supportTrainingNeeds": { "label": "什么样的支持或培训能帮助您引导孩子更负责任地使用AI？" },
       "empathyFocusOpinion": { "label": "教育中的AI是否也应关注同理心、心理健康与创造力？" },
       "idealAiCompanion": { "label": "用一句话描述一下您理想的AI学习伙伴。" }
-    }
+    },
+    "successTitle": "调查提交成功！",
+    "successMessage": "感谢您分享关于AI教育的宝贵见解。您的反馈将帮助我们为像您这样的家庭改进SparkOS。"
   },
   "common": {
     "getStarted": "开始使用",
