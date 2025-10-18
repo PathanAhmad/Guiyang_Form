@@ -213,9 +213,6 @@ const ParentSurveyForm = ({ onSuccess }) => {
             </svg>
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">{t('parentSurvey.successTitle')}</h3>
-          <p className="text-gray-600 mb-4">
-            {t('parentSurvey.successMessage')}
-          </p>
           {submissionData?.data?.token && (
             <p className="text-sm text-gray-500 mb-4">
               {t('misc.referenceToken')}: <span className="font-mono font-medium">{submissionData.data.token}</span>
