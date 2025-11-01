@@ -16,7 +16,7 @@
       "adult": "我已年满18岁，并以家长/监护人身份作答。"
     },
     "section1": {
-      "title": "第一部分：背景信息",
+      "title": "背景信息",
       "name": { "label": "姓名", "placeholder": "请输入您的姓名" },
       "contactEmail": { "label": "邮箱", "placeholder": "请输入您的邮箱" },
       "country": { "label": "国家/国籍", "placeholder": "请选择您的国家" },
@@ -76,7 +76,7 @@
     },
     "progress": { "sectionOf": "第 {{current}} / {{total}} 部分" },
     "section2A": {
-      "title": "第二部分A：家长/监护人对AI的使用",
+      "title": "家长/监护人对AI的使用",
       "aiUsage": {
         "label": "您是否使用过任何基于AI的工具？",
         "options": {
@@ -120,7 +120,7 @@
     },
     
     "section2B": {
-      "title": "第二部分B：孩子当前对AI的使用",
+      "title": "孩子当前对AI的使用",
       "childUsage": {
         "label": "您的孩子是否使用过任何基于AI的工具？",
         "options": {
@@ -157,10 +157,7 @@
         },
         "otherPlaceholder": "请注明其他目的"
       },
-      "toolsOften": {
-        "label": "如果是，您或您的孩子最常使用哪些AI工具？",
-        "placeholder": "输入工具名称（开放式回答）"
-      },
+      
       "observedChanges": {
         "label": "使用AI工具后，您是否观察到孩子学习行为的变化？",
         "options": {
@@ -199,10 +196,7 @@
         },
         "otherPlaceholder": "请注明其他担忧"
       },
-      "supportTeachersParents": {
-        "label": "在您看来，AI应如何支持教师和家长参与学习过程？",
-        "placeholder": "开放式回答"
-      },
+      
       "guidanceConfidence": {
         "label": "您对引导孩子负责任地使用AI的能力有多大信心？",
         "options": {
@@ -215,9 +209,8 @@
     },
 
     "section3": {
-      "title": "第三部分：对教育中AI的看法与期望",
-      "perceivedBenefits": { "label": "您认为在教育中使用AI的主要好处是什么？" },
-      "perceivedConcerns": { "label": "您对教育中使用AI的担忧或顾虑是什么？" },
+      "title": "对教育中AI的看法与期望",
+      
       "humanInvolvement": {
         "label": "在学习中使用AI时，人类参与有多重要？",
         "options": { "very": "非常重要", "somewhat": "比较重要", "neutral": "中立", "less": "不太重要" }
@@ -245,7 +238,7 @@
     },
 
     "section4": {
-      "title": "第四部分：使用AI前后体验",
+      "title": "使用AI前后体验",
       "preHabits": {
         "label": "在孩子开始使用AI之前，您如何描述TA的学习习惯？",
         "options": {
@@ -345,7 +338,7 @@
     },
 
     "section6": {
-      "title": "第六部分：展望未来",
+      "title": "展望未来",
       "aiRole": {
         "label": "未来五年，AI在您孩子教育中应扮演什么角色？",
         "options": {
@@ -371,10 +364,31 @@
     },
 
     "optional": {
-      "title": "可选部分：开放反馈",
+      "title": "开放反馈",
       "supportTrainingNeeds": { "label": "什么样的支持或培训能帮助您引导孩子更负责任地使用AI？" },
       "empathyFocusOpinion": { "label": "教育中的AI是否也应关注同理心、心理健康与创造力？" },
       "idealAiCompanion": { "label": "用一句话描述一下您理想的AI学习伙伴。" }
+    },
+    "successTitle": "调查提交成功！",
+    "successMessage": "感谢您分享关于AI教育的宝贵见解。您的反馈将帮助我们为像您这样的家庭改进SparkOS。",
+    "validation": {
+      "consentRequired": "必须同意参与",
+      "adultRequired": "必须确认您已年满18岁并以家长/监护人身份作答",
+      "nameRequired": "姓名为必填项",
+      "nameMinLength": "姓名必须至少包含2个字符",
+      "emailRequired": "邮箱为必填项",
+      "emailInvalid": "请输入有效的邮箱地址",
+      "countryRequired": "国家为必填项",
+      "ageRequired": "年龄为必填项",
+      "ageInvalid": "年龄必须是整数",
+      "phoneRequired": "联系电话为必填项",
+      "phoneInvalid": "电话号码必须是10-20个字符",
+      "wechatRequired": "微信号为必填项",
+      "wechatTooLong": "微信号不得超过100个字符",
+      "selectOption": "请选择一个选项",
+      "selectUpTo3": "最多选择3项",
+      "specifyOther": "请具体说明",
+      "requiredField": "*必填项"
     }
   },
   "common": {

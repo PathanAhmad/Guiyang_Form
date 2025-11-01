@@ -77,8 +77,8 @@ const FastTrackForm = ({ onSuccess }) => {
             </p>
           )}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button onClick={handleReset} variant="outline">
-              {t('common.submitAnotherRequest')}
+            <Button onClick={() => onSuccess && onSuccess(submissionData?.data)} variant="outline">
+              {t('common.backToHome')}
             </Button>
           </div>
         </Card.Body>

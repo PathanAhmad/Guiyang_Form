@@ -311,8 +311,8 @@ export const validateParentSurveyForm = (data) => {
     errors.age = 'Age is required';
   } else {
     const ageNum = Number(data.age);
-    if (Number.isNaN(ageNum) || ageNum < 18 || ageNum > 100) {
-      errors.age = 'Please enter a valid age (18-100)';
+    if (Number.isNaN(ageNum) || !Number.isInteger(ageNum)) {
+      errors.age = 'Age must be a whole number';
     }
   }
 
@@ -330,12 +330,18 @@ export const validateParentSurveyForm = (data) => {
     errors.wechatId = 'WeChat ID must not exceed 100 characters';
   }
 
-  // Background required
-  if (!data.relationship) errors.relationship = 'Relationship is required';
+  // Background optional for MCQ
   if (data.relationship === 'other' && !data.relationshipOther) errors.relationshipOther = 'Please specify your relationship';
-  if (!data.childAgeRange) errors.childAgeRange = 'Child age is required';
-  if (!data.schoolingLevel) errors.schoolingLevel = 'Schooling level is required';
-  if (!data.aiFamiliarity) errors.aiFamiliarity = 'AI familiarity is required';
+
+  // Section 2A: optional
+
+  // Section 2B: optional
+
+  // Section 3: optional
+
+  // Section 4: optional
+
+  // Section 5: optional
 
   // Section 2B selections with caps
   if (Array.isArray(data.childBenefits) && data.childBenefits.length > 3) {
@@ -356,6 +362,8 @@ export const validateParentSurveyForm = (data) => {
   }
 
 
+  // Removed open-ended fields: perceivedBenefits, perceivedConcerns, childAiToolsOften, aiSupportTeachersParents,
+  // supportTrainingNeeds, empathyFocusOpinion, idealAiCompanion
   // Email format handled above
 
   // Remove empty error messages (safety)

@@ -17,7 +17,7 @@
     },
     "progress": { "sectionOf": "Section {{current}} of {{total}}" },
     "section1": {
-      "title": "Section 1: Background Information",
+      "title": "Background Information",
       "name": { "label": "Name", "placeholder": "Enter your name" },
       "contactEmail": { "label": "Email", "placeholder": "Enter your email address" },
       "country": { "label": "Country / Nationality", "placeholder": "Select your country" },
@@ -76,7 +76,7 @@
       }
     },
     "section2A": {
-      "title": "Section 2A: Parent/ Guardian AI usage",
+      "title": "Parent/ Guardian AI usage",
       "aiUsage": {
         "label": "Have you used any AI-based tools?",
         "options": {
@@ -119,7 +119,7 @@
       }
     },
     "section2B": {
-      "title": "Section 2B: Current AI Usage by Child",
+      "title": "Current AI Usage by Child",
       "childUsage": {
         "label": "Has your child used any AI-based tools?",
         "options": {
@@ -156,10 +156,7 @@
         },
         "otherPlaceholder": "Please specify other purpose"
       },
-      "toolsOften": {
-        "label": "If yes, which AI tools have you or your child used most often?",
-        "placeholder": "Type names of tools (open response)"
-      },
+      
       "observedChanges": {
         "label": "Have you observed any changes in your child’s learning behavior after using AI tools?",
         "options": {
@@ -198,10 +195,7 @@
         },
         "otherPlaceholder": "Please specify other concern"
       },
-      "supportTeachersParents": {
-        "label": "In your opinion, how should AI support teachers and parents in the learning process?",
-        "placeholder": "Open response"
-      },
+      
       "guidanceConfidence": {
         "label": "How confident are you in your ability to guide your child in using AI responsibly?",
         "options": {
@@ -213,9 +207,8 @@
       }
     },
     "section3": {
-      "title": "Section 3: Perception and Expectations of AI in Education",
-      "perceivedBenefits": { "label": "What do you believe are the main benefits of using AI in education?" },
-      "perceivedConcerns": { "label": "What are your concerns or fears about AI use in education?" },
+      "title": "Perception and Expectations of AI in Education",
+      
       "humanInvolvement": {
         "label": "How important is human involvement when AI is used for learning?",
         "options": { "very": "Very important", "somewhat": "Somewhat important", "neutral": "Neutral", "less": "Less important" }
@@ -242,7 +235,7 @@
       }
     },
     "section4": {
-      "title": "Section 4: Experience Before and After Using AI",
+      "title": "Experience Before and After Using AI",
       "preHabits": {
         "label": "Before your child started using AI, how would you describe their learning habits?",
         "options": {
@@ -340,7 +333,7 @@
       "likelihoodTry": { "label": "Overall likelihood to try SparkOS (0–10)" }
     },
     "section6": {
-      "title": "Section 6: Looking Ahead",
+      "title": "Looking Ahead",
       "aiRole": {
         "label": "What role should AI play in your child’s education over the next five years?",
         "options": {
@@ -365,10 +358,31 @@
       "contactEmail": { "label": "Email (optional)", "placeholder": "your@email.com" }
     },
     "optional": {
-      "title": "Optional Section: Open Feedback",
+      "title": "Open Feedback",
       "supportTrainingNeeds": { "label": "What support or training would help you guide your child in using AI responsibly?" },
       "empathyFocusOpinion": { "label": "Should AI in education also focus on empathy, mental well-being and creativity?" },
       "idealAiCompanion": { "label": "In one sentence, describe your ideal AI-based learning companion for your child." }
+    },
+    "successTitle": "Survey Submitted Successfully!",
+    "successMessage": "Thank you for sharing your valuable insights about AI in education. Your responses will help us improve SparkOS for families like yours.",
+    "validation": {
+      "consentRequired": "*Required Field",
+      "adultRequired": "*Required Field",
+      "nameRequired": "*Required Field",
+      "nameMinLength": "Name must be at least 2 characters",
+      "emailRequired": "*Required Field",
+      "emailInvalid": "Please enter a valid email address",
+      "countryRequired": "*Required Field",
+      "ageRequired": "*Required Field",
+      "ageInvalid": "Age must be a whole number",
+      "phoneRequired": "*Required Field",
+      "phoneInvalid": "Phone number must be 10-20 characters",
+      "wechatRequired": "*Required Field",
+      "wechatTooLong": "WeChat ID must not exceed 100 characters",
+      "selectOption": "Please select an option",
+      "selectUpTo3": "Please select up to 3 items",
+      "specifyOther": "Please specify",
+      "requiredField": "*Required Field"
     }
   },
   "common": {
