@@ -1,79 +1,188 @@
-### Cursor Rules for Guiyang Form
+Spark-OS Cursor Rules
 
-These rules guide safe, consistent edits that preserve the current architecture and reduce risk.
+Purpose: Prevent broad or unsafe edits and guide AI to make surgical, context-aware changes.
 
----
+Key Principles
+- Require full stack trace and repro before fixes.
+- Fix root causes; avoid patching symptoms.
+- No undefined behavior; make assumptions explicit.
+- Respect ownership boundaries; no cross-cutting magic changes.
+- No unrelated edits; keep diffs minimal and focused.
+- Check for existing equivalent files/structures before creating new ones.
+- Align with existing architecture and code style.
+- **PRIORITIZE MODULARITY: Always prefer multiple focused files over single large files.**
+- **PRIORITIZE SIMPLICITY: Prefer simple, clean, organized approach over unsafe, problematically complex solutions that jump directly to bandaid fixes.**
+- **THINK SCALABLY: Design for growth from the start - consider performance, maintainability, and extensibility.**
+- **INCREMENTAL DEVELOPMENT: Build in logical, sensible, simple steps - complete each step fully before moving to the next. Never try to build everything at once.**
 
-### Project scope and guardrails
-- **Respect existing structure**: This repo is split into `backend` (Node.js/Express/Mongoose, CommonJS) and `frontend` (React + Vite, ESM). Do not merge or refactor across packages in routine edits.
-- **No unrelated changes**: Limit edits to files directly required for the task. Do not reformat or “drive-by” refactor unrelated code.
-- **Check before creating**: Before adding any file/function, search for an existing equivalent. Prefer extension over duplication.
-- **Avoid new dependencies**: Do not add packages unless strictly necessary. If needed, propose first with rationale, alternatives, and rollback plan.
-- **Module systems**: Backend stays CommonJS (`require`/`module.exports`). Frontend stays ESM (`import`/`export`). Do not convert module systems.
-- **Indentation and formatting**: Preserve each file’s current indentation and style. Do not reformat unrelated lines.
+Repo Map
+- Backend: Node/Express/Mongoose in backend/ (entry: backend/server.js; tests: Jest)
+- Frontend: React + Vite in frontend/ (eslint: frontend/eslint.config.js; jsconfig aliases: @/*, utils/*)
 
----
+Editing Guidance
+- Preserve timeouts/perf safeguards; prefer Cloudinary URLs over base64 images.
+- Match existing formatting; do not reformat unrelated code.
+- Add brief comments only for non-obvious logic (why, not how).
 
-### User-required debugging policy
-- **Trace issues to source**: When fixing bugs, identify the root cause (not symptoms). Include the minimal repro and the exact failing path.
-- **Full stack traces**: Capture and analyze the full error stack internally during debugging. Do not expose sensitive stacks to users in production responses.
-- **No undefined behavior**: Add explicit guards for null/undefined and invalid inputs. Prefer early returns and clear error handling.
-- **Explicit ownership of logic**: Keep validation in `backend/middleware/validation.js`, routing in `backend/routes`, data access in `backend/models`, and integrations in `backend/services`.
+Commands
+- backend dev: npm run dev (cwd: backend)
+- backend test: npm test (cwd: backend)
+- frontend dev: npm run dev (cwd: frontend)
+- frontend build: npm run build (cwd: frontend)
+- frontend lint: npm run lint (cwd: frontend)
 
----
+Quality Gates
+- Lint/tests must pass where applicable.
+- No secrets/hardcoded keys; keep .env usage intact.
+- Use project logger for production logs.
+- Avoid feature flags for environments; prefer environment-specific configs.
 
-### Backend (Node.js/Express/Mongoose)
-- **Routes**: Add new endpoints in `backend/routes`, then register in `backend/server.js` under `/api/...`. Keep route handlers thin; offload validation and business logic.
-- **Validation**: Use Joi in `backend/middleware/validation.js`. Extend existing schemas or add a new typed schema function; do not validate ad hoc in route files.
-- **Error handling**: Use centralized `errorHandler` and `notFoundHandler`. For new errors, surface `success: false`, `error` message, and optional `details` consistent with existing patterns.
-- **Models**: Define Mongoose schemas in `backend/models` with `{ timestamps: true }`. Add indexes where queries depend on fields (e.g., tokens, types, created dates).
-- **Config**: Read configuration from `backend/config/environment.js`. Do not access `process.env` directly in routes or services; add config keys there.
-- **Services**: Keep Cloudinary and Discord calls inside `backend/services`. Reuse existing helpers; do not call external APIs directly from routes.
-- **Logging**: Use `console` consistently; include stack traces in logs during debugging. Avoid logging secrets or full payloads containing PII.
-- **HTTP status codes**: 2xx for success, 4xx for client errors (validation/auth), 5xx for server errors.
+Pre-Edit Checklist
+- Do we have stack trace or repro?
+- Is change localized to owning module?
+- Did we check for existing utilities/structures to reuse?
+- Any security/performance/schema risks? If yes, stop and get approval.
+- Add/update tests/validation if needed.
+- **Are there well-maintained libraries that could simplify this?**
+- **Will this solution scale as the system grows?**
+- **Is this the simplest approach that solves the problem, but properly without cutting corners or leaving out requirements?**
 
----
+Incremental Development Methodology
+- **CRITICAL: Break complex tasks into logical, sensible, simple steps**
+- **NEVER attempt to build everything at once - this leads to fragile, buggy, illogical messes**
+- **Step-by-Step Process:**
+  1. Identify the smallest, complete, working unit for the first step
+  2. Build and verify that step fully (it should work independently)
+  3. Test and validate the step before proceeding
+  4. Only then move to the next logical step
+  5. Build incrementally, layering functionality step by step
+- **For Features:**
+  - Start with the core functionality (minimum viable piece)
+  - Add one capability at a time
+  - Test each addition before moving forward
+  - Refactor as you go if needed, but keep each step complete
+- **For Fixes:**
+  - Understand the root cause first (one issue at a time)
+  - Fix it completely before moving to related issues
+  - Test the fix in isolation before integrating
+- **For Refactoring:**
+  - Extract one piece of functionality at a time
+  - Ensure it works independently before continuing
+  - Move to the next extraction only after the first is stable
+- **For Architecture:**
+  - Build the foundation first (basic structure)
+  - Add layers incrementally (data layer → logic layer → API layer → UI)
+  - Each layer should be functional before adding the next
+- **Verification Between Steps:**
+  - Code compiles/lints without errors
+  - Basic functionality works as expected
+  - No obvious regressions introduced
+  - Tests pass (if applicable)
+- **When to STOP and reassess:**
+  - If a step becomes too complex, break it down further
+  - If multiple things break at once, go back to the last working state
+  - If you find yourself writing placeholder/todo code, stop and plan smaller steps
+- **RED FLAGS (stop immediately):**
+  - Trying to implement multiple features simultaneously
+  - Writing incomplete code "to be filled in later"
+  - Skipping testing between steps
+  - Building abstractions before understanding concrete needs
+  - Making changes across multiple unrelated modules in one go
 
-### Frontend (React + Vite)
-- **ESM only**: Use `import`/`export` with Vite. Keep file-based aliases consistent with `vite.config.js` (`@`, `src`, `components`, `utils`).
-- **Components and pages**: Place reusable primitives under `frontend/src/components/ui`, route-level screens under `frontend/src/pages`, and shared logic in hooks under `frontend/src/hooks`.
-- **API calls**: Use `frontend/src/services/api.js`. Centralize base URLs and headers there; do not duplicate fetch logic in components.
-- **i18n**: Add strings to `frontend/src/locales/en.json` and `zh.json`. Use `react-i18next` hooks; avoid hardcoded user-facing strings.
-- **Styling**: Prefer Tailwind utility classes already in use. Avoid introducing new styling systems.
-- **Linting**: Follow `frontend/eslint.config.js`. Do not add new linters/formatters. Fix new warnings you introduce.
+Common Refactoring Patterns
+Large Controller → Split into:
+- Controller (API endpoints only)
+- Service (business logic)
+- Validator (input validation)
+- Repository (data access)
 
----
+Large Component → Split into:
+- Main component (orchestration)
+- Sub-components (UI pieces)
+- Custom hooks (state logic)
+- Utils (helper functions)
 
-### Naming and structure
-- **Files**: Components `PascalCase.jsx` (e.g., `FastTrackForm.jsx`), hooks `camelCase.js` (e.g., `useApi.js`). Keep existing conventions.
-- **Functions**: Use descriptive, intention-revealing names. Prefer early returns and guard clauses.
-- **Comments**: Keep comments focused on “why”, not “what”. Use JSDoc for exported functions where helpful.
+Large Service → Split into:
+- Core service (main functionality)
+- Utility functions (helpers)
+- External API clients (third-party calls)
+- Data transformers (format conversions)
 
----
+File Organization Guidelines
+- **MANDATORY: When editing large files, ALWAYS split into focused modules**
+- **CRITICAL: Never create or maintain monolithic files - break them down immediately**
+- Create separate files for: utilities, constants, types, validators, formatters
+- Use barrel exports (index.js) for clean imports
+- Group related functionality into feature folders
+- Separate business logic from presentation logic
+- Extract reusable logic into custom hooks and utilities
+- One class/component per file with matching filename
+- Use consistent naming: PascalCase for components, camelCase for functions
+- Extract complex logic into dedicated service/utility files
+- **ENFORCE: Each file should have a single, clear responsibility**
 
-### Safe change patterns
-- **Add a new backend route**:
-  1) Define route in `backend/routes/...`. 2) Add validation via Joi middleware. 3) Put external calls in a service. 4) Register in `backend/server.js`. 5) Ensure consistent response shape.
-- **Add a new model or field**:
-  1) Update schema in `backend/models`. 2) Add indexes if querying by the new field. 3) Update validation schema. 4) Migrate data only if necessary (provide a script separately if required).
-- **Add a new frontend page/feature**:
-  1) Create page under `frontend/src/pages`. 2) Reuse UI primitives under `components/ui`. 3) Add API methods in `services/api.js`. 4) Localize copy in `locales`.
+Code Quality Standards
+- Write self-documenting code with clear variable and function names
+- Add JSDoc comments for complex functions and public APIs
+- Use async/await consistently, avoid callback hell
+- Implement proper cleanup in useEffect hooks
+- Add loading states and error handling for async operations
 
----
+Professional Engineering Principles
+- **SIMPLICITY FIRST: Prefer the simplest solution that solves the problem correctly.**
+- **CLEAN ARCHITECTURE: Organize code logically with clear separation of concerns.**
+- **SCALABILITY BY DESIGN:**
+  - Consider data growth patterns (e.g., pagination, indexing, caching strategies)
+  - Avoid N+1 queries and unnecessary loops over large datasets
+  - Use efficient algorithms and data structures for the problem domain
+  - Design APIs and components to handle increased load gracefully
+  - Consider horizontal scaling implications (stateless services, shared state management)
+- **WELL-MAINTAINED LIBRARIES:**
+  - Evaluate existing libraries before writing custom implementations
+  - Prefer libraries with: active maintenance, good documentation, wide adoption, TypeScript support (if applicable)
+  - Consider: bundle size, performance impact, dependency health, license compatibility
+  - **Rule of thumb: If a well-maintained library solves 80%+ of the problem, use it instead of building custom**
+  - Document library choices with brief rationale when non-obvious
+- **ORGANIZED LOGIC:**
+  - Group related operations together (cohesion)
+  - Minimize coupling between modules
+  - Use consistent patterns throughout the codebase
+  - Extract reusable logic early to prevent duplication
+  - Design for testability (dependency injection, pure functions where possible)
+- **PERFORMANCE CONSIDERATIONS:**
+  - Profile before optimizing (measure, don't guess)
+  - Consider memory usage and cleanup for long-running processes
+  - Use appropriate caching strategies (in-memory, Redis, CDN)
+  - Optimize critical paths, but keep non-critical code readable
+- **MAINTAINABILITY:**
+  - Write code for your future self (and team) - prioritize readability
+  - Avoid premature optimization, but avoid obvious performance issues
+  - Document design decisions when they're non-obvious
+  - Keep functions/modules focused and testable
 
-### Risk controls
-- **No duplicate structures**: If a util/component/service exists, extend it rather than creating a parallel version.
-- **No global behavior changes**: Avoid editing CORS, security middleware, or build config unless the task explicitly requires it.
-- **No secret leakage**: Do not add secrets to source. Use environment variables and the config module.
-- **Minimal blast radius**: Keep edits small and localized; include unit-level verifications where possible.
+Future File Guidelines
+- **PRIORITIZE: Keep controllers focused and manageable**
+- **PRIORITIZE: Keep components focused and manageable**  
+- **PRIORITIZE: Keep services focused and manageable**
+- **MANDATORY: Split when files become unwieldy or hard to navigate**
+- Use feature-based folder structure for new modules
+- Implement proper separation of concerns from the start
+- **PRIORITY: Prefer multiple focused files over one large file**
+- **RULE: If a file becomes difficult to understand or maintain, split it**
 
----
+Modularity Enforcement Rules
+- **NEVER create unnecessarily large files - keep them focused and manageable**
+- **ALWAYS break down existing large files when editing them**
+- **PREFER multiple small, focused files over one large file**
+- **ENFORCE single responsibility principle per file**
+- **SPLIT when files become difficult to navigate or maintain**
+- **CREATE separate files for different concerns, even if they seem related**
+- **USE feature-based organization over monolithic structures**
 
-### Acceptance checklist for each change
-- Confirm there is no existing equivalent implementation.
-- Validate inputs via the correct layer (Joi for backend requests).
-- Maintain existing response shapes and error contracts.
-- Preserve file/module styles (indentation, semicolons, module system).
-- Add i18n keys for any new UI strings.
-- Avoid adding dependencies; if necessary, justify and get approval first.
-
+Notes
+- Use smallest viable diffs; avoid generating boilerplate when equivalents exist.
+- **REMEMBER: Modularity is not optional - it's mandatory for maintainable code.**
+- **REMEMBER: Simple, clean, scalable code > Clever, complex, fragile code.**
+- **REMEMBER: Don't reinvent the wheel - leverage proven libraries when they add value.**
+- **REMEMBER: Incremental development > Monolithic attempts. Build in logical steps, verify each step, then proceed.**
+- **REMEMBER: One working step is better than a broken "complete" solution.**
