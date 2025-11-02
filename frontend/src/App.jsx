@@ -7,6 +7,7 @@ import MainApp from './MainApp';
 import LoginPage from './pages/LoginPage';
 import QueueDashboard from './pages/QueueDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import SurveyAccessPage from './pages/SurveyAccessPage';
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
         <Routes>
           {/* Main application routes (forms, etc.) */}
           <Route path="/*" element={<MainApp />} />
+
+          {/* Survey access routes */}
+          <Route path="/survey/management" element={<SurveyAccessPage surveyType="management" />} />
+          <Route path="/survey/educators" element={<SurveyAccessPage surveyType="educators" />} />
+          <Route path="/survey/learners" element={<SurveyAccessPage surveyType="learners" />} />
           
           {/* Admin login route */}
           <Route path="/admin/login" element={<LoginPage />} />

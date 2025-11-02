@@ -91,6 +91,12 @@ export const parentSurveyAPI = {
   submit: (data) => api.post('/parent-survey', data),
 };
 
+// Survey Access API
+export const surveyAccessAPI = {
+  validateAccessKey: (accessKey, surveyType) =>
+    api.post('/survey-access/validate', { accessKey, surveyType }),
+};
+
 // Discord API endpoints  
 export const discordAPI = {
   // Test webhook for specific form type

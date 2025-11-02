@@ -919,6 +919,13 @@
       "learners": "Learners"
     }
   },
+  "surveyAccess": {
+    "title": "Survey Access",
+    "enterKey": "Enter your Access Key:",
+    "submit": "Submit",
+    "error": "Invalid or missing access key",
+    "loading": "Validating..."
+  },
   "countryNames": {
     "China": "China",
     "United States": "United States",

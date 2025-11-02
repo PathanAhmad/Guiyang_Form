@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import LogoEn from '@/Images/SparkOSFullLogo.svg';
 import LogoZh from '@/Images/SparkOSFullLogoChinese.svg';
 
@@ -18,13 +19,13 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('footer.survey')}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#management" className="text-gray-600 hover:text-gray-900 transition-colors">{t('footer.links.management')}</a>
+                <Link to="/survey/management" className="text-gray-600 hover:text-gray-900 transition-colors">{t('footer.links.management')}</Link>
               </li>
               <li>
-                <a href="#educators" className="text-gray-600 hover:text-gray-900 transition-colors">{t('footer.links.educators')}</a>
+                <Link to="/survey/educators" className="text-gray-600 hover:text-gray-900 transition-colors">{t('footer.links.educators')}</Link>
               </li>
               <li>
-                <a href="#learners" className="text-gray-600 hover:text-gray-900 transition-colors">{t('footer.links.learners')}</a>
+                <Link to="/survey/learners" className="text-gray-600 hover:text-gray-900 transition-colors">{t('footer.links.learners')}</Link>
               </li>
             </ul>
           </div>
@@ -32,8 +33,9 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('footer.company')}</h3>
             <ul className="space-y-2">
-              <li>
-                <a href="https://aletheia.sg" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors">aletheia.sg</a>
+              <li className="text-gray-600">
+                <span className="text-gray-900 font-medium">Aletheia:</span>{' '}
+                <a href="https://aletheia.sg" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">aletheia.sg</a>
               </li>
             </ul>
           </div>
@@ -41,8 +43,9 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('footer.product')}</h3>
             <ul className="space-y-2">
-              <li>
-                <a href="https://spark-os.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900 transition-colors">spark-os.com</a>
+              <li className="text-gray-600">
+                <span className="text-gray-900 font-medium">SparkOS:</span>{' '}
+                <a href="https://spark-os.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">spark-os.com</a>
               </li>
             </ul>
           </div>

@@ -942,6 +942,13 @@
       "learners": "学习者"
     }
   },
+  "surveyAccess": {
+    "title": "问卷访问",
+    "enterKey": "请输入访问密钥：",
+    "submit": "提交",
+    "error": "访问密钥无效或缺失",
+    "loading": "验证中..."
+  },
   "countryNames": {
     "Afghanistan": "阿富汗",
     "Albania": "阿尔巴尼亚",
