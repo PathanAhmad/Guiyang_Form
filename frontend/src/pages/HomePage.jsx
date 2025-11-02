@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import LanguageToggle from '../components/ui/LanguageToggle';
-import PageScaleControl, { usePageScale } from '../components/ui/PageScaleControl';
 import LogoEn from '@/Images/SparkOSFullLogo.svg';
 import LogoZh from '@/Images/SparkOSFullLogoChinese.svg';
  
@@ -52,20 +51,19 @@ const HomePage = ({ onCardSelect }) => {
     }
   ];
 
-  const { scale } = usePageScale();
+  // Removed page scale control; render at natural scale
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/20 to-primary-400/20 relative">
-      {/* Language & Scale Controls - Fixed Position */}
-      <div className="absolute top-6 right-6 z-10 flex items-center gap-3">
-        <PageScaleControl />
+      {/* Language Control - Fixed Position */}
+      <div className="absolute top-6 right-6 z-10">
         <LanguageToggle />
       </div>
       
-      {/* Scaled Content Wrapper */}
+      {/* Content Wrapper (scaled 80%) */}
       <div
         className="origin-top mx-auto"
-        style={{ transform: `scale(${scale / 100})`, transformOrigin: 'top center', transition: 'transform 150ms ease' }}
+        style={{ transform: 'scale(0.8)', transformOrigin: 'top center', transition: 'transform 150ms ease' }}
       >
       {/* Header with Logo */}
       <div className="text-center py-16">

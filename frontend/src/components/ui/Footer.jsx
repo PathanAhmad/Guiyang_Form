@@ -34,8 +34,14 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('footer.company')}</h3>
             <ul className="space-y-2">
               <li className="text-gray-600">
-                <span className="text-gray-900 font-medium">Aletheia:</span>{' '}
-                <a href="https://aletheia.sg" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">aletheia.sg</a>
+                <a
+                  href="https://aletheia.sg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-900 font-medium hover:text-gray-900 transition-colors"
+                >
+                  Aletheia
+                </a>
               </li>
             </ul>
           </div>
@@ -44,8 +50,14 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('footer.product')}</h3>
             <ul className="space-y-2">
               <li className="text-gray-600">
-                <span className="text-gray-900 font-medium">SparkOS:</span>{' '}
-                <a href="https://spark-os.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">spark-os.com</a>
+                <a
+                  href="https://spark-os.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-900 font-medium hover:text-gray-900 transition-colors"
+                >
+                  SparkOS
+                </a>
               </li>
             </ul>
           </div>
