@@ -932,6 +932,16 @@
     "importantNotice": "重要提醒",
     "screenshotReminder": "没有此令牌将无法参与演示"
   },
+  "footer": {
+    "survey": "问卷",
+    "company": "公司",
+    "product": "产品",
+    "links": {
+      "management": "管理层",
+      "educators": "教育者",
+      "learners": "学习者"
+    }
+  },
   "countryNames": {
     "Afghanistan": "阿富汗",
     "Albania": "阿尔巴尼亚",

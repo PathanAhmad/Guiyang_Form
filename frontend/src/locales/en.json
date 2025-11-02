@@ -909,6 +909,16 @@
     "importantNotice": "IMPORTANT NOTICE",
     "screenshotReminder": "Demo cannot proceed without showing this token"
   },
+  "footer": {
+    "survey": "Survey",
+    "company": "Company",
+    "product": "Product",
+    "links": {
+      "management": "Management",
+      "educators": "Educators",
+      "learners": "Learners"
+    }
+  },
   "countryNames": {
     "China": "China",
     "United States": "United States",

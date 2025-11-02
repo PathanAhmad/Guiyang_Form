@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { assetUrl } from '../../utils/assets';
 import LanguageToggle from './LanguageToggle';
+import Footer from './Footer';
  
 
 const Layout = ({ children, showNavigation = false }) => {
@@ -21,7 +22,7 @@ const Layout = ({ children, showNavigation = false }) => {
   // Remove router-based navigation logic since we're using state-based navigation now
 
   return (
-    <div className="min-h-screen w-full bg-gray-50">
+    <div className="min-h-screen w-full bg-gray-50 flex flex-col">
       {/* Simplified Navigation - Only show when needed */}
       {showNavigation && (
         <nav className="bg-white shadow-sm border-b border-gray-200">
@@ -46,11 +47,11 @@ const Layout = ({ children, showNavigation = false }) => {
       )}
 
       {/* Main content */}
-      <main className="w-full">
+      <main className="w-full flex-1">
         {children}
       </main>
 
-
+      <Footer />
     </div>
   );
 };
