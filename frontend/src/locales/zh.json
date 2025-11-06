@@ -855,7 +855,7 @@
         },
         "message": {
           "label": "附加信息",
-          "placeholder": "请告诉我们您的具体需求和要求（选填）",
+          "placeholder": "请告诉我们您的具体需求和要求",
           "hint": "帮助我们更好地了解您的要求"
         },
         "wechatId": {
