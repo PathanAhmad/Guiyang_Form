@@ -67,6 +67,9 @@ const RadioGroup = ({
       {label && (
         <label className="block text-sm font-medium text-gray-700 mb-3">
           {label}
+          {required && (
+            <span className={`${error ? 'text-red-500' : 'text-gray-400'} ml-1`}>*</span>
+          )}
         </label>
       )}
       <div className="space-y-2">

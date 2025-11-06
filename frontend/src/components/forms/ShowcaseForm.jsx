@@ -12,6 +12,7 @@ import Textarea from '../ui/Textarea';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
 import { countryOptions, getDialCodeByCountry, applyDialCodeToDigits } from '../../utils/countries';
+import { makeErrorGetter, getFirstErrorField } from '../../utils/progressiveErrors';
 
 const ShowcaseForm = ({ onSuccess }) => {
   const { t } = useTranslation();
@@ -65,11 +66,37 @@ const ShowcaseForm = ({ onSuccess }) => {
     validateShowcaseForm
   );
 
+  // Progressive error display: only show the first error, top-to-bottom
+  const showcaseFieldOrder = [
+    // Contact
+    'name', 'institution', 'position', 'email', 'country', 'phone',
+    // Industry
+    'workInEducation', 'educationFields', 'primaryRole',
+    // SparkOS Interest
+    'sparkosUsage', 'ageGroups', 'neurodiversityWork', 'supportedConditions',
+    // Specific Interest Points
+    'featuresInterest', 'implementationTimeline', 'pilotInterest',
+    // Additional
+    'currentChallenges', 'additionalComments'
+  ];
+  const getError = makeErrorGetter(errors, showcaseFieldOrder);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     const validation = validate();
     if (!validation.isValid) {
+      // Auto-scroll to the first errored field for quick correction
+      const firstField = getFirstErrorField(validation.errors || {}, showcaseFieldOrder);
+      if (firstField) {
+        const el = document.querySelector(`[name="${firstField}"]`);
+        if (el && typeof el.scrollIntoView === 'function') {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (typeof el.focus === 'function') {
+            setTimeout(() => el.focus({ preventScroll: true }), 250);
+          }
+        }
+      }
       return;
     }
 
@@ -175,7 +202,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 value={values.name}
                 onChange={(e) => handleChange('name', e.target.value)}
                 onBlur={() => handleBlur('name')}
-                error={errors.name}
+                error={getError('name')}
                 placeholder={t('forms.showcase.fields.name.placeholder')}
               />
               
@@ -186,7 +213,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 value={values.institution}
                 onChange={(e) => handleChange('institution', e.target.value)}
                 onBlur={() => handleBlur('institution')}
-                error={errors.institution}
+                error={getError('institution')}
                 placeholder={t('forms.showcase.fields.institution.placeholder')}
               />
               
@@ -197,7 +224,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 value={values.position}
                 onChange={(e) => handleChange('position', e.target.value)}
                 onBlur={() => handleBlur('position')}
-                error={errors.position}
+                error={getError('position')}
                 placeholder={t('forms.showcase.fields.position.placeholder')}
               />
               
@@ -209,7 +236,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 value={values.email}
                 onChange={(e) => handleChange('email', e.target.value)}
                 onBlur={() => handleBlur('email')}
-                error={errors.email}
+                error={getError('email')}
                 placeholder={t('forms.showcase.fields.email.placeholder')}
               />
               
@@ -223,7 +250,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                   handleChange('country', newCountry);
                 }}
                 onBlur={() => handleBlur('country')}
-                error={errors.country}
+                error={getError('country')}
                 options={[{ value: '', label: t('forms.showcase.fields.country.placeholder') }, ...countryOptions]}
               />
 
@@ -235,7 +262,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 value={values.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
                 onBlur={() => handleBlur('phone')}
-                error={errors.phone}
+                error={getError('phone')}
                 placeholder={t('forms.showcase.fields.phone.placeholder')}
               />
             </div>
@@ -251,7 +278,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 label={t('forms.showcase.fields.workInEducation.label')}
                 value={values.workInEducation}
                 onChange={(e) => handleChange('workInEducation', e.target.value)}
-                error={errors.workInEducation}
+                error={getError('workInEducation')}
                 required
                 options={[
                   { value: 'yes', label: t('forms.showcase.fields.workInEducation.options.yes') },
@@ -266,7 +293,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                     label={t('forms.showcase.fields.educationFields.label')}
                     values={values.educationFields}
                     onChange={(newValues) => handleChange('educationFields', newValues)}
-                    error={errors.educationFields}
+                    error={getError('educationFields')}
                     otherOption={true}
                     otherValue={otherFields.educationFieldsOther}
                     onOtherChange={(value) => handleOtherFieldChange('educationFieldsOther', value)}
@@ -291,7 +318,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                     label={t('forms.showcase.fields.primaryRole.label')}
                     value={values.primaryRole}
                     onChange={(e) => handleChange('primaryRole', e.target.value)}
-                    error={errors.primaryRole}
+                    error={getError('primaryRole')}
                     required
                     options={[
                       { value: 'administrator', label: t('forms.showcase.fields.primaryRole.options.administrator') },
@@ -330,7 +357,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 label={t('forms.showcase.fields.sparkosUsage.label')}
                 values={values.sparkosUsage}
                 onChange={(newValues) => handleChange('sparkosUsage', newValues)}
-                error={errors.sparkosUsage}
+                error={getError('sparkosUsage')}
                 otherOption={true}
                 otherValue={otherFields.sparkosUsageOther}
                 onOtherChange={(value) => handleOtherFieldChange('sparkosUsageOther', value)}
@@ -354,7 +381,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 label={t('forms.showcase.fields.ageGroups.label')}
                 values={values.ageGroups}
                 onChange={(newValues) => handleChange('ageGroups', newValues)}
-                error={errors.ageGroups}
+                error={getError('ageGroups')}
                 options={[
                   { value: 'preschool', label: t('forms.showcase.fields.ageGroups.options.preschool') },
                   { value: 'earlyElementary', label: t('forms.showcase.fields.ageGroups.options.earlyElementary') },
@@ -370,7 +397,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 label={t('forms.showcase.fields.neurodiversityWork.label')}
                 value={values.neurodiversityWork}
                 onChange={(e) => handleChange('neurodiversityWork', e.target.value)}
-                error={errors.neurodiversityWork}
+                error={getError('neurodiversityWork')}
                 options={[
                   { value: 'frequently', label: t('forms.showcase.fields.neurodiversityWork.options.frequently') },
                   { value: 'occasionally', label: t('forms.showcase.fields.neurodiversityWork.options.occasionally') },
@@ -385,7 +412,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                   label={t('forms.showcase.fields.supportedConditions.label')}
                   values={values.supportedConditions}
                   onChange={(newValues) => handleChange('supportedConditions', newValues)}
-                  error={errors.supportedConditions}
+                  error={getError('supportedConditions')}
                   otherOption={true}
                   otherValue={otherFields.supportedConditionsOther}
                   onOtherChange={(value) => handleOtherFieldChange('supportedConditionsOther', value)}
@@ -413,7 +440,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 label={t('forms.showcase.fields.featuresInterest.label')}
                 values={values.featuresInterest}
                 onChange={(newValues) => handleChange('featuresInterest', newValues)}
-                error={errors.featuresInterest}
+                error={getError('featuresInterest')}
                 required
                 maxSelection={3}
                 options={[
@@ -433,7 +460,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 label={t('forms.showcase.fields.implementationTimeline.label')}
                 value={values.implementationTimeline}
                 onChange={(e) => handleChange('implementationTimeline', e.target.value)}
-                error={errors.implementationTimeline}
+                error={getError('implementationTimeline')}
                 required
                 options={[
                   { value: 'immediate', label: t('forms.showcase.fields.implementationTimeline.options.immediate') },
@@ -449,7 +476,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 label={t('forms.showcase.fields.pilotInterest.label')}
                 value={values.pilotInterest}
                 onChange={(e) => handleChange('pilotInterest', e.target.value)}
-                error={errors.pilotInterest}
+                error={getError('pilotInterest')}
                 required
                 options={[
                   { value: 'yes', label: t('forms.showcase.fields.pilotInterest.options.yes') },
@@ -471,7 +498,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 value={values.currentChallenges}
                 onChange={(e) => handleChange('currentChallenges', e.target.value)}
                 onBlur={() => handleBlur('currentChallenges')}
-                error={errors.currentChallenges}
+                error={getError('currentChallenges')}
                 placeholder={t('forms.showcase.fields.currentChallenges.placeholder')}
                 rows={4}
               />
@@ -482,7 +509,7 @@ const ShowcaseForm = ({ onSuccess }) => {
                 value={values.additionalComments}
                 onChange={(e) => handleChange('additionalComments', e.target.value)}
                 onBlur={() => handleBlur('additionalComments')}
-                error={errors.additionalComments}
+                error={getError('additionalComments')}
                 placeholder={t('forms.showcase.fields.additionalComments.placeholder')}
                 rows={4}
               />
