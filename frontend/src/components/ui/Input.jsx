@@ -24,9 +24,11 @@ const Input = forwardRef(({
   showCountryCode = false,
   countryCodeOptions = commonDialCodes,
   defaultDialCode = '+86',
+  suggestions = [],
   ...props
 }, ref) => {
   const inputId = props.id || props.name;
+  const datalistId = suggestions && suggestions.length ? `${inputId}-list` : undefined;
   const valueStr = typeof props.value === 'string' ? props.value : (props.value ?? '').toString();
 
   // Parse combined value into dial code and number when showCountryCode is enabled
@@ -59,8 +61,17 @@ const Input = forwardRef(({
           type={type}
           id={inputId}
           className={`input-field ${error ? 'input-error' : ''} ${className}`}
+          list={datalistId}
           {...props}
         />
+      )}
+
+      {datalistId && (
+        <datalist id={datalistId}>
+          {suggestions.map((opt) => (
+            <option key={opt} value={opt} />
+          ))}
+        </datalist>
       )}
 
       {showCountryCode && (

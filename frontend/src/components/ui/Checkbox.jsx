@@ -112,11 +112,6 @@ const CheckboxGroup = ({
           {required && (
             <span className={`${error ? 'text-red-500' : 'text-gray-400'} ml-1`}>*</span>
           )}
-          {maxSelection && (
-            <span className="text-sm text-gray-500 ml-2">
-              (Select up to {maxSelection})
-            </span>
-          )}
         </label>
       )}
       <div className="space-y-2">
@@ -140,7 +135,7 @@ const CheckboxGroup = ({
                   disabled={isDisabled}
                   onBlur={onBlur}
                   onFocus={onFocus}
-                  required={required}
+                  required={false}
                 />
               </div>
               {/* Show other input if this is the "other" option and it's checked */}

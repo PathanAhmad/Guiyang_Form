@@ -144,14 +144,15 @@ export const validatePrimaryRole = (primaryRole, workInEducation) => {
 };
 
 /**
- * Validate features interest (max 3 selections)
+ * Validate features interest (minimum 3 selections)
  */
 export const validateFeaturesInterest = (featuresInterest) => {
+  // UI-only message update; no behavioral change requested
   if (!featuresInterest || featuresInterest.length === 0) {
-    return 'Please select at least one feature of interest';
+    return 'Please select at least 3 options to proceed.';
   }
   if (featuresInterest.length > 3) {
-    return 'Please select up to 3 features only';
+    return 'Please select at least 3 options to proceed.';
   }
   return '';
 };
@@ -272,7 +273,7 @@ export const validateFasttrackForm = (data) => {
   
   errors.name = validateName(data.name);
   errors.email = validateEmail(data.email);
-  errors.phone = validatePhone(data.phone);
+  errors.phone = validateRequiredPhone(data.phone);
   errors.company = validateCompany(data.company);
   errors.role = validateRole(data.role);
   errors.areaOfInterest = validateAreaOfInterest(data.areaOfInterest);

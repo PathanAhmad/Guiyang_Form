@@ -583,7 +583,7 @@
           }
         },
         "featuresInterest": {
-          "label": "您对SparkOS哪些功能最感兴趣？（最多选3项）",
+          "label": "您对SparkOS哪些功能最感兴趣？（至少选3项）",
           "options": {
             "voiceEmotion": "语音情绪分析",
             "videoEmotion": "视频情绪识别",
@@ -757,7 +757,7 @@
           }
         },
         "featuresInterest": {
-          "label": "您对SparkOS哪些功能最感兴趣？（最多选3项）",
+          "label": "您对SparkOS哪些功能最感兴趣？（至少选3项）",
           "options": {
             "voiceEmotion": "语音情绪分析",
             "videoEmotion": "视频情绪识别",
@@ -826,7 +826,7 @@
         },
         "phone": {
           "label": "电话号码",
-          "placeholder": "请输入您的电话号码（选填）"
+          "placeholder": "请输入您的电话号码"
         },
         "country": {
           "label": "国家/地区",
@@ -842,7 +842,19 @@
         },
         "areaOfInterest": {
           "label": "感兴趣的领域",
-          "placeholder": "请选择或输入您感兴趣的技术领域"
+          "placeholder": "请选择或输入您感兴趣的技术领域",
+          "options": {
+            "aiMl": "AI / 机器学习",
+            "cv": "计算机视觉",
+            "nlp": "自然语言处理",
+            "analytics": "数据分析 / 商业智能",
+            "arVr": "增强/虚拟现实",
+            "robotics": "机器人",
+            "iot": "物联网 (IoT)",
+            "edge": "边缘/嵌入式AI",
+            "security": "安全与隐私",
+            "other": "其他"
+          }
         },
         "message": {
           "label": "附加信息",

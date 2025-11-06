@@ -576,7 +576,7 @@
           }
         },
         "featuresInterest": {
-          "label": "Which SparkOS features are you most interested in? (Select up to 3)",
+          "label": "Which SparkOS features are you most interested in? (Select minimum 3)",
           "options": {
             "voiceEmotion": "Voice Emotion Analysis",
             "videoEmotion": "Video Emotion Recognition",
@@ -750,7 +750,7 @@
           }
         },
         "featuresInterest": {
-          "label": "Which SparkOS features are you most interested in? (Select up to 3)",
+          "label": "Which SparkOS features are you most interested in? (Select minimum 3)",
           "options": {
             "voiceEmotion": "Voice Emotion Analysis",
             "videoEmotion": "Video Emotion Recognition",
@@ -811,11 +811,26 @@
       "fields": {
         "name": { "label": "Name", "placeholder": "Enter your name" },
         "email": { "label": "Email", "placeholder": "Enter your email address" },
-        "phone": { "label": "Phone Number", "placeholder": "Enter your phone number (optional)" },
+        "phone": { "label": "Phone Number", "placeholder": "Enter your phone number" },
         "country": { "label": "Country/Region", "placeholder": "Select your country or region" },
         "company": { "label": "Company/Organization", "placeholder": "Enter your company or organization name" },
         "role": { "label": "Your Position/Role", "placeholder": "Enter your position or role" },
-        "areaOfInterest": { "label": "Area of Interest", "placeholder": "Select or enter your area of technical interest" },
+        "areaOfInterest": {
+          "label": "Area of Interest",
+          "placeholder": "Select or enter your area of technical interest",
+          "options": {
+            "aiMl": "AI / Machine Learning",
+            "cv": "Computer Vision",
+            "nlp": "Natural Language Processing",
+            "analytics": "Data Analytics / BI",
+            "arVr": "AR / VR",
+            "robotics": "Robotics",
+            "iot": "Internet of Things (IoT)",
+            "edge": "Edge / Embedded AI",
+            "security": "Security & Privacy",
+            "other": "Other"
+          }
+        },
         "message": { "label": "Additional Information", "placeholder": "Tell us about your specific needs and requirements (optional)", "hint": "Help us better understand your requirements" }
       }
     },

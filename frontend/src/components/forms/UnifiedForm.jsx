@@ -192,6 +192,8 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                 placeholder={t(`forms.${formType}.fields.phone.placeholder`)}
                 hint={formType !== 'fasttrack' ? t(`forms.${formType}.fields.phone.hint`) : undefined}
                 className="text-lg"
+                required={formType === 'fasttrack'}
+                showCountryCode={formType === 'fasttrack'}
               />
 
               {/* Fast Track Additional Fields */}
@@ -223,16 +225,28 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                     />
                   </div>
                   
-                  <Input
-                    name="areaOfInterest"
-                    label={t('forms.fasttrack.fields.areaOfInterest.label')}
-                    value={values.areaOfInterest}
-                    onChange={(e) => handleChange('areaOfInterest', e.target.value)}
-                    onBlur={() => handleBlur('areaOfInterest')}
-                    error={errors.areaOfInterest}
-                    placeholder={t('forms.fasttrack.fields.areaOfInterest.placeholder')}
-                    className="text-lg"
-                  />
+              <Input
+                name="areaOfInterest"
+                label={t('forms.fasttrack.fields.areaOfInterest.label')}
+                value={values.areaOfInterest}
+                onChange={(e) => handleChange('areaOfInterest', e.target.value)}
+                onBlur={() => handleBlur('areaOfInterest')}
+                error={errors.areaOfInterest}
+                placeholder={t('forms.fasttrack.fields.areaOfInterest.placeholder')}
+                className="text-lg"
+                suggestions={[
+                  t('forms.fasttrack.fields.areaOfInterest.options.aiMl'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.cv'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.nlp'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.analytics'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.arVr'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.robotics'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.iot'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.edge'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.security'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.other')
+                ]}
+              />
                   
                   <Textarea
                     name="message"
