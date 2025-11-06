@@ -239,7 +239,6 @@ const FastTrackForm = ({ onSuccess }) => {
               onBlur={() => handleBlur('whatsappId')}
               error={touched.whatsappId ? errors.whatsappId : ''}
               placeholder={t('forms.fasttrack.fields.whatsappId.placeholder')}
-              hint={t('forms.fasttrack.fields.whatsappId.hint')}
             />
           </div>
 

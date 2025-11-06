@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from '../../hooks/useForm';
 import { useFormSubmission } from '../../hooks/useApi';
-import { validateDemoForm } from '../../utils/validation';
+import { validateDemoForm, validateFeaturesInterest } from '../../utils/validation';
 import { formsAPI } from '../../services/api';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
@@ -32,7 +32,8 @@ const DemoForm = ({ onSuccess }) => {
     handleChange,
     handleBlur,
     validate,
-    reset
+    reset,
+    setFieldError
   } = useForm(
     {
       // Contact Information
@@ -441,10 +442,12 @@ const DemoForm = ({ onSuccess }) => {
                 name="featuresInterest"
                 label={t('forms.demo.fields.featuresInterest.label')}
                 values={values.featuresInterest}
-                onChange={(newValues) => handleChange('featuresInterest', newValues)}
+                onChange={(newValues) => {
+                  handleChange('featuresInterest', newValues);
+                  setFieldError('featuresInterest', validateFeaturesInterest(newValues));
+                }}
                 error={getError('featuresInterest')}
                 required
-                maxSelection={3}
                 options={[
                   { value: 'voiceEmotion', label: t('forms.demo.fields.featuresInterest.options.voiceEmotion') },
                   { value: 'videoEmotion', label: t('forms.demo.fields.featuresInterest.options.videoEmotion') },

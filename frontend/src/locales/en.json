@@ -607,7 +607,7 @@
           }
         },
         "currentChallenges": {
-          "label": "Current challenges in education: (Optional)",
+          "label": "Current challenges in education:",
           "placeholder": "Please describe any current challenges you face in education that SparkOS might help address"
         },
         "additionalComments": {
@@ -781,7 +781,7 @@
           }
         },
         "currentChallenges": {
-          "label": "Current challenges in education: (Optional)",
+          "label": "Current challenges in education:",
           "placeholder": "Please describe any current challenges you face in education that SparkOS might help address"
         },
         "additionalComments": {

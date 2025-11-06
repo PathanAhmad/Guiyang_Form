@@ -179,10 +179,6 @@ export const validateFeaturesInterest = (featuresInterest) => {
   if (!Array.isArray(featuresInterest) || featuresInterest.length < 3) {
     return 'Please select at least 3 options to proceed.';
   }
-  // Safety guard: UI caps at 3, but validate in case of future changes
-  if (featuresInterest.length > 3) {
-    return 'Please select up to 3 options only.';
-  }
   return '';
 };
 
