@@ -860,6 +860,16 @@
           "label": "附加信息",
           "placeholder": "请告诉我们您的具体需求和要求（选填）",
           "hint": "帮助我们更好地了解您的要求"
+        },
+        "wechatId": {
+          "label": "微信ID",
+          "placeholder": "请输入您的微信ID",
+          "hint": "至少需要提供一种联系方式"
+        },
+        "whatsappId": {
+          "label": "WhatsApp ID",
+          "placeholder": "请输入您的WhatsApp ID",
+          "hint": "至少需要提供一种联系方式"
         }
       }
     },

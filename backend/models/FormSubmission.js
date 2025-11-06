@@ -80,6 +80,16 @@ const formSubmissionSchema = new mongoose.Schema({
     trim: true,
     maxlength: 1000
   },
+  wechatId: {
+    type: String,
+    trim: true,
+    maxlength: 100
+  },
+  whatsappId: {
+    type: String,
+    trim: true,
+    maxlength: 100
+  },
   
   // Demo/Showcase Industry Background
   workInEducation: {

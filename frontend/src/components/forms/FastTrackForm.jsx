@@ -18,6 +18,7 @@ const FastTrackForm = ({ onSuccess }) => {
   const {
     values,
     errors,
+    touched,
     handleChange,
     handleBlur,
     validate,
@@ -30,7 +31,9 @@ const FastTrackForm = ({ onSuccess }) => {
       phone: '',
       company: '',
       role: '',
-      message: ''
+      message: '',
+      wechatId: '',
+      whatsappId: ''
     },
     validateFasttrackForm
   );
@@ -119,7 +122,7 @@ const FastTrackForm = ({ onSuccess }) => {
               value={values.name}
               onChange={(e) => handleChange('name', e.target.value)}
               onBlur={() => handleBlur('name')}
-              error={errors.name}
+              error={touched.name ? errors.name : ''}
               placeholder={t('forms.fasttrack.fields.name.placeholder')}
             />
             
@@ -131,7 +134,7 @@ const FastTrackForm = ({ onSuccess }) => {
               value={values.email}
               onChange={(e) => handleChange('email', e.target.value)}
               onBlur={() => handleBlur('email')}
-              error={errors.email}
+              error={touched.email ? errors.email : ''}
               placeholder={t('forms.fasttrack.fields.email.placeholder')}
             />
           </div>
@@ -146,7 +149,7 @@ const FastTrackForm = ({ onSuccess }) => {
                 handleChange('country', newCountry);
               }}
               onBlur={() => handleBlur('country')}
-              error={errors.country}
+              error={touched.country ? errors.country : ''}
               options={[{ value: '', label: t('forms.fasttrack.fields.country.placeholder') }, ...countryOptions]}
             />
 
@@ -157,7 +160,7 @@ const FastTrackForm = ({ onSuccess }) => {
               value={values.phone}
               onChange={(e) => handleChange('phone', e.target.value)}
               onBlur={() => handleBlur('phone')}
-              error={errors.phone}
+              error={touched.phone ? errors.phone : ''}
               placeholder={t('forms.fasttrack.fields.phone.placeholder')}
             />
 
@@ -168,7 +171,7 @@ const FastTrackForm = ({ onSuccess }) => {
               value={values.company}
               onChange={(e) => handleChange('company', e.target.value)}
               onBlur={() => handleBlur('company')}
-              error={errors.company}
+              error={touched.company ? errors.company : ''}
               placeholder={t('forms.fasttrack.fields.company.placeholder')}
             />
           </div>
@@ -180,7 +183,7 @@ const FastTrackForm = ({ onSuccess }) => {
             value={values.role}
             onChange={(e) => handleChange('role', e.target.value)}
             onBlur={() => handleBlur('role')}
-            error={errors.role}
+            error={touched.role ? errors.role : ''}
             placeholder={t('forms.fasttrack.fields.role.placeholder')}
           />
           
@@ -190,11 +193,35 @@ const FastTrackForm = ({ onSuccess }) => {
             value={values.message}
             onChange={(e) => handleChange('message', e.target.value)}
             onBlur={() => handleBlur('message')}
-            error={errors.message}
+            error={touched.message ? errors.message : ''}
             placeholder={t('forms.fasttrack.fields.message.placeholder')}
             hint={t('forms.fasttrack.fields.message.hint')}
             rows={4}
           />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Input
+              name="wechatId"
+              label={t('forms.fasttrack.fields.wechatId.label')}
+              value={values.wechatId}
+              onChange={(e) => handleChange('wechatId', e.target.value)}
+              onBlur={() => handleBlur('wechatId')}
+              error={touched.wechatId ? errors.wechatId : ''}
+              placeholder={t('forms.fasttrack.fields.wechatId.placeholder')}
+              hint={t('forms.fasttrack.fields.wechatId.hint')}
+            />
+            
+            <Input
+              name="whatsappId"
+              label={t('forms.fasttrack.fields.whatsappId.label')}
+              value={values.whatsappId}
+              onChange={(e) => handleChange('whatsappId', e.target.value)}
+              onBlur={() => handleBlur('whatsappId')}
+              error={touched.whatsappId ? errors.whatsappId : ''}
+              placeholder={t('forms.fasttrack.fields.whatsappId.placeholder')}
+              hint={t('forms.fasttrack.fields.whatsappId.hint')}
+            />
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <Button

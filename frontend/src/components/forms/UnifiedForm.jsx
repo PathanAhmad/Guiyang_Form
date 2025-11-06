@@ -28,7 +28,9 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
         company: '',
         role: '',
         areaOfInterest: '',
-        message: ''
+        message: '',
+        wechatId: '',
+        whatsappId: ''
       };
     }
 
@@ -66,6 +68,7 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
   const {
     values,
     errors,
+    touched,
     handleChange,
     handleBlur,
     validate,
@@ -162,7 +165,7 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                   value={values.name}
                   onChange={(e) => handleChange('name', e.target.value)}
                   onBlur={() => handleBlur('name')}
-                  error={errors.name}
+                  error={touched.name ? errors.name : ''}
                   placeholder={t(`forms.${formType}.fields.name.placeholder`)}
                   className="text-lg"
                 />
@@ -175,7 +178,7 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                   value={values.email}
                   onChange={(e) => handleChange('email', e.target.value)}
                   onBlur={() => handleBlur('email')}
-                  error={errors.email}
+                  error={touched.email ? errors.email : ''}
                   placeholder={t(`forms.${formType}.fields.email.placeholder`)}
                   className="text-lg"
                 />
@@ -188,7 +191,7 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                 value={values.phone}
                 onChange={(e) => handleChange('phone', e.target.value)}
                 onBlur={() => handleBlur('phone')}
-                error={errors.phone}
+                error={touched.phone ? errors.phone : ''}
                 placeholder={t(`forms.${formType}.fields.phone.placeholder`)}
                 hint={formType !== 'fasttrack' ? t(`forms.${formType}.fields.phone.hint`) : undefined}
                 className="text-lg"
@@ -207,7 +210,7 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                       value={values.company}
                       onChange={(e) => handleChange('company', e.target.value)}
                       onBlur={() => handleBlur('company')}
-                      error={errors.company}
+                      error={touched.company ? errors.company : ''}
                       placeholder={t('forms.fasttrack.fields.company.placeholder')}
                       className="text-lg"
                     />
@@ -219,7 +222,7 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                       value={values.role}
                       onChange={(e) => handleChange('role', e.target.value)}
                       onBlur={() => handleBlur('role')}
-                      error={errors.role}
+                      error={touched.role ? errors.role : ''}
                       placeholder={t('forms.fasttrack.fields.role.placeholder')}
                       className="text-lg"
                     />
@@ -231,7 +234,7 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                 value={values.areaOfInterest}
                 onChange={(e) => handleChange('areaOfInterest', e.target.value)}
                 onBlur={() => handleBlur('areaOfInterest')}
-                error={errors.areaOfInterest}
+                error={touched.areaOfInterest ? errors.areaOfInterest : ''}
                 placeholder={t('forms.fasttrack.fields.areaOfInterest.placeholder')}
                 className="text-lg"
                 suggestions={[
@@ -254,12 +257,38 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                     value={values.message}
                     onChange={(e) => handleChange('message', e.target.value)}
                     onBlur={() => handleBlur('message')}
-                    error={errors.message}
+                    error={touched.message ? errors.message : ''}
                     placeholder={t('forms.fasttrack.fields.message.placeholder')}
                     hint={t('forms.fasttrack.fields.message.hint')}
                     rows={4}
                     className="text-lg"
                   />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Input
+                      name="wechatId"
+                      label={t('forms.fasttrack.fields.wechatId.label')}
+                      value={values.wechatId}
+                      onChange={(e) => handleChange('wechatId', e.target.value)}
+                      onBlur={() => handleBlur('wechatId')}
+                      error={touched.wechatId ? errors.wechatId : ''}
+                      placeholder={t('forms.fasttrack.fields.wechatId.placeholder')}
+                      hint={t('forms.fasttrack.fields.wechatId.hint')}
+                      className="text-lg"
+                    />
+                    
+                    <Input
+                      name="whatsappId"
+                      label={t('forms.fasttrack.fields.whatsappId.label')}
+                      value={values.whatsappId}
+                      onChange={(e) => handleChange('whatsappId', e.target.value)}
+                      onBlur={() => handleBlur('whatsappId')}
+                      error={touched.whatsappId ? errors.whatsappId : ''}
+                      placeholder={t('forms.fasttrack.fields.whatsappId.placeholder')}
+                      hint={t('forms.fasttrack.fields.whatsappId.hint')}
+                      className="text-lg"
+                    />
+                  </div>
                 </>
               )}
 

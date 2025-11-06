@@ -78,7 +78,27 @@ const validationSchemas = {
     message: Joi.string().trim().max(1000).optional().allow('')
       .messages({
         'string.max': 'Message must not exceed 1000 characters'
+      }),
+    wechatId: Joi.string().trim().max(100).optional().allow('')
+      .messages({
+        'string.max': 'WeChat ID must not exceed 100 characters'
+      }),
+    whatsappId: Joi.string().trim().max(100).optional().allow('')
+      .messages({
+        'string.max': 'WhatsApp ID must not exceed 100 characters'
       })
+  }).custom((value, helpers) => {
+    // Custom validation: at least one of wechatId or whatsappId must be provided
+    const wechatIdTrimmed = value.wechatId ? value.wechatId.trim() : '';
+    const whatsappIdTrimmed = value.whatsappId ? value.whatsappId.trim() : '';
+    
+    if (!wechatIdTrimmed && !whatsappIdTrimmed) {
+      return helpers.error('any.custom', {
+        message: 'Please provide at least one: WeChat ID or WhatsApp ID'
+      });
+    }
+    
+    return value;
   }),
 
   // Parent/Guardian Survey
@@ -194,10 +214,17 @@ const validateFormSubmission = (formType) => {
     });
     
     if (error) {
-      const errorMessages = error.details.map(detail => ({
-        field: detail.path.join('.'),
-        message: detail.message
-      }));
+      const errorMessages = error.details.map(detail => {
+        const field = detail.path.join('.');
+        // Handle custom validation for wechatId/whatsappId - show error on both fields
+        if (detail.type === 'any.custom' && detail.message.includes('WeChat ID or WhatsApp ID')) {
+          return [
+            { field: 'wechatId', message: detail.message },
+            { field: 'whatsappId', message: detail.message }
+          ];
+        }
+        return { field, message: detail.message };
+      }).flat();
       
       return res.status(400).json({
         success: false,

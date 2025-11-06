@@ -31,17 +31,7 @@ export const useForm = (initialValues = {}, validationFn = null) => {
       ...prev,
       [name]: true
     }));
-
-    // Validate field on blur if validation function provided
-    if (validationFn && touched[name]) {
-      const validation = validationFn(values);
-      if (validation.errors[name]) {
-        setErrors(prev => ({
-          ...prev,
-          [name]: validation.errors[name]
-        }));
-      }
-    }
+    // Validation only happens on submit, not on blur
   };
 
   // Validate form

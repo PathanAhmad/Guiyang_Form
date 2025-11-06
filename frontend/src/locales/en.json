@@ -831,7 +831,9 @@
             "other": "Other"
           }
         },
-        "message": { "label": "Additional Information", "placeholder": "Tell us about your specific needs and requirements (optional)", "hint": "Help us better understand your requirements" }
+        "message": { "label": "Additional Information", "placeholder": "Tell us about your specific needs and requirements (optional)", "hint": "Help us better understand your requirements" },
+        "wechatId": { "label": "WeChat ID", "placeholder": "Enter your WeChat ID", "hint": "At least one contact method is required" },
+        "whatsappId": { "label": "WhatsApp ID", "placeholder": "Enter your WhatsApp ID", "hint": "At least one contact method is required" }
       }
     },
     "validation": {

@@ -84,6 +84,35 @@ export const validateAreaOfInterest = (areaOfInterest) => {
 };
 
 /**
+ * Validate WeChat ID field (for fast-track form)
+ */
+export const validateWechatId = (wechatId) => {
+  if (wechatId && wechatId.trim().length > 100) return 'WeChat ID must not exceed 100 characters';
+  return '';
+};
+
+/**
+ * Validate WhatsApp ID field (for fast-track form)
+ */
+export const validateWhatsappId = (whatsappId) => {
+  if (whatsappId && whatsappId.trim().length > 100) return 'WhatsApp ID must not exceed 100 characters';
+  return '';
+};
+
+/**
+ * Validate that at least one of WeChat ID or WhatsApp ID is provided
+ */
+export const validateContactMethod = (wechatId, whatsappId) => {
+  const wechatIdTrimmed = wechatId ? wechatId.trim() : '';
+  const whatsappIdTrimmed = whatsappId ? whatsappId.trim() : '';
+  
+  if (!wechatIdTrimmed && !whatsappIdTrimmed) {
+    return 'Please provide at least one: WeChat ID or WhatsApp ID';
+  }
+  return '';
+};
+
+/**
  * Validate institution field
  */
 export const validateInstitution = (institution) => {
@@ -278,6 +307,22 @@ export const validateFasttrackForm = (data) => {
   errors.role = validateRole(data.role);
   errors.areaOfInterest = validateAreaOfInterest(data.areaOfInterest);
   errors.message = validateMessage(data.message);
+  
+  // Validate WeChat ID and WhatsApp ID
+  errors.wechatId = validateWechatId(data.wechatId);
+  errors.whatsappId = validateWhatsappId(data.whatsappId);
+  
+  // Validate that at least one contact method is provided
+  const contactMethodError = validateContactMethod(data.wechatId, data.whatsappId);
+  if (contactMethodError) {
+    // Show error on both fields if neither is filled
+    if (!data.wechatId || !data.wechatId.trim()) {
+      errors.wechatId = contactMethodError;
+    }
+    if (!data.whatsappId || !data.whatsappId.trim()) {
+      errors.whatsappId = contactMethodError;
+    }
+  }
   
   // Remove empty error messages
   Object.keys(errors).forEach(key => {

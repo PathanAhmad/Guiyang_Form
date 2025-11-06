@@ -10,7 +10,7 @@ class DiscordService {
    * Format message for Discord based on form type and submission data
    */
   formatMessage(formType, submissionData) {
-    const { name, email, phone, token, company, role, message, status = 'waiting', eventLabel } = submissionData;
+    const { name, email, phone, token, company, role, message, wechatId, whatsappId, status = 'waiting', eventLabel } = submissionData;
     
     const formTitleMap = {
       'demo': 'Sparkie Demo Submission',
@@ -52,6 +52,12 @@ class DiscordService {
       }
       if (message) {
         discordMessage += `💬 **Message:** ${message}\n`;
+      }
+      if (wechatId) {
+        discordMessage += `💬 **WeChat ID:** ${wechatId}\n`;
+      }
+      if (whatsappId) {
+        discordMessage += `💬 **WhatsApp ID:** ${whatsappId}\n`;
       }
     }
     
