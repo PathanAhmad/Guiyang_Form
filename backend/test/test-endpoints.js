@@ -1,4 +1,5 @@
 const axios = require('axios');
+const config = require('../config/environment');
 
 // Configuration
 const BASE_URL = 'http://localhost:3000';
@@ -256,7 +257,7 @@ const testValidation = async () => {
 // Main test runner
 const runAllTests = async () => {
   log.divider();
-  console.log(`${colors.cyan}🚀 Starting Maker Faire Guangzhou Form Backend Tests${colors.reset}`);
+  console.log(`${colors.cyan}🚀 Starting ${config.EVENT_LABEL} Form Backend Tests${colors.reset}`);
   console.log(`${colors.cyan}📅 ${new Date().toISOString()}${colors.reset}`);
   log.divider();
   

@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   // MongoDB Configuration
-  MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/makerfaire_guangzhou_forms',
+  MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/world_internet_expo_forms',
   
   // Server Configuration
   PORT: process.env.PORT || 6085,
@@ -19,7 +19,7 @@ module.exports = {
   },
   
   // Event / Campaign Labeling
-  EVENT_LABEL: process.env.EVENT_LABEL || 'Maker Faire Guangzhou',
+  EVENT_LABEL: process.env.EVENT_LABEL || 'World of Internet Expo',
   
   // Discord Webhook URLs
   DISCORD_WEBHOOKS: {

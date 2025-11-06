@@ -133,7 +133,7 @@ class DiscordService {
       
       const payload = {
         content: message,
-        username: 'Maker Faire Guangzhou Form Bot',
+        username: `${config.EVENT_LABEL} Form Bot`,
         avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png',
         components: components
       };
@@ -191,7 +191,7 @@ class DiscordService {
       
       const payload = {
         content: statusMessage,
-        username: 'Maker Faire Guangzhou Status Bot',
+        username: `${config.EVENT_LABEL} Status Bot`,
         avatar_url: 'https://cdn.discordapp.com/embed/avatars/2.png',
         components: components
       };
@@ -230,7 +230,7 @@ class DiscordService {
       
       const response = await axios.post(webhookUrl, {
         content: message,
-        username: 'Maker Faire Guangzhou Queue Bot',
+        username: `${config.EVENT_LABEL} Queue Bot`,
         avatar_url: 'https://cdn.discordapp.com/embed/avatars/1.png'
       }, {
         timeout: 10000,
