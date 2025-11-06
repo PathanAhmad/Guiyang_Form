@@ -841,18 +841,15 @@
           "placeholder": "请输入您的职位或角色"
         },
         "areaOfInterest": {
-          "label": "感兴趣的领域",
-          "placeholder": "请选择或输入您感兴趣的技术领域",
+          "label": "联系主因",
+          "placeholder": "请选择原因",
           "options": {
-            "aiMl": "AI / 机器学习",
-            "cv": "计算机视觉",
-            "nlp": "自然语言处理",
-            "analytics": "数据分析 / 商业智能",
-            "arVr": "增强/虚拟现实",
-            "robotics": "机器人",
-            "iot": "物联网 (IoT)",
-            "edge": "边缘/嵌入式AI",
-            "security": "安全与隐私",
+            "learnSparkOS": "了解 SparkOS",
+            "requestDemo": "申请演示",
+            "pilot": "讨论试点机会",
+            "partnership": "合作伙伴咨询",
+            "research": "科研合作",
+            "press": "媒体/新闻咨询",
             "other": "其他"
           }
         },

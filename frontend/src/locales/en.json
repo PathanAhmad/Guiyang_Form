@@ -816,18 +816,15 @@
         "company": { "label": "Company/Organization", "placeholder": "Enter your company or organization name" },
         "role": { "label": "Your Position/Role", "placeholder": "Enter your position or role" },
         "areaOfInterest": {
-          "label": "Area of Interest",
-          "placeholder": "Select or enter your area of technical interest",
+          "label": "Primary Reason for Reaching Out",
+          "placeholder": "Select reason",
           "options": {
-            "aiMl": "AI / Machine Learning",
-            "cv": "Computer Vision",
-            "nlp": "Natural Language Processing",
-            "analytics": "Data Analytics / BI",
-            "arVr": "AR / VR",
-            "robotics": "Robotics",
-            "iot": "Internet of Things (IoT)",
-            "edge": "Edge / Embedded AI",
-            "security": "Security & Privacy",
+            "learnSparkOS": "Learn more about SparkOS",
+            "requestDemo": "Request a demo",
+            "pilot": "Discuss pilot opportunities",
+            "partnership": "Partnership inquiry",
+            "research": "Research collaboration",
+            "press": "Press / media inquiry",
             "other": "Other"
           }
         },

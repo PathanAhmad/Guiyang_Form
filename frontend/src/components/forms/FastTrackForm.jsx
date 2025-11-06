@@ -31,6 +31,7 @@ const FastTrackForm = ({ onSuccess }) => {
       phone: '',
       company: '',
       role: '',
+      areaOfInterest: '',
       message: '',
       wechatId: '',
       whatsappId: ''
@@ -185,6 +186,25 @@ const FastTrackForm = ({ onSuccess }) => {
             onBlur={() => handleBlur('role')}
             error={touched.role ? errors.role : ''}
             placeholder={t('forms.fasttrack.fields.role.placeholder')}
+          />
+          
+          <Select
+            name="areaOfInterest"
+            label={t('forms.fasttrack.fields.areaOfInterest.label')}
+            value={values.areaOfInterest}
+            onChange={(e) => handleChange('areaOfInterest', e.target.value)}
+            onBlur={() => handleBlur('areaOfInterest')}
+            error={touched.areaOfInterest ? errors.areaOfInterest : ''}
+            options={[
+              { value: '', label: t('forms.fasttrack.fields.areaOfInterest.placeholder') },
+              { value: 'learn', label: t('forms.fasttrack.fields.areaOfInterest.options.learnSparkOS') },
+              { value: 'demo', label: t('forms.fasttrack.fields.areaOfInterest.options.requestDemo') },
+              { value: 'pilot', label: t('forms.fasttrack.fields.areaOfInterest.options.pilot') },
+              { value: 'partnership', label: t('forms.fasttrack.fields.areaOfInterest.options.partnership') },
+              { value: 'research', label: t('forms.fasttrack.fields.areaOfInterest.options.research') },
+              { value: 'press', label: t('forms.fasttrack.fields.areaOfInterest.options.press') },
+              { value: 'other', label: t('forms.fasttrack.fields.areaOfInterest.options.other') }
+            ]}
           />
           
           <Textarea

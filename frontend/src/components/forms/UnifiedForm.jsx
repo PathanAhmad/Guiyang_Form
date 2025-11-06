@@ -238,15 +238,12 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                 placeholder={t('forms.fasttrack.fields.areaOfInterest.placeholder')}
                 className="text-lg"
                 suggestions={[
-                  t('forms.fasttrack.fields.areaOfInterest.options.aiMl'),
-                  t('forms.fasttrack.fields.areaOfInterest.options.cv'),
-                  t('forms.fasttrack.fields.areaOfInterest.options.nlp'),
-                  t('forms.fasttrack.fields.areaOfInterest.options.analytics'),
-                  t('forms.fasttrack.fields.areaOfInterest.options.arVr'),
-                  t('forms.fasttrack.fields.areaOfInterest.options.robotics'),
-                  t('forms.fasttrack.fields.areaOfInterest.options.iot'),
-                  t('forms.fasttrack.fields.areaOfInterest.options.edge'),
-                  t('forms.fasttrack.fields.areaOfInterest.options.security'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.learnSparkOS'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.requestDemo'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.pilot'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.partnership'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.research'),
+                  t('forms.fasttrack.fields.areaOfInterest.options.press'),
                   t('forms.fasttrack.fields.areaOfInterest.options.other')
                 ]}
               />
