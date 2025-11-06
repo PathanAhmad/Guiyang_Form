@@ -130,18 +130,19 @@ const CheckboxGroup = ({
 
           return (
             <div key={option.value}>
-              <Checkbox
-                name={name}
-                value={option.value}
-                label={option.label}
-                checked={isChecked}
-                onChange={(e) => handleCheckboxChange(option.value, e.target.checked)}
-                disabled={isDisabled}
-                onBlur={onBlur}
-                onFocus={onFocus}
-                required={required}
-                error={error}
-              />
+              <div className="[&_label>span.ml-1]:hidden">
+                <Checkbox
+                  name={name}
+                  value={option.value}
+                  label={option.label}
+                  checked={isChecked}
+                  onChange={(e) => handleCheckboxChange(option.value, e.target.checked)}
+                  disabled={isDisabled}
+                  onBlur={onBlur}
+                  onFocus={onFocus}
+                  required={required}
+                />
+              </div>
               {/* Show other input if this is the "other" option and it's checked */}
               {option.value === 'other' && showOtherInput && (
                 <div className="ml-7 mt-2">
