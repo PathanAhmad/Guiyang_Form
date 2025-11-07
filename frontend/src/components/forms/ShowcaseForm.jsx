@@ -18,6 +18,9 @@ const ShowcaseForm = ({ onSuccess }) => {
   const { t } = useTranslation();
   const { submitForm, isSubmitting, submitError, submitSuccess, submissionData } = useFormSubmission();
   
+  // Track if submit was attempted to show all errors
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+  
   // Additional state for "other" options
   const [otherFields, setOtherFields] = useState({
     educationFieldsOther: '',
@@ -80,10 +83,14 @@ const ShowcaseForm = ({ onSuccess }) => {
     // Additional
     'currentChallenges', 'additionalComments'
   ];
-  const getError = makeErrorGetter(errors, showcaseFieldOrder);
+  // Show all errors when submit is attempted, otherwise use progressive display
+  const getError = submitAttempted 
+    ? (fieldName) => errors[fieldName] || ''
+    : makeErrorGetter(errors, showcaseFieldOrder);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitAttempted(true);
     
     const validation = validate();
     if (!validation.isValid) {
@@ -119,6 +126,7 @@ const ShowcaseForm = ({ onSuccess }) => {
 
   const handleReset = () => {
     reset();
+    setSubmitAttempted(false);
     setOtherFields({
       educationFieldsOther: '',
       primaryRoleOther: '',
