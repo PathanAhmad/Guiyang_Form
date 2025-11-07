@@ -92,6 +92,8 @@ const ParentSurveyForm = ({ onSuccess }) => {
   const totalSections = sections.length;
 
   const [touched, setTouched] = useState({});
+  // Track if submit was attempted to show all errors
+  const [submitAttempted, setSubmitAttempted] = useState(false);
 
   // Define required fields per section in order (for progressive highlighting)
   const requiredFieldsBySection = useMemo(() => ({
@@ -125,6 +127,10 @@ const ParentSurveyForm = ({ onSuccess }) => {
 
   const markTouched = (field) => setTouched((prev) => ({ ...prev, [field]: true }));
   const shouldShowError = (field) => {
+    // Show all errors when submit is attempted, otherwise use progressive display
+    if (submitAttempted) {
+      return Boolean(sectionValidation.errors?.[field]);
+    }
     return Boolean(sectionValidation.errors?.[field]) && Boolean(touched[field]);
   };
 
@@ -187,6 +193,53 @@ const ParentSurveyForm = ({ onSuccess }) => {
       if (reqList.length) {
         setTouched((prev) => ({ ...prev, ...reqList.reduce((acc, f) => (acc[f]=true, acc), {}) }));
       }
+      
+      // Mark all errored fields in current section as touched
+      const erroredFields = Object.keys(currentSectionErrors);
+      if (erroredFields.length) {
+        setTouched((prev) => {
+          const next = { ...prev };
+          erroredFields.forEach((field) => {
+            next[field] = true;
+          });
+          return next;
+        });
+        
+        // Scroll to the first error field
+        const firstErrorField = erroredFields[0];
+        // Try multiple selectors to find the field element
+        let errorElement = document.querySelector(`[name="${firstErrorField}"]`);
+        // If not found, try to find by label or container (for Radio/Checkbox groups)
+        if (!errorElement) {
+          // Look for label with "for" attribute matching the field name
+          const label = document.querySelector(`label[for="${firstErrorField}"]`);
+          if (label) {
+            errorElement = label;
+          } else {
+            // Try to find a parent container or fieldset
+            const fieldContainer = document.querySelector(`[data-field-name="${firstErrorField}"]`);
+            if (fieldContainer) {
+              errorElement = fieldContainer;
+            }
+          }
+        }
+        
+        if (errorElement) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Focus the field after scroll completes (only for input elements)
+          setTimeout(() => {
+            if (errorElement && errorElement.focus && typeof errorElement.focus === 'function' && errorElement.tagName === 'INPUT') {
+              errorElement.focus({ preventScroll: true });
+            }
+          }, 300);
+        } else {
+          // Fallback: scroll to top of form section
+          const formElement = document.querySelector('form');
+          if (formElement) {
+            formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }
       return; // gate progression
     }
     setCurrentIndex((idx) => Math.min(idx + 1, totalSections - 1));
@@ -196,9 +249,24 @@ const ParentSurveyForm = ({ onSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitAttempted(true);
+    
     const v = validateParentSurveyForm(values);
     setFieldErrors(v.errors || {});
-    if (!v.isValid) return;
+    
+    // Mark all errored fields as touched to show all errors
+    if (!v.isValid && v.errors) {
+      const erroredFields = Object.keys(v.errors);
+      setTouched((prev) => {
+        const next = { ...prev };
+        erroredFields.forEach((field) => {
+          next[field] = true;
+        });
+        return next;
+      });
+      return;
+    }
+    
     const result = await submitForm(() => parentSurveyAPI.submit(values));
     if (result.success && onSuccess) onSuccess(result.data);
   };
@@ -888,7 +956,7 @@ const ParentSurveyForm = ({ onSuccess }) => {
               {t('common.previous')}
             </Button>
             {currentIndex < totalSections - 1 && (
-              <Button type="button" className="flex-1" disabled={!isCurrentSectionValid || isSubmitting} onClick={goNext}>
+              <Button type="button" className="flex-1" disabled={isSubmitting} onClick={goNext}>
                 {t('common.next')}
               </Button>
             )}
