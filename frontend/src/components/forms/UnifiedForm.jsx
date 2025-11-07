@@ -264,6 +264,11 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                     className="text-sm"
                   />
                   
+                  {(() => {
+                    const bothContactErrors = Boolean(errors.wechatId) && Boolean(errors.whatsappId) && !(values.wechatId || '').trim() && !(values.whatsappId || '').trim();
+                    const wechatError = bothContactErrors ? (errors.wechatId || '') : (touched.wechatId ? (errors.wechatId || '') : '');
+                    const whatsappError = bothContactErrors ? '' : (touched.whatsappId ? (errors.whatsappId || '') : '');
+                    return (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Input
                       name="wechatId"
@@ -271,7 +276,7 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                       value={values.wechatId}
                       onChange={(e) => handleChange('wechatId', e.target.value)}
                       onBlur={() => handleBlur('wechatId')}
-                      error={touched.wechatId ? errors.wechatId : ''}
+                      error={wechatError}
                       placeholder={t('forms.fasttrack.fields.wechatId.placeholder')}
                       hint={t('forms.fasttrack.fields.wechatId.hint')}
                       className="text-sm"
@@ -283,11 +288,13 @@ const UnifiedForm = ({ formType, onSuccess, onBack }) => {
                       value={values.whatsappId}
                       onChange={(e) => handleChange('whatsappId', e.target.value)}
                       onBlur={() => handleBlur('whatsappId')}
-                      error={touched.whatsappId ? errors.whatsappId : ''}
+                      error={whatsappError}
                       placeholder={t('forms.fasttrack.fields.whatsappId.placeholder')}
                       className="text-sm"
                     />
                   </div>
+                    );
+                  })()}
                 </>
               )}
 

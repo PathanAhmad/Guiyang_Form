@@ -98,7 +98,7 @@ function MainApp() {
                   </svg>
                   {t('common.back')}
                 </button>
-                <ParentSurveyPage />
+                <ParentSurveyPage onBackToHome={handleBackToHome} />
               </div>
             </div>
           );
