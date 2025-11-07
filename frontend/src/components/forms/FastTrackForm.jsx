@@ -215,7 +215,6 @@ const FastTrackForm = ({ onSuccess }) => {
             onBlur={() => handleBlur('message')}
             error={touched.message ? errors.message : ''}
             placeholder={t('forms.fasttrack.fields.message.placeholder')}
-            hint={t('forms.fasttrack.fields.message.hint')}
             rows={4}
           />
 
