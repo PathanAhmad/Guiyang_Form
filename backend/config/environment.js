@@ -2,10 +2,10 @@ require('dotenv').config();
 
 module.exports = {
   // MongoDB Configuration
-  MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/world_internet_expo_forms',
+  MONGO_URI: process.env.MONGO_URI,
   
   // Server Configuration
-  PORT: process.env.PORT || 6085,
+  PORT: process.env.PORT || 5000,
   NODE_ENV: process.env.NODE_ENV || 'development',
   
   // Cloudinary Configuration
@@ -31,3 +31,4 @@ module.exports = {
   // Security
   JWT_SECRET: process.env.JWT_SECRET || 'fallback_secret_key'
 };
+
