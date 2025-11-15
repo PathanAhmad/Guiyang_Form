@@ -1,6 +1,7 @@
 const axios = require('axios');
 
-const BASE_URL = 'http://localhost:3000';
+// Backend runs on port 5000
+const BASE_URL = 'http://localhost:5000';
 const API = `${BASE_URL}/api/survey-access/validate`;
 
 const colors = {

@@ -8,7 +8,8 @@
 
 const axios = require('axios');
 
-const BASE_URL = 'http://localhost:3000/api';
+// Backend runs on port 5000
+const BASE_URL = 'http://localhost:5000/api';
 
 async function testDiscordButtons() {
   console.log('🧪 Testing Discord Buttons and Queue System\n');
@@ -106,7 +107,7 @@ async function testDiscordButtons() {
     console.log('   📊 "Check Status" - Shows current token information');
     
     console.log('\n🌐 Frontend Queue Dashboard:');
-    console.log('   Visit: http://localhost:5173/queue');
+    console.log('   Visit: http://localhost:3000/queue');
     console.log('   - Real-time queue management interface');
     console.log('   - Click buttons to update token status');
     console.log('   - See next-in-queue automatically');

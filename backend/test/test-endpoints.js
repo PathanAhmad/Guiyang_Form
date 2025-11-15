@@ -1,8 +1,8 @@
 const axios = require('axios');
 const config = require('../config/environment');
 
-// Configuration
-const BASE_URL = 'http://localhost:3000';
+// Configuration - Backend runs on port 5000
+const BASE_URL = 'http://localhost:5000';
 const API_BASE = `${BASE_URL}/api`;
 
 // Test data for each form type
