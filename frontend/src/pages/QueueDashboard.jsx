@@ -7,6 +7,7 @@ import { useToast } from '../hooks/useToast';
 import { useAuth } from '../contexts/AuthContext';
 import { formatDate } from '../utils/format';
 import DeploymentKeysSection from '../components/admin/DeploymentKeysSection';
+import PilotSurveyResultsSection from '../components/admin/PilotSurveyResultsSection';
 
 const QueueDashboard = ({ onBack }) => {
   const { t } = useTranslation();
@@ -17,7 +18,8 @@ const QueueDashboard = ({ onBack }) => {
   const [updating, setUpdating] = useState(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
-  const [activeTab, setActiveTab] = useState('submissions'); // 'submissions' or 'deployment-keys'
+  const [mainSection, setMainSection] = useState('queue-system'); // 'queue-system' or 'pilot-system'
+  const [pilotSubTab, setPilotSubTab] = useState('deployment-keys'); // 'deployment-keys' or 'pilot-surveys'
   
   const { showToast } = useToast();
   const { user, logout } = useAuth();
@@ -50,15 +52,15 @@ const QueueDashboard = ({ onBack }) => {
   ];
 
   useEffect(() => {
-    if (activeTab === 'submissions') {
+    if (mainSection === 'queue-system') {
       loadQueueStatus();
       loadSubmissions();
     }
-  }, [selectedFormType, activeTab]);
+  }, [selectedFormType, mainSection]);
 
   // Lightweight polling to silently refresh data without affecting loading states
   useEffect(() => {
-    if (activeTab !== 'submissions') return;
+    if (mainSection !== 'queue-system') return;
     
     let isMounted = true;
     const REFRESH_INTERVAL_MS = 10000;
@@ -82,7 +84,7 @@ const QueueDashboard = ({ onBack }) => {
       isMounted = false;
       clearInterval(intervalId);
     };
-  }, [selectedFormType, activeTab]);
+  }, [selectedFormType, mainSection]);
 
   const loadQueueStatus = async () => {
     try {
@@ -229,36 +231,66 @@ const QueueDashboard = ({ onBack }) => {
           </div>
         </div>
 
-        {/* Main Navigation Tabs */}
-        <div className="mb-8">
+        {/* Main Navigation Tabs - Level 1 */}
+        <div className="mb-6">
           <div className="border-b border-gray-200">
             <nav className="-mb-px flex space-x-8">
               <button
-                onClick={() => setActiveTab('submissions')}
-                className={`py-3 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'submissions'
-                    ? 'border-blue-500 text-blue-600'
+                onClick={() => setMainSection('queue-system')}
+                className={`py-4 px-1 border-b-2 font-semibold text-base ${
+                  mainSection === 'queue-system'
+                    ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                Form Submissions
+                Queue System
               </button>
               <button
-                onClick={() => setActiveTab('deployment-keys')}
-                className={`py-3 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === 'deployment-keys'
-                    ? 'border-blue-500 text-blue-600'
+                onClick={() => setMainSection('pilot-system')}
+                className={`py-4 px-1 border-b-2 font-semibold text-base ${
+                  mainSection === 'pilot-system'
+                    ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
-                Deployment Keys
+                Pilot System
               </button>
             </nav>
           </div>
         </div>
 
-        {/* Conditional Content Based on Active Tab */}
-        {activeTab === 'submissions' ? (
+        {/* Sub-Navigation for Pilot System - Level 2 */}
+        {mainSection === 'pilot-system' && (
+          <div className="mb-8 pl-4">
+            <div className="border-b border-gray-100">
+              <nav className="-mb-px flex space-x-6">
+                <button
+                  onClick={() => setPilotSubTab('deployment-keys')}
+                  className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                    pilotSubTab === 'deployment-keys'
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  Deployment Keys
+                </button>
+                <button
+                  onClick={() => setPilotSubTab('pilot-surveys')}
+                  className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                    pilotSubTab === 'pilot-surveys'
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  Pilot Survey Results
+                </button>
+              </nav>
+            </div>
+          </div>
+        )}
+
+        {/* Conditional Content Based on Main Section and Sub-tabs */}
+        {mainSection === 'queue-system' ? (
           <>
             {/* Queue Overview Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -490,8 +522,14 @@ const QueueDashboard = ({ onBack }) => {
         )}
           </>
         ) : (
-          /* Deployment Keys Tab */
-          <DeploymentKeysSection />
+          /* Pilot System Section */
+          <>
+            {pilotSubTab === 'deployment-keys' ? (
+              <DeploymentKeysSection />
+            ) : (
+              <PilotSurveyResultsSection />
+            )}
+          </>
         )}
       </div>
     </div>

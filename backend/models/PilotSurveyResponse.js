@@ -106,5 +106,78 @@ pilotSurveyResponseSchema.statics.findByAccessKey = async function(accessKey) {
   return this.find({ accessKey }).sort({ createdAt: -1 });
 };
 
+// Static method: Get all responses grouped by access key with metadata
+pilotSurveyResponseSchema.statics.getAllResponsesGroupedByAccessKey = async function() {
+  const DeploymentAccessKey = require('./DeploymentAccessKey');
+  
+  // Get all responses
+  const responses = await this.find().sort({ accessKey: 1, createdAt: -1 }).lean();
+  
+  // Group by access key
+  const grouped = {};
+  responses.forEach(response => {
+    if (!grouped[response.accessKey]) {
+      grouped[response.accessKey] = {
+        accessKey: response.accessKey,
+        responses: []
+      };
+    }
+    grouped[response.accessKey].responses.push(response);
+  });
+  
+  // Enrich with access key metadata
+  const result = [];
+  for (const accessKey in grouped) {
+    const keyDoc = await DeploymentAccessKey.findOne({ accessKey });
+    const group = grouped[accessKey];
+    
+    // Count submitted forms
+    const submittedCount = group.responses.filter(r => r.status === 'submitted').length;
+    const lastSubmission = group.responses.find(r => r.submittedAt);
+    
+    result.push({
+      accessKey,
+      keyName: keyDoc ? keyDoc.keyName : 'Unknown',
+      roleType: keyDoc ? keyDoc.roleType : 'Unknown',
+      isActive: keyDoc ? keyDoc.isActive : false,
+      totalResponses: group.responses.length,
+      submittedCount,
+      lastSubmissionDate: lastSubmission ? lastSubmission.submittedAt : null,
+      responses: group.responses
+    });
+  }
+  
+  return result;
+};
+
+// Static method: Get all responses for CSV export
+pilotSurveyResponseSchema.statics.getAllForExport = async function() {
+  const DeploymentAccessKey = require('./DeploymentAccessKey');
+  const responses = await this.find().sort({ createdAt: -1 }).lean();
+  
+  // Enrich with access key info
+  const enriched = await Promise.all(
+    responses.map(async (response) => {
+      const keyDoc = await DeploymentAccessKey.findOne({ accessKey: response.accessKey });
+      return {
+        accessKey: response.accessKey,
+        keyName: keyDoc ? keyDoc.keyName : 'Unknown',
+        roleType: keyDoc ? keyDoc.roleType : 'Unknown',
+        formId: response.formId,
+        formType: response.formType,
+        status: response.status,
+        language: response.language,
+        submittedAt: response.submittedAt,
+        createdAt: response.createdAt,
+        updatedAt: response.updatedAt,
+        completedSections: response.completedSections.join(', '),
+        responses: JSON.stringify(response.responses)
+      };
+    })
+  );
+  
+  return enriched;
+};
+
 module.exports = mongoose.model('PilotSurveyResponse', pilotSurveyResponseSchema);
 

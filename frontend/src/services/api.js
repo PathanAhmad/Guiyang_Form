@@ -129,6 +129,17 @@ export const deploymentAccessAPI = {
     api.delete(`/deployment-access/${id}`),
 };
 
+// Pilot Survey Admin API
+export const pilotSurveyAdminAPI = {
+  // Admin: Get all survey responses grouped by access key
+  getAllResponses: () =>
+    api.get('/pilot-surveys/admin/all-responses'),
+  
+  // Admin: Export all responses to CSV
+  exportResponses: () =>
+    api.get('/pilot-surveys/admin/export', { responseType: 'blob' }),
+};
+
 // Discord API endpoints  
 export const discordAPI = {
   // Test webhook for specific form type

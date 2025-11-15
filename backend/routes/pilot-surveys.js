@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const PilotSurveyResponse = require('../models/PilotSurveyResponse');
 const DeploymentAccessKey = require('../models/DeploymentAccessKey');
+const { authenticateAdmin } = require('./auth');
 
 // Middleware to validate deployment access key
 const validateDeploymentAuth = async (req, res, next) => {
@@ -321,6 +322,92 @@ router.post('/responses/:formId/submit', validateDeploymentAuth, async (req, res
     res.status(500).json({
       success: false,
       message: 'Failed to submit form',
+      error: error.message,
+    });
+  }
+});
+
+// Admin routes
+// GET /api/pilot-surveys/admin/all-responses - Get all responses grouped by access key (Admin only)
+router.get('/admin/all-responses', authenticateAdmin, async (req, res) => {
+  try {
+    const groupedResponses = await PilotSurveyResponse.getAllResponsesGroupedByAccessKey();
+    
+    res.json({
+      success: true,
+      data: groupedResponses,
+      count: groupedResponses.length,
+    });
+  } catch (error) {
+    console.error('Error fetching all survey responses:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch survey responses',
+      error: error.message,
+    });
+  }
+});
+
+// GET /api/pilot-surveys/admin/export - Export all responses to CSV (Admin only)
+router.get('/admin/export', authenticateAdmin, async (req, res) => {
+  try {
+    const responses = await PilotSurveyResponse.getAllForExport();
+    
+    if (responses.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No responses found to export',
+      });
+    }
+    
+    // Convert to CSV
+    const headers = [
+      'Access Key',
+      'Key Name',
+      'Role Type',
+      'Form ID',
+      'Form Type',
+      'Status',
+      'Language',
+      'Submitted At',
+      'Created At',
+      'Updated At',
+      'Completed Sections',
+      'Responses (JSON)'
+    ];
+    
+    const csvRows = [headers.join(',')];
+    
+    responses.forEach(response => {
+      const row = [
+        response.accessKey,
+        `"${response.keyName}"`,
+        response.roleType,
+        response.formId,
+        response.formType,
+        response.status,
+        response.language,
+        response.submittedAt ? new Date(response.submittedAt).toISOString() : '',
+        new Date(response.createdAt).toISOString(),
+        new Date(response.updatedAt).toISOString(),
+        `"${response.completedSections}"`,
+        `"${response.responses.replace(/"/g, '""')}"` // Escape quotes in JSON
+      ];
+      csvRows.push(row.join(','));
+    });
+    
+    const csv = csvRows.join('\n');
+    
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename=pilot-survey-responses-${Date.now()}.csv`);
+    res.send(csv);
+    
+    console.log(`✅ Exported ${responses.length} survey responses to CSV`);
+  } catch (error) {
+    console.error('Error exporting survey responses:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to export survey responses',
       error: error.message,
     });
   }
