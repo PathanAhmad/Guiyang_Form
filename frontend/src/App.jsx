@@ -4,18 +4,18 @@ import { AuthProvider } from './contexts/AuthContext';
 import { DeploymentAuthProvider } from './contexts/DeploymentAuthContext';
 
 // Page components
-import MainApp from './MainApp';
-import LoginPage from './pages/LoginPage';
-import QueueDashboard from './pages/QueueDashboard';
-import ProtectedRoute from './components/ProtectedRoute';
-import SurveyAccessPage from './pages/SurveyAccessPage';
+import MainApp from './MainApp.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import QueueDashboard from './pages/QueueDashboard.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+import SurveyAccessPage from './pages/SurveyAccessPage.jsx';
 
 // Deployment Portal components
-import DeploymentPortalHome from './pages/DeploymentPortal/DeploymentPortalHome';
-import DeploymentLogin from './pages/DeploymentPortal/DeploymentLogin';
-import DeploymentDashboard from './pages/DeploymentPortal/DeploymentDashboard';
-import SurveyList from './pages/DeploymentPortal/SurveyList';
-import PilotSurveyForm from './components/forms/pilot/PilotSurveyForm';
+import DeploymentPortalHome from './pages/DeploymentPortal/DeploymentPortalHome.jsx';
+import DeploymentLogin from './pages/DeploymentPortal/DeploymentLogin.jsx';
+import DeploymentDashboard from './pages/DeploymentPortal/DeploymentDashboard.jsx';
+import SurveyList from './pages/DeploymentPortal/SurveyList.jsx';
+import PilotSurveyForm from './components/forms/pilot/PilotSurveyForm.jsx';
 
 function App() {
   return (
