@@ -51,7 +51,7 @@ const SurveyNavigation = ({
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
                 </svg>
-                {t('common.common.previous')}
+                {t('common:common.previous')}
               </div>
             </button>
 
@@ -65,7 +65,7 @@ const SurveyNavigation = ({
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
               }`}
             >
-              {saving ? t('pilotSurveys.form.savingDraft') : t('common.common.saveDraft')}
+              {saving ? t('pilotSurveys:form.savingDraft') : t('common:common.saveDraft')}
             </button>
 
             {/* Next/Submit Button */}
@@ -79,7 +79,7 @@ const SurveyNavigation = ({
                     : 'bg-gradient-to-r from-green-500 to-green-600 text-white hover:shadow-lg'
                 }`}
               >
-                {submitting ? t('pilotSurveys.form.submitting') : t('common.common.submit')}
+                {submitting ? t('pilotSurveys:form.submitting') : t('common:common.submit')}
               </button>
             ) : (
               <button
@@ -92,7 +92,7 @@ const SurveyNavigation = ({
                 }`}
               >
                 <div className="flex items-center">
-                  {t('common.common.next')}
+                  {t('common:common.next')}
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
@@ -108,23 +108,23 @@ const SurveyNavigation = ({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg max-w-md w-full p-6">
             <h3 className="text-lg font-bold text-gray-900 mb-4">
-              {t('common.common.confirm')}
+              {t('common:common.confirm')}
             </h3>
             <p className="text-gray-600 mb-6">
-              {t('pilotSurveys.form.confirmSubmit')}
+              {t('pilotSurveys:form.confirmSubmit')}
             </p>
             <div className="flex space-x-4">
               <button
                 onClick={handleCancelSubmit}
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
               >
-                {t('common.common.cancel')}
+                {t('common:common.cancel')}
               </button>
               <button
                 onClick={handleConfirmSubmit}
                 className="flex-1 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:shadow-lg transition-all duration-200"
               >
-                {t('common.common.submit')}
+                {t('common:common.submit')}
               </button>
             </div>
           </div>

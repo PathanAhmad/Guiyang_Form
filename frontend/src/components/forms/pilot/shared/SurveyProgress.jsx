@@ -10,10 +10,10 @@ const SurveyProgress = ({ currentSection, totalSections, completedSections = [] 
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-gray-700">
-            {t('pilotSurveys.form.progress', { current: currentSection, total: totalSections })}
+            {t('pilotSurveys:form.progress', { current: currentSection, total: totalSections })}
           </span>
           <span className="text-sm text-gray-500">
-            {Math.round(progress)}% {t('pilotSurveys.surveyList.progress').replace(/{{percent}}%/, '')}
+            {Math.round(progress)}% {t('pilotSurveys:surveyList.progress').replace(/{{percent}}%/, '')}
           </span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">

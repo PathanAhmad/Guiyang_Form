@@ -116,10 +116,10 @@ const PilotSurveyForm = () => {
         language: i18n.language,
       });
       // Show success feedback
-      alert(t('pilotSurveys.form.draftSaved'));
+      alert(t('pilotSurveys:form.draftSaved'));
     } catch (err) {
       console.error('Error saving draft:', err);
-      alert(t('pilotSurveys.form.error'));
+      alert(t('pilotSurveys:form.error'));
     } finally {
       setSaving(false);
     }
@@ -136,7 +136,7 @@ const PilotSurveyForm = () => {
       setSubmitted(true);
     } catch (err) {
       console.error('Error submitting form:', err);
-      alert(t('pilotSurveys.form.error'));
+      alert(t('pilotSurveys:form.error'));
     } finally {
       setSubmitting(false);
     }
@@ -202,16 +202,16 @@ const PilotSurveyForm = () => {
             </svg>
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            {t('pilotSurveys.form.submitted')}
+            {t('pilotSurveys:form.submitted')}
           </h2>
           <p className="text-gray-600 mb-6">
-            {t(`${formId}.thankYou.message`)}
+            {t(`${formId}:thankYou.message`)}
           </p>
           <button
             onClick={handleBack}
             className="w-full px-6 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg hover:shadow-lg transition-all duration-200"
           >
-            {t('common.common.back')}
+            {t('common:common.back')}
           </button>
         </div>
       </div>
@@ -242,7 +242,7 @@ const PilotSurveyForm = () => {
                   </button>
                   <div>
                     <h1 className="text-lg font-bold text-gray-900">
-                      {t(`pilotSurveys.formTitles.${formId}`)}
+                      {t(`pilotSurveys:formTitles.${formId}`)}
                     </h1>
                     {keyName && (
                       <p className="text-xs text-gray-500">Access: {keyName}</p>
@@ -270,7 +270,7 @@ const PilotSurveyForm = () => {
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
-                {t('common.common.logout')}
+                {t('common:common.logout')}
               </button>
             </div>
           </div>
