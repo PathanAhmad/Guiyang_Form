@@ -144,7 +144,7 @@ npm test
 
 ### Submit Demo Form
 ```bash
-curl -X POST http://localhost:3000/api/forms/demo \
+curl -X POST http://localhost:5000/api/forms/demo \
   -H "Content-Type: application/json" \
   -d '{
     "name": "John Doe",
@@ -155,7 +155,7 @@ curl -X POST http://localhost:3000/api/forms/demo \
 
 ### Submit Fast-Track Form
 ```bash
-curl -X POST http://localhost:3000/api/forms/fasttrack \
+curl -X POST http://localhost:5000/api/forms/fasttrack \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Jane Smith",
@@ -169,18 +169,18 @@ curl -X POST http://localhost:3000/api/forms/fasttrack \
 
 ### Test Discord Webhook
 ```bash
-curl -X POST http://localhost:3000/api/discord/test/demo
+curl -X POST http://localhost:5000/api/discord/test/demo
 ```
 
 ### Update Token Status
 ```bash
 # Mark token as contacted
-curl -X PATCH http://localhost:3000/api/forms/submission/D-001/status \
+curl -X PATCH http://localhost:5000/api/forms/submission/D-001/status \
   -H "Content-Type: application/json" \
   -d '{"status": "contacted"}'
 
 # Mark token as completed (triggers next-in-queue notification)
-curl -X PATCH http://localhost:3000/api/forms/submission/D-001/status \
+curl -X PATCH http://localhost:5000/api/forms/submission/D-001/status \
   -H "Content-Type: application/json" \
   -d '{"status": "completed"}'
 ```
@@ -188,10 +188,10 @@ curl -X PATCH http://localhost:3000/api/forms/submission/D-001/status \
 ### Check Queue Status
 ```bash
 # Get next token in demo queue
-curl -X GET http://localhost:3000/api/forms/queue/demo/next
+curl -X GET http://localhost:5000/api/forms/queue/demo/next
 
 # Get overall queue status
-curl -X GET http://localhost:3000/api/forms/queue/status
+curl -X GET http://localhost:5000/api/forms/queue/status
 ```
 
 ### Test the Complete System
