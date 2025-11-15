@@ -1,10 +1,17 @@
 import axios from 'axios';
 
 // Create axios instance with base configuration
+// Use relative path /api in both dev and prod to leverage Vite proxy (dev) or same-origin (prod)
 const envBase = import.meta.env.VITE_API_URL || '';
 const normalizedBaseUrl = envBase
   ? `${envBase.replace(/\/+$/, '').replace(/\/api$/, '')}/api`
   : '/api';
+
+// Debug: Log configuration
+console.log('🔧 API Configuration:');
+console.log('  Mode:', import.meta.env.MODE);
+console.log('  VITE_API_URL:', import.meta.env.VITE_API_URL || '(not set)');
+console.log('  Final baseURL:', normalizedBaseUrl);
 
 const api = axios.create({
   baseURL: normalizedBaseUrl,
@@ -18,6 +25,8 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     console.log(`🌐 API Request: ${config.method?.toUpperCase()} ${config.url}`);
+    console.log(`   Full URL: ${config.baseURL}${config.url}`);
+    console.log(`   BaseURL: ${config.baseURL}`);
     return config;
   },
   (error) => {
@@ -95,6 +104,29 @@ export const parentSurveyAPI = {
 export const surveyAccessAPI = {
   validateAccessKey: (accessKey, surveyType) =>
     api.post('/survey-access/validate', { accessKey, surveyType }),
+};
+
+// Deployment Access API
+export const deploymentAccessAPI = {
+  // Validate access key for deployment portal
+  validate: (accessKey, roleType) =>
+    api.post('/deployment-access/validate', { accessKey, roleType }),
+  
+  // Admin: Create new access key
+  createKey: (keyData) =>
+    api.post('/deployment-access/create', keyData),
+  
+  // Admin: List all access keys
+  listKeys: () =>
+    api.get('/deployment-access/keys'),
+  
+  // Admin: Deactivate access key
+  deactivateKey: (id) =>
+    api.patch(`/deployment-access/${id}/deactivate`),
+  
+  // Admin: Delete access key
+  deleteKey: (id) =>
+    api.delete(`/deployment-access/${id}`),
 };
 
 // Discord API endpoints  
