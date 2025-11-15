@@ -154,6 +154,15 @@ const PilotSurveyForm = () => {
   };
 
   const handlePrevious = () => {
+    // When navigating back, treat the previous section as not completed
+    // so the progress bar reflects the reduced completion.
+    const prevSectionIndex = currentSection - 1;
+    if (prevSectionIndex >= 1) {
+      const prevSectionId = `section${prevSectionIndex}`;
+      if (completedSections.includes(prevSectionId)) {
+        setCompletedSections(prev => prev.filter(id => id !== prevSectionId));
+      }
+    }
     setCurrentSection(prev => prev - 1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
