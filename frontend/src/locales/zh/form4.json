@@ -1,0 +1,265 @@
+{
+  "title": "课程目录与数字化意愿调查问卷",
+  "subtitle": "适用于教师及项目负责人 | 丑小鸭学校 – 中国昆明",
+  "intro": {
+    "purpose": "Spark-OS团队正在与您的学习中心合作，共同梳理当前开设的课程，了解课程设计与成效，并探索未来课程数字化交付的可能性。您的反馈将帮助我们：",
+    "bullet1": "记录每门课程的目标、结构和目标学生群体",
+    "bullet2": "评估教学优势、参与度与可改进方面",
+    "bullet3": "了解是否有将课程转换为线上或混合形式的兴趣与准备度",
+    "bullet4": "制定资源与培训计划，以推进课程拓展及数字化转型",
+    "confidential": "所有反馈内容将严格保密，仅用于课程开发与数字化战略规划。"
+  },
+  "consent": {
+    "text": "我了解本问卷将用于记录与改进课程设置，并同意分享我的专业见解。"
+  },
+  "section1": {
+    "title": "您的信息",
+    "name": {
+      "label": "姓名",
+      "placeholder": "请输入您的姓名"
+    },
+    "role": {
+      "label": "职位（请选择一项）",
+      "facilitator": "教师 / 学科引导员",
+      "specialist": "学习支持专家",
+      "coordinator": "项目协调员 / 管理人员",
+      "designer": "课程设计师",
+      "other": "其他",
+      "otherPlaceholder": "请注明职位"
+    },
+    "years": {
+      "label": "担任当前职位的时间",
+      "less1": "少于1年",
+      "1to3": "1–3年",
+      "3to5": "3–5年",
+      "5plus": "超过5年"
+    }
+  },
+  "section2": {
+    "title": "课程汇总与教学计划提交",
+    "methodologies": {
+      "label": "教学方法：您的课程中使用哪些方法？（可多选）",
+      "traditional": "传统讲授式教学",
+      "project": "项目式学习",
+      "inquiry": "探究式 / 发现式学习",
+      "selfDirected": "学生自主引导式学习",
+      "flipped": "翻转课堂（课前预习 + 课堂实践）",
+      "blended": "混合式（线上 + 线下）",
+      "experiential": "体验式 / 动手操作为主",
+      "socratic": "苏格拉底式 / 以讨论为核心",
+      "other": "其他",
+      "otherPlaceholder": "请注明方法"
+    },
+    "curriculumNote": {
+      "title": "完整课程提交（PDF）",
+      "instruction": "请将您所在学习中心所有常规开设的课程，按照以下模板整理成一个PDF文档，每门课程用课程编号标明。若无现有编号，可按以下格式自定义：",
+      "format": "课程编号格式：使用中心代号（如\"UD\"代表 Ugly Duck）+ 三位数编号（001、002、003…）。示例：UD-001, UD-002, UD-003",
+      "includes": "PDF 每门课程内容需包含：课程编号及名称、目标学生群体、上课形式、频率与课时、班级规模与教师配备、先修要求、教学方法、学习目标、分课节教学大纲、教学资源、评估方式、差异化与包容性设计、数字化考虑因素",
+      "filename": "文件命名格式：Course_Curricula_[中心名称]_[年月日].pdf",
+      "upload": "提交时请附上该PDF文件。"
+    }
+  },
+  "section3": {
+    "title": "课程成效与学生参与度",
+    "effectiveness": {
+      "label": "整体而言，您的课程对学生有多大的吸引力？",
+      "very": "非常有效",
+      "effective": "效果不错但仍有不足",
+      "neutral": "中立",
+      "partial": "效果一般",
+      "ineffective": "效果不佳"
+    },
+    "whatWorks": {
+      "label": "课程中哪些方面最有效？（可多选）",
+      "handson": "动手操作活动",
+      "clear": "明确的学习目标",
+      "realWorld": "与现实生活紧密相关",
+      "collaborative": "合作式项目",
+      "creative": "创意 / 艺术融合",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "barriers": {
+      "label": "影响学生参与与成功的障碍或公平差距有哪些？（可多选）",
+      "difficulty": "内容难度过大 / 过小",
+      "varied": "教学方法缺乏多样性",
+      "supports": "辅助工具或支持不足",
+      "cultural": "缺乏文化相关性",
+      "ell": "对语言学习者支持有限",
+      "pacing": "时间安排过于僵硬",
+      "tech": "数字接入或数字技能差距",
+      "assessment": "评估方式不包容",
+      "other": "其他",
+      "otherPlaceholder": "请注明障碍"
+    },
+    "assessmentMethods": {
+      "label": "您如何评估课程的成效？（可多选）",
+      "formats": "评估形式：",
+      "quizzes": "测验",
+      "project": "项目",
+      "peer": "同伴互评",
+      "reflection": "自我反思",
+      "presentations": "展示",
+      "metrics": "衡量指标：",
+      "attendance": "出勤 / 完成率",
+      "feedback": "学生反馈",
+      "performance": "绩效评估",
+      "portfolios": "作品集 / 学习日志",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "midFeedback": {
+      "label": "您多久收集一次学生的中期反馈？",
+      "weekly": "每周",
+      "monthly": "每月",
+      "endOnly": "仅课程结束时",
+      "notDone": "当前未进行"
+    },
+    "effectiveFormats": {
+      "label": "哪些评估形式对您的学生最有效？（可多选）",
+      "quizzes": "测验",
+      "project": "项目制评估",
+      "peer": "同伴互评",
+      "reflection": "自我反思",
+      "oral": "口头展示",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "skillTransfer": {
+      "label": "学生是否能将课程中学到的技能迁移到其他学科？",
+      "very": "非常好",
+      "somewhat": "一般",
+      "not": "效果不佳",
+      "unsure": "不确定"
+    }
+  },
+  "section4": {
+    "title": "对课程数字化的兴趣与准备度",
+    "onlineCourses": {
+      "label": "您希望将哪些课程转换为线上或混合形式？",
+      "placeholder": "列出课程"
+    },
+    "digitalFeatures": {
+      "label": "哪些数字功能最能提升课程价值？（可多选）",
+      "video": "自主节奏的视频模块",
+      "quizzes": "互动测验与游戏化设计",
+      "resources": "可下载的学习资源与练习册",
+      "webinars": "实时网络研讨会或虚拟课堂",
+      "forums": "讨论区或聊天小组",
+      "tracking": "学习进度跟踪仪表盘",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "challenges": {
+      "label": "您在课程数字化过程中预计会遇到哪些挑战？（可多选）",
+      "training": "教师在电子教学工具方面缺乏培训",
+      "access": "学生在技术使用上的可接入性或熟悉程度不足",
+      "redesign": "需重新设计原有的实践类活动",
+      "engagement": "远程情况下学生参与度难以维持",
+      "platform": "平台或基础设施限制",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "readiness": {
+      "label": "您所在团队对开展线上课程的准备情况如何？",
+      "fully": "完全准备好 —— 已具备工具与技能",
+      "partially": "部分准备好 —— 还缺少部分技能/资源",
+      "not": "尚未准备 —— 需重大培训或投入",
+      "unsure": "不确定"
+    },
+    "platforms": {
+      "label": "您过去使用过或考虑过哪些平台？（如雨课堂等）",
+      "placeholder": "列出平台"
+    },
+    "supportNeeded": {
+      "label": "若要构建或维护线上课程，您需要哪方面的培训或支持？（可多选）",
+      "instructional": "教学设计",
+      "video": "视频制作 / 剪辑",
+      "administration": "平台管理与维护",
+      "accessibility": "无障碍设计的最佳实践",
+      "privacy": "数据隐私与信息安全",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "privacyConcerns": {
+      "label": "关于学生数据隐私与在线安全，您有哪些顾虑？",
+      "placeholder": "描述顾虑"
+    }
+  },
+  "section5": {
+    "title": "未来课程规划与数字战略",
+    "newTopics": {
+      "label": "请建议最多三个新课程主题，并注明是否希望以数字形式提供：",
+      "topic1": "主题1",
+      "topic2": "主题2",
+      "topic3": "主题3",
+      "digital": "数字化？",
+      "yes": "是",
+      "no": "否",
+      "rationale": "理由",
+      "topicPlaceholder": "输入主题名称",
+      "rationalePlaceholder": "为什么选择这个主题？"
+    },
+    "approaches": {
+      "label": "哪些教学方法应引导未来课程设计？（可多选）",
+      "experiential": "体验式 / 项目式学习",
+      "collaborative": "合作学习 / 同伴互助",
+      "selfDirected": "自主引导 / 学生主导型学习",
+      "adaptive": "自适应 / 个性化路径",
+      "blended": "线上与线下混合式学习",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "additionalSupport": {
+      "label": "在开发或数字化课程时，您还需要哪些支持或资源？（可多选）",
+      "training": "教师培训与专业发展",
+      "technical": "技术支持 / 教学设计协助",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "timeline": {
+      "label": "您认为开展某门课程的数字化试点所需的现实时间周期是？",
+      "0to2": "0–2个月",
+      "2to3": "2–3个月",
+      "3to6": "3–6个月",
+      "6to12": "6–12个月",
+      "12plus": "超过12个月"
+    },
+    "integration": {
+      "label": "课程应如何融入学生的整体学习路径？",
+      "electives": "作为选修模块",
+      "core": "作为核心必修课程",
+      "credit": "作为可计学分的认证模块",
+      "unsure": "不确定"
+    },
+    "partnerships": {
+      "label": "哪些行业、社区或高校合作能丰富数字或新课程的内容？",
+      "placeholder": "描述合作"
+    }
+  },
+  "section6": {
+    "title": "补充见解",
+    "successMetrics": {
+      "label": "您如何衡量一次数字化试点是否成功？（最多选择2项）",
+      "completion": "课程完成率",
+      "engagement": "学习参与度数据（如登录次数、专注时长）",
+      "satisfaction": "学生满意度评分",
+      "outcomes": "学习成果的提升",
+      "dropout": "辍学率或流失率的下降",
+      "other": "其他",
+      "otherPlaceholder": "请注明"
+    },
+    "singleChange": {
+      "label": "在您看来，哪一个改变最能提升课程质量与学生成果？",
+      "placeholder": "描述改变"
+    },
+    "additionalComments": {
+      "label": "其他评论或建议？",
+      "placeholder": "分享您的想法"
+    }
+  },
+  "thankYou": {
+    "title": "感谢您的宝贵反馈！",
+    "message": "您的意见将直接指导我们打造更加包容、高效、面向未来的课程体系。"
+  }
+}

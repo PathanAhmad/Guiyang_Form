@@ -1,0 +1,45 @@
+{
+  "dashboard": {
+    "title": "Survey Forms",
+    "description": "Complete surveys to help us understand and improve the pilot program",
+    "viewAll": "View All Surveys"
+  },
+  "surveyList": {
+    "title": "Available Surveys",
+    "subtitle": "Select a survey to begin or continue",
+    "status": {
+      "notStarted": "Not Started",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    },
+    "startSurvey": "Start Survey",
+    "continueSurvey": "Continue Survey",
+    "viewSurvey": "View Submission",
+    "progress": "{{percent}}% Complete",
+    "noSurveys": "No surveys available for your role"
+  },
+  "form": {
+    "savingDraft": "Saving draft...",
+    "draftSaved": "Draft saved",
+    "submitting": "Submitting...",
+    "submitted": "Survey submitted successfully!",
+    "error": "An error occurred. Please try again.",
+    "confirmSubmit": "Are you sure you want to submit this survey? You won't be able to edit it after submission.",
+    "progress": "Section {{current}} of {{total}}",
+    "requiredField": "* Required",
+    "languageSwitch": "Switch Language"
+  },
+  "formTitles": {
+    "form1": "Learning Interest & Preferences Survey",
+    "form2": "Individual Student Behavior Assessment",
+    "form3": "Student Equity & Inclusion Planning Survey",
+    "form4": "Course Catalog & Digitalization Interest Survey"
+  },
+  "formDescriptions": {
+    "form1": "Help us understand how you learn best and what supports your learning",
+    "form2": "Provide detailed insights about individual student growth and support needs",
+    "form3": "Share your professional insights on equity, access, and inclusion at your learning center",
+    "form4": "Document existing courses and explore interest in digital delivery"
+  }
+}
+

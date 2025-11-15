@@ -1,0 +1,358 @@
+{
+  "title": "Learning Interest & Preferences Survey",
+  "subtitle": "For Students at Ugly Duck School – Kunming, China",
+  "intro": {
+    "welcome": "Welcome! This survey helps us understand **how you learn best**, what makes you **feel supported**, and how we can make learning more **comfortable, interesting, and fun** for you.",
+    "noWrongAnswers": "There are **no right or wrong answers**. Just be yourself and answer honestly."
+  },
+  "consent": {
+    "text": "I understand the purpose of this survey and agree to participate.",
+    "privacy": "Your answers are private and will only be used to support your learning experience."
+  },
+  "section1": {
+    "title": "Basic Information",
+    "fullName": {
+      "label": "Full Name",
+      "placeholder": "Enter your full name"
+    },
+    "dateOfBirth": {
+      "label": "Date of birth (DD / MM / YYYY)",
+      "placeholder": "DD / MM / YYYY"
+    },
+    "gender": {
+      "label": "Gender",
+      "male": "Male",
+      "female": "Female"
+    },
+    "languages": {
+      "label": "Languages you're comfortable using in class (check all)",
+      "english": "English",
+      "chinese": "Chinese",
+      "other": "Other",
+      "otherPlaceholder": "Specify language"
+    },
+    "location": {
+      "label": "Country | Province/State | City",
+      "placeholder": "Enter your location"
+    },
+    "dialects": {
+      "label": "Language / Dialects (Languages you speak or understand well)",
+      "placeholder": "List languages and dialects"
+    },
+    "identity": {
+      "label": "Anything else about your identity or culture you'd like to share? (optional)",
+      "placeholder": "Optional"
+    }
+  },
+  "section2": {
+    "title": "Interests, Strengths & Goals",
+    "enjoyedSubjects": {
+      "label": "What subjects or activities do you enjoy most? (Select all that apply)",
+      "science": "Science & Experiments",
+      "math": "Math & Problem Solving",
+      "computers": "Computers or Coding",
+      "reading": "Reading or Creative Writing",
+      "art": "Art, Music, or Drama",
+      "design": "Design / 3-D / Maker projects",
+      "sports": "Sports or Physical Movement",
+      "history": "History & Social Studies",
+      "nature": "Nature & Animals",
+      "building": "Fixing or Building Things",
+      "gaming": "Video Games or Game Design",
+      "videos": "Making Videos or Content",
+      "other": "Other",
+      "otherPlaceholder": "Specify other activities"
+    },
+    "strengths": {
+      "label": "What are some things you're really good at or proud of?",
+      "placeholder": "Describe your strengths"
+    },
+    "pride": {
+      "label": "What makes you feel proud or successful at school? (Select all that apply)",
+      "finishing": "Finishing a task",
+      "helping": "Helping a friend",
+      "learning": "Learning something new",
+      "feedback": "Getting positive feedback",
+      "trying": "Trying again after a mistake"
+    },
+    "difficult": {
+      "label": "Are there any subjects you find difficult or frustrating?",
+      "placeholder": "Describe difficult subjects"
+    },
+    "future": {
+      "label": "What do you hope to do in the future? (Select all that apply)",
+      "university": "Attend university / college",
+      "business": "Start a business",
+      "talent": "Master a talent / craft (Make art, music, or games)",
+      "job": "Get a job/ apprenticeship I enjoy",
+      "help": "Help people or animals",
+      "travel": "Travel or explore",
+      "unsure": "I'm not sure yet – I want to explore options"
+    },
+    "inspiration": {
+      "label": "Who or what inspires you? (could be a person, goal, character, etc.)",
+      "placeholder": "Describe your inspiration"
+    },
+    "learnNew": {
+      "label": "If you could learn anything new, what would it be?",
+      "placeholder": "What would you like to learn?"
+    }
+  },
+  "section3": {
+    "title": "Learning Preferences",
+    "learnBest": {
+      "label": "How do you like to learn best? (Select all that apply)",
+      "listening": "Listening to explanations",
+      "reading": "Reading texts or instructions",
+      "videos": "Watching videos or animations",
+      "handson": "Doing hands-on activities",
+      "discussions": "Group discussions",
+      "games": "Games or interactive learning",
+      "drawing": "Drawing or using visuals",
+      "independent": "Working independently",
+      "checklists": "Using checklists or guides"
+    },
+    "tests": {
+      "label": "How do you feel about tests or quizzes?",
+      "doWell": "I do well with them",
+      "nervous": "I get nervous",
+      "prefer": "I prefer projects or presentations",
+      "openBook": "I prefer open-book tests"
+    },
+    "working": {
+      "label": "Do you prefer working...",
+      "alone": "Alone most of the time",
+      "groups": "In small groups",
+      "partner": "With a trusted partner or adult",
+      "mix": "A mix of the above"
+    },
+    "schedule": {
+      "label": "Do you like having a fixed schedule, or more flexibility?",
+      "structure": "I prefer structure and routine",
+      "flexibility": "I learn better with flexibility and freedom",
+      "both": "I like a mix of both"
+    },
+    "focus": {
+      "label": "What helps you stay focused? (Select all that apply)",
+      "instructions": "Clear instructions",
+      "visual": "Visual guides or reminders",
+      "breaks": "Taking short breaks",
+      "moving": "Moving around",
+      "quiet": "Working in a quiet space",
+      "music": "Background music or headphones",
+      "fidget": "Fidget tools",
+      "routines": "Predictable routines",
+      "support": "Working with support"
+    },
+    "taskPreference": {
+      "label": "Do you prefer working on one thing at a time or switching between tasks?",
+      "oneThing": "One thing at a time",
+      "switching": "Switching helps me stay engaged",
+      "depends": "It depends"
+    },
+    "challenges": {
+      "label": "What challenges do you face when learning? (Select all that apply)",
+      "focused": "Staying focused",
+      "starting": "Getting started on tasks",
+      "finishing": "Finishing tasks",
+      "understanding": "Understanding instructions",
+      "reading": "Reading or writing",
+      "organizing": "Organizing thoughts",
+      "speaking": "Speaking in class",
+      "frustration": "Managing frustration or emotions",
+      "time": "Keeping track of time"
+    },
+    "dislike": {
+      "label": "Are there subjects you dislike or find boring? (you can skip)",
+      "placeholder": "Optional"
+    },
+    "tools": {
+      "label": "Which tools help you start or finish tasks more easily? (Select all that apply)",
+      "todo": "To-do lists or checklists",
+      "schedules": "Visual schedules",
+      "timers": "Timers or alarms",
+      "steps": "Step-by-step instructions",
+      "workspace": "A quiet workspace",
+      "starting": "Starting with a teacher or friend"
+    },
+    "perfectLesson": {
+      "label": "If you could design the perfect lesson, what would be in it?",
+      "placeholder": "Describe your perfect lesson"
+    }
+  },
+  "section4": {
+    "title": "Sensory Needs & Technology",
+    "technology": {
+      "label": "Do you enjoy using technology to learn?",
+      "yes": "Yes – it helps me a lot",
+      "sometimes": "Sometimes – depends on the topic",
+      "notReally": "Not really – I prefer other ways"
+    },
+    "learningTools": {
+      "label": "What learning tools do you like to use? (Select all that apply)",
+      "laptops": "Laptops or tablets",
+      "headphones": "Headphones",
+      "apps": "Educational apps or games",
+      "paper": "Paper, books, or worksheets",
+      "kits": "Hands-on kits (models, tools, etc.)",
+      "visual": "Visual organizers (diagrams, color-coding)"
+    },
+    "noisyClassroom": {
+      "label": "How do you feel in busy or noisy classrooms?",
+      "enjoy": "I enjoy the energy",
+      "okay": "I'm okay with some noise",
+      "quiet": "I prefer quiet spaces",
+      "stressed": "Too much noise makes me feel stressed"
+    },
+    "changes": {
+      "label": "How do you handle changes in your routine or schedule?",
+      "okayChange": "I'm okay with change",
+      "timeAdjust": "I need time to adjust",
+      "advance": "I prefer being told in advance",
+      "anxious": "Change makes me anxious"
+    },
+    "bothers": {
+      "label": "Are there any sounds, lights, or textures that bother you? (Select all that apply)",
+      "loud": "Loud noises",
+      "background": "Continuous background noise",
+      "bright": "Bright or flickering lights",
+      "smells": "Strong smells",
+      "textures": "Certain clothing textures (like Scratchy clothes)",
+      "crowds": "Crowds or busy spaces"
+    },
+    "calm": {
+      "label": "What helps you feel calm or safe at school?",
+      "placeholder": "Describe what helps you"
+    }
+  },
+  "section5": {
+    "title": "AI Usage",
+    "frequency": {
+      "label": "How often do you use AI tools (e.g. Deep Seek, ChatGPT, BARD) in your daily life?",
+      "never": "Never",
+      "rarely": "Rarely (1–3 times a month)",
+      "sometimes": "Sometimes (once a week)",
+      "often": "Often (several times a week)",
+      "daily": "Daily"
+    },
+    "activities": {
+      "label": "Which of these activities have you tried with AI? (Select all that apply)",
+      "schoolwork": "Schoolwork help (essays, math, research)",
+      "writing": "Creative writing or storytelling",
+      "art": "Art or image generation",
+      "music": "Music or video creation",
+      "learning": "Learning new skills or hobbies (e.g., cooking, coding)",
+      "translation": "Translation or language practice",
+      "planning": "Planning (schedules, to-do lists, travel)",
+      "entertainment": "Entertainment (games, jokes, conversation)",
+      "social": "Social media content (posts, captions)",
+      "other": "Other",
+      "otherPlaceholder": "Specify other activities"
+    },
+    "enjoyMost": {
+      "label": "What do you enjoy most about using AI?",
+      "placeholder": "Describe what you enjoy"
+    },
+    "concerns": {
+      "label": "What concerns or challenges have you encountered when using AI?",
+      "placeholder": "Describe any concerns"
+    },
+    "futureSupport": {
+      "label": "In the future, how would you like AI to support you—both in and out of school?",
+      "placeholder": "Describe how AI could help you"
+    }
+  },
+  "section6": {
+    "title": "Communication, Social, & Emotional Support",
+    "communicate": {
+      "label": "How do you prefer to communicate? (Select all that apply)",
+      "talking": "Talking out loud",
+      "writing": "Writing or typing",
+      "pictures": "Pictures or visuals",
+      "gestures": "Gestures or pointing",
+      "time": "I need extra time to respond"
+    },
+    "workingWith": {
+      "label": "How do you feel about working with others?",
+      "groups": "I like working in groups",
+      "small": "I prefer small groups or partners",
+      "alone": "I prefer working alone",
+      "depends": "It depends on the activity"
+    },
+    "sharing": {
+      "label": "How do you feel about sharing in class?",
+      "like": "I like speaking in class",
+      "nervous": "I get nervous but try",
+      "writing": "I prefer writing or one-on-one",
+      "rather": "I'd rather not speak in groups"
+    },
+    "feelSchool": {
+      "label": "How do you usually feel at school? (Choose any that apply)",
+      "calm": "Calm",
+      "anxious": "Anxious",
+      "curious": "Curious",
+      "bored": "Bored",
+      "overwhelmed": "Overwhelmed",
+      "excited": "Excited",
+      "other": "Other",
+      "otherPlaceholder": "Specify feeling"
+    },
+    "sleep": {
+      "label": "How many hours do you usually sleep on school nights?",
+      "less6": "< 6",
+      "6to7": "6–7",
+      "7to8": "7–8",
+      "8plus": "8+"
+    },
+    "energy": {
+      "label": "On a typical school day, how would you rate your energy level?",
+      "high": "High and steady",
+      "upDown": "Up-and-down",
+      "low": "Often low"
+    },
+    "upset": {
+      "label": "When you're upset or frustrated, what helps? (Select all that apply)",
+      "break": "A short break",
+      "talking": "Talking to someone",
+      "stepHelp": "Step-by-step help",
+      "later": "Trying again later",
+      "quiet": "Quiet space or calm-down activity",
+      "other": "Other",
+      "otherPlaceholder": "Specify what helps"
+    },
+    "askHelp": {
+      "label": "Do you feel comfortable asking for help?",
+      "yes": "Yes – I always ask when I need it",
+      "sometimes": "Sometimes – depends how I feel",
+      "no": "No – I find it hard to ask"
+    },
+    "wishTeachers": {
+      "label": "What do you wish teachers or adults would do when you're struggling?",
+      "placeholder": "Describe what would help"
+    }
+  },
+  "section7": {
+    "title": "Final Thoughts & Suggestions",
+    "funLearning": {
+      "label": "What makes learning fun or exciting for you?",
+      "placeholder": "Describe what makes learning fun"
+    },
+    "perfectDay": {
+      "label": "If you could design your perfect school day, what would it include?",
+      "placeholder": "Describe your perfect school day"
+    },
+    "learnBest": {
+      "label": "Is there anything else you'd like us to know about how you learn best?",
+      "placeholder": "Optional"
+    },
+    "share": {
+      "label": "Would you like to share anything about yourself (hobbies, values, wishes)?",
+      "placeholder": "Optional"
+    }
+  },
+  "thankYou": {
+    "title": "Thank you for sharing!",
+    "message": "Your responses will help us create a learning experience that celebrates your strengths and supports your needs."
+  }
+}
+

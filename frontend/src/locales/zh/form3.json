@@ -1,0 +1,335 @@
+{
+  "title": "学生公平与包容性规划调查问卷",
+  "subtitle": "适用于教师及项目负责人 | 丑小鸭学校 – 中国昆明",
+  "intro": {
+    "purpose": "本问卷由Spark-OS团队开展，旨在更好地了解你所在学习中心内涉及学生公平、机会获取和包容性的整体趋势。你的专业见解将帮助我们确定以下支持模式与优先事项：",
+    "bullet1": "改进的项目设计，更好地满足多样化学生需求",
+    "bullet2": "更有效的资源协调和学校整体规划",
+    "bullet3": "你所在学校与支持网络之间更强大的数据驱动协作",
+    "bullet4": "为所有学习者提供更加包容、文化安全且支持性的学习环境",
+    "confidential": "所有回答将严格保密，仅用于内部审查、规划及未来的合作策略制定。"
+  },
+  "consent": {
+    "text": "我了解本调查有助于整体学校规划，并同意分享我的专业见解。"
+  },
+  "section1": {
+    "title": "您的信息",
+    "fullName": { "label": "姓名", "placeholder": "请输入您的姓名" },
+    "role": {
+      "label": "您的职位",
+      "educator": "教师 / 引导员",
+      "support": "学习支持 / 咨询师",
+      "coordinator": "项目或校区协调员",
+      "admin": "行政或管理团队成员",
+      "other": "其他",
+      "otherPlaceholder": "请注明职位"
+    },
+    "campusLevels": {
+      "label": "您所负责的校区学段（可多选）",
+      "lowerPrimary": "小学低年级（1–3年级）",
+      "upperPrimary": "小学高年级（4–6年级）",
+      "middle": "初中阶段（7–9年级）",
+      "secondary": "高中阶段（10–12年级）",
+      "vocational": "职业技能 / 生活技能课程",
+      "alternative": "青年 / 特殊路径项目：替代教育课程"
+    },
+    "tenure": {
+      "label": "您在丑小鸭学校工作的时间",
+      "less6": "少于6个月",
+      "6to12": "6–12个月",
+      "1to2": "1–2年",
+      "2to5": "2–5年",
+      "5plus": "超过5年"
+    }
+  },
+  "section2": {
+    "title": "学生群体趋势与包容性现状",
+    "enrollment": {
+      "label": "您所在校区大致的在校学生人数",
+      "less50": "少于50人",
+      "50to100": "50–100人",
+      "101to200": "101–200人",
+      "201to500": "201–500人",
+      "500plus": "超过500人"
+    },
+    "identities": {
+      "label": "您观察到的学生文化或语言身份（可多选）",
+      "mandarin": "讲普通话的学生",
+      "dialect": "讲方言的学生（如客家话、粤语、上海话等）",
+      "ethnic": "少数民族学生",
+      "migrant": "随迁或跨省迁移家庭学生",
+      "international": "国际/海归学生",
+      "refugee": "难民 / 无国籍背景",
+      "other": "其他",
+      "otherPlaceholder": "请注明身份"
+    },
+    "challenges": {
+      "label": "请估计有多少学生面临以下系统性挑战",
+      "tech": "缺乏科技设备/网络连接",
+      "irregular": "学业经历不连续",
+      "noSupport": "放学后缺乏家庭支持",
+      "food": "食物不安全 / 住房不稳定",
+      "commutes": "上学路途遥远或不安全",
+      "digitalLiteracy": "数字素养存在差距",
+      "none": "没有",
+      "few": "少数",
+      "some": "一部分",
+      "many": "很多",
+      "unknown": "不确定"
+    },
+    "otherChallenges": {
+      "label": "其他您观察到的系统性挑战（选填）",
+      "placeholder": "描述其他挑战"
+    },
+    "gapsDynamics": {
+      "label": "哪些差距或社会因素影响学生的学习参与度？（可多选）",
+      "shame": "因羞耻或害怕不敢寻求帮助",
+      "mistrust": "家长对学校不信任或脱节",
+      "fear": "害怕因'与众不同'而被欺凌",
+      "homeEnvironment": "家庭环境缺乏学业支持",
+      "cultural": "家庭文化与课堂文化不匹配",
+      "language": "因语言障碍而产生隔离感",
+      "none": "未观察到明显问题",
+      "other": "其他",
+      "otherPlaceholder": "请注明动态"
+    }
+  },
+  "section3": {
+    "title": "系统性差距与公平获取",
+    "unmetNeeds": {
+      "label": "您认为是否存在一些有未被满足的隐性需求的学生？（例如：未确诊的多动症、创伤经历等）",
+      "none": "没有",
+      "few": "少数",
+      "several": "一些学生",
+      "many": "很多学生",
+      "unsure": "不确定"
+    },
+    "curriculum": {
+      "label": "您的课程是否反映了学生群体的真实经历与身份？",
+      "yes": "是的 —— 充分体现",
+      "somewhat": "一定程度 —— 仍有改进空间",
+      "not": "基本没有 —— 主要为传统或标准化内容",
+      "unsure": "不确定"
+    },
+    "accessibility": {
+      "label": "您认为学校在实体和数字环境方面的可及性如何？（可多选）",
+      "wheelchair": "对轮椅使用者 / 行动不便者友好",
+      "quiet": "有安静空间或感官调节区域",
+      "assistive": "提供辅助技术 / 适应性工具",
+      "multilingual": "数字工具具备多语言支持 / 使用直观",
+      "barriers": "仍存在物理或数字障碍",
+      "notApplicable": "不适用 / 不确定"
+    },
+    "assessments": {
+      "label": "当前的评估方式或分班机制是否考虑到多样化的学习风格与背景？",
+      "yes": "是的 —— 包容性很强",
+      "somewhat": "一定程度 —— 但需要修订",
+      "not": "基本没有 —— 仍是传统方式",
+      "unsure": "不适用 / 不确定"
+    },
+    "followUp": {
+      "label": "是否有明确且及时的后续跟进机制，用于支持被识别为有额外需求的学生？",
+      "yes": "有 —— 干预措施及时且一致",
+      "sometimes": "有时 —— 取决于员工或时间安排",
+      "rarely": "很少 —— 跟进不一致或延迟",
+      "unsure": "不确定 / 我不参与相关工作"
+    },
+    "leastSupported": {
+      "label": "目前哪些学生群体获得的个性化支持最少？（最多选择3项）",
+      "undiagnosed": "未确诊或未被识别的学习困难学生",
+      "lowIncome": "来自低收入家庭的学生",
+      "migrant": "随迁或跨地区转学的学生",
+      "nonMandarin": "非普通话或方言学生",
+      "neurodivergent": "有神经多样性特征的学生（如ADHD、自闭症、阅读障碍等）",
+      "trauma": "经历创伤或家庭不稳定的学生",
+      "irregular": "出勤不规律或频繁转学的学生",
+      "ethnic": "来自少数民族背景的学生",
+      "physical": "有身体、沟通或健康相关障碍的学生",
+      "other": "其他",
+      "otherPlaceholder": "请注明学生群体"
+    },
+    "schoolSystems": {
+      "label": "学校内有哪些系统机制以提升可及性？（可多选）",
+      "translation": "为非母语学生提供翻译/口译支持",
+      "referral": "针对疑似学习困难的学生设有转介流程",
+      "training": "全体员工参与创伤知情培训",
+      "food": "提供食物/零食或应急援助",
+      "mentorship": "导师辅导项目",
+      "sensory": "设有感官友好型教室区域",
+      "cultural": "举办文化认知日或包容性活动",
+      "none": "没有或仅有极少的支持机制",
+      "other": "其他",
+      "otherPlaceholder": "请注明机制"
+    }
+  },
+  "section4": {
+    "title": "教师与系统反馈",
+    "equipped": {
+      "label": "您是否觉得自己具备足够的能力和支持，以满足学生多样性的需求？",
+      "yes": "是的 —— 我有足够的支持",
+      "somewhat": "一定程度 —— 我常常感到吃力",
+      "no": "否 —— 我缺乏资源或支持",
+      "unsure": "不确定"
+    },
+    "workload": {
+      "label": "您如何描述当前在支持多样化学习者方面的工作负担？",
+      "manageable": "可管理且有良好支持",
+      "occasionally": "偶尔感到压力大",
+      "frequently": "经常感到负担过重",
+      "unsure": "不确定 / 不适用"
+    },
+    "limits": {
+      "label": "哪些因素限制了您更有效支持学生的能力？（可多选）",
+      "time": "缺乏时间 / 负责学生数量过多",
+      "training": "缺乏与包容性相关的专业培训",
+      "fatigue": "情绪疲劳或倦怠",
+      "systems": "学校系统或后续机制不完善",
+      "language": "语言/文化不匹配",
+      "other": "其他",
+      "otherPlaceholder": "请注明限制"
+    },
+    "pdNeeds": {
+      "label": "哪类专业发展或团队培训将帮助您更有效支持学生？（可多选）",
+      "neurodiversity": "神经多样性认知与课堂策略设计",
+      "adhdAutism": "多动症/自闭症的实用应对方法",
+      "trauma": "创伤知情教学方法",
+      "conflict": "冲突化解与关系导向行为策略",
+      "intercultural": "跨文化沟通与无意识偏见认知",
+      "mixedAbility": "混合能力课堂的教学设计方法",
+      "family": "家校沟通与家庭参与策略",
+      "stress": "压力管理与教师心理健康支持",
+      "other": "其他",
+      "otherPlaceholder": "请注明培训需求"
+    },
+    "urgentGaps": {
+      "label": "在您看来，目前学校层面最紧迫的包容性差距是什么？（您可以提到课程安排、教学资源、转介机制、学习环境或校园文化等方面）",
+      "placeholder": "描述紧迫差距"
+    },
+    "feedbackLoops": {
+      "label": "目前有哪些学生反馈渠道可以影响学校政策或文化？（可多选）",
+      "surveys": "学生调查问卷",
+      "councils": "学生会或班级代表制度",
+      "boxes": "意见箱 / 安全反馈系统",
+      "checkins": "学生与教师之间的定期沟通",
+      "none": "没有 / 或者不明确",
+      "other": "其他",
+      "otherPlaceholder": "请注明反馈渠道"
+    },
+    "confidence": {
+      "label": "您对这类反馈能够推动学校改变的信心如何？",
+      "very": "非常有信心",
+      "somewhat": "有一定信心",
+      "not": "没有信心",
+      "unsure": "不确定"
+    }
+  },
+  "section5": {
+    "title": "人工智能的应用与认知",
+    "staffUsage": {
+      "label": "您所在校区的教职员工在专业实践中使用AI工具（如Deep Seek、ChatGPT）的程度如何？",
+      "almostNever": "几乎从不使用",
+      "some": "部分员工偶尔使用",
+      "many": "很多员工经常使用",
+      "unsure": "不确定"
+    },
+    "educatorTasks": {
+      "label": "教师主要在哪些任务中使用AI？（可多选）",
+      "lesson": "教案或课程设计",
+      "assessments": "制作测试或测验题目",
+      "materials": "生成教学材料（如幻灯片、练习册）",
+      "feedback": "提供反馈或评分",
+      "communication": "与学生/家庭沟通",
+      "professional": "专业学习或研究",
+      "other": "其他",
+      "otherPlaceholder": "请注明任务"
+    },
+    "studentPercentage": {
+      "label": "大约有多少比例的学生在作业或学习活动中使用AI工具？",
+      "0": "0%",
+      "1to25": "1–25%",
+      "26to50": "26–50%",
+      "51to75": "51–75%",
+      "76to100": "76–100%",
+      "unsure": "不确定"
+    },
+    "benefitsRisks": {
+      "label": "您认为在全校范围扩大AI支持会带来哪些好处或风险？",
+      "placeholder": "描述好处和风险"
+    }
+  },
+  "section6": {
+    "title": "社区合作与家长参与",
+    "strengths": {
+      "label": "您认为当前学校/学习中心与家庭之间关系的优势有哪些？",
+      "placeholder": "描述关系优势"
+    },
+    "barriers": {
+      "label": "家庭在与学校互动时面临哪些障碍？（可多选）",
+      "language": "语言或翻译方面的挑战",
+      "work": "工作时间安排 / 时间有限",
+      "trust": "缺乏信任或曾有学校创伤经历",
+      "digital": "数字接入障碍（如不会使用平台）",
+      "cultural": "文化差异或误解",
+      "priorities": "家庭优先事项与学校期望不一致",
+      "limited": "家庭参与度有限 / 时间精力有限",
+      "none": "没有障碍",
+      "other": "其他",
+      "otherPlaceholder": "请注明障碍"
+    },
+    "restorative": {
+      "label": "贵校是否在处理行为和冲突时采用恢复性或包容性方法？",
+      "yes": "是的 —— 恢复性实践已被整合到校园日常中",
+      "some": "有部分员工使用，但不够系统",
+      "traditional": "仍以传统纪律方式为主",
+      "unsure": "不确定"
+    },
+    "events": {
+      "label": "您所在中心目前有哪些包容性相关的活动或做法？（可多选）",
+      "cultural": "文化庆祝周",
+      "mental": "心理健康倡导活动",
+      "studentLed": "学生主导的多元文化倡议",
+      "none": "没有 / 不清楚",
+      "other": "其他",
+      "otherPlaceholder": "请注明活动"
+    },
+    "partnerships": {
+      "label": "哪些外部合作能增强学校的包容性或提供全方位支持？（可多选）",
+      "mental": "心理健康服务机构",
+      "ngos": "专注教育公平的非政府组织（NGO）",
+      "artists": "本地艺术家或创意团队",
+      "arts": "以艺术或创意为核心的社区项目",
+      "other": "其他",
+      "otherPlaceholder": "请注明合作"
+    }
+  },
+  "section7": {
+    "title": "最后的思考与反思",
+    "overlooked": {
+      "label": "在您看来，学校最容易忽视哪些学生群体或支持问题？",
+      "placeholder": "描述被忽视的群体"
+    },
+    "suggestions": {
+      "label": "您有哪些建议可以帮助学校打造一个更公平、更具包容性和欢迎感的环境？",
+      "placeholder": "分享您的建议"
+    },
+    "exclusion": {
+      "label": "您是否观察到任何与身份有关的排斥、欺凌或边缘化现象？（例如：种族、性别、神经多样性、语言等）",
+      "frequently": "是的 —— 经常发生",
+      "occasionally": "偶尔发生",
+      "rarely": "很少发生",
+      "never": "从未观察到"
+    },
+    "situations": {
+      "label": "如果有，通常会出现哪些情况？",
+      "placeholder": "描述情况"
+    },
+    "inclusive": {
+      "label": "在您看来，什么样的环境才算是真正具有包容性、文化安全的学校环境？",
+      "placeholder": "描述您的愿景"
+    }
+  },
+  "thankYou": {
+    "title": "感谢你的分享！",
+    "message": "你的回答将帮助我们创造一个发扬学生优势、满足学生需求的更好学习环境。"
+  }
+}

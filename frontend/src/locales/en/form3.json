@@ -1,0 +1,335 @@
+{
+  "title": "Student Equity & Inclusion Planning Survey",
+  "subtitle": "For Teachers and Program Leaders | Ugly Duck School – Kunming, China",
+  "intro": {
+    "purpose": "This survey is conducted by the Spark-OS Team to better understand broader school-wide trends around student equity, access, and inclusion landscape at your learning center. Your professional insights will help us to identify patterns and priorities that can support:",
+    "bullet1": "Improved program design tailored to diverse student needs",
+    "bullet2": "Better resource alignment and school-wide planning",
+    "bullet3": "Stronger, data-informed collaboration between your school and support networks",
+    "bullet4": "A more inclusive, culturally safe, and supportive learning environment for all learners",
+    "confidential": "All responses are strictly confidential and will only be used for internal review, planning, and future collaboration strategies."
+  },
+  "consent": {
+    "text": "I understand that this survey helps improve overall school planning and I agree to share my professional insights."
+  },
+  "section1": {
+    "title": "Your Information",
+    "fullName": { "label": "Full Name", "placeholder": "Enter your full name" },
+    "role": {
+      "label": "Your Role",
+      "educator": "Educator / Facilitator",
+      "support": "Learning Support / Counselor",
+      "coordinator": "Program or Campus Coordinator",
+      "admin": "Administrative or Management Team",
+      "other": "Other",
+      "otherPlaceholder": "Specify role"
+    },
+    "campusLevels": {
+      "label": "Campus Level(s) You Work With (Select all that apply)",
+      "lowerPrimary": "Lower Primary (Grades 1–3)",
+      "upperPrimary": "Upper Primary (Grades 4–6)",
+      "middle": "Middle Years (Grades 7–9)",
+      "secondary": "Secondary / High School (Grades 10–12)",
+      "vocational": "Vocational / Life Skills",
+      "alternative": "Young Adult / Alternative Pathways: Special Programs"
+    },
+    "tenure": {
+      "label": "How long have you worked at Ugly Duck School?",
+      "less6": "Less than 6 months",
+      "6to12": "6–12 months",
+      "1to2": "1–2 years",
+      "2to5": "2-5 years",
+      "5plus": "5+ years"
+    }
+  },
+  "section2": {
+    "title": "Demographic Trends & Inclusion Landscape",
+    "enrollment": {
+      "label": "Estimated number of students enrolled at your site",
+      "less50": "Less than 50",
+      "50to100": "50–100",
+      "101to200": "101–200",
+      "201to500": "201–500",
+      "500plus": "More than 500"
+    },
+    "identities": {
+      "label": "Cultural or Linguistic Identities You Observe (Select all that apply)",
+      "mandarin": "Mandarin-speaking students",
+      "dialect": "Dialect-speaking students (e.g., Hakka, Cantonese, Shanghainese)",
+      "ethnic": "Ethnic minority groups",
+      "migrant": "Migrant or inter-province relocated families",
+      "international": "International / returnee students",
+      "refugee": "Refugee / stateless backgrounds",
+      "other": "Other",
+      "otherPlaceholder": "Specify identities"
+    },
+    "challenges": {
+      "label": "Estimate how many students face the following systemic challenges",
+      "tech": "Limited access to tech/internet",
+      "irregular": "Irregular school history",
+      "noSupport": "No home support after school",
+      "food": "Food insecurity / unstable housing",
+      "commutes": "Long or unsafe commutes",
+      "digitalLiteracy": "Digital literacy gaps",
+      "none": "None",
+      "few": "A few",
+      "some": "Some",
+      "many": "Many",
+      "unknown": "Unknown"
+    },
+    "otherChallenges": {
+      "label": "Other systemic challenges you've observed (optional)",
+      "placeholder": "Describe other challenges"
+    },
+    "gapsDynamics": {
+      "label": "Which gaps or social dynamics affect student engagement? (Select all that apply)",
+      "shame": "Shame or fear of asking for help",
+      "mistrust": "Parent mistrust or disconnection from school",
+      "fear": "Fear of being bullied for being 'different'",
+      "homeEnvironment": "Home environments with little academic support",
+      "cultural": "Cultural mismatch between home and classroom",
+      "language": "Language-based isolation",
+      "none": "No significant issues observed",
+      "other": "Other",
+      "otherPlaceholder": "Specify dynamics"
+    }
+  },
+  "section3": {
+    "title": "System Gaps & Equity Access",
+    "unmetNeeds": {
+      "label": "Do you believe there are students with unmet hidden needs (e.g., undiagnosed ADHD, trauma)?",
+      "none": "None",
+      "few": "A few",
+      "several": "Several",
+      "many": "Many",
+      "unsure": "Unsure"
+    },
+    "curriculum": {
+      "label": "Does your curriculum reflect the lived experiences and identities of your student population?",
+      "yes": "Yes – well represented",
+      "somewhat": "Somewhat – there's room to grow",
+      "not": "Not really – mostly traditional or standardized",
+      "unsure": "Unsure"
+    },
+    "accessibility": {
+      "label": "How accessible is the physical and digital school environment? (Select all that apply)",
+      "wheelchair": "Accessible to wheelchair users / mobility needs",
+      "quiet": "Has quiet or sensory-regulated zones",
+      "assistive": "Offers assistive tech / adaptive tools",
+      "multilingual": "Digital tools are multilingual / intuitive",
+      "barriers": "Physical and digital barriers still exist",
+      "notApplicable": "Not applicable / unsure"
+    },
+    "assessments": {
+      "label": "Do current assessments or placement practices accommodate diverse learning styles and backgrounds?",
+      "yes": "Yes – very inclusive",
+      "somewhat": "Somewhat – but needs revision",
+      "not": "Not really – mostly traditional",
+      "unsure": "Not applicable / unsure"
+    },
+    "followUp": {
+      "label": "Are there clear and timely follow-up systems for students identified as needing extra support?",
+      "yes": "Yes – interventions are responsive and consistent",
+      "sometimes": "Sometimes – but depends on staff or timing",
+      "rarely": "Rarely – follow-up is inconsistent or delayed",
+      "unsure": "Not sure / not involved in this area"
+    },
+    "leastSupported": {
+      "label": "Which student groups currently receive the least tailored support? (Choose up to 3)",
+      "undiagnosed": "Students with undiagnosed or unrecognized learning needs",
+      "lowIncome": "Students from low-income households",
+      "migrant": "Migrant or relocated students",
+      "nonMandarin": "Non-Mandarin-speaking students or dialect speakers",
+      "neurodivergent": "Students with neurodivergent traits (e.g., ADHD, autism, dyslexia)",
+      "trauma": "Students experiencing trauma or family instability",
+      "irregular": "Students with irregular attendance or transitions",
+      "ethnic": "Students from ethnic minority backgrounds",
+      "physical": "Students with physical, communication, or health-related disabilities",
+      "other": "Other",
+      "otherPlaceholder": "Specify student groups"
+    },
+    "schoolSystems": {
+      "label": "What school-wide systems are in place to address accessibility? (Select all that apply)",
+      "translation": "Translation/interpreting support for non-native speakers",
+      "referral": "Referral process for suspected learning needs",
+      "training": "Staff-wide trauma-informed training",
+      "food": "Access to food/snacks or emergency aid",
+      "mentorship": "Mentorship programs",
+      "sensory": "Sensory-friendly classroom areas",
+      "cultural": "Cultural awareness days or inclusion campaigns",
+      "none": "None or very limited systems in place",
+      "other": "Other",
+      "otherPlaceholder": "Specify systems"
+    }
+  },
+  "section4": {
+    "title": "Educator & System Feedback",
+    "equipped": {
+      "label": "Do you feel equipped and supported to meet student diversity needs?",
+      "yes": "Yes – I have enough support",
+      "somewhat": "Somewhat – I often feel overwhelmed",
+      "no": "No – I feel under-resourced or unsupported",
+      "unsure": "I'm not sure"
+    },
+    "workload": {
+      "label": "How would you describe your current workload in supporting diverse learners?",
+      "manageable": "Manageable and well-supported",
+      "occasionally": "Occasionally overwhelming",
+      "frequently": "Frequently overwhelming",
+      "unsure": "Unsure / not applicable"
+    },
+    "limits": {
+      "label": "What limits your ability to support students more effectively? (Select all that apply)",
+      "time": "Lack of time / large caseload",
+      "training": "Lack of inclusion-specific training",
+      "fatigue": "Emotional fatigue or burnout",
+      "systems": "Insufficient systems or follow-up",
+      "language": "Language/cultural mismatches",
+      "other": "Other",
+      "otherPlaceholder": "Specify limits"
+    },
+    "pdNeeds": {
+      "label": "What kinds of professional development or team training would help you support students more effectively? (Select all that apply)",
+      "neurodiversity": "Neurodiversity awareness and classroom planning",
+      "adhdAutism": "Practical strategies for ADHD / autism",
+      "trauma": "Trauma-informed teaching",
+      "conflict": "Conflict de-escalation / relational behavior approaches",
+      "intercultural": "Intercultural communication & unconscious bias",
+      "mixedAbility": "Instructional design for mixed-ability classrooms",
+      "family": "Family communication and engagement",
+      "stress": "Stress management and educator well-being",
+      "other": "Other",
+      "otherPlaceholder": "Specify PD needs"
+    },
+    "urgentGaps": {
+      "label": "In your opinion, what are the most urgent inclusion-related gaps at the school level? (You may refer to scheduling, materials, referrals, environment, or culture)",
+      "placeholder": "Describe urgent gaps"
+    },
+    "feedbackLoops": {
+      "label": "What feedback loops currently exist for student voices to shape school policy or culture? (Select all that apply)",
+      "surveys": "Student surveys",
+      "councils": "Student councils or class reps",
+      "boxes": "Feedback boxes / safe reporting systems",
+      "checkins": "Student-teacher check-ins",
+      "none": "None or unclear",
+      "other": "Other",
+      "otherPlaceholder": "Specify feedback loops"
+    },
+    "confidence": {
+      "label": "How confident are you that feedback like this leads to school change?",
+      "very": "Very confident",
+      "somewhat": "Somewhat confident",
+      "not": "Not confident",
+      "unsure": "I'm not sure"
+    }
+  },
+  "section5": {
+    "title": "AI Adoption & Perceptions",
+    "staffUsage": {
+      "label": "To what extent do staff at your site use AI tools (e.g., Deep Seek, ChatGPT) in their professional practice?",
+      "almostNever": "Almost never",
+      "some": "Some staff occasionally",
+      "many": "Many staff regularly",
+      "unsure": "Unsure"
+    },
+    "educatorTasks": {
+      "label": "Which tasks do educators use AI for? (Select all that apply)",
+      "lesson": "Lesson or curriculum planning",
+      "assessments": "Creating assessments or quizzes",
+      "materials": "Generating teaching materials (slides, worksheets)",
+      "feedback": "Providing feedback or grading",
+      "communication": "Communicating with students/families",
+      "professional": "Professional learning or research",
+      "other": "Other",
+      "otherPlaceholder": "Specify tasks"
+    },
+    "studentPercentage": {
+      "label": "Approximately what percentage of your students use AI tools for homework or learning activities?",
+      "0": "0%",
+      "1to25": "1–25%",
+      "26to50": "26–50%",
+      "51to75": "51–75%",
+      "76to100": "76–100%",
+      "unsure": "Unsure"
+    },
+    "benefitsRisks": {
+      "label": "What benefits or risks do you foresee in expanding AI support across the school?",
+      "placeholder": "Describe benefits and risks"
+    }
+  },
+  "section6": {
+    "title": "Community Partnerships & Parent Engagement",
+    "strengths": {
+      "label": "What are the current strengths of your center's relationship with families?",
+      "placeholder": "Describe relationship strengths"
+    },
+    "barriers": {
+      "label": "What barriers do families face when engaging with the school? (Select all that apply)",
+      "language": "Language / translation challenges",
+      "work": "Work schedules / time limitations",
+      "trust": "Lack of trust or past school trauma",
+      "digital": "Digital access (e.g., platform use)",
+      "cultural": "Cultural mismatch or misunderstanding",
+      "priorities": "Family priorities may differ from school expectations",
+      "limited": "Limited engagement or availability from families",
+      "none": "None",
+      "other": "Other",
+      "otherPlaceholder": "Specify barriers"
+    },
+    "restorative": {
+      "label": "Does your school use restorative or inclusive approaches to address behavior and conflict?",
+      "yes": "Yes – restorative practices are integrated",
+      "some": "Some staff use restorative tools, but not consistently",
+      "traditional": "Primarily traditional discipline methods are used",
+      "unsure": "I'm not sure"
+    },
+    "events": {
+      "label": "Which types of inclusion-focused events or practices are active at your center? (Select all that apply)",
+      "cultural": "Cultural celebration weeks",
+      "mental": "Mental health campaigns",
+      "studentLed": "Student-led diversity initiatives",
+      "none": "None / unclear",
+      "other": "Other",
+      "otherPlaceholder": "Specify events"
+    },
+    "partnerships": {
+      "label": "Which external partnerships would strengthen inclusion or wraparound support? (Select all that apply)",
+      "mental": "Mental health providers",
+      "ngos": "NGOs focused on education equity",
+      "artists": "Local artist or creative groups",
+      "arts": "Arts or creativity-based community programs",
+      "other": "Other",
+      "otherPlaceholder": "Specify partnerships"
+    }
+  },
+  "section7": {
+    "title": "Final Reflections",
+    "overlooked": {
+      "label": "What student groups or support issues do we most overlook as a school?",
+      "placeholder": "Describe overlooked groups"
+    },
+    "suggestions": {
+      "label": "Any suggestions for how the school can build a more equitable and welcoming space for all?",
+      "placeholder": "Share your suggestions"
+    },
+    "exclusion": {
+      "label": "Have you observed patterns of exclusion, bullying, or marginalization related to identity (race, gender, neurodivergence, language, etc.)?",
+      "frequently": "Yes – frequently",
+      "occasionally": "Occasionally",
+      "rarely": "Rarely",
+      "never": "Never observed"
+    },
+    "situations": {
+      "label": "If yes, what types of situations tend to arise?",
+      "placeholder": "Describe situations"
+    },
+    "inclusive": {
+      "label": "What would a truly inclusive and culturally safe environment look like in this school?",
+      "placeholder": "Describe your vision"
+    }
+  },
+  "thankYou": {
+    "title": "Thank you for sharing!",
+    "message": "Your responses will help us create a learning experience that celebrates students' strengths and supports their needs."
+  }
+}

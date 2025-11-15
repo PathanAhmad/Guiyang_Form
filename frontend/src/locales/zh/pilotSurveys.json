@@ -1,0 +1,45 @@
+{
+  "dashboard": {
+    "title": "调查问卷",
+    "description": "完成问卷以帮助我们了解和改进试点项目",
+    "viewAll": "查看所有问卷"
+  },
+  "surveyList": {
+    "title": "可用问卷",
+    "subtitle": "选择一个问卷开始或继续",
+    "status": {
+      "notStarted": "未开始",
+      "inProgress": "进行中",
+      "completed": "已完成"
+    },
+    "startSurvey": "开始问卷",
+    "continueSurvey": "继续问卷",
+    "viewSurvey": "查看提交",
+    "progress": "已完成 {{percent}}%",
+    "noSurveys": "您的角色没有可用的问卷"
+  },
+  "form": {
+    "savingDraft": "保存草稿中...",
+    "draftSaved": "草稿已保存",
+    "submitting": "提交中...",
+    "submitted": "问卷提交成功！",
+    "error": "发生错误，请重试。",
+    "confirmSubmit": "确定要提交此问卷吗？提交后将无法编辑。",
+    "progress": "第 {{current}} / {{total}} 部分",
+    "requiredField": "* 必填",
+    "languageSwitch": "切换语言"
+  },
+  "formTitles": {
+    "form1": "学习兴趣与偏好调查问卷",
+    "form2": "个体学生行为评估问卷",
+    "form3": "学生公平与包容性规划调查问卷",
+    "form4": "课程目录与数字化意愿调查问卷"
+  },
+  "formDescriptions": {
+    "form1": "帮助我们了解你最适合的学习方式及支持需求",
+    "form2": "提供关于个体学生成长和支持需求的详细见解",
+    "form3": "分享您对学习中心公平、可及性和包容性的专业见解",
+    "form4": "记录现有课程并探索数字化交付意向"
+  }
+}
+

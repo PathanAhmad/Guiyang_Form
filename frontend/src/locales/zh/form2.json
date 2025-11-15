@@ -1,0 +1,473 @@
+{
+  "title": "个体学生行为评估问卷",
+  "subtitle": "适用于教师及支持人员 | 丑小鸭学校 – 中国昆明",
+  "intro": {
+    "purpose": "本调查问卷旨在收集教师、学习支持专家及项目人员对单个学生的学业成长、社会情感发展以及支持需求的详细信息。",
+    "helps": "你的反馈有助于我们：",
+    "bullet1": "发现学生的优势与待提升领域",
+    "bullet2": "调整教学与支持方案",
+    "bullet3": "确保每位学生都获得适合自身发展的工具",
+    "confidential": "所有信息将严格保密，仅用于提升学生的支持与学习策略。"
+  },
+  "consent": {
+    "text": "我理解并同意为本问卷中的学生提供反馈。我明白我的回答将保密，并只用于优化教育规划和学生支持。"
+  },
+  "section1": {
+    "title": "评估者信息",
+    "assessorName": {
+      "label": "你的姓名",
+      "placeholder": "请输入您的姓名"
+    },
+    "assessorRole": {
+      "label": "你在学习中心的职务",
+      "educator": "教师 / 引导员",
+      "specialist": "学习支持专家",
+      "coordinator": "项目协调员 / 管理人员",
+      "other": "其他",
+      "otherPlaceholder": "请注明职务"
+    },
+    "frequency": {
+      "label": "你与该学生直接互动的频率？",
+      "daily": "每天",
+      "severalWeekly": "每周数次",
+      "weekly": "每周一次",
+      "occasionally": "偶尔"
+    },
+    "aiUsageLabel": "教学中的技术与AI应用情况",
+    "aiUsageNote": "以上两题仅在你首次开始批量填写学生评估时出现一次。",
+    "aiFrequency": {
+      "label": "你在教学中使用AI工具（如Deep Seek、ChatGPT）的频率如何？",
+      "never": "从不",
+      "rarely": "很少（每月1–3次）",
+      "sometimes": "偶尔（每周1次）",
+      "often": "经常（每周多次）",
+      "daily": "每天"
+    },
+    "aiTasks": {
+      "label": "你使用AI完成哪些任务？（可多选）",
+      "lesson": "教案及课程设计",
+      "assessments": "生成测试或测验",
+      "materials": "制作教学材料（幻灯片、讲义）",
+      "grading": "批改作业或反馈",
+      "communication": "沟通（学生或家长）",
+      "research": "专业研究或职业发展",
+      "other": "其他",
+      "otherPlaceholder": "请注明任务"
+    }
+  },
+  "section2": {
+    "title": "学生基本信息",
+    "studentName": {
+      "label": "学生姓名",
+      "placeholder": "请输入学生姓名"
+    },
+    "studentId": {
+      "label": "学生ID或编号",
+      "placeholder": "请输入学生ID"
+    },
+    "dateOfBirth": {
+      "label": "出生日期（DD / MM / YYYY）",
+      "placeholder": "DD / MM / YYYY"
+    },
+    "gradeLevel": {
+      "label": "当前所在年级或学习水平",
+      "placeholder": "请输入年级水平"
+    },
+    "livingSituation": {
+      "label": "学生主要居住情况（可多选）",
+      "bothParents": "与父母双方居住",
+      "oneParent": "与单亲居住",
+      "extendedFamily": "与亲戚或祖辈居住",
+      "foster": "寄养或监护",
+      "boarding": "学校提供的宿舍或寄宿",
+      "independent": "独立或非家庭居住",
+      "unknown": "不清楚或未提供",
+      "other": "其他",
+      "otherPlaceholder": "请注明居住情况"
+    },
+    "educationHistory": {
+      "label": "教育经历（进入本校前）（可多选）",
+      "public": "公立学校（传统模式）",
+      "private": "私立或国际学校",
+      "special": "特殊教育项目或资源中心",
+      "homeschool": "在家教育或自主学习",
+      "disrupted": "经历过教育中断或不规律出勤",
+      "migrated": "多种教育系统之间迁移",
+      "other": "其他",
+      "otherPlaceholder": "请注明教育经历"
+    },
+    "supportFlags": {
+      "label": "已知的身份、神经多样性或特殊支持情况（可多选）",
+      "autistic": "自闭症谱系特质",
+      "adhd": "多动症（ADHD）或执行功能困难",
+      "anxiety": "焦虑、抑郁或创伤经历",
+      "signLanguage": "使用手语或语言学习者",
+      "sensory": "感官处理敏感",
+      "physical": "身体、言语或健康障碍",
+      "cultural": "文化或宗教方面因素",
+      "notDisclosed": "未公开",
+      "other": "其他",
+      "otherPlaceholder": "请注明支持情况"
+    },
+    "supportNetwork": {
+      "label": "家庭或外部支持网络情况（可多选）",
+      "parents": "父母或监护人积极参与",
+      "siblings": "兄弟姐妹或同伴支持",
+      "counseling": "定期接受咨询或治疗",
+      "family": "亲属、宗教或社区导师",
+      "none": "无已知的支持网络",
+      "other": "其他",
+      "otherPlaceholder": "请注明支持网络"
+    },
+    "homeResources": {
+      "label": "学生在家中的学习资源情况（可多选）",
+      "personal": "个人电脑或笔记本",
+      "shared": "共用家庭设备",
+      "smartphone": "用于学习的智能手机",
+      "internet": "稳定的网络连接",
+      "books": "书籍及教育材料",
+      "space": "专用的安静学习空间",
+      "minimal": "极少或无资源支持"
+    },
+    "emotionalSupport": {
+      "label": "可获得的情绪与社交支持系统（可多选）",
+      "checkins": "与教师定期交流",
+      "peer": "同伴支持或小组活动",
+      "counseling": "学校咨询服务",
+      "family": "家庭参与身心健康支持",
+      "none": "无正式支持",
+      "other": "其他",
+      "otherPlaceholder": "请注明情绪支持"
+    },
+    "pastStress": {
+      "label": "该学生曾表达或表现出过去学校经历带来的压力吗？",
+      "yes": "是 – 明显焦虑",
+      "occasionally": "偶尔因过去经历而逃避学习",
+      "not": "未观察到",
+      "unknown": "不清楚"
+    },
+    "trustedAdult": {
+      "label": "学生在校内是否有信任的成人或导师？",
+      "yes": "有 – 主动寻求帮助",
+      "somewhat": "有一些 – 舒适但不会主动",
+      "no": "没有已知联系",
+      "benefit": "该学生可能需要匹配一位"
+    },
+    "identityStress": {
+      "label": "学生是否表现出与文化、种族或身份相关的压力或被排斥感？（如语言困难、宗教差异、性别认同困扰）",
+      "yes": "是 – 存在已知困难或要求",
+      "sometimes": "偶尔孤立或被误解",
+      "no": "无已知问题",
+      "unsure": "不确定 / 未讨论"
+    }
+  },
+  "section3": {
+    "title": "学业进展与学习情况分析",
+    "overallProgress": {
+      "label": "总体上，你如何评价该学生的学业进步情况？",
+      "exceeds": "超出期望（明显高于同龄标准）",
+      "expected": "达到年龄应有水平",
+      "progressing": "有支持情况下取得进步（略低于预期水平）",
+      "requires": "需要较强的学业支持"
+    },
+    "strengths": {
+      "label": "优势领域（可多选）",
+      "oral": "口语沟通能力",
+      "reading": "阅读理解能力",
+      "writing": "写作与表达能力",
+      "numeracy": "数字运算与逻辑思考能力",
+      "scientific": "科学推理能力",
+      "artistic": "艺术创造力或音乐能力",
+      "physical": "身体协调性与运动能力",
+      "leadership": "领导力或主动性",
+      "technology": "技术应用能力",
+      "other": "其他",
+      "otherPlaceholder": "请注明其他优势"
+    },
+    "supportAreas": {
+      "label": "需要额外支持的领域（可多选）",
+      "language": "语言理解或书写",
+      "numeracy": "基础算术或逻辑推理",
+      "scientific": "科学或抽象推理",
+      "attention": "注意力集中与持续性",
+      "taskCompletion": "任务完成与积极性",
+      "social": "社交学习与协作",
+      "instructions": "执行多步骤指令",
+      "other": "其他",
+      "otherPlaceholder": "请注明其他领域"
+    },
+    "learningStyle": {
+      "label": "观察到的学习风格或偏好（可多选）",
+      "visual": "视觉学习者",
+      "kinesthetic": "动觉或实践学习者",
+      "auditory": "听觉或语言学习者",
+      "smallGroup": "喜欢小组环境",
+      "structured": "喜欢结构化的环境",
+      "creative": "擅长创造性、开放式项目",
+      "other": "其他",
+      "otherPlaceholder": "请注明其他偏好"
+    },
+    "taskApproach": {
+      "label": "观察到的任务处理方式（可多选）",
+      "independent": "独立且积极主动",
+      "participates": "在指导下积极参与",
+      "needs": "经常需要提醒和鼓励",
+      "avoids": "常回避或逃避任务"
+    },
+    "executiveFunction": {
+      "label": "执行功能技能 – 观察到的困难（可多选）",
+      "initiation": "开始任务困难",
+      "switching": "任务切换与过渡困难",
+      "time": "时间估计或管理困难",
+      "memory": "记忆与保持困难",
+      "organization": "材料或思想组织困难",
+      "monitoring": "自我监控与反思困难"
+    },
+    "progressOverTime": {
+      "label": "学业进步情况（过去3–6个月）",
+      "noticeable": "明显稳定的进步",
+      "slow": "缓慢但稳定的进步",
+      "noChange": "无明显变化",
+      "regressive": "退步或不稳定的表现"
+    },
+    "gaps": {
+      "label": "学生是否经历过显著的学业中断或间断？（如疫情、搬迁、创伤、生病）",
+      "major": "是 – 严重干扰",
+      "short": "是 – 短期或局部影响",
+      "no": "无明显干扰",
+      "unknown": "不清楚"
+    },
+    "extendedTasks": {
+      "label": "学生如何应对多步骤的学业任务？",
+      "breaks": "能独立分解并管理",
+      "needs": "需要分步指导和支持",
+      "overwhelmed": "易感压力或逃避任务",
+      "unsure": "不确定 – 尚未观察"
+    },
+    "metacognitive": {
+      "label": "学生是否表现出元认知能力（反思学习方法）？",
+      "yes": "是 – 能表述自身过程与需求",
+      "sometimes": "偶尔注意到并求助",
+      "rarely": "很少或尚未表现",
+      "unsure": "不确定"
+    }
+  },
+  "section4": {
+    "title": "学生动力与未来导向",
+    "enrollmentReasons": {
+      "label": "学生参加本项目的主要原因？（可多选）",
+      "flexible": "灵活的学习环境",
+      "difficulty": "传统学校学习困难",
+      "targeted": "特定学科需要针对性支持",
+      "handson": "偏爱动手或创造性方法",
+      "safer": "更安全或更具支持性的环境",
+      "other": "其他",
+      "otherPlaceholder": "请注明原因"
+    },
+    "goals": {
+      "label": "学生自我设定或被观察到的目标（可多选）",
+      "university": "大学或学术方向",
+      "career": "职业或技术技能发展",
+      "creative": "创意或创业追求",
+      "life": "生活或社交技能提升",
+      "exploring": "尚在探索或不确定",
+      "other": "其他",
+      "otherPlaceholder": "请注明目标"
+    },
+    "passion": {
+      "label": "学生是否分享或表现出长期的热情或个人项目？",
+      "placeholder": "描述热情或项目"
+    },
+    "futureReaction": {
+      "label": "学生对未来规划话题的反应如何？（如目标、职业、毕业后的生活）",
+      "engaged": "积极参与且有动力",
+      "curious": "好奇但不确定",
+      "avoidant": "回避或无兴趣",
+      "anxious": "焦虑或压力较大"
+    },
+    "selfDoubt": {
+      "label": "学生是否表现出自我怀疑或对未来学习的失败恐惧？",
+      "frequently": "经常",
+      "occasionally": "偶尔",
+      "rarely": "很少",
+      "not": "未观察到"
+    },
+    "barriers": {
+      "label": "阻碍目标进展的因素（可多选）",
+      "confidence": "缺乏信心或自我肯定",
+      "emotional": "情绪困扰或焦虑",
+      "external": "外部挑战（如家庭情况）",
+      "peer": "同伴影响或社交动态",
+      "structure": "结构化或规律性的困难",
+      "none": "无明显障碍"
+    }
+  },
+  "section5": {
+    "title": "社会情感发展",
+    "interaction": {
+      "label": "学生如何与他人互动？",
+      "highly": "社交积极且合作",
+      "capable": "在小组环境中善于社交",
+      "difficulty": "与同龄人互动困难",
+      "withdrawn": "经常回避或孤立"
+    },
+    "feedback": {
+      "label": "对反馈或挑战的反应：",
+      "accepts": "接受并从反馈中成长",
+      "resistant": "起初抵触但逐渐改进",
+      "frustrated": "对批评感到挫败或防御",
+      "avoids": "遇挑战易放弃"
+    },
+    "emotionalRegulation": {
+      "label": "情绪调节能力（可多选）",
+      "manages": "能很好地应对压力与情绪",
+      "most": "在支持下能应对大部分压力，偶尔被挫折压垮",
+      "often": "经常表现出情绪困扰，易受挫折影响",
+      "difficulty": "难以自行平复，需要显著情绪支持"
+    },
+    "behavioral": {
+      "label": "行为观察（可多选）",
+      "cooperative": "合作积极，遵守规则",
+      "distracted": "易分心或冲动",
+      "defiance": "轻度反抗或对立行为",
+      "withdrawn": "面对压力时退缩或沉默",
+      "aggressive": "攻击性或对抗行为",
+      "none": "无明显行为问题",
+      "other": "其他",
+      "otherPlaceholder": "请注明行为"
+    },
+    "selfRegulate": {
+      "label": "学生使用哪些方法来自我调节或使自己平静？（可多选）",
+      "breathing": "深呼吸或正念练习",
+      "leaving": "离开教室或散步",
+      "sensory": "使用感官工具（如解压玩具、耳机等）",
+      "talking": "与信任的成人交谈",
+      "drawing": "绘画/音乐/写作",
+      "none": "尚未观察到任何方式",
+      "other": "其他",
+      "otherPlaceholder": "请注明策略"
+    },
+    "triggers": {
+      "label": "导致该学生情绪失控的触发因素有哪些？（可多选）",
+      "loud": "嘈杂声音或过度刺激",
+      "peer": "同伴冲突或社交压力",
+      "transitions": "日常活动或计划的改变",
+      "corrected": "被批评或遇到挑战",
+      "academic": "学习压力",
+      "unclear": "不明确或未知因素"
+    },
+    "empathy": {
+      "label": "学生是否表现出同理心或对他人情绪的关注？",
+      "yes": "是 – 经常关心同伴",
+      "occasionally": "偶尔对他人情绪作出反应",
+      "rarely": "很少关注或回应",
+      "not": "未观察到"
+    }
+  },
+  "section6": {
+    "title": "支持需求与建议",
+    "currentSupport": {
+      "label": "学生目前接受哪些支持？（可多选）",
+      "individual": "个性化学习计划",
+      "oneOnOne": "一对一学业辅导",
+      "emotional": "情绪或心理健康咨询",
+      "behavior": "行为管理方案",
+      "peer": "同伴指导或伙伴系统",
+      "none": "当前无特殊支持",
+      "other": "其他",
+      "otherPlaceholder": "请注明支持"
+    },
+    "effectiveMethods": {
+      "label": "哪些教学方法对学生有效？（可多选）",
+      "clear": "清晰的结构、日常惯例和稳定期望",
+      "personalized": "个性化学习任务",
+      "handson": "实践或项目式学习",
+      "breaks": "经常性的休息或检查",
+      "positive": "积极的鼓励和正向反馈",
+      "visual": "视觉辅助工具或图示教学",
+      "collaboration": "小组同伴合作",
+      "other": "其他",
+      "otherPlaceholder": "请注明方法"
+    },
+    "additionalSupport": {
+      "label": "学生可能受益的额外支持措施（可多选）",
+      "academic": "更加个性化的学业调整",
+      "socialEmotional": "社交情绪干预",
+      "mentorship": "增加一对一的指导",
+      "counseling": "咨询、心理健康支持或创伤知情的照顾",
+      "peerLed": "同伴引导的小组或社交辅导",
+      "other": "其他",
+      "otherPlaceholder": "请注明支持"
+    },
+    "goals": {
+      "label": "为学生推荐的目标或里程碑（学业或行为方面）",
+      "placeholder": "描述推荐目标"
+    },
+    "timeOfDay": {
+      "label": "该学生一天中通常在哪个时间段学习效率最高？",
+      "morning": "上午",
+      "midday": "中午",
+      "afternoon": "下午",
+      "varies": "根据科目或支持方式而变化"
+    },
+    "visualAids": {
+      "label": "学生如何使用视觉辅助、日程安排或计划工具？",
+      "consistently": "独立且经常使用",
+      "reminders": "需要提醒才使用",
+      "resists": "抵触或忽略工具",
+      "notYet": "尚未引入这些工具"
+    },
+    "familyResponsive": {
+      "label": "学生的家庭/监护人对学校沟通和支持计划的反应如何？",
+      "highly": "高度参与且合作",
+      "somewhat": "部分参与",
+      "rarely": "很少回应",
+      "barrier": "存在沟通障碍",
+      "unknown": "不清楚"
+    },
+    "environmentalChanges": {
+      "label": "是否存在一些系统性或环境调整能帮助学生更好地成长？（如感官教室、日程调整、导师匹配）",
+      "placeholder": "描述环境变化"
+    }
+  },
+  "section7": {
+    "title": "学生AI工具使用情况",
+    "studentAiUsage": {
+      "label": "该学生在作业或课堂上使用AI工具的频率如何？",
+      "never": "从不",
+      "rarely": "很少",
+      "occasionally": "偶尔",
+      "frequently": "经常",
+      "dontKnow": "不清楚 / 未观察到"
+    },
+    "studentAiActivities": {
+      "label": "学生用AI进行过哪些活动？（可多选）",
+      "brainstorming": "构思想法或大纲",
+      "drafting": "起草文章、报告或故事",
+      "solving": "解决数学或编程问题",
+      "language": "语言支持（翻译、语法）",
+      "notes": "制作学习笔记、摘要或抽认卡",
+      "other": "其他",
+      "otherPlaceholder": "请注明活动"
+    },
+    "futureAiSupport": {
+      "label": "未来AI怎样能最好地支持学生的学习或身心健康？",
+      "placeholder": "描述AI如何帮助"
+    }
+  },
+  "section8": {
+    "title": "补充意见",
+    "observations": {
+      "label": "其他有关该学生发展的观察或背景信息",
+      "placeholder": "分享额外观察"
+    },
+    "suggestions": {
+      "label": "给学校团队更好地支持该学生的建议",
+      "placeholder": "分享您的建议"
+    }
+  },
+  "thankYou": {
+    "title": "感谢你的反馈！",
+    "message": "你的回答将帮助我们创造一个发扬学生优势、满足学生需求的更好学习环境。"
+  }
+}

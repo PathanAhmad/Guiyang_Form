@@ -1,0 +1,358 @@
+{
+  "title": "学习兴趣与偏好调查问卷",
+  "subtitle": "针对昆明丑小鸭学校的学生",
+  "intro": {
+    "welcome": "欢迎你！本问卷旨在帮助我们了解你**最适合的学习方式**、让你感到**受到支持**的原因，以及我们怎样才能使学习变得更**舒适、有趣和有意义**。",
+    "noWrongAnswers": "本问卷**没有对错答案**，请诚实回答，做真实的自己即可。"
+  },
+  "consent": {
+    "text": "我了解本调查的目的，并同意参与。",
+    "privacy": "你的回答将严格保密，仅用于改善你的学习体验。"
+  },
+  "section1": {
+    "title": "基本信息",
+    "fullName": {
+      "label": "姓名",
+      "placeholder": "请输入您的姓名"
+    },
+    "dateOfBirth": {
+      "label": "出生日期（DD / MM / YYYY）",
+      "placeholder": "DD / MM / YYYY"
+    },
+    "gender": {
+      "label": "性别",
+      "male": "男",
+      "female": "女"
+    },
+    "languages": {
+      "label": "在课堂上你习惯使用的语言（可多选）",
+      "english": "英语",
+      "chinese": "中文",
+      "other": "其他",
+      "otherPlaceholder": "请注明语言"
+    },
+    "location": {
+      "label": "国家 | 省份/州 | 城市",
+      "placeholder": "请输入您的位置"
+    },
+    "dialects": {
+      "label": "掌握或擅长的语言/方言",
+      "placeholder": "列出语言和方言"
+    },
+    "identity": {
+      "label": "其他你想分享的身份或文化背景信息（选填）",
+      "placeholder": "选填"
+    }
+  },
+  "section2": {
+    "title": "兴趣、优势与目标",
+    "enjoyedSubjects": {
+      "label": "你最喜欢的科目或活动有哪些？（可多选）",
+      "science": "科学与实验",
+      "math": "数学与解题",
+      "computers": "计算机与编程",
+      "reading": "阅读与创意写作",
+      "art": "艺术、音乐或戏剧",
+      "design": "设计 / 3D / 创客项目",
+      "sports": "体育或运动",
+      "history": "历史与社会研究",
+      "nature": "自然与动物",
+      "building": "修理或建造东西",
+      "gaming": "电子游戏或游戏设计",
+      "videos": "视频制作或内容创作",
+      "other": "其他",
+      "otherPlaceholder": "请注明其他活动"
+    },
+    "strengths": {
+      "label": "你擅长或感到自豪的事情有哪些？",
+      "placeholder": "描述您的优势"
+    },
+    "pride": {
+      "label": "在学校，哪些事情会让你感到自豪或成功？（可多选）",
+      "finishing": "完成任务",
+      "helping": "帮助朋友",
+      "learning": "学习新东西",
+      "feedback": "获得积极的反馈",
+      "trying": "犯错后重新尝试"
+    },
+    "difficult": {
+      "label": "有哪些科目你觉得困难或令人沮丧？",
+      "placeholder": "描述困难的科目"
+    },
+    "future": {
+      "label": "你未来希望做些什么？（可多选）",
+      "university": "上大学或学院",
+      "business": "创业",
+      "talent": "掌握一门才艺/技能（艺术、音乐或游戏制作）",
+      "job": "从事喜欢的工作/学徒制",
+      "help": "帮助他人或动物",
+      "travel": "旅行或探索世界",
+      "unsure": "我还不确定，想多探索一些可能性"
+    },
+    "inspiration": {
+      "label": "谁或什么能激励你？（可以是人物、目标、角色等）",
+      "placeholder": "描述您的激励来源"
+    },
+    "learnNew": {
+      "label": "如果你可以学习任何新的东西，你会想学什么？",
+      "placeholder": "您想学什么？"
+    }
+  },
+  "section3": {
+    "title": "学习偏好",
+    "learnBest": {
+      "label": "你最喜欢的学习方式是？（可多选）",
+      "listening": "听讲解",
+      "reading": "阅读文本或说明书",
+      "videos": "看视频或动画",
+      "handson": "实践动手活动",
+      "discussions": "小组讨论",
+      "games": "游戏或互动式学习",
+      "drawing": "画画或使用视觉工具",
+      "independent": "独立学习",
+      "checklists": "使用清单或指引"
+    },
+    "tests": {
+      "label": "你对考试或小测验的感觉如何？",
+      "doWell": "我应付得很好",
+      "nervous": "我会紧张",
+      "prefer": "我更喜欢项目或演示",
+      "openBook": "我更喜欢开卷考试"
+    },
+    "working": {
+      "label": "你更喜欢……",
+      "alone": "大部分时间独自学习",
+      "groups": "在小组学习",
+      "partner": "和信任的伙伴或成人一起学习",
+      "mix": "以上方式混合"
+    },
+    "schedule": {
+      "label": "你喜欢固定的学习时间表还是灵活安排？",
+      "structure": "我喜欢规律和固定的安排",
+      "flexibility": "灵活自由更适合我",
+      "both": "两种方式混合最好"
+    },
+    "focus": {
+      "label": "哪些方法有助你保持专注？（可多选）",
+      "instructions": "清晰的指令",
+      "visual": "视觉提示或提醒",
+      "breaks": "短暂休息",
+      "moving": "四处走动",
+      "quiet": "安静的学习空间",
+      "music": "背景音乐或耳机",
+      "fidget": "减压玩具",
+      "routines": "可预测的日常安排",
+      "support": "有人陪伴或支持"
+    },
+    "taskPreference": {
+      "label": "你喜欢一次专注做一件事，还是切换不同的任务？",
+      "oneThing": "一次做一件事",
+      "switching": "切换任务能让我保持兴趣",
+      "depends": "要看情况"
+    },
+    "challenges": {
+      "label": "你在学习时常遇到哪些困难？（可多选）",
+      "focused": "保持专注",
+      "starting": "开始任务",
+      "finishing": "完成任务",
+      "understanding": "理解指令",
+      "reading": "阅读或写作困难",
+      "organizing": "理清思路",
+      "speaking": "在课堂发言",
+      "frustration": "控制情绪或挫折感",
+      "time": "时间管理"
+    },
+    "dislike": {
+      "label": "有没有你不喜欢或觉得无聊的科目？（可跳过）",
+      "placeholder": "选填"
+    },
+    "tools": {
+      "label": "哪些工具能帮助你更容易开始或完成任务？（可多选）",
+      "todo": "待办清单或检查清单",
+      "schedules": "视觉日程表",
+      "timers": "计时器或闹钟",
+      "steps": "分步骤指引",
+      "workspace": "安静的工作环境",
+      "starting": "与老师或朋友一起开始"
+    },
+    "perfectLesson": {
+      "label": "如果你能设计完美的一堂课，它会有哪些内容？",
+      "placeholder": "描述您的完美课程"
+    }
+  },
+  "section4": {
+    "title": "感官需求与技术",
+    "technology": {
+      "label": "你喜欢使用技术进行学习吗？",
+      "yes": "是的，非常有帮助",
+      "sometimes": "有时，取决于主题",
+      "notReally": "不太喜欢，更喜欢其他方法"
+    },
+    "learningTools": {
+      "label": "你喜欢用哪些学习工具？（可多选）",
+      "laptops": "笔记本电脑或平板电脑",
+      "headphones": "耳机",
+      "apps": "教育应用程序或游戏",
+      "paper": "纸质材料、书籍或作业",
+      "kits": "动手套件（模型、工具等）",
+      "visual": "视觉组织工具（图表、颜色标记）"
+    },
+    "noisyClassroom": {
+      "label": "你在热闹或嘈杂的教室里的感受如何？",
+      "enjoy": "我喜欢这种氛围",
+      "okay": "有点吵还行",
+      "quiet": "我更喜欢安静的环境",
+      "stressed": "太吵会让我感到压力"
+    },
+    "changes": {
+      "label": "日常安排或日程发生变化时，你的感受如何？",
+      "okayChange": "没关系",
+      "timeAdjust": "我需要时间适应",
+      "advance": "提前告诉我更好",
+      "anxious": "改变会让我焦虑"
+    },
+    "bothers": {
+      "label": "有任何声音、灯光或质感会让你不舒服吗？（可多选）",
+      "loud": "很大的噪音",
+      "background": "持续的背景噪音",
+      "bright": "明亮或闪烁的灯光",
+      "smells": "强烈的气味",
+      "textures": "特定衣服质地（如扎人的衣服）",
+      "crowds": "拥挤的环境"
+    },
+    "calm": {
+      "label": "在学校，什么能帮助你感到平静或安全？",
+      "placeholder": "描述什么有助于您"
+    }
+  },
+  "section5": {
+    "title": "AI工具的使用情况",
+    "frequency": {
+      "label": "你在日常生活中使用AI工具（如Deep Seek、ChatGPT、BARD）的频率？",
+      "never": "从不",
+      "rarely": "很少（每月1-3次）",
+      "sometimes": "偶尔（每周一次）",
+      "often": "经常（一周几次）",
+      "daily": "每天"
+    },
+    "activities": {
+      "label": "你使用AI进行过哪些活动？（可多选）",
+      "schoolwork": "完成学校作业（如作文、数学、研究）",
+      "writing": "创意写作或故事创作",
+      "art": "艺术或图像生成",
+      "music": "音乐或视频制作",
+      "learning": "学习新技能或爱好（如烹饪、编程）",
+      "translation": "翻译或语言练习",
+      "planning": "规划安排（日程、待办事项、旅行）",
+      "entertainment": "娱乐（游戏、笑话、聊天）",
+      "social": "社交媒体内容（帖子、配文）",
+      "other": "其他",
+      "otherPlaceholder": "请注明其他活动"
+    },
+    "enjoyMost": {
+      "label": "你最喜欢AI的哪方面？",
+      "placeholder": "描述您喜欢的内容"
+    },
+    "concerns": {
+      "label": "你在使用AI时遇到过哪些担忧或困难？",
+      "placeholder": "描述任何担忧"
+    },
+    "futureSupport": {
+      "label": "将来你希望AI怎样在学习和生活中帮助你？",
+      "placeholder": "描述AI如何帮助您"
+    }
+  },
+  "section6": {
+    "title": "沟通、社交与情绪支持",
+    "communicate": {
+      "label": "你喜欢哪种沟通方式？（可多选）",
+      "talking": "面对面交谈",
+      "writing": "书写或打字",
+      "pictures": "图片或视觉表达",
+      "gestures": "手势或指点",
+      "time": "我需要额外的时间来回应"
+    },
+    "workingWith": {
+      "label": "你喜欢与他人合作吗？",
+      "groups": "我喜欢团队合作",
+      "small": "我喜欢小组或伙伴合作",
+      "alone": "我更喜欢单独工作",
+      "depends": "看具体活动而定"
+    },
+    "sharing": {
+      "label": "你喜欢在课堂上分享想法吗？",
+      "like": "我喜欢在课堂上发言",
+      "nervous": "虽然紧张，但我会尝试",
+      "writing": "我更喜欢写作或一对一交流",
+      "rather": "我不喜欢在集体面前发言"
+    },
+    "feelSchool": {
+      "label": "你通常在学校的感受如何？（可多选）",
+      "calm": "平静",
+      "anxious": "焦虑",
+      "curious": "好奇",
+      "bored": "无聊",
+      "overwhelmed": "不知所措",
+      "excited": "兴奋",
+      "other": "其他",
+      "otherPlaceholder": "请注明感受"
+    },
+    "sleep": {
+      "label": "你通常在学校上课日睡几个小时？",
+      "less6": "少于6小时",
+      "6to7": "6-7小时",
+      "7to8": "7-8小时",
+      "8plus": "超过8小时"
+    },
+    "energy": {
+      "label": "在学校的日常中，你的精力水平通常如何？",
+      "high": "持续精力充沛",
+      "upDown": "精力起伏不定",
+      "low": "常常觉得精力不足"
+    },
+    "upset": {
+      "label": "当你感到沮丧或生气时，什么方法最有帮助？（可多选）",
+      "break": "短暂休息一下",
+      "talking": "与人交谈",
+      "stepHelp": "获得一步步的指导帮助",
+      "later": "稍后再试一次",
+      "quiet": "安静空间或冷静活动",
+      "other": "其他",
+      "otherPlaceholder": "请注明什么有帮助"
+    },
+    "askHelp": {
+      "label": "你在学校遇到困难时，会主动寻求帮助吗？",
+      "yes": "是的，需要时我一定会寻求帮助",
+      "sometimes": "有时会，取决于我的心情",
+      "no": "不，我很难主动请求帮助"
+    },
+    "wishTeachers": {
+      "label": "当你遇到困难时，你希望老师或成年人怎么做？",
+      "placeholder": "描述什么会有帮助"
+    }
+  },
+  "section7": {
+    "title": "最后的想法与建议",
+    "funLearning": {
+      "label": "什么能让学习对你来说更有趣或更令人兴奋？",
+      "placeholder": "描述什么使学习有趣"
+    },
+    "perfectDay": {
+      "label": "如果让你设计一个完美的学校一天，它会包括什么内容？",
+      "placeholder": "描述您完美的学校一天"
+    },
+    "learnBest": {
+      "label": "你还有其他希望我们了解的关于你最佳学习方式的事情吗？",
+      "placeholder": "选填"
+    },
+    "share": {
+      "label": "你有什么想告诉我们的其他信息吗？（兴趣爱好、个人价值观、愿望）",
+      "placeholder": "选填"
+    }
+  },
+  "thankYou": {
+    "title": "感谢你的分享！",
+    "message": "你的反馈将帮助我们创造出更好的学习体验，更好地发挥你的特长，并支持你的需求。"
+  }
+}
+

@@ -1,0 +1,265 @@
+{
+  "title": "Course Catalog & Digitalization Interest Survey",
+  "subtitle": "For Teachers & Program Leaders | Ugly Duck School – Kunming, China",
+  "intro": {
+    "purpose": "The Spark-OS Team is partnering with your center to map existing courses, understand their design and effectiveness, and explore interest in future digital delivery. Your insights will help us:",
+    "bullet1": "Document each course's goals, structure, and target learners",
+    "bullet2": "Evaluate strengths, engagement levels, and improvement areas",
+    "bullet3": "Gauge interest and readiness for converting courses to online or blended formats",
+    "bullet4": "Inform resource and training plans for both course expansion and digital transition",
+    "confidential": "All responses are confidential and will be used to guide both course development and strategic digitalization planning."
+  },
+  "consent": {
+    "text": "I understand that this survey will help document and improve course offerings, and I agree to share my professional insights."
+  },
+  "section1": {
+    "title": "Your Profile",
+    "name": {
+      "label": "Name",
+      "placeholder": "Enter your name"
+    },
+    "role": {
+      "label": "Role (select one)",
+      "facilitator": "Facilitator / Subject Teacher",
+      "specialist": "Learning Support Specialist",
+      "coordinator": "Program Coordinator / Administrator",
+      "designer": "Curriculum Designer",
+      "other": "Other",
+      "otherPlaceholder": "Specify role"
+    },
+    "years": {
+      "label": "Years in Current Role",
+      "less1": "Less than 1 year",
+      "1to3": "1–3 years",
+      "3to5": "3–5 years",
+      "5plus": "5+ years"
+    }
+  },
+  "section2": {
+    "title": "Course Inventory & Curriculum Submission",
+    "methodologies": {
+      "label": "Teaching Methodologies: Which approaches are used across your courses? (Select all that apply)",
+      "traditional": "Traditional lecture-based",
+      "project": "Project-based learning",
+      "inquiry": "Inquiry-based / exploratory",
+      "selfDirected": "Self-directed / student-led",
+      "flipped": "Flipped classroom (pre-work + in-class activities)",
+      "blended": "Blended (digital + face-to-face)",
+      "experiential": "Experiential / hands-on",
+      "socratic": "Socratic / discussion-focused",
+      "other": "Other",
+      "otherPlaceholder": "Specify methodology"
+    },
+    "curriculumNote": {
+      "title": "Full Curriculum Submission (PDF)",
+      "instruction": "Please compile all regularly offered courses into a single PDF, using the template for each course and labeling entries by Course ID. If you don't already use IDs, assign them as follows:",
+      "format": "Course ID Format: Use a two- or three-letter prefix for your center (e.g., UD for Ugly Duck) followed by a three-digit sequence number (001, 002, 003…). Example: UD-001, UD-002, UD-003",
+      "includes": "In your PDF, include for each course: Course ID & Name, Target Cohort, Format, Frequency & Duration, Class Size & Staffing, Prerequisites, Teaching Methodologies, Learning Objectives, Session-by-Session Syllabus, Materials & Resources, Assessment Methods, Differentiation & Accessibility, Digitalization Considerations",
+      "filename": "Filename convention: Course_Curricula_[YourCenterName]_[YYYYMMDD].pdf",
+      "upload": "Upload: Attach this PDF when you submit the form."
+    }
+  },
+  "section3": {
+    "title": "Course Effectiveness & Engagement",
+    "effectiveness": {
+      "label": "Overall, how effective are your courses at engaging students?",
+      "very": "Very effective",
+      "effective": "Effective with some gaps",
+      "neutral": "Neutral",
+      "partial": "Partially effective",
+      "ineffective": "Ineffective"
+    },
+    "whatWorks": {
+      "label": "What aspects of these courses work best? (Select all that apply)",
+      "handson": "Hands-on activities",
+      "clear": "Clear learning objectives",
+      "realWorld": "Real-world relevance",
+      "collaborative": "Collaborative projects",
+      "creative": "Creative/arts integration",
+      "other": "Other",
+      "otherPlaceholder": "Specify what works"
+    },
+    "barriers": {
+      "label": "What barriers or equity gaps affect student engagement and success? (Select all that apply)",
+      "difficulty": "Content too easy or too difficult",
+      "varied": "Lack of varied teaching methods",
+      "supports": "Insufficient assistive/adaptive supports",
+      "cultural": "Curriculum lacking cultural relevance",
+      "ell": "Limited support for ELL/dialect speakers",
+      "pacing": "Rigid pacing or scheduling",
+      "tech": "Technology access or digital literacy gaps",
+      "assessment": "Assessment formats not inclusive",
+      "other": "Other",
+      "otherPlaceholder": "Specify barriers"
+    },
+    "assessmentMethods": {
+      "label": "How do you assess and measure course success? (Select all that apply)",
+      "formats": "Formats:",
+      "quizzes": "Quizzes/tests",
+      "project": "Project-based",
+      "peer": "Peer reviews",
+      "reflection": "Self-reflection",
+      "presentations": "Presentations",
+      "metrics": "Metrics:",
+      "attendance": "Attendance/completion",
+      "feedback": "Feedback surveys",
+      "performance": "Performance assessments",
+      "portfolios": "Portfolios/journals",
+      "other": "Other",
+      "otherPlaceholder": "Specify methods"
+    },
+    "midFeedback": {
+      "label": "How frequently do you solicit mid-course feedback from students?",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "endOnly": "End-of-course only",
+      "notDone": "Not currently done"
+    },
+    "effectiveFormats": {
+      "label": "Which assessment formats work best for your students? (Select all that apply)",
+      "quizzes": "Quizzes/tests",
+      "project": "Project-based assessments",
+      "peer": "Peer reviews",
+      "reflection": "Self-assessment reflections",
+      "oral": "Oral presentations",
+      "other": "Other",
+      "otherPlaceholder": "Specify formats"
+    },
+    "skillTransfer": {
+      "label": "How well do students transfer skills between your courses and other subjects?",
+      "very": "Very well",
+      "somewhat": "Somewhat",
+      "not": "Not well",
+      "unsure": "Unsure"
+    }
+  },
+  "section4": {
+    "title": "Interest & Readiness for Digitalization",
+    "onlineCourses": {
+      "label": "For which courses would you most like an online or blended version?",
+      "placeholder": "List courses"
+    },
+    "digitalFeatures": {
+      "label": "What digital features would add the most value? (Select all that apply)",
+      "video": "Self-paced video modules",
+      "quizzes": "Interactive quizzes and gamification",
+      "resources": "Downloadable resources & worksheets",
+      "webinars": "Live webinars or virtual classrooms",
+      "forums": "Discussion forums or chat groups",
+      "tracking": "Progress tracking dashboards",
+      "other": "Other",
+      "otherPlaceholder": "Specify features"
+    },
+    "challenges": {
+      "label": "What challenges do you anticipate in moving a course online? (Select all that apply)",
+      "training": "Limited staff training in e-learning tools",
+      "access": "Students' access or familiarity with technology",
+      "redesign": "Need to redesign hands-on activities",
+      "engagement": "Maintaining student engagement remotely",
+      "platform": "Platform or infrastructure constraints",
+      "other": "Other",
+      "otherPlaceholder": "Specify challenges"
+    },
+    "readiness": {
+      "label": "How ready is your team for digital course delivery?",
+      "fully": "Fully ready – we have tools & skills",
+      "partially": "Partially ready – some skills/tools missing",
+      "not": "Not ready – major training/investment needed",
+      "unsure": "Unsure"
+    },
+    "platforms": {
+      "label": "What platforms (e.g., rain classroom) or tools have you used previously or considered?",
+      "placeholder": "List platforms"
+    },
+    "supportNeeded": {
+      "label": "What training or support would you need to build or maintain online courses? (Select all that apply)",
+      "instructional": "Instructional design",
+      "video": "Video production/editing",
+      "administration": "Platform administration",
+      "accessibility": "Accessibility best practices",
+      "privacy": "Data privacy & security",
+      "other": "Other",
+      "otherPlaceholder": "Specify support"
+    },
+    "privacyConcerns": {
+      "label": "What concerns do you have about student data privacy and online safety?",
+      "placeholder": "Describe concerns"
+    }
+  },
+  "section5": {
+    "title": "Future Course & Digital Strategy",
+    "newTopics": {
+      "label": "Suggest up to three new course topics, and note if you'd like them delivered digitally:",
+      "topic1": "Topic 1",
+      "topic2": "Topic 2",
+      "topic3": "Topic 3",
+      "digital": "Digital?",
+      "yes": "Yes",
+      "no": "No",
+      "rationale": "Rationale",
+      "topicPlaceholder": "Enter topic name",
+      "rationalePlaceholder": "Why this topic?"
+    },
+    "approaches": {
+      "label": "Which teaching approaches should guide future courses? (Select all that apply)",
+      "experiential": "Experiential / project-based",
+      "collaborative": "Collaborative / peer learning",
+      "selfDirected": "Self-directed / learner-led",
+      "adaptive": "Adaptive / personalized paths",
+      "blended": "Blended digital & in-person",
+      "other": "Other",
+      "otherPlaceholder": "Specify approaches"
+    },
+    "additionalSupport": {
+      "label": "What additional support or resources would you need to develop or digitize courses? (Select all that apply)",
+      "training": "Staff training & professional development",
+      "technical": "Technical support / instructional design",
+      "other": "Other",
+      "otherPlaceholder": "Specify support"
+    },
+    "timeline": {
+      "label": "What is your expectation on a realistic timeline for piloting a digital version of one course?",
+      "0to2": "0-2 months",
+      "2to3": "2–3 months",
+      "3to6": "3–6 months",
+      "6to12": "6–12 months",
+      "12plus": ">12 months"
+    },
+    "integration": {
+      "label": "How should courses be integrated into students' overall learning pathways?",
+      "electives": "As standalone electives",
+      "core": "As core requirements",
+      "credit": "As credit‐bearing modules toward certification",
+      "unsure": "Unsure"
+    },
+    "partnerships": {
+      "label": "What partnerships (industry, community, higher‐ed) would enrich new or digital courses?",
+      "placeholder": "Describe partnerships"
+    }
+  },
+  "section6": {
+    "title": "Additional Insights",
+    "successMetrics": {
+      "label": "How will you measure the success of a digital pilot? (Select up to 2)",
+      "completion": "Completion rates",
+      "engagement": "Engagement analytics (logins, time on task)",
+      "satisfaction": "Student satisfaction ratings",
+      "outcomes": "Improvement in learning outcomes",
+      "dropout": "Reduction in dropout/attrition",
+      "other": "Other",
+      "otherPlaceholder": "Specify metrics"
+    },
+    "singleChange": {
+      "label": "In your view, what single change would most improve course offerings and student outcomes?",
+      "placeholder": "Describe the change"
+    },
+    "additionalComments": {
+      "label": "Additional comments or suggestions?",
+      "placeholder": "Share your thoughts"
+    }
+  },
+  "thankYou": {
+    "title": "Thank you for your valuable feedback!",
+    "message": "Your input will directly inform inclusive, effective, and future-ready course offerings."
+  }
+}
