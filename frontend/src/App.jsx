@@ -15,7 +15,7 @@ import DeploymentPortalHome from './pages/DeploymentPortal/DeploymentPortalHome.
 import DeploymentLogin from './pages/DeploymentPortal/DeploymentLogin.jsx';
 import DeploymentDashboard from './pages/DeploymentPortal/DeploymentDashboard.jsx';
 import SurveyList from './pages/DeploymentPortal/SurveyList.jsx';
-import PilotSurveyForm from './components/forms/pilot/PilotSurveyForm.jsx';
+import PilotSurveyForm from '@/components/forms/pilot/PilotSurveyForm.jsx';
 
 function App() {
   return (
