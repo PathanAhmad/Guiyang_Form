@@ -135,9 +135,21 @@ export const pilotSurveyAdminAPI = {
   getAllResponses: () =>
     api.get('/pilot-surveys/admin/all-responses'),
   
+  // Admin: Export responses to CSV for a specific access key
+  exportResponsesByAccessKey: (accessKey) =>
+    api.get(`/pilot-surveys/admin/export/${accessKey}`, { responseType: 'blob' }),
+  
   // Admin: Export all responses to CSV
   exportResponses: () =>
     api.get('/pilot-surveys/admin/export', { responseType: 'blob' }),
+  
+  // Admin: Delete all responses for a specific access key
+  deleteResponsesByAccessKey: (accessKey) =>
+    api.delete(`/pilot-surveys/admin/responses/${accessKey}`),
+  
+  // Admin: Delete a single response by ID
+  deleteResponse: (responseId) =>
+    api.delete(`/pilot-surveys/admin/responses/single/${responseId}`),
 };
 
 // Discord API endpoints  
