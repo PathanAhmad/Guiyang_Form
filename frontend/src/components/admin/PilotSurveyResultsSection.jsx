@@ -40,22 +40,39 @@ const PilotSurveyResultsSection = () => {
       setExporting(true);
       const response = await pilotSurveyAdminAPI.exportResponses();
       
-      // Create blob and download
-      const blob = new Blob([response.data], { type: 'text/csv;charset=utf-8;' });
+      // Response is now a ZIP file containing 4 CSVs (one per form)
+      const contentType = response.headers['content-type'] || '';
+      const isZip = contentType.includes('application/zip');
+      
+      // Get filename from Content-Disposition header if available
+      const contentDisposition = response.headers['content-disposition'] || '';
+      const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+      let filename = filenameMatch && filenameMatch[1] ? filenameMatch[1].replace(/['"]/g, '') : null;
+      
+      // Fallback filename if not in header
+      if (!filename) {
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const extension = isZip ? 'zip' : 'csv';
+        filename = `pilot-survey-all-forms-${timestamp}.${extension}`;
+      }
+      
+      // Create blob with appropriate type
+      const blobType = isZip ? 'application/zip' : 'text/csv;charset=utf-8;';
+      const blob = new Blob([response.data], { type: blobType });
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-      link.setAttribute('download', `pilot-survey-responses-${timestamp}.csv`);
+      link.setAttribute('download', filename);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
       
-      showToast('Survey results exported successfully!', 'success');
+      showToast('Exported 4 CSV files (one per form)', 'success');
     } catch (error) {
       console.error('Failed to export survey results:', error);
-      showToast('Failed to export survey results', 'error');
+      const msg = error?.response?.data?.message || error?.message || 'Failed to export survey results';
+      showToast(msg, 'error');
     } finally {
       setExporting(false);
     }
@@ -69,6 +86,25 @@ const PilotSurveyResultsSection = () => {
   const handleCloseModal = () => {
     setModalOpen(false);
     setSelectedAccessKey(null);
+  };
+
+  const handleDeleteAll = async (accessKeyData) => {
+    const confirmMessage = `Are you sure you want to delete ALL survey responses for "${accessKeyData.keyName}" (${accessKeyData.accessKey})?\n\nThis will permanently delete ${accessKeyData.totalResponses} response${accessKeyData.totalResponses !== 1 ? 's' : ''} and cannot be undone.`;
+    
+    if (!window.confirm(confirmMessage)) {
+      return;
+    }
+
+    try {
+      const response = await pilotSurveyAdminAPI.deleteResponsesByAccessKey(accessKeyData.accessKey);
+      if (response.data.success) {
+        showToast(`Successfully deleted ${response.data.deletedCount} response${response.data.deletedCount !== 1 ? 's' : ''}`, 'success');
+        loadSurveyResults(false);
+      }
+    } catch (error) {
+      console.error('Failed to delete survey responses:', error);
+      showToast('Failed to delete survey responses', 'error');
+    }
   };
 
   const getRoleIcon = (roleType) => {
@@ -219,14 +255,25 @@ const PilotSurveyResultsSection = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <Button
-                        onClick={() => handleViewResults(item)}
-                        variant="primary"
-                        size="sm"
-                        disabled={item.totalResponses === 0}
-                      >
-                        View Results
-                      </Button>
+                      <div className="flex space-x-2">
+                        <Button
+                          onClick={() => handleViewResults(item)}
+                          variant="primary"
+                          size="sm"
+                          disabled={item.totalResponses === 0}
+                        >
+                          View Results
+                        </Button>
+                        <Button
+                          onClick={() => handleDeleteAll(item)}
+                          variant="outline"
+                          size="sm"
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-300 hover:border-red-400"
+                          disabled={item.totalResponses === 0}
+                        >
+                          Delete All
+                        </Button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -241,6 +288,7 @@ const PilotSurveyResultsSection = () => {
         isOpen={modalOpen}
         onClose={handleCloseModal}
         accessKeyData={selectedAccessKey}
+        onDataChanged={() => loadSurveyResults(false)}
       />
     </>
   );
