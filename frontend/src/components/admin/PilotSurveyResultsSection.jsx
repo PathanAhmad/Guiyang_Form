@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { pilotSurveyAdminAPI } from '../../services/api';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
+import ConfirmModal from '../ui/ConfirmModal';
 import { useToast } from '../../hooks/useToast';
 import { formatDate } from '../../utils/format';
 import SurveyResultsModal from './SurveyResultsModal';
@@ -13,6 +14,7 @@ const PilotSurveyResultsSection = () => {
   const [exporting, setExporting] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedAccessKey, setSelectedAccessKey] = useState(null);
+  const [confirmDelete, setConfirmDelete] = useState(null); // Access key data to delete
 
   useEffect(() => {
     loadSurveyResults();
@@ -88,15 +90,15 @@ const PilotSurveyResultsSection = () => {
     setSelectedAccessKey(null);
   };
 
-  const handleDeleteAll = async (accessKeyData) => {
-    const confirmMessage = `Are you sure you want to delete ALL survey responses for "${accessKeyData.keyName}" (${accessKeyData.accessKey})?\n\nThis will permanently delete ${accessKeyData.totalResponses} response${accessKeyData.totalResponses !== 1 ? 's' : ''} and cannot be undone.`;
-    
-    if (!window.confirm(confirmMessage)) {
-      return;
-    }
+  const handleDeleteAll = (accessKeyData) => {
+    setConfirmDelete(accessKeyData);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!confirmDelete) return;
 
     try {
-      const response = await pilotSurveyAdminAPI.deleteResponsesByAccessKey(accessKeyData.accessKey);
+      const response = await pilotSurveyAdminAPI.deleteResponsesByAccessKey(confirmDelete.accessKey);
       if (response.data.success) {
         showToast(`Successfully deleted ${response.data.deletedCount} response${response.data.deletedCount !== 1 ? 's' : ''}`, 'success');
         loadSurveyResults(false);
@@ -104,7 +106,13 @@ const PilotSurveyResultsSection = () => {
     } catch (error) {
       console.error('Failed to delete survey responses:', error);
       showToast('Failed to delete survey responses', 'error');
+    } finally {
+      setConfirmDelete(null);
     }
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmDelete(null);
   };
 
   const getRoleIcon = (roleType) => {
@@ -289,6 +297,22 @@ const PilotSurveyResultsSection = () => {
         onClose={handleCloseModal}
         accessKeyData={selectedAccessKey}
         onDataChanged={() => loadSurveyResults(false)}
+      />
+
+      {/* Confirmation Modal */}
+      <ConfirmModal
+        isOpen={!!confirmDelete}
+        onClose={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+        title="Delete All Survey Responses"
+        message={
+          confirmDelete
+            ? `Are you sure you want to delete ALL survey responses for "${confirmDelete.keyName}" (${confirmDelete.accessKey})?\n\nThis will permanently delete ${confirmDelete.totalResponses} response${confirmDelete.totalResponses !== 1 ? 's' : ''} and cannot be undone.`
+            : ''
+        }
+        confirmText="Delete All"
+        cancelText="Cancel"
+        variant="danger"
       />
     </>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ConfirmModal from '../../../ui/ConfirmModal';
 
 const SurveyNavigation = ({
   currentSection,
@@ -104,32 +105,16 @@ const SurveyNavigation = ({
       </div>
 
       {/* Submit Confirmation Modal */}
-      {showSubmitConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-md w-full p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">
-              {t('common:common.confirm')}
-            </h3>
-            <p className="text-gray-600 mb-6">
-              {t('pilotSurveys:form.confirmSubmit')}
-            </p>
-            <div className="flex space-x-4">
-              <button
-                onClick={handleCancelSubmit}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
-              >
-                {t('common:common.cancel')}
-              </button>
-              <button
-                onClick={handleConfirmSubmit}
-                className="flex-1 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:shadow-lg transition-all duration-200"
-              >
-                {t('common:common.submit')}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ConfirmModal
+        isOpen={showSubmitConfirm}
+        onClose={handleCancelSubmit}
+        onConfirm={handleConfirmSubmit}
+        title={t('common:common.confirm')}
+        message={t('pilotSurveys:form.confirmSubmit')}
+        confirmText={t('common:common.submit')}
+        cancelText={t('common:common.cancel')}
+        variant="info"
+      />
     </>
   );
 };

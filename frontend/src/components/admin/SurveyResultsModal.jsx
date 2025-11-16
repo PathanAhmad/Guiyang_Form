@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SurveyResponseViewer from './SurveyResponseViewer';
 import Button from '../ui/Button';
+import ConfirmModal from '../ui/ConfirmModal';
 import { formatDate } from '../../utils/format';
 import { pilotSurveyAdminAPI } from '../../services/api';
 import { useToast } from '../../hooks/useToast';
@@ -10,6 +11,7 @@ const SurveyResultsModal = ({ isOpen, onClose, accessKeyData, onDataChanged }) =
   const [exporting, setExporting] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [localResponses, setLocalResponses] = useState([]);
+  const [confirmDelete, setConfirmDelete] = useState(null); // { type: 'all' | 'single', data: {...} }
   const { showToast } = useToast();
 
   // Update local responses when accessKeyData changes
@@ -142,64 +144,60 @@ const SurveyResultsModal = ({ isOpen, onClose, accessKeyData, onDataChanged }) =
     }
   };
 
-  const handleDeleteAllResponses = async () => {
+  const handleDeleteAllResponses = () => {
     if (!accessKeyData) return;
-    
-    const confirmMessage = `Are you sure you want to delete ALL survey responses for "${accessKeyData.keyName}" (${accessKeyData.accessKey})?\n\nThis will permanently delete ${localResponses.length} response${localResponses.length !== 1 ? 's' : ''} and cannot be undone.`;
-    
-    if (!window.confirm(confirmMessage)) {
-      return;
-    }
+    setConfirmDelete({ type: 'all', data: accessKeyData });
+  };
+
+  const handleDeleteResponse = (response) => {
+    setConfirmDelete({ type: 'single', data: response });
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!confirmDelete) return;
+
+    const { type, data } = confirmDelete;
 
     try {
       setDeleting(true);
-      const response = await pilotSurveyAdminAPI.deleteResponsesByAccessKey(accessKeyData.accessKey);
-      if (response.data.success) {
-        showToast && showToast(`Successfully deleted ${response.data.deletedCount} response${response.data.deletedCount !== 1 ? 's' : ''}`, 'success');
-        onClose();
-        onDataChanged && onDataChanged();
+      
+      if (type === 'all') {
+        const response = await pilotSurveyAdminAPI.deleteResponsesByAccessKey(data.accessKey);
+        if (response.data.success) {
+          showToast && showToast(`Successfully deleted ${response.data.deletedCount} response${response.data.deletedCount !== 1 ? 's' : ''}`, 'success');
+          onClose();
+          onDataChanged && onDataChanged();
+        }
+      } else if (type === 'single') {
+        const deleteResponse = await pilotSurveyAdminAPI.deleteResponse(data._id);
+        if (deleteResponse.data.success) {
+          showToast && showToast('Response deleted successfully', 'success');
+          
+          // Remove from local list
+          const updatedResponses = localResponses.filter(r => r._id !== data._id);
+          setLocalResponses(updatedResponses);
+          
+          // If no responses left, close modal
+          if (updatedResponses.length === 0) {
+            onClose();
+          }
+          
+          // Notify parent to refresh
+          onDataChanged && onDataChanged();
+        }
       }
     } catch (error) {
-      console.error('Failed to delete survey responses:', error);
-      const msg = error?.message || 'Failed to delete survey responses';
+      console.error('Failed to delete:', error);
+      const msg = error?.message || 'Failed to delete';
       showToast && showToast(msg, 'error');
     } finally {
       setDeleting(false);
+      setConfirmDelete(null);
     }
   };
 
-  const handleDeleteResponse = async (response) => {
-    const confirmMessage = `Are you sure you want to delete this response?\n\nForm: ${getFormTitle(response.formId)}\nStatus: ${response.status}\n\nThis action cannot be undone.`;
-    
-    if (!window.confirm(confirmMessage)) {
-      return;
-    }
-
-    try {
-      setDeleting(true);
-      const deleteResponse = await pilotSurveyAdminAPI.deleteResponse(response._id);
-      if (deleteResponse.data.success) {
-        showToast && showToast('Response deleted successfully', 'success');
-        
-        // Remove from local list
-        const updatedResponses = localResponses.filter(r => r._id !== response._id);
-        setLocalResponses(updatedResponses);
-        
-        // If no responses left, close modal
-        if (updatedResponses.length === 0) {
-          onClose();
-        }
-        
-        // Notify parent to refresh
-        onDataChanged && onDataChanged();
-      }
-    } catch (error) {
-      console.error('Failed to delete response:', error);
-      const msg = error?.message || 'Failed to delete response';
-      showToast && showToast(msg, 'error');
-    } finally {
-      setDeleting(false);
-    }
+  const handleCancelDelete = () => {
+    setConfirmDelete(null);
   };
 
   return (
@@ -378,6 +376,25 @@ const SurveyResultsModal = ({ isOpen, onClose, accessKeyData, onDataChanged }) =
           )}
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      <ConfirmModal
+        isOpen={!!confirmDelete}
+        onClose={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+        title={confirmDelete?.type === 'all' ? 'Delete All Survey Responses' : 'Delete Survey Response'}
+        message={
+          confirmDelete?.type === 'all'
+            ? `Are you sure you want to delete ALL survey responses for "${confirmDelete?.data?.keyName}" (${confirmDelete?.data?.accessKey})?\n\nThis will permanently delete ${localResponses.length} response${localResponses.length !== 1 ? 's' : ''} and cannot be undone.`
+            : confirmDelete?.type === 'single'
+            ? `Are you sure you want to delete this response?\n\nForm: ${getFormTitle(confirmDelete?.data?.formId)}\nStatus: ${confirmDelete?.data?.status}\n\nThis action cannot be undone.`
+            : ''
+        }
+        confirmText={confirmDelete?.type === 'all' ? 'Delete All' : 'Delete'}
+        cancelText="Cancel"
+        variant="danger"
+        loading={deleting}
+      />
     </div>
   );
 };

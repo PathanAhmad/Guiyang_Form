@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { deploymentAccessAPI } from '../../services/api';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
+import ConfirmModal from '../ui/ConfirmModal';
 import { useToast } from '../../hooks/useToast';
 import { formatDate } from '../../utils/format';
 
@@ -16,6 +17,9 @@ const DeploymentKeysSection = () => {
     duration: '1month',
     maxUses: '100',
   });
+  
+  // Confirmation modal state
+  const [confirmAction, setConfirmAction] = useState(null); // { type: 'deactivate' | 'delete', key: {...} }
 
   const roleTypes = [
     { value: 'school', label: 'School Management', icon: '🏫' },
@@ -100,38 +104,43 @@ const DeploymentKeysSection = () => {
     showToast('Access key copied to clipboard!', 'success');
   };
 
-  const handleDeactivate = async (id) => {
-    if (!window.confirm('Are you sure you want to deactivate this access key?')) {
-      return;
-    }
+  const handleDeactivate = (key) => {
+    setConfirmAction({ type: 'deactivate', key });
+  };
+
+  const handleDelete = (key) => {
+    setConfirmAction({ type: 'delete', key });
+  };
+
+  const handleConfirmAction = async () => {
+    if (!confirmAction) return;
+
+    const { type, key } = confirmAction;
 
     try {
-      const response = await deploymentAccessAPI.deactivateKey(id);
-      if (response.data.success) {
-        showToast('Access key deactivated', 'success');
-        loadKeys(false);
+      if (type === 'deactivate') {
+        const response = await deploymentAccessAPI.deactivateKey(key._id);
+        if (response.data.success) {
+          showToast('Access key deactivated', 'success');
+          loadKeys(false);
+        }
+      } else if (type === 'delete') {
+        const response = await deploymentAccessAPI.deleteKey(key._id);
+        if (response.data.success) {
+          showToast('Access key deleted', 'success');
+          loadKeys(false);
+        }
       }
     } catch (error) {
-      console.error('Failed to deactivate key:', error);
-      showToast('Failed to deactivate key', 'error');
+      console.error(`Failed to ${type} key:`, error);
+      showToast(`Failed to ${type} key`, 'error');
+    } finally {
+      setConfirmAction(null);
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this access key? This action cannot be undone.')) {
-      return;
-    }
-
-    try {
-      const response = await deploymentAccessAPI.deleteKey(id);
-      if (response.data.success) {
-        showToast('Access key deleted', 'success');
-        loadKeys(false);
-      }
-    } catch (error) {
-      console.error('Failed to delete key:', error);
-      showToast('Failed to delete key', 'error');
-    }
+  const handleCancelAction = () => {
+    setConfirmAction(null);
   };
 
   const getStatusBadge = (status) => {
@@ -345,14 +354,14 @@ const DeploymentKeysSection = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                       {key.isActive && (
                         <button
-                          onClick={() => handleDeactivate(key._id)}
+                          onClick={() => handleDeactivate(key)}
                           className="text-yellow-600 hover:text-yellow-900"
                         >
                           Deactivate
                         </button>
                       )}
                       <button
-                        onClick={() => handleDelete(key._id)}
+                        onClick={() => handleDelete(key)}
                         className="text-red-600 hover:text-red-900"
                       >
                         Delete
@@ -365,6 +374,22 @@ const DeploymentKeysSection = () => {
           </div>
         )}
       </Card>
+
+      {/* Confirmation Modal */}
+      <ConfirmModal
+        isOpen={!!confirmAction}
+        onClose={handleCancelAction}
+        onConfirm={handleConfirmAction}
+        title={confirmAction?.type === 'deactivate' ? 'Deactivate Access Key' : 'Delete Access Key'}
+        message={
+          confirmAction?.type === 'deactivate'
+            ? `Are you sure you want to deactivate the access key "${confirmAction?.key?.keyName}"?\n\nUsers will no longer be able to use this key to access the deployment portal.`
+            : `Are you sure you want to delete the access key "${confirmAction?.key?.keyName}"?\n\nThis action cannot be undone.`
+        }
+        confirmText={confirmAction?.type === 'deactivate' ? 'Deactivate' : 'Delete'}
+        cancelText="Cancel"
+        variant={confirmAction?.type === 'deactivate' ? 'warning' : 'danger'}
+      />
     </div>
   );
 };
