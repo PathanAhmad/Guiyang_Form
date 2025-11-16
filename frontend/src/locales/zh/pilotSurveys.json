@@ -27,6 +27,7 @@
     "confirmSubmit": "确定要提交此问卷吗？提交后将无法编辑。",
     "progress": "第 {{current}} / {{total}} 部分",
     "requiredField": "* 必填",
+    "requiredFields": "请填写所有必填项后再继续。",
     "languageSwitch": "切换语言"
   },
   "formTitles": {

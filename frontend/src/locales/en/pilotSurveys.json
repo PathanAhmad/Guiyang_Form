@@ -27,6 +27,7 @@
     "confirmSubmit": "Are you sure you want to submit this survey? You won't be able to edit it after submission.",
     "progress": "Section {{current}} of {{total}}",
     "requiredField": "* Required",
+    "requiredFields": "Please fill in all required fields before proceeding.",
     "languageSwitch": "Switch Language"
   },
   "formTitles": {
