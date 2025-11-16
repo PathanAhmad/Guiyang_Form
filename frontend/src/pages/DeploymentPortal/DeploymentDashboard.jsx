@@ -49,39 +49,6 @@ const DeploymentDashboard = () => {
           available: true,
           route: 'surveys',
         },
-        {
-          title: 'Pilot Protocol Overview',
-          description: 'Visual summary of pilot objectives, setup steps, and timeline',
-          items: [
-            'View pilot objectives',
-            'Setup steps and guidelines',
-            'Timeline and milestones',
-            'Program overview',
-          ],
-          available: false,
-        },
-        {
-          title: 'Resource Hub',
-          description: 'Guides, FAQs, and deployment checklists',
-          items: [
-            'Deployment guides',
-            'Frequently asked questions',
-            'Checklists and templates',
-            'Best practices',
-          ],
-          available: false,
-        },
-        {
-          title: 'Contact Section',
-          description: 'Support team contact form or chat',
-          items: [
-            'Contact support team',
-            'Submit inquiries',
-            'Live chat support',
-            'Request assistance',
-          ],
-          available: false,
-        },
       ],
     },
     educator: {
@@ -99,39 +66,6 @@ const DeploymentDashboard = () => {
           ],
           available: true,
           route: 'surveys',
-        },
-        {
-          title: 'Pilot Protocol Overview',
-          description: 'Visual summary of pilot objectives, setup steps, and timeline',
-          items: [
-            'View pilot objectives',
-            'Setup steps and guidelines',
-            'Timeline and milestones',
-            'Program overview',
-          ],
-          available: false,
-        },
-        {
-          title: 'Resource Hub',
-          description: 'Guides, FAQs, and deployment checklists',
-          items: [
-            'Teaching resources',
-            'Assessment templates',
-            'Frequently asked questions',
-            'Best practices',
-          ],
-          available: false,
-        },
-        {
-          title: 'Contact Section',
-          description: 'Support team contact form or chat',
-          items: [
-            'Contact support team',
-            'Submit inquiries',
-            'Request assistance',
-            'Live chat support',
-          ],
-          available: false,
         },
       ],
     },
@@ -151,39 +85,6 @@ const DeploymentDashboard = () => {
           available: true,
           route: 'surveys',
         },
-        {
-          title: 'Pilot Protocol Overview',
-          description: 'Visual summary of pilot objectives and participation',
-          items: [
-            'View pilot objectives',
-            'Your participation role',
-            'Program timeline',
-            'What to expect',
-          ],
-          available: false,
-        },
-        {
-          title: 'Resource Hub',
-          description: 'Guides and FAQs for students',
-          items: [
-            'Student guides',
-            'Frequently asked questions',
-            'Tips and resources',
-            'Getting help',
-          ],
-          available: false,
-        },
-        {
-          title: 'Contact Section',
-          description: 'Support team contact form or chat',
-          items: [
-            'Contact support team',
-            'Ask questions',
-            'Get help',
-            'Live chat support',
-          ],
-          available: false,
-        },
       ],
     },
     special: {
@@ -201,39 +102,6 @@ const DeploymentDashboard = () => {
           ],
           available: true,
           route: 'surveys',
-        },
-        {
-          title: 'Pilot Protocol Overview',
-          description: 'Visual summary of pilot objectives and participation',
-          items: [
-            'View pilot objectives',
-            'Your participation role',
-            'Program timeline',
-            'What to expect',
-          ],
-          available: false,
-        },
-        {
-          title: 'Resource Hub',
-          description: 'Accessible guides and FAQs',
-          items: [
-            'Accessible guides',
-            'Frequently asked questions',
-            'Support resources',
-            'Getting help',
-          ],
-          available: false,
-        },
-        {
-          title: 'Contact Section',
-          description: 'Support team contact form or chat',
-          items: [
-            'Contact support team',
-            'Request accommodations',
-            'Get assistance',
-            'Live chat support',
-          ],
-          available: false,
         },
       ],
     },
@@ -338,45 +206,15 @@ const DeploymentDashboard = () => {
                     </li>
                   ))}
                 </ul>
-                {section.available ? (
-                  <button
-                    onClick={() => navigate(`/deployment_portal/${roleType}/${section.route}`)}
-                    className={`mt-6 w-full px-4 py-2 bg-gradient-to-r ${colorClasses.gradient} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200`}
-                  >
-                    Access {section.title}
-                  </button>
-                ) : (
-                  <div className="mt-6 w-full px-4 py-2 bg-gray-100 text-gray-400 border border-gray-200 rounded-lg font-medium text-center">
-                    <span className="flex items-center justify-center">
-                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
-                      Coming Soon
-                    </span>
-                  </div>
-                )}
+                <button
+                  onClick={() => navigate(`/deployment_portal/${roleType}/${section.route}`)}
+                  className={`mt-6 w-full px-4 py-2 bg-gradient-to-r ${colorClasses.gradient} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200`}
+                >
+                  Access {section.title}
+                </button>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Coming Soon Notice */}
-        <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-          <div className="flex items-start">
-            <svg className="w-6 h-6 text-yellow-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div>
-              <h4 className="text-lg font-semibold text-yellow-900 mb-2">
-                Portal Under Development
-              </h4>
-              <p className="text-yellow-800">
-                This deployment portal is currently under active development. Features shown above represent
-                the planned functionality. Please check back regularly for updates, or contact your administrator
-                for more information about availability.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
