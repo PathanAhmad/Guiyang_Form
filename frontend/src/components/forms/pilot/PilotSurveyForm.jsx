@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDeploymentAuth } from '../../../contexts/DeploymentAuthContext';
+import { useToast } from '../../../contexts/ToastContext';
 import { getResponse, saveResponse, submitResponse } from '../../../services/pilotSurveyApi';
 import { assetUrl } from '../../../utils/assets';
 import SurveyProgress from './shared/SurveyProgress';
@@ -19,6 +20,7 @@ const PilotSurveyForm = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { isAuthenticated, roleType: currentRole, keyName, logout } = useDeploymentAuth();
+  const { showToast } = useToast();
   
   const [currentSection, setCurrentSection] = useState(1);
   const [formData, setFormData] = useState({});
@@ -28,6 +30,77 @@ const PilotSurveyForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
+
+  // Helper function to normalize language code for backend
+  // Converts 'en-US', 'en-GB' -> 'en', 'zh-CN', 'zh-TW' -> 'zh'
+  const normalizeLanguage = (langCode) => {
+    if (!langCode) return 'en';
+    const baseLang = langCode.split('-')[0].toLowerCase();
+    // Backend only accepts 'en' or 'zh'
+    return baseLang === 'zh' ? 'zh' : 'en';
+  };
+
+  // Define required fields per form and section
+  const getRequiredFields = (formId, sectionNumber) => {
+    const requiredFieldsMap = {
+      form1: {
+        1: ['fullName', 'dateOfBirth', 'gender', 'languages', 'location', 'dialects'], // NOT identity (optional)
+        2: ['enjoyedSubjects', 'strengths', 'pride', 'difficult', 'future', 'inspiration', 'learnNew'],
+        3: ['learnBest', 'tests', 'working', 'schedule', 'focus', 'taskPreference', 'challenges', 'tools', 'perfectLesson'], // NOT dislike (can skip)
+        4: ['technology', 'learningTools', 'noisyClassroom', 'changes', 'bothers', 'calm'],
+        5: ['aiFrequency', 'aiActivities', 'aiEnjoyMost', 'aiConcerns', 'aiFutureSupport'],
+        6: ['communicate', 'workingWith', 'sharing', 'feelSchool', 'sleep', 'energy', 'upset', 'askHelp', 'wishTeachers'],
+        7: ['funLearning', 'perfectDay', 'section7LearnBest', 'share'],
+      },
+      form2: {
+        1: ['assessorName', 'assessorRole', 'frequency'],
+        2: ['studentName', 'studentDOB', 'gradeLevel', 'livingSituation', 'educationHistory', 'supportFlags', 'supportNetwork', 'homeResources', 'emotionalSupport', 'pastStress', 'trustedAdult', 'identityStress'],
+        3: ['overallProgress', 'strengths', 'supportAreas', 'learningStyle', 'taskApproach', 'executiveFunction', 'progressOverTime', 'gaps', 'extendedTasks', 'metacognitive'],
+        4: ['enrollmentReasons', 'goals', 'passion', 'futureReaction', 'selfDoubt', 'barriers'],
+        5: ['interaction', 'feedbackResponse', 'emotionalRegulation', 'behavioral', 'selfRegulate', 'triggers', 'empathy'],
+        6: ['currentSupport', 'effectiveMethods', 'additionalSupport', 'recommendedGoals', 'timeOfDay', 'visualAids', 'familyResponsive', 'environmentalChanges'],
+        7: ['studentAiUsage', 'studentAiActivities', 'futureAiSupport'],
+        8: ['additionalObservations', 'suggestions'],
+      },
+      form3: {
+        1: ['fullName', 'role', 'tenure'],
+        2: ['enrollment', 'identities', 'challengesTable', 'gapsDynamics'], // NOT otherChallenges (optional)
+        3: ['unmetNeeds', 'curriculum', 'accessibility', 'assessments', 'followUp', 'leastSupported', 'schoolSystems'],
+        4: ['equipped', 'workload', 'limits', 'pdNeeds', 'urgentGaps', 'feedbackLoops', 'confidence'],
+        5: ['staffUsage', 'educatorTasks', 'studentPercentage', 'benefitsRisks'],
+        6: ['relationshipStrengths', 'barriers', 'restorative', 'events', 'partnerships'],
+        7: ['overlooked', 'suggestions', 'exclusion', 'inclusive'],
+      },
+      form4: {
+        1: ['name', 'role', 'years'],
+        2: ['methodologies'], // Curriculum PDF is separate submission
+        3: ['effectiveness', 'whatWorks', 'barriers', 'assessmentFormats', 'assessmentMetrics', 'midFeedback', 'effectiveFormats', 'skillTransfer'],
+        4: ['onlineCourses', 'digitalFeatures', 'digitalChallenges', 'readiness', 'platforms', 'supportNeeded', 'privacyConcerns'],
+        5: ['newTopics', 'approaches', 'additionalSupport', 'timeline', 'integration', 'partnerships'],
+        6: ['successMetrics', 'singleChange', 'additionalComments'],
+      },
+    };
+    return requiredFieldsMap[formId]?.[sectionNumber] || [];
+  };
+
+  // Validate current section
+  const validateSection = (sectionNumber) => {
+    const requiredFields = getRequiredFields(formId, sectionNumber);
+    const errors = {};
+    
+    requiredFields.forEach(field => {
+      const value = formData[field];
+      // Check for empty values, empty strings, or empty arrays
+      if (!value || 
+          (typeof value === 'string' && value.trim() === '') ||
+          (Array.isArray(value) && value.length === 0)) {
+        errors[field] = true;
+      }
+    });
+    
+    return errors;
+  };
 
   // Get form component
   const getFormComponent = () => {
@@ -80,6 +153,15 @@ const PilotSurveyForm = () => {
       ...prev,
       [fieldName]: value,
     }));
+    
+    // Clear validation error for this field when user updates it
+    if (validationErrors[fieldName]) {
+      setValidationErrors(prev => {
+        const updated = { ...prev };
+        delete updated[fieldName];
+        return updated;
+      });
+    }
   };
 
   const autoSave = useCallback(async () => {
@@ -89,7 +171,7 @@ const PilotSurveyForm = () => {
       await saveResponse(formId, {
         responses: formData,
         completedSections,
-        language: i18n.language,
+        language: normalizeLanguage(i18n.language),
       });
     } catch (err) {
       console.error('Auto-save failed:', err);
@@ -113,13 +195,13 @@ const PilotSurveyForm = () => {
       await saveResponse(formId, {
         responses: formData,
         completedSections,
-        language: i18n.language,
+        language: normalizeLanguage(i18n.language),
       });
       // Show success feedback
-      alert(t('pilotSurveys:form.draftSaved'));
+      showToast(t('pilotSurveys:form.draftSaved'), 'success');
     } catch (err) {
       console.error('Error saving draft:', err);
-      alert(t('pilotSurveys:form.error'));
+      showToast(t('pilotSurveys:form.error'), 'error');
     } finally {
       setSaving(false);
     }
@@ -131,18 +213,111 @@ const PilotSurveyForm = () => {
       await submitResponse(formId, {
         responses: formData,
         completedSections,
-        language: i18n.language,
+        language: normalizeLanguage(i18n.language),
       });
       setSubmitted(true);
     } catch (err) {
       console.error('Error submitting form:', err);
-      alert(t('pilotSurveys:form.error'));
+      showToast(t('pilotSurveys:form.error'), 'error');
     } finally {
       setSubmitting(false);
     }
   };
 
   const handleNext = () => {
+    // Validate current section before proceeding
+    const errors = validateSection(currentSection);
+    
+    if (Object.keys(errors).length > 0) {
+      // Set validation errors to show in the form
+      setValidationErrors(errors);
+      // Show a user-friendly message
+      showToast(t('pilotSurveys:form.requiredFields'), 'warning');
+      
+      // Debug logging
+      console.log('Validation errors:', errors);
+      console.log('Error field names:', Object.keys(errors));
+      
+      // Wait for React to render error states, then scroll
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          // Get the first error field name
+          const errorFieldNames = Object.keys(errors);
+          if (errorFieldNames.length === 0) {
+            console.log('No error field names found');
+            return;
+          }
+          
+          // Find elements with data-field-name matching error fields
+          const errorElements = [];
+          errorFieldNames.forEach(fieldName => {
+            const element = document.querySelector(`[data-field-name="${fieldName}"]`);
+            console.log(`Looking for [data-field-name="${fieldName}"]:`, element);
+            if (element) {
+              errorElements.push(element);
+            }
+          });
+          
+          console.log('Found error elements:', errorElements.length);
+          
+          if (errorElements.length > 0) {
+            // Scroll to the first error field
+            const firstError = errorElements[0];
+            console.log('Scrolling to first error:', firstError);
+            
+            // Scroll with better positioning
+            firstError.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start',
+              inline: 'nearest'
+            });
+            
+            // Adjust scroll to add top padding (for header)
+            setTimeout(() => {
+              window.scrollBy({ top: -120, behavior: 'smooth' });
+            }, 300);
+            
+            // Add pulsing effect to all error fields
+            errorElements.forEach((errorElement, index) => {
+              const delay = index * 50;
+              
+              setTimeout(() => {
+                // Add a pulsing class or animation
+                errorElement.style.boxShadow = '0 0 0 4px rgba(239, 68, 68, 0.4)';
+                setTimeout(() => {
+                  errorElement.style.boxShadow = '0 0 0 8px rgba(239, 68, 68, 0.2)';
+                }, 300);
+                setTimeout(() => {
+                  errorElement.style.boxShadow = '';
+                }, 600);
+              }, delay);
+              
+              // Remove animation when user interacts
+              const removeHighlight = () => {
+                errorElement.style.boxShadow = '';
+                errorElement.removeEventListener('click', removeHighlight, true);
+                errorElement.removeEventListener('focus', removeHighlight, true);
+                errorElement.removeEventListener('input', removeHighlight, true);
+              };
+              
+              errorElement.addEventListener('click', removeHighlight, true);
+              errorElement.addEventListener('focus', removeHighlight, true);
+              errorElement.addEventListener('input', removeHighlight, true);
+            });
+          } else {
+            console.log('No error elements found, trying fallback scroll');
+            // Fallback: scroll to top of section if no elements found
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      }, 200);
+      
+      return;
+    }
+    
+    // Clear any previous validation errors
+    setValidationErrors({});
+    
     // Mark current section as completed
     const sectionId = `section${currentSection}`;
     if (!completedSections.includes(sectionId)) {
@@ -306,6 +481,7 @@ const PilotSurveyForm = () => {
             saving={saving}
             submitting={submitting}
             completedSections={completedSections}
+            validationErrors={validationErrors}
           />
         </>
       )}

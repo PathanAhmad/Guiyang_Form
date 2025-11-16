@@ -20,6 +20,7 @@ const Form3EquityInclusion = ({
   saving,
   submitting,
   completedSections,
+  validationErrors = {},
 }) => {
   const { t } = useTranslation();
   const totalSections = 7;
@@ -33,6 +34,8 @@ const Form3EquityInclusion = ({
         onChange={(val) => onFieldChange('fullName', val)}
         placeholder={t('form3:section1.fullName.placeholder')}
         required
+        error={validationErrors.fullName ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="fullName"
       />
       
       <RadioGroup
@@ -47,6 +50,8 @@ const Form3EquityInclusion = ({
           { value: 'other', label: t('form3:section1.role.other') },
         ]}
         required
+        error={validationErrors.role ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="role"
       />
       
       {formData.role === 'other' && (
@@ -84,6 +89,8 @@ const Form3EquityInclusion = ({
           { value: '5plus', label: t('form3:section1.tenure.5plus') },
         ]}
         required
+        error={validationErrors.tenure ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="tenure"
       />
     </Section>
   );
@@ -102,6 +109,9 @@ const Form3EquityInclusion = ({
           { value: '201to500', label: t('form3:section2.enrollment.201to500') },
           { value: '500plus', label: t('form3:section2.enrollment.500plus') },
         ]}
+        required
+        error={validationErrors.enrollment ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="enrollment"
       />
       
       <CheckboxGroup
@@ -117,6 +127,9 @@ const Form3EquityInclusion = ({
           { value: 'refugee', label: t('form3:section2.identities.refugee') },
           { value: 'other', label: t('form3:section2.identities.other') },
         ]}
+        required
+        error={validationErrors.identities ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="identities"
       />
       
       {formData.identities?.includes('other') && (
@@ -147,6 +160,9 @@ const Form3EquityInclusion = ({
           { value: 'many', label: t('form3:section2.challenges.many') },
           { value: 'unknown', label: t('form3:section2.challenges.unknown') },
         ]}
+        required
+        error={validationErrors.challengesTable ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="challengesTable"
       />
       
       <TextArea
@@ -155,6 +171,7 @@ const Form3EquityInclusion = ({
         onChange={(val) => onFieldChange('otherChallenges', val)}
         placeholder={t('form3:section2.otherChallenges.placeholder')}
         rows={3}
+        fieldName="otherChallenges"
       />
       
       <CheckboxGroup
@@ -171,6 +188,9 @@ const Form3EquityInclusion = ({
           { value: 'none', label: t('form3:section2.gapsDynamics.none') },
           { value: 'other', label: t('form3:section2.gapsDynamics.other') },
         ]}
+        required
+        error={validationErrors.gapsDynamics ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="gapsDynamics"
       />
       
       {formData.gapsDynamics?.includes('other') && (
@@ -198,6 +218,9 @@ const Form3EquityInclusion = ({
           { value: 'many', label: t('form3:section3.unmetNeeds.many') },
           { value: 'unsure', label: t('form3:section3.unmetNeeds.unsure') },
         ]}
+        required
+        error={validationErrors.unmetNeeds ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="unmetNeeds"
       />
       
       <RadioGroup
@@ -210,6 +233,9 @@ const Form3EquityInclusion = ({
           { value: 'not', label: t('form3:section3.curriculum.not') },
           { value: 'unsure', label: t('form3:section3.curriculum.unsure') },
         ]}
+        required
+        error={validationErrors.curriculum ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="curriculum"
       />
       
       <CheckboxGroup
@@ -224,6 +250,9 @@ const Form3EquityInclusion = ({
           { value: 'barriers', label: t('form3:section3.accessibility.barriers') },
           { value: 'notApplicable', label: t('form3:section3.accessibility.notApplicable') },
         ]}
+        required
+        error={validationErrors.accessibility ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="accessibility"
       />
       
       <RadioGroup
@@ -236,6 +265,9 @@ const Form3EquityInclusion = ({
           { value: 'not', label: t('form3:section3.assessments.not') },
           { value: 'unsure', label: t('form3:section3.assessments.unsure') },
         ]}
+        required
+        error={validationErrors.assessments ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="assessments"
       />
       
       <RadioGroup
@@ -248,6 +280,9 @@ const Form3EquityInclusion = ({
           { value: 'rarely', label: t('form3:section3.followUp.rarely') },
           { value: 'unsure', label: t('form3:section3.followUp.unsure') },
         ]}
+        required
+        error={validationErrors.followUp ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="followUp"
       />
       
       <CheckboxGroup
@@ -271,6 +306,9 @@ const Form3EquityInclusion = ({
           { value: 'physical', label: t('form3:section3.leastSupported.physical') },
           { value: 'other', label: t('form3:section3.leastSupported.other') },
         ]}
+        required
+        error={validationErrors.leastSupported ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="leastSupported"
       />
       {formData.leastSupported && formData.leastSupported.length === 3 && (
         <p className="text-sm text-blue-600 -mt-4 mb-4">Maximum 3 selections reached</p>
@@ -300,6 +338,9 @@ const Form3EquityInclusion = ({
           { value: 'none', label: t('form3:section3.schoolSystems.none') },
           { value: 'other', label: t('form3:section3.schoolSystems.other') },
         ]}
+        required
+        error={validationErrors.schoolSystems ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="schoolSystems"
       />
       
       {formData.schoolSystems?.includes('other') && (
@@ -326,6 +367,9 @@ const Form3EquityInclusion = ({
           { value: 'no', label: t('form3:section4.equipped.no') },
           { value: 'unsure', label: t('form3:section4.equipped.unsure') },
         ]}
+        required
+        error={validationErrors.equipped ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="equipped"
       />
       
       <RadioGroup
@@ -338,6 +382,9 @@ const Form3EquityInclusion = ({
           { value: 'frequently', label: t('form3:section4.workload.frequently') },
           { value: 'unsure', label: t('form3:section4.workload.unsure') },
         ]}
+        required
+        error={validationErrors.workload ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="workload"
       />
       
       <CheckboxGroup
@@ -352,6 +399,9 @@ const Form3EquityInclusion = ({
           { value: 'language', label: t('form3:section4.limits.language') },
           { value: 'other', label: t('form3:section4.limits.other') },
         ]}
+        required
+        error={validationErrors.limits ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="limits"
       />
       
       {formData.limits?.includes('other') && (
@@ -378,6 +428,9 @@ const Form3EquityInclusion = ({
           { value: 'stress', label: t('form3:section4.pdNeeds.stress') },
           { value: 'other', label: t('form3:section4.pdNeeds.other') },
         ]}
+        required
+        error={validationErrors.pdNeeds ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="pdNeeds"
       />
       
       {formData.pdNeeds?.includes('other') && (
@@ -395,6 +448,9 @@ const Form3EquityInclusion = ({
         onChange={(val) => onFieldChange('urgentGaps', val)}
         placeholder={t('form3:section4.urgentGaps.placeholder')}
         rows={4}
+        required
+        error={validationErrors.urgentGaps ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="urgentGaps"
       />
       
       <CheckboxGroup
@@ -409,6 +465,9 @@ const Form3EquityInclusion = ({
           { value: 'none', label: t('form3:section4.feedbackLoops.none') },
           { value: 'other', label: t('form3:section4.feedbackLoops.other') },
         ]}
+        required
+        error={validationErrors.feedbackLoops ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="feedbackLoops"
       />
       
       {formData.feedbackLoops?.includes('other') && (
@@ -430,6 +489,9 @@ const Form3EquityInclusion = ({
           { value: 'not', label: t('form3:section4.confidence.not') },
           { value: 'unsure', label: t('form3:section4.confidence.unsure') },
         ]}
+        required
+        error={validationErrors.confidence ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="confidence"
       />
     </Section>
   );
@@ -447,6 +509,9 @@ const Form3EquityInclusion = ({
           { value: 'many', label: t('form3:section5.staffUsage.many') },
           { value: 'unsure', label: t('form3:section5.staffUsage.unsure') },
         ]}
+        required
+        error={validationErrors.staffUsage ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="staffUsage"
       />
       
       <CheckboxGroup
@@ -462,6 +527,9 @@ const Form3EquityInclusion = ({
           { value: 'professional', label: t('form3:section5.educatorTasks.professional') },
           { value: 'other', label: t('form3:section5.educatorTasks.other') },
         ]}
+        required
+        error={validationErrors.educatorTasks ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="educatorTasks"
       />
       
       {formData.educatorTasks?.includes('other') && (
@@ -485,6 +553,9 @@ const Form3EquityInclusion = ({
           { value: '76to100', label: t('form3:section5.studentPercentage.76to100') },
           { value: 'unsure', label: t('form3:section5.studentPercentage.unsure') },
         ]}
+        required
+        error={validationErrors.studentPercentage ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="studentPercentage"
       />
       
       <TextArea
@@ -493,6 +564,9 @@ const Form3EquityInclusion = ({
         onChange={(val) => onFieldChange('benefitsRisks', val)}
         placeholder={t('form3:section5.benefitsRisks.placeholder')}
         rows={4}
+        required
+        error={validationErrors.benefitsRisks ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="benefitsRisks"
       />
     </Section>
   );
@@ -506,6 +580,9 @@ const Form3EquityInclusion = ({
         onChange={(val) => onFieldChange('relationshipStrengths', val)}
         placeholder={t('form3:section6.strengths.placeholder')}
         rows={4}
+        required
+        error={validationErrors.relationshipStrengths ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="relationshipStrengths"
       />
       
       <CheckboxGroup
@@ -523,6 +600,9 @@ const Form3EquityInclusion = ({
           { value: 'none', label: t('form3:section6.barriers.none') },
           { value: 'other', label: t('form3:section6.barriers.other') },
         ]}
+        required
+        error={validationErrors.barriers ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="barriers"
       />
       
       {formData.barriers?.includes('other') && (
@@ -544,6 +624,9 @@ const Form3EquityInclusion = ({
           { value: 'traditional', label: t('form3:section6.restorative.traditional') },
           { value: 'unsure', label: t('form3:section6.restorative.unsure') },
         ]}
+        required
+        error={validationErrors.restorative ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="restorative"
       />
       
       <CheckboxGroup
@@ -557,6 +640,9 @@ const Form3EquityInclusion = ({
           { value: 'none', label: t('form3:section6.events.none') },
           { value: 'other', label: t('form3:section6.events.other') },
         ]}
+        required
+        error={validationErrors.events ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="events"
       />
       
       {formData.events?.includes('other') && (
@@ -579,6 +665,9 @@ const Form3EquityInclusion = ({
           { value: 'arts', label: t('form3:section6.partnerships.arts') },
           { value: 'other', label: t('form3:section6.partnerships.other') },
         ]}
+        required
+        error={validationErrors.partnerships ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="partnerships"
       />
       
       {formData.partnerships?.includes('other') && (
@@ -601,6 +690,9 @@ const Form3EquityInclusion = ({
         onChange={(val) => onFieldChange('overlooked', val)}
         placeholder={t('form3:section7.overlooked.placeholder')}
         rows={4}
+        required
+        error={validationErrors.overlooked ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="overlooked"
       />
       
       <TextArea
@@ -609,6 +701,9 @@ const Form3EquityInclusion = ({
         onChange={(val) => onFieldChange('suggestions', val)}
         placeholder={t('form3:section7.suggestions.placeholder')}
         rows={4}
+        required
+        error={validationErrors.suggestions ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="suggestions"
       />
       
       <RadioGroup
@@ -621,6 +716,9 @@ const Form3EquityInclusion = ({
           { value: 'rarely', label: t('form3:section7.exclusion.rarely') },
           { value: 'never', label: t('form3:section7.exclusion.never') },
         ]}
+        required
+        error={validationErrors.exclusion ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="exclusion"
       />
       
       {formData.exclusion && formData.exclusion !== 'never' && (
@@ -639,6 +737,9 @@ const Form3EquityInclusion = ({
         onChange={(val) => onFieldChange('inclusive', val)}
         placeholder={t('form3:section7.inclusive.placeholder')}
         rows={5}
+        required
+        error={validationErrors.inclusive ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="inclusive"
       />
     </Section>
   );

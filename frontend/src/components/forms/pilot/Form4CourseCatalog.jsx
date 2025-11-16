@@ -19,6 +19,7 @@ const Form4CourseCatalog = ({
   saving,
   submitting,
   completedSections,
+  validationErrors = {},
 }) => {
   const { t } = useTranslation();
   const totalSections = 6;
@@ -42,6 +43,8 @@ const Form4CourseCatalog = ({
         onChange={(val) => onFieldChange('name', val)}
         placeholder={t('form4:section1.name.placeholder')}
         required
+        error={validationErrors.name ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="name"
       />
       
       <RadioGroup
@@ -56,6 +59,8 @@ const Form4CourseCatalog = ({
           { value: 'other', label: t('form4:section1.role.other') },
         ]}
         required
+        error={validationErrors.role ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="role"
       />
       
       {formData.role === 'other' && (
@@ -64,6 +69,7 @@ const Form4CourseCatalog = ({
           value={formData.roleOther}
           onChange={(val) => onFieldChange('roleOther', val)}
           placeholder={t('form4:section1.role.otherPlaceholder')}
+          fieldName="roleOther"
         />
       )}
       
@@ -78,6 +84,8 @@ const Form4CourseCatalog = ({
           { value: '5plus', label: t('form4:section1.years.5plus') },
         ]}
         required
+        error={validationErrors.years ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="years"
       />
     </Section>
   );
@@ -100,6 +108,9 @@ const Form4CourseCatalog = ({
           { value: 'socratic', label: t('form4:section2.methodologies.socratic') },
           { value: 'other', label: t('form4:section2.methodologies.other') },
         ]}
+        required
+        error={validationErrors.methodologies ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="methodologies"
       />
       
       {formData.methodologies?.includes('other') && (
@@ -108,6 +119,7 @@ const Form4CourseCatalog = ({
           value={formData.methodologiesOther}
           onChange={(val) => onFieldChange('methodologiesOther', val)}
           placeholder={t('form4:section2.methodologies.otherPlaceholder')}
+          fieldName="methodologiesOther"
         />
       )}
       
@@ -148,6 +160,9 @@ const Form4CourseCatalog = ({
           { value: 'partial', label: t('form4:section3.effectiveness.partial') },
           { value: 'ineffective', label: t('form4:section3.effectiveness.ineffective') },
         ]}
+        required
+        error={validationErrors.effectiveness ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="effectiveness"
       />
       
       <CheckboxGroup
@@ -162,6 +177,9 @@ const Form4CourseCatalog = ({
           { value: 'creative', label: t('form4:section3.whatWorks.creative') },
           { value: 'other', label: t('form4:section3.whatWorks.other') },
         ]}
+        required
+        error={validationErrors.whatWorks ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="whatWorks"
       />
       
       {formData.whatWorks?.includes('other') && (
@@ -188,6 +206,9 @@ const Form4CourseCatalog = ({
           { value: 'assessment', label: t('form4:section3.barriers.assessment') },
           { value: 'other', label: t('form4:section3.barriers.other') },
         ]}
+        required
+        error={validationErrors.barriers ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="barriers"
       />
       
       {formData.barriers?.includes('other') && (
@@ -218,6 +239,9 @@ const Form4CourseCatalog = ({
                 { value: 'reflection', label: t('form4:section3.assessmentMethods.reflection') },
                 { value: 'presentations', label: t('form4:section3.assessmentMethods.presentations') },
               ]}
+              required
+              error={validationErrors.assessmentFormats ? t('pilotSurveys:form.requiredField') : null}
+              fieldName="assessmentFormats"
             />
           </div>
           <div>
@@ -234,6 +258,9 @@ const Form4CourseCatalog = ({
                 { value: 'portfolios', label: t('form4:section3.assessmentMethods.portfolios') },
                 { value: 'other', label: t('form4:section3.assessmentMethods.other') },
               ]}
+              required
+              error={validationErrors.assessmentMetrics ? t('pilotSurveys:form.requiredField') : null}
+              fieldName="assessmentMetrics"
             />
           </div>
         </div>
@@ -258,6 +285,9 @@ const Form4CourseCatalog = ({
           { value: 'endOnly', label: t('form4:section3.midFeedback.endOnly') },
           { value: 'notDone', label: t('form4:section3.midFeedback.notDone') },
         ]}
+        required
+        error={validationErrors.midFeedback ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="midFeedback"
       />
       
       <CheckboxGroup
@@ -272,6 +302,9 @@ const Form4CourseCatalog = ({
           { value: 'oral', label: t('form4:section3.effectiveFormats.oral') },
           { value: 'other', label: t('form4:section3.effectiveFormats.other') },
         ]}
+        required
+        error={validationErrors.effectiveFormats ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="effectiveFormats"
       />
       
       {formData.effectiveFormats?.includes('other') && (
@@ -293,6 +326,9 @@ const Form4CourseCatalog = ({
           { value: 'not', label: t('form4:section3.skillTransfer.not') },
           { value: 'unsure', label: t('form4:section3.skillTransfer.unsure') },
         ]}
+        required
+        error={validationErrors.skillTransfer ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="skillTransfer"
       />
     </Section>
   );
@@ -306,6 +342,9 @@ const Form4CourseCatalog = ({
         onChange={(val) => onFieldChange('onlineCourses', val)}
         placeholder={t('form4:section4.onlineCourses.placeholder')}
         rows={3}
+        required
+        error={validationErrors.onlineCourses ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="onlineCourses"
       />
       
       <CheckboxGroup
@@ -321,6 +360,9 @@ const Form4CourseCatalog = ({
           { value: 'tracking', label: t('form4:section4.digitalFeatures.tracking') },
           { value: 'other', label: t('form4:section4.digitalFeatures.other') },
         ]}
+        required
+        error={validationErrors.digitalFeatures ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="digitalFeatures"
       />
       
       {formData.digitalFeatures?.includes('other') && (
@@ -344,6 +386,9 @@ const Form4CourseCatalog = ({
           { value: 'platform', label: t('form4:section4.challenges.platform') },
           { value: 'other', label: t('form4:section4.challenges.other') },
         ]}
+        required
+        error={validationErrors.digitalChallenges ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="digitalChallenges"
       />
       
       {formData.digitalChallenges?.includes('other') && (
@@ -365,6 +410,9 @@ const Form4CourseCatalog = ({
           { value: 'not', label: t('form4:section4.readiness.not') },
           { value: 'unsure', label: t('form4:section4.readiness.unsure') },
         ]}
+        required
+        error={validationErrors.readiness ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="readiness"
       />
       
       <TextArea
@@ -373,6 +421,9 @@ const Form4CourseCatalog = ({
         onChange={(val) => onFieldChange('platforms', val)}
         placeholder={t('form4:section4.platforms.placeholder')}
         rows={3}
+        required
+        error={validationErrors.platforms ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="platforms"
       />
       
       <CheckboxGroup
@@ -387,6 +438,9 @@ const Form4CourseCatalog = ({
           { value: 'privacy', label: t('form4:section4.supportNeeded.privacy') },
           { value: 'other', label: t('form4:section4.supportNeeded.other') },
         ]}
+        required
+        error={validationErrors.supportNeeded ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="supportNeeded"
       />
       
       {formData.supportNeeded?.includes('other') && (
@@ -404,6 +458,9 @@ const Form4CourseCatalog = ({
         onChange={(val) => onFieldChange('privacyConcerns', val)}
         placeholder={t('form4:section4.privacyConcerns.placeholder')}
         rows={4}
+        required
+        error={validationErrors.privacyConcerns ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="privacyConcerns"
       />
     </Section>
   );
@@ -414,10 +471,19 @@ const Form4CourseCatalog = ({
     
     return (
       <Section title={t('form4:section5.title')}>
-        <div className="mb-6">
+        <div className="mb-6" data-field-name="newTopics">
           <label className="block text-sm font-medium text-gray-700 mb-4">
             {t('form4:section5.newTopics.label')}
+            <span className="text-red-600 ml-1 text-xl font-bold">*</span>
           </label>
+          {validationErrors.newTopics && (
+            <div className="mb-4 p-3 bg-red-50 border-2 border-red-600 rounded-lg">
+              <p className="text-red-600 font-bold">
+                <span className="text-2xl mr-2">⚠️</span>
+                {t('pilotSurveys:form.requiredField')}
+              </p>
+            </div>
+          )}
           
           {[0, 1, 2].map((index) => (
             <div key={index} className="mb-6 p-4 border border-gray-300 rounded-lg bg-gray-50">
@@ -464,6 +530,9 @@ const Form4CourseCatalog = ({
             { value: 'blended', label: t('form4:section5.approaches.blended') },
             { value: 'other', label: t('form4:section5.approaches.other') },
           ]}
+          required
+          error={validationErrors.approaches ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="approaches"
         />
         
         {formData.approaches?.includes('other') && (
@@ -484,6 +553,9 @@ const Form4CourseCatalog = ({
             { value: 'technical', label: t('form4:section5.additionalSupport.technical') },
             { value: 'other', label: t('form4:section5.additionalSupport.other') },
           ]}
+          required
+          error={validationErrors.additionalSupport ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="additionalSupport"
         />
         
         {formData.additionalSupport?.includes('other') && (
@@ -506,6 +578,9 @@ const Form4CourseCatalog = ({
             { value: '6to12', label: t('form4:section5.timeline.6to12') },
             { value: '12plus', label: t('form4:section5.timeline.12plus') },
           ]}
+          required
+          error={validationErrors.timeline ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="timeline"
         />
         
         <RadioGroup
@@ -518,6 +593,9 @@ const Form4CourseCatalog = ({
             { value: 'credit', label: t('form4:section5.integration.credit') },
             { value: 'unsure', label: t('form4:section5.integration.unsure') },
           ]}
+          required
+          error={validationErrors.integration ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="integration"
         />
         
         <TextArea
@@ -526,6 +604,9 @@ const Form4CourseCatalog = ({
           onChange={(val) => onFieldChange('partnerships', val)}
         placeholder={t('form4:section5.partnerships.placeholder')}
           rows={4}
+          required
+          error={validationErrors.partnerships ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="partnerships"
         />
       </Section>
     );
@@ -551,6 +632,9 @@ const Form4CourseCatalog = ({
           { value: 'dropout', label: t('form4:section6.successMetrics.dropout') },
           { value: 'other', label: t('form4:section6.successMetrics.other') },
         ]}
+        required
+        error={validationErrors.successMetrics ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="successMetrics"
       />
       {formData.successMetrics && formData.successMetrics.length === 2 && (
         <p className="text-sm text-blue-600 -mt-4 mb-4">Maximum 2 selections reached</p>
@@ -571,6 +655,9 @@ const Form4CourseCatalog = ({
         onChange={(val) => onFieldChange('singleChange', val)}
         placeholder={t('form4:section6.singleChange.placeholder')}
         rows={4}
+        required
+        error={validationErrors.singleChange ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="singleChange"
       />
       
       <TextArea
@@ -579,6 +666,9 @@ const Form4CourseCatalog = ({
         onChange={(val) => onFieldChange('additionalComments', val)}
         placeholder={t('form4:section6.additionalComments.placeholder')}
         rows={5}
+        required
+        error={validationErrors.additionalComments ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="additionalComments"
       />
     </Section>
   );

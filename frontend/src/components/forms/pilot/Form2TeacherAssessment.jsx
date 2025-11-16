@@ -20,6 +20,7 @@ const Form2TeacherAssessment = ({
   saving,
   submitting,
   completedSections,
+  validationErrors = {},
 }) => {
   const { t } = useTranslation();
   const totalSections = 8;
@@ -33,6 +34,7 @@ const Form2TeacherAssessment = ({
         onChange={(val) => onFieldChange('assessorName', val)}
         placeholder={t('form2:section1.assessorName.placeholder')}
         required
+        error={validationErrors.assessorName ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -46,6 +48,7 @@ const Form2TeacherAssessment = ({
           { value: 'other', label: t('form2:section1.assessorRole.other') },
         ]}
         required
+        error={validationErrors.assessorRole ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.assessorRole === 'other' && (
@@ -68,6 +71,7 @@ const Form2TeacherAssessment = ({
           { value: 'occasionally', label: t('form2:section1.frequency.occasionally') },
         ]}
         required
+        error={validationErrors.frequency ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <div className="mt-8 mb-4">
@@ -123,6 +127,7 @@ const Form2TeacherAssessment = ({
         onChange={(val) => onFieldChange('studentName', val)}
         placeholder={t('form2:section2.studentName.placeholder')}
         required
+        error={validationErrors.studentName ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <TextInput
@@ -137,6 +142,8 @@ const Form2TeacherAssessment = ({
         value={formData.studentDOB}
         onChange={(val) => onFieldChange('studentDOB', val)}
         placeholder={t('form2:section2.dateOfBirth.placeholder')}
+        required
+        error={validationErrors.studentDOB ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <TextInput
@@ -144,6 +151,8 @@ const Form2TeacherAssessment = ({
         value={formData.gradeLevel}
         onChange={(val) => onFieldChange('gradeLevel', val)}
         placeholder={t('form2:section2.gradeLevel.placeholder')}
+        required
+        error={validationErrors.gradeLevel ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <CheckboxGroup
@@ -160,6 +169,8 @@ const Form2TeacherAssessment = ({
           { value: 'unknown', label: t('form2:section2.livingSituation.unknown') },
           { value: 'other', label: t('form2:section2.livingSituation.other') },
         ]}
+        required
+        error={validationErrors.livingSituation ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.livingSituation?.includes('other') && (
@@ -184,6 +195,8 @@ const Form2TeacherAssessment = ({
           { value: 'migrated', label: t('form2:section2.educationHistory.migrated') },
           { value: 'other', label: t('form2:section2.educationHistory.other') },
         ]}
+        required
+        error={validationErrors.educationHistory ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.educationHistory?.includes('other') && (
@@ -210,6 +223,8 @@ const Form2TeacherAssessment = ({
           { value: 'notDisclosed', label: t('form2:section2.supportFlags.notDisclosed') },
           { value: 'other', label: t('form2:section2.supportFlags.other') },
         ]}
+        required
+        error={validationErrors.supportFlags ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.supportFlags?.includes('other') && (
@@ -233,6 +248,8 @@ const Form2TeacherAssessment = ({
           { value: 'none', label: t('form2:section2.supportNetwork.none') },
           { value: 'other', label: t('form2:section2.supportNetwork.other') },
         ]}
+        required
+        error={validationErrors.supportNetwork ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.supportNetwork?.includes('other') && (
@@ -257,6 +274,8 @@ const Form2TeacherAssessment = ({
           { value: 'space', label: t('form2:section2.homeResources.space') },
           { value: 'minimal', label: t('form2:section2.homeResources.minimal') },
         ]}
+        required
+        error={validationErrors.homeResources ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <CheckboxGroup
@@ -271,6 +290,8 @@ const Form2TeacherAssessment = ({
           { value: 'none', label: t('form2:section2.emotionalSupport.none') },
           { value: 'other', label: t('form2:section2.emotionalSupport.other') },
         ]}
+        required
+        error={validationErrors.emotionalSupport ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.emotionalSupport?.includes('other') && (
@@ -292,6 +313,8 @@ const Form2TeacherAssessment = ({
           { value: 'not', label: t('form2:section2.pastStress.not') },
           { value: 'unknown', label: t('form2:section2.pastStress.unknown') },
         ]}
+        required
+        error={validationErrors.pastStress ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -304,6 +327,8 @@ const Form2TeacherAssessment = ({
           { value: 'no', label: t('form2:section2.trustedAdult.no') },
           { value: 'benefit', label: t('form2:section2.trustedAdult.benefit') },
         ]}
+        required
+        error={validationErrors.trustedAdult ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -316,6 +341,8 @@ const Form2TeacherAssessment = ({
           { value: 'no', label: t('form2:section2.identityStress.no') },
           { value: 'unsure', label: t('form2:section2.identityStress.unsure') },
         ]}
+        required
+        error={validationErrors.identityStress ? t('pilotSurveys:form.requiredField') : null}
       />
     </Section>
   );
@@ -334,6 +361,7 @@ const Form2TeacherAssessment = ({
           { value: 'requires', label: t('form2:section3.overallProgress.requires') },
         ]}
         required
+        error={validationErrors.overallProgress ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <CheckboxGroup
@@ -352,6 +380,8 @@ const Form2TeacherAssessment = ({
           { value: 'technology', label: t('form2:section3.strengths.technology') },
           { value: 'other', label: t('form2:section3.strengths.other') },
         ]}
+        required
+        error={validationErrors.strengths ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.strengths?.includes('other') && (
@@ -377,6 +407,8 @@ const Form2TeacherAssessment = ({
           { value: 'instructions', label: t('form2:section3.supportAreas.instructions') },
           { value: 'other', label: t('form2:section3.supportAreas.other') },
         ]}
+        required
+        error={validationErrors.supportAreas ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.supportAreas?.includes('other') && (
@@ -401,6 +433,8 @@ const Form2TeacherAssessment = ({
           { value: 'creative', label: t('form2:section3.learningStyle.creative') },
           { value: 'other', label: t('form2:section3.learningStyle.other') },
         ]}
+        required
+        error={validationErrors.learningStyle ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.learningStyle?.includes('other') && (
@@ -422,6 +456,8 @@ const Form2TeacherAssessment = ({
           { value: 'needs', label: t('form2:section3.taskApproach.needs') },
           { value: 'avoids', label: t('form2:section3.taskApproach.avoids') },
         ]}
+        required
+        error={validationErrors.taskApproach ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <CheckboxGroup
@@ -436,6 +472,8 @@ const Form2TeacherAssessment = ({
           { value: 'organization', label: t('form2:section3.executiveFunction.organization') },
           { value: 'monitoring', label: t('form2:section3.executiveFunction.monitoring') },
         ]}
+        required
+        error={validationErrors.executiveFunction ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -448,6 +486,8 @@ const Form2TeacherAssessment = ({
           { value: 'noChange', label: t('form2:section3.progressOverTime.noChange') },
           { value: 'regressive', label: t('form2:section3.progressOverTime.regressive') },
         ]}
+        required
+        error={validationErrors.progressOverTime ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -460,6 +500,8 @@ const Form2TeacherAssessment = ({
           { value: 'no', label: t('form2:section3.gaps.no') },
           { value: 'unknown', label: t('form2:section3.gaps.unknown') },
         ]}
+        required
+        error={validationErrors.gaps ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -472,6 +514,8 @@ const Form2TeacherAssessment = ({
           { value: 'overwhelmed', label: t('form2:section3.extendedTasks.overwhelmed') },
           { value: 'unsure', label: t('form2:section3.extendedTasks.unsure') },
         ]}
+        required
+        error={validationErrors.extendedTasks ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -484,6 +528,8 @@ const Form2TeacherAssessment = ({
           { value: 'rarely', label: t('form2:section3.metacognitive.rarely') },
           { value: 'unsure', label: t('form2:section3.metacognitive.unsure') },
         ]}
+        required
+        error={validationErrors.metacognitive ? t('pilotSurveys:form.requiredField') : null}
       />
     </Section>
   );
@@ -503,6 +549,8 @@ const Form2TeacherAssessment = ({
           { value: 'safer', label: t('form2:section4.enrollmentReasons.safer') },
           { value: 'other', label: t('form2:section4.enrollmentReasons.other') },
         ]}
+        required
+        error={validationErrors.enrollmentReasons ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.enrollmentReasons?.includes('other') && (
@@ -526,6 +574,8 @@ const Form2TeacherAssessment = ({
           { value: 'exploring', label: t('form2:section4.goals.exploring') },
           { value: 'other', label: t('form2:section4.goals.other') },
         ]}
+        required
+        error={validationErrors.goals ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.goals?.includes('other') && (
@@ -543,6 +593,8 @@ const Form2TeacherAssessment = ({
         onChange={(val) => onFieldChange('passion', val)}
         placeholder={t('form2:section4.passion.placeholder')}
         rows={3}
+        required
+        error={validationErrors.passion ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -555,6 +607,8 @@ const Form2TeacherAssessment = ({
           { value: 'avoidant', label: t('form2:section4.futureReaction.avoidant') },
           { value: 'anxious', label: t('form2:section4.futureReaction.anxious') },
         ]}
+        required
+        error={validationErrors.futureReaction ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -567,6 +621,8 @@ const Form2TeacherAssessment = ({
           { value: 'rarely', label: t('form2:section4.selfDoubt.rarely') },
           { value: 'not', label: t('form2:section4.selfDoubt.not') },
         ]}
+        required
+        error={validationErrors.selfDoubt ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <CheckboxGroup
@@ -581,6 +637,8 @@ const Form2TeacherAssessment = ({
           { value: 'structure', label: t('form2:section4.barriers.structure') },
           { value: 'none', label: t('form2:section4.barriers.none') },
         ]}
+        required
+        error={validationErrors.barriers ? t('pilotSurveys:form.requiredField') : null}
       />
     </Section>
   );
@@ -599,6 +657,7 @@ const Form2TeacherAssessment = ({
           { value: 'withdrawn', label: t('form2:section5.interaction.withdrawn') },
         ]}
         required
+        error={validationErrors.interaction ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -611,6 +670,8 @@ const Form2TeacherAssessment = ({
           { value: 'frustrated', label: t('form2:section5.feedback.frustrated') },
           { value: 'avoids', label: t('form2:section5.feedback.avoids') },
         ]}
+        required
+        error={validationErrors.feedbackResponse ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <CheckboxGroup
@@ -623,6 +684,8 @@ const Form2TeacherAssessment = ({
           { value: 'often', label: t('form2:section5.emotionalRegulation.often') },
           { value: 'difficulty', label: t('form2:section5.emotionalRegulation.difficulty') },
         ]}
+        required
+        error={validationErrors.emotionalRegulation ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <CheckboxGroup
@@ -638,6 +701,8 @@ const Form2TeacherAssessment = ({
           { value: 'none', label: t('form2:section5.behavioral.none') },
           { value: 'other', label: t('form2:section5.behavioral.other') },
         ]}
+        required
+        error={validationErrors.behavioral ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.behavioral?.includes('other') && (
@@ -662,6 +727,8 @@ const Form2TeacherAssessment = ({
           { value: 'none', label: t('form2:section5.selfRegulate.none') },
           { value: 'other', label: t('form2:section5.selfRegulate.other') },
         ]}
+        required
+        error={validationErrors.selfRegulate ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.selfRegulate?.includes('other') && (
@@ -685,6 +752,8 @@ const Form2TeacherAssessment = ({
           { value: 'academic', label: t('form2:section5.triggers.academic') },
           { value: 'unclear', label: t('form2:section5.triggers.unclear') },
         ]}
+        required
+        error={validationErrors.triggers ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -697,6 +766,8 @@ const Form2TeacherAssessment = ({
           { value: 'rarely', label: t('form2:section5.empathy.rarely') },
           { value: 'not', label: t('form2:section5.empathy.not') },
         ]}
+        required
+        error={validationErrors.empathy ? t('pilotSurveys:form.requiredField') : null}
       />
     </Section>
   );
@@ -717,6 +788,8 @@ const Form2TeacherAssessment = ({
           { value: 'none', label: t('form2:section6.currentSupport.none') },
           { value: 'other', label: t('form2:section6.currentSupport.other') },
         ]}
+        required
+        error={validationErrors.currentSupport ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.currentSupport?.includes('other') && (
@@ -742,6 +815,8 @@ const Form2TeacherAssessment = ({
           { value: 'collaboration', label: t('form2:section6.effectiveMethods.collaboration') },
           { value: 'other', label: t('form2:section6.effectiveMethods.other') },
         ]}
+        required
+        error={validationErrors.effectiveMethods ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.effectiveMethods?.includes('other') && (
@@ -765,6 +840,8 @@ const Form2TeacherAssessment = ({
           { value: 'peerLed', label: t('form2:section6.additionalSupport.peerLed') },
           { value: 'other', label: t('form2:section6.additionalSupport.other') },
         ]}
+        required
+        error={validationErrors.additionalSupport ? t('pilotSurveys:form.requiredField') : null}
       />
       
       {formData.additionalSupport?.includes('other') && (
@@ -782,6 +859,8 @@ const Form2TeacherAssessment = ({
         onChange={(val) => onFieldChange('recommendedGoals', val)}
         placeholder={t('form2:section6.goals.placeholder')}
         rows={4}
+        required
+        error={validationErrors.recommendedGoals ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -794,6 +873,8 @@ const Form2TeacherAssessment = ({
           { value: 'afternoon', label: t('form2:section6.timeOfDay.afternoon') },
           { value: 'varies', label: t('form2:section6.timeOfDay.varies') },
         ]}
+        required
+        error={validationErrors.timeOfDay ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -806,6 +887,8 @@ const Form2TeacherAssessment = ({
           { value: 'resists', label: t('form2:section6.visualAids.resists') },
           { value: 'notYet', label: t('form2:section6.visualAids.notYet') },
         ]}
+        required
+        error={validationErrors.visualAids ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <RadioGroup
@@ -819,6 +902,8 @@ const Form2TeacherAssessment = ({
           { value: 'barrier', label: t('form2:section6.familyResponsive.barrier') },
           { value: 'unknown', label: t('form2:section6.familyResponsive.unknown') },
         ]}
+        required
+        error={validationErrors.familyResponsive ? t('pilotSurveys:form.requiredField') : null}
       />
       
       <TextArea
@@ -827,6 +912,8 @@ const Form2TeacherAssessment = ({
         onChange={(val) => onFieldChange('environmentalChanges', val)}
         placeholder={t('form2:section6.environmentalChanges.placeholder')}
         rows={4}
+        required
+        error={validationErrors.environmentalChanges ? t('pilotSurveys:form.requiredField') : null}
       />
     </Section>
   );
@@ -845,6 +932,9 @@ const Form2TeacherAssessment = ({
           { value: 'frequently', label: t('form2:section7.studentAiUsage.frequently') },
           { value: 'dontKnow', label: t('form2:section7.studentAiUsage.dontKnow') },
         ]}
+        required
+        error={validationErrors.studentAiUsage ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="studentAiUsage"
       />
       
       <CheckboxGroup
@@ -859,6 +949,9 @@ const Form2TeacherAssessment = ({
           { value: 'notes', label: t('form2:section7.studentAiActivities.notes') },
           { value: 'other', label: t('form2:section7.studentAiActivities.other') },
         ]}
+        required
+        error={validationErrors.studentAiActivities ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="studentAiActivities"
       />
       
       {formData.studentAiActivities?.includes('other') && (
@@ -876,6 +969,9 @@ const Form2TeacherAssessment = ({
         onChange={(val) => onFieldChange('futureAiSupport', val)}
         placeholder={t('form2:section7.futureAiSupport.placeholder')}
         rows={4}
+        required
+        error={validationErrors.futureAiSupport ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="futureAiSupport"
       />
     </Section>
   );
@@ -889,6 +985,9 @@ const Form2TeacherAssessment = ({
         onChange={(val) => onFieldChange('additionalObservations', val)}
         placeholder={t('form2:section8.observations.placeholder')}
         rows={5}
+        required
+        error={validationErrors.additionalObservations ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="additionalObservations"
       />
       
       <TextArea
@@ -897,6 +996,9 @@ const Form2TeacherAssessment = ({
         onChange={(val) => onFieldChange('suggestions', val)}
         placeholder={t('form2:section8.suggestions.placeholder')}
         rows={5}
+        required
+        error={validationErrors.suggestions ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="suggestions"
       />
     </Section>
   );

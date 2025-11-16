@@ -20,6 +20,7 @@ const Form1StudentSurvey = ({
   saving,
   submitting,
   completedSections,
+  validationErrors = {},
 }) => {
   const { t } = useTranslation();
   const totalSections = 7;
@@ -32,6 +33,8 @@ const Form1StudentSurvey = ({
         onChange={(val) => onFieldChange('fullName', val)}
         placeholder={t('form1:section1.fullName.placeholder')}
         required
+        error={validationErrors.fullName ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="fullName"
       />
       <DateInput
         label={t('form1:section1.dateOfBirth.label')}
@@ -39,6 +42,8 @@ const Form1StudentSurvey = ({
         onChange={(val) => onFieldChange('dateOfBirth', val)}
         placeholder={t('form1:section1.dateOfBirth.placeholder')}
         required
+        error={validationErrors.dateOfBirth ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="dateOfBirth"
       />
       <RadioGroup
         label={t('form1:section1.gender.label')}
@@ -49,6 +54,8 @@ const Form1StudentSurvey = ({
           { value: 'female', label: t('form1:section1.gender.female') },
         ]}
         required
+        error={validationErrors.gender ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="gender"
       />
       <CheckboxGroup
         label={t('form1:section1.languages.label')}
@@ -59,24 +66,34 @@ const Form1StudentSurvey = ({
           { value: 'chinese', label: t('form1:section1.languages.chinese') },
           { value: 'other', label: t('form1:section1.languages.other') },
         ]}
+        required
+        error={validationErrors.languages ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="languages"
       />
       <TextInput
         label={t('form1:section1.location.label')}
         value={formData.location}
         onChange={(val) => onFieldChange('location', val)}
         placeholder={t('form1:section1.location.placeholder')}
+        required
+        error={validationErrors.location ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="location"
       />
       <TextInput
         label={t('form1:section1.dialects.label')}
         value={formData.dialects}
         onChange={(val) => onFieldChange('dialects', val)}
         placeholder={t('form1:section1.dialects.placeholder')}
+        required
+        error={validationErrors.dialects ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="dialects"
       />
       <TextArea
         label={t('form1:section1.identity.label')}
         value={formData.identity}
         onChange={(val) => onFieldChange('identity', val)}
         placeholder={t('form1:section1.identity.placeholder')}
+        fieldName="identity"
       />
     </Section>
   );
@@ -101,12 +118,18 @@ const Form1StudentSurvey = ({
           { value: 'gaming', label: t('form1:section2.enjoyedSubjects.gaming') },
           { value: 'videos', label: t('form1:section2.enjoyedSubjects.videos') },
         ]}
+        required
+        error={validationErrors.enjoyedSubjects ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="enjoyedSubjects"
       />
       <TextArea
         label={t('form1:section2.strengths.label')}
         value={formData.strengths}
         onChange={(val) => onFieldChange('strengths', val)}
         placeholder={t('form1:section2.strengths.placeholder')}
+        required
+        error={validationErrors.strengths ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="strengths"
       />
       <CheckboxGroup
         label={t('form1:section2.pride.label')}
@@ -119,12 +142,18 @@ const Form1StudentSurvey = ({
           { value: 'feedback', label: t('form1:section2.pride.feedback') },
           { value: 'trying', label: t('form1:section2.pride.trying') },
         ]}
+        required
+        error={validationErrors.pride ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="pride"
       />
       <TextArea
         label={t('form1:section2.difficult.label')}
         value={formData.difficult}
         onChange={(val) => onFieldChange('difficult', val)}
         placeholder={t('form1:section2.difficult.placeholder')}
+        required
+        error={validationErrors.difficult ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="difficult"
       />
       <CheckboxGroup
         label={t('form1:section2.future.label')}
@@ -139,18 +168,27 @@ const Form1StudentSurvey = ({
           { value: 'travel', label: t('form1:section2.future.travel') },
           { value: 'unsure', label: t('form1:section2.future.unsure') },
         ]}
+        required
+        error={validationErrors.future ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="future"
       />
       <TextArea
         label={t('form1:section2.inspiration.label')}
         value={formData.inspiration}
         onChange={(val) => onFieldChange('inspiration', val)}
         placeholder={t('form1:section2.inspiration.placeholder')}
+        required
+        error={validationErrors.inspiration ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="inspiration"
       />
       <TextArea
         label={t('form1:section2.learnNew.label')}
         value={formData.learnNew}
         onChange={(val) => onFieldChange('learnNew', val)}
         placeholder={t('form1:section2.learnNew.placeholder')}
+        required
+        error={validationErrors.learnNew ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="learnNew"
       />
     </Section>
   );
@@ -172,6 +210,9 @@ const Form1StudentSurvey = ({
           { value: 'independent', label: t('form1:section3.learnBest.independent') },
           { value: 'checklists', label: t('form1:section3.learnBest.checklists') },
         ]}
+        required
+        error={validationErrors.learnBest ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="learnBest"
       />
       <RadioGroup
         label={t('form1:section3.tests.label')}
@@ -183,6 +224,9 @@ const Form1StudentSurvey = ({
           { value: 'prefer', label: t('form1:section3.tests.prefer') },
           { value: 'openBook', label: t('form1:section3.tests.openBook') },
         ]}
+        required
+        error={validationErrors.tests ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="tests"
       />
       <RadioGroup
         label={t('form1:section3.working.label')}
@@ -194,6 +238,9 @@ const Form1StudentSurvey = ({
           { value: 'partner', label: t('form1:section3.working.partner') },
           { value: 'mix', label: t('form1:section3.working.mix') },
         ]}
+        required
+        error={validationErrors.working ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="working"
       />
       <RadioGroup
         label={t('form1:section3.schedule.label')}
@@ -204,6 +251,9 @@ const Form1StudentSurvey = ({
           { value: 'flexibility', label: t('form1:section3.schedule.flexibility') },
           { value: 'both', label: t('form1:section3.schedule.both') },
         ]}
+        required
+        error={validationErrors.schedule ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="schedule"
       />
       <CheckboxGroup
         label={t('form1:section3.focus.label')}
@@ -220,6 +270,9 @@ const Form1StudentSurvey = ({
           { value: 'routines', label: t('form1:section3.focus.routines') },
           { value: 'support', label: t('form1:section3.focus.support') },
         ]}
+        required
+        error={validationErrors.focus ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="focus"
       />
       <RadioGroup
         label={t('form1:section3.taskPreference.label')}
@@ -230,6 +283,9 @@ const Form1StudentSurvey = ({
           { value: 'switching', label: t('form1:section3.taskPreference.switching') },
           { value: 'depends', label: t('form1:section3.taskPreference.depends') },
         ]}
+        required
+        error={validationErrors.taskPreference ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="taskPreference"
       />
       <CheckboxGroup
         label={t('form1:section3.challenges.label')}
@@ -246,12 +302,16 @@ const Form1StudentSurvey = ({
           { value: 'frustration', label: t('form1:section3.challenges.frustration') },
           { value: 'time', label: t('form1:section3.challenges.time') },
         ]}
+        required
+        error={validationErrors.challenges ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="challenges"
       />
       <TextArea
         label={t('form1:section3.dislike.label')}
         value={formData.dislike}
         onChange={(val) => onFieldChange('dislike', val)}
         placeholder={t('form1:section3.dislike.placeholder')}
+        fieldName="dislike"
       />
       <CheckboxGroup
         label={t('form1:section3.tools.label')}
@@ -265,12 +325,18 @@ const Form1StudentSurvey = ({
           { value: 'workspace', label: t('form1:section3.tools.workspace') },
           { value: 'starting', label: t('form1:section3.tools.starting') },
         ]}
+        required
+        error={validationErrors.tools ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="tools"
       />
       <TextArea
         label={t('form1:section3.perfectLesson.label')}
         value={formData.perfectLesson}
         onChange={(val) => onFieldChange('perfectLesson', val)}
         placeholder={t('form1:section3.perfectLesson.placeholder')}
+        required
+        error={validationErrors.perfectLesson ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="perfectLesson"
       />
     </Section>
   );
@@ -286,6 +352,9 @@ const Form1StudentSurvey = ({
           { value: 'sometimes', label: t('form1:section4.technology.sometimes') },
           { value: 'notReally', label: t('form1:section4.technology.notReally') },
         ]}
+        required
+        error={validationErrors.technology ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="technology"
       />
       <CheckboxGroup
         label={t('form1:section4.learningTools.label')}
@@ -299,6 +368,9 @@ const Form1StudentSurvey = ({
           { value: 'kits', label: t('form1:section4.learningTools.kits') },
           { value: 'visual', label: t('form1:section4.learningTools.visual') },
         ]}
+        required
+        error={validationErrors.learningTools ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="learningTools"
       />
       <RadioGroup
         label={t('form1:section4.noisyClassroom.label')}
@@ -310,6 +382,9 @@ const Form1StudentSurvey = ({
           { value: 'quiet', label: t('form1:section4.noisyClassroom.quiet') },
           { value: 'stressed', label: t('form1:section4.noisyClassroom.stressed') },
         ]}
+        required
+        error={validationErrors.noisyClassroom ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="noisyClassroom"
       />
       <RadioGroup
         label={t('form1:section4.changes.label')}
@@ -321,6 +396,9 @@ const Form1StudentSurvey = ({
           { value: 'advance', label: t('form1:section4.changes.advance') },
           { value: 'anxious', label: t('form1:section4.changes.anxious') },
         ]}
+        required
+        error={validationErrors.changes ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="changes"
       />
       <CheckboxGroup
         label={t('form1:section4.bothers.label')}
@@ -334,12 +412,18 @@ const Form1StudentSurvey = ({
           { value: 'textures', label: t('form1:section4.bothers.textures') },
           { value: 'crowds', label: t('form1:section4.bothers.crowds') },
         ]}
+        required
+        error={validationErrors.bothers ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="bothers"
       />
       <TextArea
         label={t('form1:section4.calm.label')}
         value={formData.calm}
         onChange={(val) => onFieldChange('calm', val)}
         placeholder={t('form1:section4.calm.placeholder')}
+        required
+        error={validationErrors.calm ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="calm"
       />
     </Section>
   );
@@ -357,6 +441,9 @@ const Form1StudentSurvey = ({
           { value: 'often', label: t('form1:section5.frequency.often') },
           { value: 'daily', label: t('form1:section5.frequency.daily') },
         ]}
+        required
+        error={validationErrors.aiFrequency ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="aiFrequency"
       />
       <CheckboxGroup
         label={t('form1:section5.activities.label')}
@@ -373,24 +460,36 @@ const Form1StudentSurvey = ({
           { value: 'entertainment', label: t('form1:section5.activities.entertainment') },
           { value: 'social', label: t('form1:section5.activities.social') },
         ]}
+        required
+        error={validationErrors.aiActivities ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="aiActivities"
       />
       <TextArea
         label={t('form1:section5.enjoyMost.label')}
         value={formData.aiEnjoyMost}
         onChange={(val) => onFieldChange('aiEnjoyMost', val)}
         placeholder={t('form1:section5.enjoyMost.placeholder')}
+        required
+        error={validationErrors.aiEnjoyMost ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="aiEnjoyMost"
       />
       <TextArea
         label={t('form1:section5.concerns.label')}
         value={formData.aiConcerns}
         onChange={(val) => onFieldChange('aiConcerns', val)}
         placeholder={t('form1:section5.concerns.placeholder')}
+        required
+        error={validationErrors.aiConcerns ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="aiConcerns"
       />
       <TextArea
         label={t('form1:section5.futureSupport.label')}
         value={formData.aiFutureSupport}
         onChange={(val) => onFieldChange('aiFutureSupport', val)}
         placeholder={t('form1:section5.futureSupport.placeholder')}
+        required
+        error={validationErrors.aiFutureSupport ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="aiFutureSupport"
       />
     </Section>
   );
@@ -408,6 +507,9 @@ const Form1StudentSurvey = ({
           { value: 'gestures', label: t('form1:section6.communicate.gestures') },
           { value: 'time', label: t('form1:section6.communicate.time') },
         ]}
+        required
+        error={validationErrors.communicate ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="communicate"
       />
       <RadioGroup
         label={t('form1:section6.workingWith.label')}
@@ -419,6 +521,9 @@ const Form1StudentSurvey = ({
           { value: 'alone', label: t('form1:section6.workingWith.alone') },
           { value: 'depends', label: t('form1:section6.workingWith.depends') },
         ]}
+        required
+        error={validationErrors.workingWith ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="workingWith"
       />
       <RadioGroup
         label={t('form1:section6.sharing.label')}
@@ -430,6 +535,9 @@ const Form1StudentSurvey = ({
           { value: 'writing', label: t('form1:section6.sharing.writing') },
           { value: 'rather', label: t('form1:section6.sharing.rather') },
         ]}
+        required
+        error={validationErrors.sharing ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="sharing"
       />
       <CheckboxGroup
         label={t('form1:section6.feelSchool.label')}
@@ -443,6 +551,9 @@ const Form1StudentSurvey = ({
           { value: 'overwhelmed', label: t('form1:section6.feelSchool.overwhelmed') },
           { value: 'excited', label: t('form1:section6.feelSchool.excited') },
         ]}
+        required
+        error={validationErrors.feelSchool ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="feelSchool"
       />
       <RadioGroup
         label={t('form1:section6.sleep.label')}
@@ -454,6 +565,9 @@ const Form1StudentSurvey = ({
           { value: '7to8', label: t('form1:section6.sleep.7to8') },
           { value: '8plus', label: t('form1:section6.sleep.8plus') },
         ]}
+        required
+        error={validationErrors.sleep ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="sleep"
       />
       <RadioGroup
         label={t('form1:section6.energy.label')}
@@ -464,6 +578,9 @@ const Form1StudentSurvey = ({
           { value: 'upDown', label: t('form1:section6.energy.upDown') },
           { value: 'low', label: t('form1:section6.energy.low') },
         ]}
+        required
+        error={validationErrors.energy ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="energy"
       />
       <CheckboxGroup
         label={t('form1:section6.upset.label')}
@@ -476,6 +593,9 @@ const Form1StudentSurvey = ({
           { value: 'later', label: t('form1:section6.upset.later') },
           { value: 'quiet', label: t('form1:section6.upset.quiet') },
         ]}
+        required
+        error={validationErrors.upset ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="upset"
       />
       <RadioGroup
         label={t('form1:section6.askHelp.label')}
@@ -486,12 +606,18 @@ const Form1StudentSurvey = ({
           { value: 'sometimes', label: t('form1:section6.askHelp.sometimes') },
           { value: 'no', label: t('form1:section6.askHelp.no') },
         ]}
+        required
+        error={validationErrors.askHelp ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="askHelp"
       />
       <TextArea
         label={t('form1:section6.wishTeachers.label')}
         value={formData.wishTeachers}
         onChange={(val) => onFieldChange('wishTeachers', val)}
         placeholder={t('form1:section6.wishTeachers.placeholder')}
+        required
+        error={validationErrors.wishTeachers ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="wishTeachers"
       />
     </Section>
   );
@@ -503,24 +629,36 @@ const Form1StudentSurvey = ({
         value={formData.funLearning}
         onChange={(val) => onFieldChange('funLearning', val)}
         placeholder={t('form1:section7.funLearning.placeholder')}
+        required
+        error={validationErrors.funLearning ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="funLearning"
       />
       <TextArea
         label={t('form1:section7.perfectDay.label')}
         value={formData.perfectDay}
         onChange={(val) => onFieldChange('perfectDay', val)}
         placeholder={t('form1:section7.perfectDay.placeholder')}
+        required
+        error={validationErrors.perfectDay ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="perfectDay"
       />
       <TextArea
         label={t('form1:section7.learnBest.label')}
         value={formData.section7LearnBest}
         onChange={(val) => onFieldChange('section7LearnBest', val)}
         placeholder={t('form1:section7.learnBest.placeholder')}
+        required
+        error={validationErrors.section7LearnBest ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="section7LearnBest"
       />
       <TextArea
         label={t('form1:section7.share.label')}
         value={formData.share}
         onChange={(val) => onFieldChange('share', val)}
         placeholder={t('form1:section7.share.placeholder')}
+        required
+        error={validationErrors.share ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="share"
       />
     </Section>
   );
