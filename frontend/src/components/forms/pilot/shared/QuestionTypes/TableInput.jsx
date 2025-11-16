@@ -11,6 +11,8 @@ import React from 'react';
  * @param {array} rows - Array of row objects: { key: string, label: string }
  * @param {array} columns - Array of column objects: { value: string, label: string }
  * @param {boolean} required - Whether the field is required
+ * @param {string} error - Error message to display
+ * @param {string} fieldName - Field name for identification
  */
 const TableInput = ({
   label,
@@ -19,6 +21,8 @@ const TableInput = ({
   rows = [],
   columns = [],
   required = false,
+  error,
+  fieldName,
 }) => {
   const handleCellChange = (rowKey, columnValue) => {
     const newValue = {
@@ -28,11 +32,27 @@ const TableInput = ({
     onChange(newValue);
   };
 
+  console.log(`TableInput ${fieldName} - error:`, error);
+  
   return (
-    <div className="mb-6">
+    <div 
+      className={`relative mb-6 p-4 rounded-lg transition-all duration-300 ${
+        error ? '!bg-red-100 !border-4 !border-red-600' : 'border-2 border-transparent'
+      }`}
+      data-field-name={fieldName}
+      style={error ? {
+        borderColor: '#DC2626',
+        borderWidth: '4px',
+        borderStyle: 'solid',
+        backgroundColor: '#FEE2E2'
+      } : {}}
+    >
+      {error && (
+        <div className="absolute top-2 right-2 w-4 h-4 bg-red-600 rounded-full animate-pulse"></div>
+      )}
       <label className="block text-sm font-medium text-gray-700 mb-3">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="text-red-600 text-xl font-bold ml-1">*</span>}
       </label>
       
       <div className="overflow-x-auto">
@@ -82,8 +102,11 @@ const TableInput = ({
         </table>
       </div>
       
-      {required && Object.keys(value).length === 0 && (
-        <p className="mt-1 text-sm text-red-600">This field is required</p>
+      {error && (
+        <div className="flex items-center gap-2 mt-2 p-2 bg-red-50 rounded">
+          <span className="text-red-600 text-2xl">⚠️</span>
+          <p className="text-base text-red-700 font-bold">{error}</p>
+        </div>
       )}
     </div>
   );
