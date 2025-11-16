@@ -351,7 +351,80 @@ router.get('/admin/all-responses', authenticateAdmin, async (req, res) => {
 // GET /api/pilot-surveys/admin/export - Export all responses to CSV (Admin only)
 router.get('/admin/export', authenticateAdmin, async (req, res) => {
   try {
+    const { flattenResponseToRows, generateCSV, createZipArchive } = require('../utils/csvExport');
+    
     const responses = await PilotSurveyResponse.getAllForExport();
+    
+    // Group responses by formId
+    const responsesByForm = {
+      form1: [],
+      form2: [],
+      form3: [],
+      form4: [],
+    };
+    
+    responses.forEach(response => {
+      if (responsesByForm[response.formId]) {
+        responsesByForm[response.formId].push(response);
+      }
+    });
+    
+    const timestamp = Date.now();
+    const csvFiles = [];
+    
+    // Create CSV for each form (even if empty)
+    const formMetadata = {
+      form1: 'student_survey',
+      form2: 'teacher_assessment',
+      form3: 'equity_inclusion',
+      form4: 'course_catalog',
+    };
+    
+    Object.keys(responsesByForm).forEach(formId => {
+      const formResponses = responsesByForm[formId];
+      const formType = formMetadata[formId];
+      
+      // Flatten all responses to rows
+      const allRows = [];
+      formResponses.forEach(response => {
+        const rows = flattenResponseToRows(response);
+        allRows.push(...rows);
+      });
+      
+      const csv = generateCSV(allRows);
+      const filename = `pilot-survey-${formId}-${formType}-all-${timestamp}.csv`;
+      
+      csvFiles.push({ filename, content: csv });
+      
+      console.log(`  📄 Generated ${filename} with ${formResponses.length} response(s)`);
+    });
+    
+    // Create ZIP with all 4 CSVs
+    const zipBuffer = await createZipArchive(csvFiles);
+    const zipFilename = `pilot-survey-all-forms-${timestamp}.zip`;
+    
+    res.setHeader('Content-Type', 'application/zip');
+    res.setHeader('Content-Disposition', `attachment; filename=${zipFilename}`);
+    res.send(zipBuffer);
+    
+    console.log(`✅ Exported ${responses.length} survey responses across 4 forms to ZIP`);
+  } catch (error) {
+    console.error('Error exporting survey responses:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to export survey responses',
+      error: error.message,
+    });
+  }
+});
+
+// GET /api/pilot-surveys/admin/export/:accessKey - Export responses for a specific access key to CSV (Admin only)
+router.get('/admin/export/:accessKey', authenticateAdmin, async (req, res) => {
+  try {
+    const { accessKey } = req.params;
+    const { flattenResponseToRows, generateCSV, createZipArchive, sanitizeFilename } = require('../utils/csvExport');
+    
+    const responses = await PilotSurveyResponse.getAllForExport(accessKey);
     
     if (responses.length === 0) {
       return res.status(404).json({
@@ -360,54 +433,137 @@ router.get('/admin/export', authenticateAdmin, async (req, res) => {
       });
     }
     
-    // Convert to CSV
-    const headers = [
-      'Access Key',
-      'Key Name',
-      'Role Type',
-      'Form ID',
-      'Form Type',
-      'Status',
-      'Language',
-      'Submitted At',
-      'Created At',
-      'Updated At',
-      'Completed Sections',
-      'Responses (JSON)'
-    ];
-    
-    const csvRows = [headers.join(',')];
-    
+    // Group responses by formId
+    const responsesByForm = {};
     responses.forEach(response => {
-      const row = [
-        response.accessKey,
-        `"${response.keyName}"`,
-        response.roleType,
-        response.formId,
-        response.formType,
-        response.status,
-        response.language,
-        response.submittedAt ? new Date(response.submittedAt).toISOString() : '',
-        new Date(response.createdAt).toISOString(),
-        new Date(response.updatedAt).toISOString(),
-        `"${response.completedSections}"`,
-        `"${response.responses.replace(/"/g, '""')}"` // Escape quotes in JSON
-      ];
-      csvRows.push(row.join(','));
+      if (!responsesByForm[response.formId]) {
+        responsesByForm[response.formId] = [];
+      }
+      responsesByForm[response.formId].push(response);
     });
     
-    const csv = csvRows.join('\n');
+    const formIds = Object.keys(responsesByForm);
+    const timestamp = Date.now();
+    const keyName = responses[0]?.keyName || 'Unknown';
+    const sanitizedKeyName = sanitizeFilename(keyName);
     
-    res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', `attachment; filename=pilot-survey-responses-${Date.now()}.csv`);
-    res.send(csv);
-    
-    console.log(`✅ Exported ${responses.length} survey responses to CSV`);
+    // If single form, return CSV directly
+    if (formIds.length === 1) {
+      const formId = formIds[0];
+      const formResponses = responsesByForm[formId];
+      const formType = formResponses[0]?.formType || formId;
+      
+      // Flatten all responses to rows
+      const allRows = [];
+      formResponses.forEach(response => {
+        const rows = flattenResponseToRows(response);
+        allRows.push(...rows);
+      });
+      
+      const csv = generateCSV(allRows);
+      const filename = `pilot-survey-${formId}-${formType}-${sanitizedKeyName}-${accessKey}-${timestamp}.csv`;
+      
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', `attachment; filename=${filename}`);
+      res.send(csv);
+      
+      console.log(`✅ Exported ${formResponses.length} response(s) for form ${formId} from access key ${accessKey}`);
+    } else {
+      // Multiple forms, create ZIP
+      const csvFiles = [];
+      
+      formIds.forEach(formId => {
+        const formResponses = responsesByForm[formId];
+        const formType = formResponses[0]?.formType || formId;
+        
+        // Flatten all responses to rows
+        const allRows = [];
+        formResponses.forEach(response => {
+          const rows = flattenResponseToRows(response);
+          allRows.push(...rows);
+        });
+        
+        const csv = generateCSV(allRows);
+        const filename = `pilot-survey-${formId}-${formType}-${sanitizedKeyName}-${accessKey}-${timestamp}.csv`;
+        
+        csvFiles.push({ filename, content: csv });
+      });
+      
+      const zipBuffer = await createZipArchive(csvFiles);
+      const zipFilename = `pilot-survey-${sanitizedKeyName}-${accessKey}-${timestamp}.zip`;
+      
+      res.setHeader('Content-Type', 'application/zip');
+      res.setHeader('Content-Disposition', `attachment; filename=${zipFilename}`);
+      res.send(zipBuffer);
+      
+      console.log(`✅ Exported ${responses.length} response(s) across ${formIds.length} forms for access key ${accessKey}`);
+    }
   } catch (error) {
-    console.error('Error exporting survey responses:', error);
+    console.error('Error exporting survey responses by access key:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to export survey responses',
+      error: error.message,
+    });
+  }
+});
+
+// DELETE /api/pilot-surveys/admin/responses/:accessKey - Delete all responses for an access key (Admin only)
+router.delete('/admin/responses/:accessKey', authenticateAdmin, async (req, res) => {
+  try {
+    const { accessKey } = req.params;
+    
+    // Delete all responses for this access key
+    const result = await PilotSurveyResponse.deleteMany({ accessKey });
+    
+    console.log(`✅ Deleted ${result.deletedCount} survey responses for access key ${accessKey}`);
+    
+    return res.status(200).json({
+      success: true,
+      message: `Successfully deleted ${result.deletedCount} response${result.deletedCount !== 1 ? 's' : ''}`,
+      deletedCount: result.deletedCount,
+    });
+  } catch (error) {
+    console.error('Error deleting survey responses by access key:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to delete survey responses',
+      error: error.message,
+    });
+  }
+});
+
+// DELETE /api/pilot-surveys/admin/responses/single/:responseId - Delete a single response (Admin only)
+router.delete('/admin/responses/single/:responseId', authenticateAdmin, async (req, res) => {
+  try {
+    const { responseId } = req.params;
+    
+    // Find and delete the response
+    const response = await PilotSurveyResponse.findByIdAndDelete(responseId);
+    
+    if (!response) {
+      return res.status(404).json({
+        success: false,
+        message: 'Response not found',
+      });
+    }
+    
+    console.log(`✅ Deleted survey response ${responseId} (${response.formId} for ${response.accessKey})`);
+    
+    return res.status(200).json({
+      success: true,
+      message: 'Response deleted successfully',
+      deletedResponse: {
+        id: response._id,
+        formId: response.formId,
+        accessKey: response.accessKey,
+      },
+    });
+  } catch (error) {
+    console.error('Error deleting survey response:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to delete survey response',
       error: error.message,
     });
   }

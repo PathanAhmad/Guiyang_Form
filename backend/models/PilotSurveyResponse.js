@@ -150,10 +150,11 @@ pilotSurveyResponseSchema.statics.getAllResponsesGroupedByAccessKey = async func
   return result;
 };
 
-// Static method: Get all responses for CSV export
-pilotSurveyResponseSchema.statics.getAllForExport = async function() {
+// Static method: Get all responses for CSV export (optionally filtered by access key)
+pilotSurveyResponseSchema.statics.getAllForExport = async function(accessKey) {
   const DeploymentAccessKey = require('./DeploymentAccessKey');
-  const responses = await this.find().sort({ createdAt: -1 }).lean();
+  const query = accessKey ? { accessKey } : {};
+  const responses = await this.find(query).sort({ createdAt: -1 }).lean();
   
   // Enrich with access key info
   const enriched = await Promise.all(
