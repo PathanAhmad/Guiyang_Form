@@ -186,7 +186,9 @@ const DeploymentLogin = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <p className="text-sm text-gray-700">
-                  Access keys are provided by your administrator. If you don't have an access key, please contact your system administrator.
+                  {roleType === 'school'
+                    ? "School Management access requires a SparkOS-provided key. Please reach out to SparkOS if you haven't received yours"
+                    : 'Access keys are provided by SparkOS to your school administration. If you do not have an access key, please contact your school administrator for assistance.'}
                 </p>
               </div>
             </div>
