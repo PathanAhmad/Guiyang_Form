@@ -3,6 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { deploymentAccessAPI } from '../../services/api';
 import { useDeploymentAuth } from '../../contexts/DeploymentAuthContext';
 import { assetUrl } from '../../utils/assets';
+import SchoolIcon from '../../Images/School.png';
+import TeacherIcon from '../../Images/teacher.png';
+import StudentIcon from '../../Images/Student.png';
+import SpecialIcon from '../../Images/Special.png';
+import SparkOSTypo from '../../Images/SparkOStypo.svg';
 
 const DeploymentLogin = () => {
   const { roleType } = useParams();
@@ -27,23 +32,27 @@ const DeploymentLogin = () => {
   const roleConfig = {
     school: {
       title: 'School Management',
-      icon: '🏫',
+      icon: SchoolIcon,
       description: 'Access pilot deployment management tools',
+      bgColor: 'bg-gradient-to-br from-yellow-200 to-orange-300',
     },
     educator: {
       title: 'Educators',
-      icon: '👨‍🏫',
+      icon: TeacherIcon,
       description: 'Access teaching resources and guidelines',
+      bgColor: 'bg-gradient-to-br from-sky-200 to-blue-300',
     },
     learner: {
       title: 'Learners',
-      icon: '🎓',
+      icon: StudentIcon,
       description: 'Access surveys and feedback forms',
+      bgColor: 'bg-gradient-to-br from-purple-200 to-indigo-300',
     },
     special: {
       title: 'Special Learners',
-      icon: '✨',
+      icon: SpecialIcon,
       description: 'Access specialized surveys and feedback',
+      bgColor: 'bg-gradient-to-br from-red-200 to-rose-300',
     },
   };
 
@@ -105,33 +114,33 @@ const DeploymentLogin = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/10 to-primary-400/10 flex items-center justify-center px-4 py-12">
-      <div className="max-w-md w-full">
-        {/* Back Button */}
-        <button
-          onClick={() => navigate('/deployment_portal')}
-          className="mb-6 inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
-        >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-          Back to Portal
-        </button>
-
+      <div className="max-w-4xl w-full">
         {/* Login Card */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-primary-100">
-          {/* Header with Gradient */}
-          <div className={`bg-gradient-to-r ${colorClasses.gradient} p-6 text-white`}>
-            <div className="flex items-center space-x-4">
-              <div className="text-5xl">{config.icon}</div>
-              <div>
-                <h1 className="text-2xl font-bold">{config.title}</h1>
-                <p className="text-blue-100 text-sm mt-1">{config.description}</p>
-              </div>
-            </div>
+        <div className="bg-white rounded-[2.2rem] shadow-lg overflow-hidden flex p-3 gap-3">
+          {/* Left Column: Icon */}
+          <div className={`relative w-2/5 ${config.bgColor} flex items-center justify-center p-8 rounded-[2rem]`}>
+            {/* Close Button */}
+            <button
+              onClick={() => navigate('/deployment_portal')}
+              className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/30 hover:bg-white/40 flex items-center justify-center transition-all duration-200 transform hover:scale-110 cursor-pointer"
+              aria-label="Close"
+            >
+              <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <img
+              src={config.icon}
+              alt={`${config.title} icon`}
+              className="max-w-full h-auto object-contain"
+            />
           </div>
 
-          {/* Form */}
-          <div className="p-8">
+          {/* Right Column: Content */}
+          <div className="w-3/5 p-5">
+            <h1 className="text-2xl font-extrabold text-[#ff4848]">{config.title}</h1>
+            <p className="text-sm text-gray-600 mt-0 mb-6">{config.description}</p>
+          
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="accessKey" className="block text-sm font-medium text-gray-700 mb-2">
@@ -143,7 +152,7 @@ const DeploymentLogin = () => {
                   value={accessKey}
                   onChange={(e) => setAccessKey(e.target.value)}
                   placeholder="Enter your access key"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                   disabled={loading}
                   autoFocus
                 />
@@ -163,7 +172,7 @@ const DeploymentLogin = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full ${colorClasses.button} text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center`}
+                className={`w-full ${colorClasses.button} text-white font-medium py-3 px-4 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center`}
               >
                 {loading ? (
                   <>
@@ -180,12 +189,12 @@ const DeploymentLogin = () => {
             </form>
 
             {/* Info Box */}
-            <div className={`mt-6 p-4 ${colorClasses.bg} border ${colorClasses.border} rounded-lg`}>
-              <div className="flex items-start">
-                <svg className={`w-5 h-5 ${colorClasses.text} mr-2 flex-shrink-0 mt-0.5`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className={`mt-6 p-4 bg-gray-100 rounded-[1.8rem]`}>
+              <div className="flex items-center">
+                <svg className={`w-6 h-6 text-gray-500 mr-3 flex-shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-800">
                   {roleType === 'school'
                     ? "School Management access requires a SparkOS-provided key. Please reach out to SparkOS if you haven't received yours"
                     : 'Access keys are provided by SparkOS to your school administration. If you do not have an access key, please contact your school administrator for assistance.'}
@@ -198,9 +207,9 @@ const DeploymentLogin = () => {
         {/* Logo Footer */}
         <div className="mt-8 text-center">
           <img
-            src={assetUrl('/Images/SparkOSFullLogo.svg')}
+            src={SparkOSTypo}
             alt="SparkOS Logo"
-            className="h-8 w-auto mx-auto opacity-60"
+            className="h-8 w-auto mx-auto"
           />
         </div>
       </div>

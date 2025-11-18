@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDeploymentAuth } from '../../contexts/DeploymentAuthContext';
 import { assetUrl } from '../../utils/assets';
+import SparkOSFullLogo from '../../Images/SparkOSFullLogo.svg';
 
 const DeploymentDashboard = () => {
   const { roleType } = useParams();
@@ -132,7 +133,7 @@ const DeploymentDashboard = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <img
-                src={assetUrl('/Images/SparkOSFullLogo.svg')}
+                src={SparkOSFullLogo}
                 alt="SparkOS Logo"
                 className="h-8 w-auto"
               />
