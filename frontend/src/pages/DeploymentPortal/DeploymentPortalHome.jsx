@@ -17,19 +17,19 @@ const DeploymentPortalHome = () => {
       id: 'educator',
       title: 'Educators',
       description:
-        'Submit teaching resources for initial course digitalization, survey, feedback forms, and classroom deployment guidelines.',
+        'Submit teaching resources for course digitalization, complete surveys and feedback forms, and follow classroom deployment guidelines.',
       icon: '👨‍🏫',
     },
     {
       id: 'learner',
       title: 'Learners',
-      description: 'Survey filling, and share feedback.',
+      description: 'Complete surveys and provide feedback.',
       icon: '🎓',
     },
     {
       id: 'special',
       title: 'Special Learners',
-      description: 'Survey filling, and share feedback.',
+      description: 'Complete surveys and provide feedback.',
       icon: '✨',
     },
   ];
@@ -77,7 +77,7 @@ const DeploymentPortalHome = () => {
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Select your role to access the appropriate deployment resources and tools.
-            You will need a valid access key to proceed.
+            A valid access key is required to proceed.
           </p>
         </div>
 
@@ -125,7 +125,7 @@ const DeploymentPortalHome = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <p className="text-sm text-primary-900">
-              <strong>Note:</strong> Each role requires a unique access key. Please contact your administrator if you need access.
+              <strong>Note:</strong> Each role requires a unique access key provided by SparkOS to your school administration. If you do not have an access key, please contact your school administrator.
             </p>
           </div>
         </div>
