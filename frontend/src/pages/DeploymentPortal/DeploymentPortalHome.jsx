@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { assetUrl } from '../../utils/assets';
+import SchoolIcon from '../../Images/School.png';
+import TeacherIcon from '../../Images/teacher.png';
+import StudentIcon from '../../Images/Student.png';
+import SpecialIcon from '../../Images/Special.png';
+import SparkOSLogo from '../../Images/SparkOS-Logo.svg';
 
 const DeploymentPortalHome = () => {
   const navigate = useNavigate();
@@ -22,7 +27,7 @@ const DeploymentPortalHome = () => {
       title: 'School Management',
       description:
         'Manage pilot deployment, oversee educator onboarding, and track school-level performance metrics.',
-      icon: '/School.png',
+      icon: SchoolIcon,
       bgColor: 'bg-gradient-to-br from-yellow-200 to-orange-300',
       panelBgColor: 'bg-gradient-to-tl from-yellow-100/50 to-white to-[70%]',
     },
@@ -31,7 +36,7 @@ const DeploymentPortalHome = () => {
       title: 'Educators',
       description:
         'Submit digital course materials, complete all surveys and feedback, and adhere to classroom setup guidelines.',
-      icon: '/teacher.png',
+      icon: TeacherIcon,
       bgColor: 'bg-gradient-to-br from-sky-200 to-blue-300',
       panelBgColor: 'bg-gradient-to-tl from-sky-100/50 to-white to-[70%]',
     },
@@ -39,7 +44,7 @@ const DeploymentPortalHome = () => {
       id: 'learner',
       title: 'Learners',
       description: 'Complete surveys and provide feedback.',
-      icon: '/Student.png',
+      icon: StudentIcon,
       bgColor: 'bg-gradient-to-br from-purple-200 to-indigo-300',
       panelBgColor: 'bg-gradient-to-tl from-purple-100/50 to-white to-[70%]',
     },
@@ -47,7 +52,7 @@ const DeploymentPortalHome = () => {
       id: 'special',
       title: 'Special Learners',
       description: 'Complete surveys and provide feedback.',
-      icon: '/Special.png',
+      icon: SpecialIcon,
       bgColor: 'bg-gradient-to-br from-red-200 to-rose-300',
       panelBgColor: 'bg-gradient-to-tl from-red-100/50 to-white to-[70%]',
     },
@@ -71,7 +76,7 @@ const DeploymentPortalHome = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <img
-                src="/SparkOS-Logo.svg"
+                src={SparkOSLogo}
                 alt="SparkOS Logo"
                 className="h-16 w-auto"
               />
