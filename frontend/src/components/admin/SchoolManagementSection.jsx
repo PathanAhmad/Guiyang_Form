@@ -15,6 +15,8 @@ const SchoolManagementSection = () => {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [formLoading, setFormLoading] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(null);
+  const [confirmDeactivate, setConfirmDeactivate] = useState(null);
+  const [confirmReactivate, setConfirmReactivate] = useState(null);
 
   useEffect(() => {
     loadSchools();
@@ -87,7 +89,13 @@ const SchoolManagementSection = () => {
     try {
       const response = await schoolAPI.delete(confirmDelete._id);
       if (response.data.success) {
-        showToast('School deleted successfully', 'success');
+        const keysDeleted = response.data.keysDeleted || 0;
+        showToast(
+          keysDeleted > 0 
+            ? `School deleted successfully (${keysDeleted} key${keysDeleted !== 1 ? 's' : ''} also deleted)`
+            : 'School deleted successfully',
+          'success'
+        );
         loadSchools(false);
       }
     } catch (error) {
@@ -96,6 +104,58 @@ const SchoolManagementSection = () => {
       showToast(errorMessage, 'error');
     } finally {
       setConfirmDelete(null);
+    }
+  };
+
+  const handleDeactivateSchool = (school) => {
+    setConfirmDeactivate(school);
+  };
+
+  const handleConfirmDeactivate = async () => {
+    if (!confirmDeactivate) return;
+
+    try {
+      const response = await schoolAPI.deactivate(confirmDeactivate._id);
+      if (response.data.success) {
+        const keysCount = response.data.keysDeactivated || 0;
+        showToast(
+          `School deactivated successfully (${keysCount} key${keysCount !== 1 ? 's' : ''} also deactivated)`,
+          'success'
+        );
+        loadSchools(false);
+      }
+    } catch (error) {
+      console.error('Failed to deactivate school:', error);
+      const errorMessage = error.response?.data?.error || 'Failed to deactivate school';
+      showToast(errorMessage, 'error');
+    } finally {
+      setConfirmDeactivate(null);
+    }
+  };
+
+  const handleReactivateSchool = (school) => {
+    setConfirmReactivate(school);
+  };
+
+  const handleConfirmReactivate = async () => {
+    if (!confirmReactivate) return;
+
+    try {
+      const response = await schoolAPI.reactivate(confirmReactivate._id);
+      if (response.data.success) {
+        const keysCount = response.data.keysReactivated || 0;
+        showToast(
+          `School reactivated successfully (${keysCount} key${keysCount !== 1 ? 's' : ''} also reactivated)`,
+          'success'
+        );
+        loadSchools(false);
+      }
+    } catch (error) {
+      console.error('Failed to reactivate school:', error);
+      const errorMessage = error.response?.data?.error || 'Failed to reactivate school';
+      showToast(errorMessage, 'error');
+    } finally {
+      setConfirmReactivate(null);
     }
   };
 
@@ -234,13 +294,31 @@ const SchoolManagementSection = () => {
                   >
                     Edit
                   </Button>
+                  {school.isActive ? (
+                    <Button
+                      onClick={() => handleDeactivateSchool(school)}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 text-yellow-600 hover:text-yellow-700 hover:bg-yellow-50 border-yellow-300 hover:border-yellow-400"
+                    >
+                      Deactivate
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => handleReactivateSchool(school)}
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 text-green-600 hover:text-green-700 hover:bg-green-50 border-green-300 hover:border-green-400"
+                    >
+                      Reactivate
+                    </Button>
+                  )}
                   <Button
                     onClick={() => handleDeleteSchool(school)}
                     variant="outline"
                     size="sm"
                     className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-300 hover:border-red-400"
-                    disabled={school.keyCounts?.total > 0}
-                    title={school.keyCounts?.total > 0 ? 'Delete all keys first' : 'Delete school'}
+                    title="Delete school and all its keys"
                   >
                     Delete
                   </Button>
@@ -271,12 +349,44 @@ const SchoolManagementSection = () => {
         title="Delete School"
         message={
           confirmDelete
-            ? `Are you sure you want to delete "${confirmDelete.schoolName}"?\n\nThis action cannot be undone.`
+            ? `Are you sure you want to delete "${confirmDelete.schoolName}"?\n\nAll ${confirmDelete.keyCounts?.total || 0} access key(s) will also be permanently deleted.\n\nThis action cannot be undone.`
             : ''
         }
         confirmText="Delete"
         cancelText="Cancel"
         variant="danger"
+      />
+
+      {/* Deactivate Confirmation Modal */}
+      <ConfirmModal
+        isOpen={!!confirmDeactivate}
+        onClose={() => setConfirmDeactivate(null)}
+        onConfirm={handleConfirmDeactivate}
+        title="Deactivate School"
+        message={
+          confirmDeactivate
+            ? `Are you sure you want to deactivate "${confirmDeactivate.schoolName}"?\n\nAll ${confirmDeactivate.keyCounts?.total || 0} access key(s) will also be deactivated.\n\nYou can reactivate it later.`
+            : ''
+        }
+        confirmText="Deactivate"
+        cancelText="Cancel"
+        variant="warning"
+      />
+
+      {/* Reactivate Confirmation Modal */}
+      <ConfirmModal
+        isOpen={!!confirmReactivate}
+        onClose={() => setConfirmReactivate(null)}
+        onConfirm={handleConfirmReactivate}
+        title="Reactivate School"
+        message={
+          confirmReactivate
+            ? `Are you sure you want to reactivate "${confirmReactivate.schoolName}"?\n\nAll ${confirmReactivate.keyCounts?.total || 0} access key(s) will also be reactivated.`
+            : ''
+        }
+        confirmText="Reactivate"
+        cancelText="Cancel"
+        variant="success"
       />
     </>
   );

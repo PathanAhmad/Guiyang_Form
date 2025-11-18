@@ -206,6 +206,92 @@ router.patch('/:id', authenticateAdmin, async (req, res) => {
   }
 });
 
+// Protected route: Deactivate school and all its keys (Admin only)
+router.post('/:id/deactivate', authenticateAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const school = await School.findById(id);
+    if (!school) {
+      return res.status(404).json({
+        success: false,
+        error: 'School not found',
+      });
+    }
+
+    // Deactivate the school
+    await school.deactivate();
+
+    // Cascade: Deactivate all access keys for this school
+    const result = await DeploymentAccessKey.updateMany(
+      { schoolId: id },
+      { $set: { isActive: false } }
+    );
+
+    console.log(`✅ School deactivated: ${school.schoolName} (${result.modifiedCount} keys deactivated)`);
+
+    // Get updated school with key counts
+    const updatedSchool = await School.getWithKeyCounts(id);
+
+    return res.status(200).json({
+      success: true,
+      message: 'School and all its access keys deactivated successfully',
+      data: updatedSchool,
+      keysDeactivated: result.modifiedCount,
+    });
+  } catch (error) {
+    console.error('❌ Error deactivating school:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error',
+      details: error.message,
+    });
+  }
+});
+
+// Protected route: Reactivate school and all its keys (Admin only)
+router.post('/:id/reactivate', authenticateAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const school = await School.findById(id);
+    if (!school) {
+      return res.status(404).json({
+        success: false,
+        error: 'School not found',
+      });
+    }
+
+    // Reactivate the school
+    await school.activate();
+
+    // Cascade: Reactivate all access keys for this school
+    const result = await DeploymentAccessKey.updateMany(
+      { schoolId: id },
+      { $set: { isActive: true } }
+    );
+
+    console.log(`✅ School reactivated: ${school.schoolName} (${result.modifiedCount} keys reactivated)`);
+
+    // Get updated school with key counts
+    const updatedSchool = await School.getWithKeyCounts(id);
+
+    return res.status(200).json({
+      success: true,
+      message: 'School and all its access keys reactivated successfully',
+      data: updatedSchool,
+      keysReactivated: result.modifiedCount,
+    });
+  } catch (error) {
+    console.error('❌ Error reactivating school:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error',
+      details: error.message,
+    });
+  }
+});
+
 // Protected route: Delete school (Admin only)
 router.delete('/:id', authenticateAdmin, async (req, res) => {
   try {
@@ -219,16 +305,11 @@ router.delete('/:id', authenticateAdmin, async (req, res) => {
       });
     }
 
-    // Check if school has any access keys
-    const keyCount = await DeploymentAccessKey.countDocuments({ schoolId: id });
-    if (keyCount > 0) {
-      return res.status(400).json({
-        success: false,
-        error: `Cannot delete school with existing access keys. Please delete all ${keyCount} key(s) first.`,
-        keyCount,
-      });
-    }
+    // Delete all access keys for this school first
+    const deleteResult = await DeploymentAccessKey.deleteMany({ schoolId: id });
+    console.log(`🗑️ Deleted ${deleteResult.deletedCount} access key(s) for school: ${school.schoolName}`);
 
+    // Then delete the school
     await School.findByIdAndDelete(id);
 
     console.log(`✅ School deleted: ${school.schoolName}`);
@@ -236,6 +317,7 @@ router.delete('/:id', authenticateAdmin, async (req, res) => {
     return res.status(200).json({
       success: true,
       message: 'School deleted successfully',
+      keysDeleted: deleteResult.deletedCount,
     });
   } catch (error) {
     console.error('❌ Error deleting school:', error);

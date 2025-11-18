@@ -25,6 +25,7 @@ const DeploymentKeysSection = () => {
   
   // Confirmation modal state
   const [confirmAction, setConfirmAction] = useState(null);
+  const [confirmSchoolAction, setConfirmSchoolAction] = useState(null);
 
   const roleTypes = [
     { value: 'school', label: 'School Management', icon: '🏫' },
@@ -151,6 +152,10 @@ const DeploymentKeysSection = () => {
     setConfirmAction({ type: 'deactivate', key });
   };
 
+  const handleReactivate = (key) => {
+    setConfirmAction({ type: 'reactivate', key });
+  };
+
   const handleDelete = (key) => {
     setConfirmAction({ type: 'delete', key });
   };
@@ -165,6 +170,12 @@ const DeploymentKeysSection = () => {
         const response = await deploymentAccessAPI.deactivateKey(key._id);
         if (response.data.success) {
           showToast('Access key deactivated', 'success');
+          loadData(false);
+        }
+      } else if (type === 'reactivate') {
+        const response = await deploymentAccessAPI.reactivateKey(key._id);
+        if (response.data.success) {
+          showToast('Access key reactivated', 'success');
           loadData(false);
         }
       } else if (type === 'delete') {
@@ -184,6 +195,71 @@ const DeploymentKeysSection = () => {
 
   const handleCancelAction = () => {
     setConfirmAction(null);
+  };
+
+  // School action handlers
+  const handleSchoolDeactivate = (school) => {
+    setConfirmSchoolAction({ type: 'deactivate', school });
+  };
+
+  const handleSchoolReactivate = (school) => {
+    setConfirmSchoolAction({ type: 'reactivate', school });
+  };
+
+  const handleSchoolDelete = (school) => {
+    setConfirmSchoolAction({ type: 'delete', school });
+  };
+
+  const handleConfirmSchoolAction = async () => {
+    if (!confirmSchoolAction) return;
+
+    const { type, school } = confirmSchoolAction;
+
+    try {
+      if (type === 'deactivate') {
+        const response = await schoolAPI.deactivate(school._id);
+        if (response.data.success) {
+          const keysCount = response.data.keysDeactivated || 0;
+          showToast(
+            `School deactivated (${keysCount} key${keysCount !== 1 ? 's' : ''} also deactivated)`,
+            'success'
+          );
+          loadData(false);
+        }
+      } else if (type === 'reactivate') {
+        const response = await schoolAPI.reactivate(school._id);
+        if (response.data.success) {
+          const keysCount = response.data.keysReactivated || 0;
+          showToast(
+            `School reactivated (${keysCount} key${keysCount !== 1 ? 's' : ''} also reactivated)`,
+            'success'
+          );
+          loadData(false);
+        }
+      } else if (type === 'delete') {
+        const response = await schoolAPI.delete(school._id);
+        if (response.data.success) {
+          const keysDeleted = response.data.keysDeleted || 0;
+          showToast(
+            keysDeleted > 0 
+              ? `School deleted successfully (${keysDeleted} key${keysDeleted !== 1 ? 's' : ''} also deleted)`
+              : 'School deleted successfully',
+            'success'
+          );
+          loadData(false);
+        }
+      }
+    } catch (error) {
+      console.error(`Failed to ${type} school:`, error);
+      const errorMessage = error.response?.data?.error || `Failed to ${type} school`;
+      showToast(errorMessage, 'error');
+    } finally {
+      setConfirmSchoolAction(null);
+    }
+  };
+
+  const handleCancelSchoolAction = () => {
+    setConfirmSchoolAction(null);
   };
 
   const toggleSchool = (schoolId) => {
@@ -407,9 +483,46 @@ const DeploymentKeysSection = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3">
                     <div className="text-sm text-gray-500">
                       {schoolKeys.filter(k => k.isActive).length} active
+                    </div>
+                    <div className="flex items-center space-x-1" onClick={(e) => e.stopPropagation()}>
+                      {school.isActive ? (
+                        <>
+                          <button
+                            onClick={() => handleSchoolDeactivate(school)}
+                            className="px-2 py-1 text-xs font-medium text-yellow-700 hover:text-yellow-900 hover:bg-yellow-50 rounded transition-colors"
+                            title="Deactivate school and all its keys"
+                          >
+                            Deactivate
+                          </button>
+                          <button
+                            onClick={() => handleSchoolDelete(school)}
+                            className="px-2 py-1 text-xs font-medium text-red-700 hover:text-red-900 hover:bg-red-50 rounded transition-colors"
+                            title="Delete school and all its keys"
+                          >
+                            Delete
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleSchoolReactivate(school)}
+                            className="px-2 py-1 text-xs font-medium text-green-700 hover:text-green-900 hover:bg-green-50 rounded transition-colors"
+                            title="Reactivate school and all its keys"
+                          >
+                            Reactivate
+                          </button>
+                          <button
+                            onClick={() => handleSchoolDelete(school)}
+                            className="px-2 py-1 text-xs font-medium text-red-700 hover:text-red-900 hover:bg-red-50 rounded transition-colors"
+                            title="Delete school and all its keys"
+                          >
+                            Delete
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
                 </button>
@@ -486,12 +599,19 @@ const DeploymentKeysSection = () => {
                                 </span>
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                                {key.isActive && (
+                                {key.isActive ? (
                                   <button
                                     onClick={() => handleDeactivate(key)}
                                     className="text-yellow-600 hover:text-yellow-900"
                                   >
                                     Deactivate
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={() => handleReactivate(key)}
+                                    className="text-green-600 hover:text-green-900"
+                                  >
+                                    Reactivate
                                   </button>
                                 )}
                                 <button
@@ -529,20 +649,76 @@ const DeploymentKeysSection = () => {
         loading={creating}
       />
 
-      {/* Confirmation Modal */}
+      {/* Key Action Confirmation Modal */}
       <ConfirmModal
         isOpen={!!confirmAction}
         onClose={handleCancelAction}
         onConfirm={handleConfirmAction}
-        title={confirmAction?.type === 'deactivate' ? 'Deactivate Access Key' : 'Delete Access Key'}
+        title={
+          confirmAction?.type === 'deactivate' 
+            ? 'Deactivate Access Key' 
+            : confirmAction?.type === 'reactivate'
+            ? 'Reactivate Access Key'
+            : 'Delete Access Key'
+        }
         message={
           confirmAction?.type === 'deactivate'
             ? `Are you sure you want to deactivate the access key "${confirmAction?.key?.keyName}"?\n\nUsers will no longer be able to use this key to access the deployment portal.`
+            : confirmAction?.type === 'reactivate'
+            ? `Are you sure you want to reactivate the access key "${confirmAction?.key?.keyName}"?\n\nUsers will be able to use this key again to access the deployment portal.`
             : `Are you sure you want to delete the access key "${confirmAction?.key?.keyName}"?\n\nThis action cannot be undone.`
         }
-        confirmText={confirmAction?.type === 'deactivate' ? 'Deactivate' : 'Delete'}
+        confirmText={
+          confirmAction?.type === 'deactivate' 
+            ? 'Deactivate' 
+            : confirmAction?.type === 'reactivate'
+            ? 'Reactivate'
+            : 'Delete'
+        }
         cancelText="Cancel"
-        variant={confirmAction?.type === 'deactivate' ? 'warning' : 'danger'}
+        variant={
+          confirmAction?.type === 'deactivate' 
+            ? 'warning' 
+            : confirmAction?.type === 'reactivate'
+            ? 'success'
+            : 'danger'
+        }
+      />
+
+      {/* School Action Confirmation Modal */}
+      <ConfirmModal
+        isOpen={!!confirmSchoolAction}
+        onClose={handleCancelSchoolAction}
+        onConfirm={handleConfirmSchoolAction}
+        title={
+          confirmSchoolAction?.type === 'deactivate' 
+            ? 'Deactivate School' 
+            : confirmSchoolAction?.type === 'reactivate'
+            ? 'Reactivate School'
+            : 'Delete School'
+        }
+        message={
+          confirmSchoolAction?.type === 'deactivate'
+            ? `Are you sure you want to deactivate "${confirmSchoolAction?.school?.schoolName}"?\n\nAll access keys for this school will also be deactivated.\n\nYou can reactivate it later.`
+            : confirmSchoolAction?.type === 'reactivate'
+            ? `Are you sure you want to reactivate "${confirmSchoolAction?.school?.schoolName}"?\n\nAll access keys for this school will also be reactivated.`
+            : `Are you sure you want to delete "${confirmSchoolAction?.school?.schoolName}"?\n\nAll access keys for this school will also be permanently deleted.\n\nThis action cannot be undone.`
+        }
+        confirmText={
+          confirmSchoolAction?.type === 'deactivate' 
+            ? 'Deactivate' 
+            : confirmSchoolAction?.type === 'reactivate'
+            ? 'Reactivate'
+            : 'Delete'
+        }
+        cancelText="Cancel"
+        variant={
+          confirmSchoolAction?.type === 'deactivate' 
+            ? 'warning' 
+            : confirmSchoolAction?.type === 'reactivate'
+            ? 'success'
+            : 'danger'
+        }
       />
     </div>
   );

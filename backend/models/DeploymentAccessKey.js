@@ -108,6 +108,13 @@ deploymentAccessKeySchema.methods.deactivate = async function() {
   return this;
 };
 
+// Instance method: Reactivate key
+deploymentAccessKeySchema.methods.reactivate = async function() {
+  this.isActive = true;
+  await this.save();
+  return this;
+};
+
 // Static method: Generate a random access key
 deploymentAccessKeySchema.statics.generateKey = function(length = 16) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
