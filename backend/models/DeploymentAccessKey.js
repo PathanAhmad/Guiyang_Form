@@ -17,6 +17,14 @@ const deploymentAccessKeySchema = new mongoose.Schema(
       index: true,
     },
     
+    // School reference
+    schoolId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'School',
+      required: true,
+      index: true,
+    },
+    
     // Role assignment
     roleType: {
       type: String,
@@ -113,9 +121,11 @@ deploymentAccessKeySchema.statics.generateKey = function(length = 16) {
   return key;
 };
 
-// Compound index for faster queries
+// Compound indexes for faster queries
 deploymentAccessKeySchema.index({ accessKey: 1, isActive: 1 });
 deploymentAccessKeySchema.index({ roleType: 1, isActive: 1 });
+deploymentAccessKeySchema.index({ schoolId: 1, roleType: 1, createdAt: -1 });
+deploymentAccessKeySchema.index({ schoolId: 1, isActive: 1 });
 
 module.exports = mongoose.model('DeploymentAccessKey', deploymentAccessKeySchema);
 
