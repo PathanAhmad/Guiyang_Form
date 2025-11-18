@@ -3,10 +3,16 @@ const axios = require('axios');
 // Configuration
 const BASE_URL = 'http://localhost:5000';
 const API_BASE = `${BASE_URL}/api/pilot-surveys/admin`;
+const AUTH_BASE = `${BASE_URL}/api/auth`;
 
-// Mock admin token - In production, get this from auth endpoint
-// For testing purposes, you'll need to set this to a valid admin token
-const ADMIN_TOKEN = process.env.TEST_ADMIN_TOKEN || 'test-admin-token';
+// Admin credentials for testing
+const ADMIN_CREDENTIALS = {
+  userid: 'saraundre',
+  password: 'saraundre@2334'
+};
+
+// Admin token (will be obtained via login)
+let ADMIN_TOKEN = null;
 
 // Colors for console output
 const colors = {
@@ -178,6 +184,27 @@ const testAllResponsesEndpoint = async () => {
 };
 
 /**
+ * Login to get admin token
+ */
+const loginAsAdmin = async () => {
+  try {
+    const response = await axios.post(`${AUTH_BASE}/login`, ADMIN_CREDENTIALS);
+    if (response.data.success && response.data.data.token) {
+      ADMIN_TOKEN = response.data.data.token;
+      log.success('Admin login successful');
+      console.log(`   Token: ${ADMIN_TOKEN.substring(0, 20)}...`);
+      return true;
+    } else {
+      log.error('Admin login failed');
+      return false;
+    }
+  } catch (error) {
+    log.error('Admin login error:', error.message);
+    return false;
+  }
+};
+
+/**
  * Main test runner
  */
 const runAllTests = async () => {
@@ -193,6 +220,13 @@ const runAllTests = async () => {
   };
   
   try {
+    // First, login to get admin token
+    log.header('Authentication');
+    const loginSuccess = await loginAsAdmin();
+    if (!loginSuccess) {
+      log.error('Cannot proceed without admin token');
+      process.exit(1);
+    }
     // First, get all responses to see if we have real data to test with
     const allResponses = await testAllResponsesEndpoint();
     
@@ -252,6 +286,7 @@ if (require.main === module) {
 
 module.exports = {
   runAllTests,
+  loginAsAdmin,
   testDeleteSingleResponse,
   testDeleteByAccessKey,
   testRouteCollisionPrevention,
