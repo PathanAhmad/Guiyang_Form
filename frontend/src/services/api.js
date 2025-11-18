@@ -95,15 +95,33 @@ export const formsAPI = {
   health: () => api.get('/forms/health'),
 };
 
-// Parent/Guardian Survey API
+// Parent Survey API
 export const parentSurveyAPI = {
+  // Submit parent survey
   submit: (data) => api.post('/parent-survey', data),
 };
 
-// Survey Access API
-export const surveyAccessAPI = {
-  validateAccessKey: (accessKey, surveyType) =>
-    api.post('/survey-access/validate', { accessKey, surveyType }),
+// School Management API
+export const schoolAPI = {
+  // Admin: Create new school
+  create: (schoolData) =>
+    api.post('/schools', schoolData),
+  
+  // Admin: List all schools with key counts
+  list: () =>
+    api.get('/schools'),
+  
+  // Admin: Get single school with all its keys
+  get: (id) =>
+    api.get(`/schools/${id}`),
+  
+  // Admin: Update school details
+  update: (id, schoolData) =>
+    api.patch(`/schools/${id}`, schoolData),
+  
+  // Admin: Delete school
+  delete: (id) =>
+    api.delete(`/schools/${id}`),
 };
 
 // Deployment Access API
@@ -112,13 +130,19 @@ export const deploymentAccessAPI = {
   validate: (accessKey, roleType) =>
     api.post('/deployment-access/validate', { accessKey, roleType }),
   
-  // Admin: Create new access key
+  // Admin: Create new access key (requires schoolId)
   createKey: (keyData) =>
     api.post('/deployment-access/create', keyData),
   
-  // Admin: List all access keys
-  listKeys: () =>
-    api.get('/deployment-access/keys'),
+  // Admin: Create multiple access keys in bulk
+  createBulkKeys: (bulkData) =>
+    api.post('/deployment-access/create-bulk', bulkData),
+  
+  // Admin: List all access keys (optional schoolId filter)
+  listKeys: (schoolId = null) =>
+    schoolId 
+      ? api.get(`/deployment-access/keys?schoolId=${schoolId}`)
+      : api.get('/deployment-access/keys'),
   
   // Admin: Deactivate access key
   deactivateKey: (id) =>

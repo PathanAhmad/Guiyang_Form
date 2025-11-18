@@ -109,6 +109,7 @@ pilotSurveyResponseSchema.statics.findByAccessKey = async function(accessKey) {
 // Static method: Get all responses grouped by access key with metadata
 pilotSurveyResponseSchema.statics.getAllResponsesGroupedByAccessKey = async function() {
   const DeploymentAccessKey = require('./DeploymentAccessKey');
+  const School = require('./School');
   
   // Get all responses
   const responses = await this.find().sort({ accessKey: 1, createdAt: -1 }).lean();
@@ -125,11 +126,17 @@ pilotSurveyResponseSchema.statics.getAllResponsesGroupedByAccessKey = async func
     grouped[response.accessKey].responses.push(response);
   });
   
-  // Enrich with access key metadata
+  // Enrich with access key and school metadata
   const result = [];
   for (const accessKey in grouped) {
-    const keyDoc = await DeploymentAccessKey.findOne({ accessKey });
+    const keyDoc = await DeploymentAccessKey.findOne({ accessKey }).lean();
     const group = grouped[accessKey];
+    
+    // Get school information if key exists
+    let school = null;
+    if (keyDoc && keyDoc.schoolId) {
+      school = await School.findById(keyDoc.schoolId).lean();
+    }
     
     // Count submitted forms
     const submittedCount = group.responses.filter(r => r.status === 'submitted').length;
@@ -140,6 +147,11 @@ pilotSurveyResponseSchema.statics.getAllResponsesGroupedByAccessKey = async func
       keyName: keyDoc ? keyDoc.keyName : 'Unknown',
       roleType: keyDoc ? keyDoc.roleType : 'Unknown',
       isActive: keyDoc ? keyDoc.isActive : false,
+      school: school ? {
+        id: school._id,
+        schoolName: school.schoolName,
+        isActive: school.isActive,
+      } : null,
       totalResponses: group.responses.length,
       submittedCount,
       lastSubmissionDate: lastSubmission ? lastSubmission.submittedAt : null,
@@ -153,14 +165,21 @@ pilotSurveyResponseSchema.statics.getAllResponsesGroupedByAccessKey = async func
 // Static method: Get all responses for CSV export (optionally filtered by access key)
 pilotSurveyResponseSchema.statics.getAllForExport = async function(accessKey) {
   const DeploymentAccessKey = require('./DeploymentAccessKey');
+  const School = require('./School');
   const query = accessKey ? { accessKey } : {};
   const responses = await this.find(query).sort({ createdAt: -1 }).lean();
   
-  // Enrich with access key info
+  // Enrich with access key and school info
   const enriched = await Promise.all(
     responses.map(async (response) => {
-      const keyDoc = await DeploymentAccessKey.findOne({ accessKey: response.accessKey });
+      const keyDoc = await DeploymentAccessKey.findOne({ accessKey: response.accessKey }).lean();
+      let school = null;
+      if (keyDoc && keyDoc.schoolId) {
+        school = await School.findById(keyDoc.schoolId).lean();
+      }
+      
       return {
+        schoolName: school ? school.schoolName : 'Unknown',
         accessKey: response.accessKey,
         keyName: keyDoc ? keyDoc.keyName : 'Unknown',
         roleType: keyDoc ? keyDoc.roleType : 'Unknown',

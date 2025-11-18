@@ -10,7 +10,6 @@ import MainApp from './MainApp.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import QueueDashboard from './pages/QueueDashboard.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
-import SurveyAccessPage from './pages/SurveyAccessPage.jsx';
 
 // Deployment Portal components
 import DeploymentPortalHome from './pages/DeploymentPortal/DeploymentPortalHome.jsx';
@@ -28,11 +27,6 @@ function App() {
             <Routes>
               {/* Main application routes (forms, etc.) */}
               <Route path="/*" element={<MainApp />} />
-
-              {/* Survey access routes */}
-              <Route path="/survey/management" element={<SurveyAccessPage surveyType="management" />} />
-              <Route path="/survey/educators" element={<SurveyAccessPage surveyType="educators" />} />
-              <Route path="/survey/learners" element={<SurveyAccessPage surveyType="learners" />} />
               
               {/* Deployment Portal routes */}
               <Route path="/deployment_portal" element={<DeploymentPortalHome />} />

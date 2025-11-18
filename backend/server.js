@@ -15,7 +15,7 @@ const discordInteractionsRoutes = require('./routes/discord-interactions');
 const { router: authRoutes } = require('./routes/auth');
 const assetsRoutes = require('./routes/assets');
 const parentSurveyRoutes = require('./routes/parent-survey');
-const surveyAccessRoutes = require('./routes/survey-access');
+const schoolRoutes = require('./routes/schools');
 const deploymentAccessRoutes = require('./routes/deployment-access');
 const pilotSurveysRoutes = require('./routes/pilot-surveys');
 
@@ -87,7 +87,7 @@ app.get('/', (req, res) => {
 // API Routes
 app.use('/api/forms', formsRoutes);
 app.use('/api/parent-survey', parentSurveyRoutes);
-app.use('/api/survey-access', surveyAccessRoutes);
+app.use('/api/schools', schoolRoutes);
 app.use('/api/deployment-access', deploymentAccessRoutes);
 app.use('/api/pilot-surveys', pilotSurveysRoutes);
 app.use('/api/discord', discordRoutes);

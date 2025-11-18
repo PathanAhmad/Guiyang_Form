@@ -8,6 +8,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { formatDate } from '../utils/format';
 import DeploymentKeysSection from '../components/admin/DeploymentKeysSection';
 import PilotSurveyResultsSection from '../components/admin/PilotSurveyResultsSection';
+import SchoolManagementSection from '../components/admin/SchoolManagementSection';
 
 const QueueDashboard = ({ onBack }) => {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ const QueueDashboard = ({ onBack }) => {
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const [mainSection, setMainSection] = useState('queue-system'); // 'queue-system' or 'pilot-system'
-  const [pilotSubTab, setPilotSubTab] = useState('deployment-keys'); // 'deployment-keys' or 'pilot-surveys'
+  const [pilotSubTab, setPilotSubTab] = useState('schools'); // 'schools', 'deployment-keys', or 'pilot-surveys'
   
   const { showToast } = useToast();
   const { user, logout } = useAuth();
@@ -265,6 +266,16 @@ const QueueDashboard = ({ onBack }) => {
             <div className="border-b border-gray-100">
               <nav className="-mb-px flex space-x-6">
                 <button
+                  onClick={() => setPilotSubTab('schools')}
+                  className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                    pilotSubTab === 'schools'
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  Schools
+                </button>
+                <button
                   onClick={() => setPilotSubTab('deployment-keys')}
                   className={`py-2 px-1 border-b-2 font-medium text-sm ${
                     pilotSubTab === 'deployment-keys'
@@ -272,7 +283,7 @@ const QueueDashboard = ({ onBack }) => {
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  Deployment Keys
+                  Access Keys
                 </button>
                 <button
                   onClick={() => setPilotSubTab('pilot-surveys')}
@@ -282,7 +293,7 @@ const QueueDashboard = ({ onBack }) => {
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  Pilot Survey Results
+                  Survey Results
                 </button>
               </nav>
             </div>
@@ -524,7 +535,9 @@ const QueueDashboard = ({ onBack }) => {
         ) : (
           /* Pilot System Section */
           <>
-            {pilotSubTab === 'deployment-keys' ? (
+            {pilotSubTab === 'schools' ? (
+              <SchoolManagementSection />
+            ) : pilotSubTab === 'deployment-keys' ? (
               <DeploymentKeysSection />
             ) : (
               <PilotSurveyResultsSection />

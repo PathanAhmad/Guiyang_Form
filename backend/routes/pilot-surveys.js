@@ -508,32 +508,8 @@ router.get('/admin/export/:accessKey', authenticateAdmin, async (req, res) => {
   }
 });
 
-// DELETE /api/pilot-surveys/admin/responses/:accessKey - Delete all responses for an access key (Admin only)
-router.delete('/admin/responses/:accessKey', authenticateAdmin, async (req, res) => {
-  try {
-    const { accessKey } = req.params;
-    
-    // Delete all responses for this access key
-    const result = await PilotSurveyResponse.deleteMany({ accessKey });
-    
-    console.log(`✅ Deleted ${result.deletedCount} survey responses for access key ${accessKey}`);
-    
-    return res.status(200).json({
-      success: true,
-      message: `Successfully deleted ${result.deletedCount} response${result.deletedCount !== 1 ? 's' : ''}`,
-      deletedCount: result.deletedCount,
-    });
-  } catch (error) {
-    console.error('Error deleting survey responses by access key:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Failed to delete survey responses',
-      error: error.message,
-    });
-  }
-});
-
 // DELETE /api/pilot-surveys/admin/responses/single/:responseId - Delete a single response (Admin only)
+// NOTE: This route must be defined BEFORE the generic /:accessKey route to prevent route collision
 router.delete('/admin/responses/single/:responseId', authenticateAdmin, async (req, res) => {
   try {
     const { responseId } = req.params;
@@ -564,6 +540,31 @@ router.delete('/admin/responses/single/:responseId', authenticateAdmin, async (r
     return res.status(500).json({
       success: false,
       message: 'Failed to delete survey response',
+      error: error.message,
+    });
+  }
+});
+
+// DELETE /api/pilot-surveys/admin/responses/:accessKey - Delete all responses for an access key (Admin only)
+router.delete('/admin/responses/:accessKey', authenticateAdmin, async (req, res) => {
+  try {
+    const { accessKey } = req.params;
+    
+    // Delete all responses for this access key
+    const result = await PilotSurveyResponse.deleteMany({ accessKey });
+    
+    console.log(`✅ Deleted ${result.deletedCount} survey responses for access key ${accessKey}`);
+    
+    return res.status(200).json({
+      success: true,
+      message: `Successfully deleted ${result.deletedCount} response${result.deletedCount !== 1 ? 's' : ''}`,
+      deletedCount: result.deletedCount,
+    });
+  } catch (error) {
+    console.error('Error deleting survey responses by access key:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to delete survey responses',
       error: error.message,
     });
   }
