@@ -6,7 +6,7 @@ import { getFormSubmissions } from '../../services/pilotSurveyApi';
 import { assetUrl } from '../../utils/assets';
 
 const BehaviorAssessmentList = () => {
-  const { roleType } = useParams();
+  const { roleType, formId } = useParams();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { isAuthenticated, roleType: currentRole, keyName, logout } = useDeploymentAuth();
@@ -46,7 +46,7 @@ const BehaviorAssessmentList = () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await getFormSubmissions('formB');
+      const data = await getFormSubmissions(formId);
       setSubmissions(data);
       setFilteredSubmissions(data);
     } catch (err) {
@@ -58,11 +58,11 @@ const BehaviorAssessmentList = () => {
   };
 
   const handleCreateNew = () => {
-    navigate(`/deployment_portal/${roleType}/surveys/formB/new`);
+    navigate(`/deployment_portal/${roleType}/surveys/${formId}/new`);
   };
 
   const handleViewSubmission = (submissionId) => {
-    navigate(`/deployment_portal/${roleType}/surveys/formB/${submissionId}`);
+    navigate(`/deployment_portal/${roleType}/surveys/${formId}/${submissionId}`);
   };
 
   const handleBack = () => {

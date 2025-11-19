@@ -709,56 +709,42 @@ const FormBBehaviorAssessment = ({
     </Section>
   );
 
-  // Main render logic for current section
-  const renderCurrentSection = () => {
-    switch (currentSection) {
-      case 0:
-        return renderSection0();
-      case 1:
-        return renderSection1();
-      case 2:
-        return renderSection2();
-      case 3:
-        return renderSection3();
-      case 4:
-        return renderSection4();
-      case 5:
-        return renderSection5();
-      case 6:
-        return renderSection6();
-      case 7:
-        return renderSection7();
-      case 8:
-        return renderSection8();
-      case 9:
-        return renderSection9();
-      default:
-        return null;
-    }
-  };
+  const sections = [
+    renderSection0,
+    renderSection1,
+    renderSection2,
+    renderSection3,
+    renderSection4,
+    renderSection5,
+    renderSection6,
+    renderSection7,
+    renderSection8,
+    renderSection9,
+  ];
 
   return (
-    <div className="max-w-4xl mx-auto">
-      {/* Progress Bar */}
-      <Progress current={currentSection + 1} total={totalSections} />
-
-      {/* Current Section Content */}
-      <div className="mt-8">
-        {renderCurrentSection()}
+    <>
+      <Progress
+        currentSection={currentSection}
+        totalSections={totalSections}
+        completedSections={completedSections}
+      />
+      <div className="pb-20">
+        {sections[currentSection - 1]()}
       </div>
-
-      {/* Navigation */}
       <Navigation
+        currentSection={currentSection}
+        totalSections={totalSections}
         onPrevious={onPrevious}
         onNext={onNext}
         onSaveDraft={onSaveDraft}
         onSubmit={onSubmit}
-        isFirstSection={currentSection === 0}
-        isLastSection={currentSection === totalSections - 1}
         saving={saving}
         submitting={submitting}
+        canGoNext={true}
+        canGoPrevious={true}
       />
-    </div>
+    </>
   );
 };
 

@@ -51,9 +51,9 @@ function App() {
               <Route path="/deployment_portal/:roleType/surveys" element={<SurveyList />} />
               
               {/* Behavior Assessment (formB) - Multi-submission routes */}
-              <Route path="/deployment_portal/:roleType/surveys/formB/list" element={<BehaviorAssessmentList />} />
-              <Route path="/deployment_portal/:roleType/surveys/formB/new" element={<PilotSurveyForm />} />
-              <Route path="/deployment_portal/:roleType/surveys/formB/:responseId" element={<PilotSurveyForm />} />
+              <Route path="/deployment_portal/:roleType/surveys/:formId/list" element={<BehaviorAssessmentList />} />
+              <Route path="/deployment_portal/:roleType/surveys/:formId/new" element={<PilotSurveyForm />} />
+              <Route path="/deployment_portal/:roleType/surveys/:formId/:responseId" element={<PilotSurveyForm />} />
               
               {/* General survey form route */}
               <Route path="/deployment_portal/:roleType/surveys/:formId" element={<PilotSurveyForm />} />

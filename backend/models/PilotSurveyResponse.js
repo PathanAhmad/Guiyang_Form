@@ -70,7 +70,7 @@ const pilotSurveyResponseSchema = new mongoose.Schema(
 );
 
 // Compound index for efficient queries (non-unique to allow multiple submissions per form)
-pilotSurveyResponseSchema.index({ accessKey: 1, formId: 1 });
+pilotSurveyResponseSchema.index({ accessKey: 1, formId: 1 }, { unique: false });
 pilotSurveyResponseSchema.index({ status: 1, createdAt: -1 });
 
 // Instance method: Mark form as submitted

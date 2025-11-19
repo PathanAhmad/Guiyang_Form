@@ -223,7 +223,7 @@ const PilotSurveyForm = () => {
       
       // If this was a new formB submission, update URL with the real ID
       if (formId === 'formB' && responseId === 'new' && response._id) {
-        navigate(`/deployment_portal/${roleType}/surveys/formB/${response._id}`, { replace: true });
+        navigate(`/deployment_portal/${roleType}/surveys/${formId}/${response._id}`, { replace: true });
       }
     } catch (err) {
       console.error('Auto-save failed:', err);
@@ -259,7 +259,7 @@ const PilotSurveyForm = () => {
       
       // If this was a new formB submission, update URL with the real ID
       if (formId === 'formB' && responseId === 'new' && response._id) {
-        navigate(`/deployment_portal/${roleType}/surveys/formB/${response._id}`, { replace: true });
+        navigate(`/deployment_portal/${roleType}/surveys/${formId}/${response._id}`, { replace: true });
       }
       
       // Show success feedback
@@ -417,7 +417,7 @@ const PilotSurveyForm = () => {
   const handleBack = () => {
     // For multi-submission forms, go back to the assessment list
     if (formId === 'formB') {
-      navigate(`/deployment_portal/${roleType}/surveys/formB/list`);
+      navigate(`/deployment_portal/${roleType}/surveys/${formId}/list`);
     } else {
       navigate(`/deployment_portal/${roleType}/surveys`);
     }

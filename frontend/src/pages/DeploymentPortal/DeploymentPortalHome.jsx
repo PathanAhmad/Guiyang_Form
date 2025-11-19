@@ -5,7 +5,7 @@ import SchoolIcon from '../../Images/School.png';
 import TeacherIcon from '../../Images/teacher.png';
 import StudentIcon from '../../Images/Student.png';
 import SpecialIcon from '../../Images/Special.png';
-import SparkOSTypo from '../../Images/SparkOSTypo.svg';
+import SparkOSTypo from '../../Images/SparkOStypo.svg';
 import DeploymentPortalHeader from './DeploymentPortalHeader';
 
 const DeploymentPortalHome = () => {
