@@ -5,6 +5,7 @@ import { useDeploymentAuth } from '../../../contexts/DeploymentAuthContext';
 import { useToast } from '../../../contexts/ToastContext';
 import { getResponse, getFormSubmissions, saveResponse, submitResponse } from '../../../services/pilotSurveyApi';
 import { assetUrl } from '../../../utils/assets';
+import SparkOSTypoLogo from '../../../Images/SparkOStypo.svg';
 import SurveyProgress from './shared/SurveyProgress';
 import SurveyNavigation from './shared/SurveyNavigation';
 import SurveySection from './shared/SurveySection';
