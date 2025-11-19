@@ -23,7 +23,41 @@ const Form1StudentSurvey = ({
   validationErrors = {},
 }) => {
   const { t } = useTranslation();
-  const totalSections = 7;
+  const totalSections = 8;
+
+  const renderSection0 = () => (
+    <Section title={t('form1:title')}>
+      <div className="space-y-6">
+        <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">
+            {t('form1:intro.welcome')}
+          </h3>
+          <p className="text-gray-700 mb-4">
+            {t('form1:intro.noWrongAnswers')}
+          </p>
+        </div>
+
+        <div className="border-t border-gray-200 pt-6">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+            <p className="text-sm text-gray-600 italic">
+              {t('form1:consent.privacy')}
+            </p>
+          </div>
+          <CheckboxGroup
+            label=""
+            values={formData.consent ? ['consent'] : []}
+            onChange={(val) => onFieldChange('consent', val.includes('consent'))}
+            options={[
+              { value: 'consent', label: t('form1:consent.text') }
+            ]}
+            required
+            error={validationErrors.consent ? t('pilotSurveys:form.requiredField') : null}
+            fieldName="consent"
+          />
+        </div>
+      </div>
+    </Section>
+  );
 
   const renderSection1 = () => (
     <Section title={t('form1:section1.title')}>
@@ -664,6 +698,7 @@ const Form1StudentSurvey = ({
   );
 
   const sections = [
+    renderSection0,
     renderSection1,
     renderSection2,
     renderSection3,

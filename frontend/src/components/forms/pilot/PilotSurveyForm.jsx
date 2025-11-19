@@ -45,40 +45,44 @@ const PilotSurveyForm = () => {
   const getRequiredFields = (formId, sectionNumber) => {
     const requiredFieldsMap = {
       form1: {
-        1: ['fullName', 'dateOfBirth', 'gender', 'languages', 'location', 'dialects'], // NOT identity (optional)
-        2: ['enjoyedSubjects', 'strengths', 'pride', 'difficult', 'future', 'inspiration', 'learnNew'],
-        3: ['learnBest', 'tests', 'working', 'schedule', 'focus', 'taskPreference', 'challenges', 'tools', 'perfectLesson'], // NOT dislike (can skip)
-        4: ['technology', 'learningTools', 'noisyClassroom', 'changes', 'bothers', 'calm'],
-        5: ['aiFrequency', 'aiActivities', 'aiEnjoyMost', 'aiConcerns', 'aiFutureSupport'],
-        6: ['communicate', 'workingWith', 'sharing', 'feelSchool', 'sleep', 'energy', 'upset', 'askHelp', 'wishTeachers'],
-        7: ['funLearning', 'perfectDay', 'section7LearnBest', 'share'],
+        1: ['consent'], // Section 0: Intro & Consent
+        2: ['fullName', 'dateOfBirth', 'gender', 'languages', 'location', 'dialects'], // NOT identity (optional)
+        3: ['enjoyedSubjects', 'strengths', 'pride', 'difficult', 'future', 'inspiration', 'learnNew'],
+        4: ['learnBest', 'tests', 'working', 'schedule', 'focus', 'taskPreference', 'challenges', 'tools', 'perfectLesson'], // NOT dislike (can skip)
+        5: ['technology', 'learningTools', 'noisyClassroom', 'changes', 'bothers', 'calm'],
+        6: ['aiFrequency', 'aiActivities', 'aiEnjoyMost', 'aiConcerns', 'aiFutureSupport'],
+        7: ['communicate', 'workingWith', 'sharing', 'feelSchool', 'sleep', 'energy', 'upset', 'askHelp', 'wishTeachers'],
+        8: ['funLearning', 'perfectDay', 'section7LearnBest', 'share'],
       },
       form2: {
-        1: ['assessorName', 'assessorRole', 'frequency'],
-        2: ['studentName', 'studentDOB', 'gradeLevel', 'livingSituation', 'educationHistory', 'supportFlags', 'supportNetwork', 'homeResources', 'emotionalSupport', 'pastStress', 'trustedAdult', 'identityStress'],
-        3: ['overallProgress', 'strengths', 'supportAreas', 'learningStyle', 'taskApproach', 'executiveFunction', 'progressOverTime', 'gaps', 'extendedTasks', 'metacognitive'],
-        4: ['enrollmentReasons', 'goals', 'passion', 'futureReaction', 'selfDoubt', 'barriers'],
-        5: ['interaction', 'feedbackResponse', 'emotionalRegulation', 'behavioral', 'selfRegulate', 'triggers', 'empathy'],
-        6: ['currentSupport', 'effectiveMethods', 'additionalSupport', 'recommendedGoals', 'timeOfDay', 'visualAids', 'familyResponsive', 'environmentalChanges'],
-        7: ['studentAiUsage', 'studentAiActivities', 'futureAiSupport'],
-        8: ['additionalObservations', 'suggestions'],
+        1: ['consent'], // Section 0: Intro & Consent
+        2: ['assessorName', 'assessorRole', 'frequency'],
+        3: ['studentName', 'studentDOB', 'gradeLevel', 'livingSituation', 'educationHistory', 'supportFlags', 'supportNetwork', 'homeResources', 'emotionalSupport', 'pastStress', 'trustedAdult', 'identityStress'],
+        4: ['overallProgress', 'strengths', 'supportAreas', 'learningStyle', 'taskApproach', 'executiveFunction', 'progressOverTime', 'gaps', 'extendedTasks', 'metacognitive'],
+        5: ['enrollmentReasons', 'goals', 'passion', 'futureReaction', 'selfDoubt', 'barriers'],
+        6: ['interaction', 'feedbackResponse', 'emotionalRegulation', 'behavioral', 'selfRegulate', 'triggers', 'empathy'],
+        7: ['currentSupport', 'effectiveMethods', 'additionalSupport', 'recommendedGoals', 'timeOfDay', 'visualAids', 'familyResponsive', 'environmentalChanges'],
+        8: ['studentAiUsage', 'studentAiActivities', 'futureAiSupport'],
+        9: ['additionalObservations', 'suggestions'],
       },
       form3: {
-        1: ['fullName', 'role', 'tenure'],
-        2: ['enrollment', 'identities', 'challengesTable', 'gapsDynamics'], // NOT otherChallenges (optional)
-        3: ['unmetNeeds', 'curriculum', 'accessibility', 'assessments', 'followUp', 'leastSupported', 'schoolSystems'],
-        4: ['equipped', 'workload', 'limits', 'pdNeeds', 'urgentGaps', 'feedbackLoops', 'confidence'],
-        5: ['staffUsage', 'educatorTasks', 'studentPercentage', 'benefitsRisks'],
-        6: ['relationshipStrengths', 'barriers', 'restorative', 'events', 'partnerships'],
-        7: ['overlooked', 'suggestions', 'exclusion', 'inclusive'],
+        1: ['consent'], // Section 0: Intro & Consent
+        2: ['fullName', 'role', 'tenure'],
+        3: ['enrollment', 'identities', 'challengesTable', 'gapsDynamics'], // NOT otherChallenges (optional)
+        4: ['unmetNeeds', 'curriculum', 'accessibility', 'assessments', 'followUp', 'leastSupported', 'schoolSystems'],
+        5: ['equipped', 'workload', 'limits', 'pdNeeds', 'urgentGaps', 'feedbackLoops', 'confidence'],
+        6: ['staffUsage', 'educatorTasks', 'studentPercentage', 'benefitsRisks'],
+        7: ['relationshipStrengths', 'barriers', 'restorative', 'events', 'partnerships'],
+        8: ['overlooked', 'suggestions', 'exclusion', 'inclusive'],
       },
       form4: {
-        1: ['name', 'role', 'years'],
-        2: ['methodologies'], // Curriculum PDF is separate submission
-        3: ['effectiveness', 'whatWorks', 'barriers', 'assessmentFormats', 'assessmentMetrics', 'midFeedback', 'effectiveFormats', 'skillTransfer'],
-        4: ['onlineCourses', 'digitalFeatures', 'digitalChallenges', 'readiness', 'platforms', 'supportNeeded', 'privacyConcerns'],
-        5: ['newTopics', 'approaches', 'additionalSupport', 'timeline', 'integration', 'partnerships'],
-        6: ['successMetrics', 'singleChange', 'additionalComments'],
+        1: ['consent'], // Section 0: Intro & Consent
+        2: ['name', 'role', 'years'],
+        3: ['methodologies'], // Curriculum PDF is separate submission
+        4: ['effectiveness', 'whatWorks', 'barriers', 'assessmentFormats', 'assessmentMetrics', 'midFeedback', 'effectiveFormats', 'skillTransfer'],
+        5: ['onlineCourses', 'digitalFeatures', 'digitalChallenges', 'readiness', 'platforms', 'supportNeeded', 'privacyConcerns'],
+        6: ['newTopics', 'approaches', 'additionalSupport', 'timeline', 'integration', 'partnerships'],
+        7: ['successMetrics', 'singleChange', 'additionalComments'],
       },
     };
     return requiredFieldsMap[formId]?.[sectionNumber] || [];

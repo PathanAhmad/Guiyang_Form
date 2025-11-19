@@ -23,7 +23,43 @@ const Form3EquityInclusion = ({
   validationErrors = {},
 }) => {
   const { t } = useTranslation();
-  const totalSections = 7;
+  const totalSections = 8;
+
+  // Section 0: Introduction and Consent
+  const renderSection0 = () => (
+    <Section title={t('form3:title')}>
+      <div className="space-y-6">
+        <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
+          <p className="text-gray-700 mb-4">
+            {t('form3:intro.purpose')}
+          </p>
+          <ul className="list-disc list-inside space-y-1 text-gray-700 ml-4">
+            <li>{t('form3:intro.bullet1')}</li>
+            <li>{t('form3:intro.bullet2')}</li>
+            <li>{t('form3:intro.bullet3')}</li>
+            <li>{t('form3:intro.bullet4')}</li>
+          </ul>
+          <p className="text-gray-600 mt-4 italic">
+            {t('form3:intro.confidential')}
+          </p>
+        </div>
+
+        <div className="border-t border-gray-200 pt-6">
+          <CheckboxGroup
+            label=""
+            values={formData.consent ? ['consent'] : []}
+            onChange={(val) => onFieldChange('consent', val.includes('consent'))}
+            options={[
+              { value: 'consent', label: t('form3:consent.text') }
+            ]}
+            required
+            error={validationErrors.consent ? t('pilotSurveys:form.requiredField') : null}
+            fieldName="consent"
+          />
+        </div>
+      </div>
+    </Section>
+  );
 
   // Section 1: Your Information
   const renderSection1 = () => (
@@ -745,6 +781,7 @@ const Form3EquityInclusion = ({
   );
 
   const sections = [
+    renderSection0,
     renderSection1,
     renderSection2,
     renderSection3,
