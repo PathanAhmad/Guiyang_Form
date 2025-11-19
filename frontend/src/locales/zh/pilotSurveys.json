@@ -16,7 +16,12 @@
     "continueSurvey": "继续问卷",
     "viewSurvey": "查看提交",
     "progress": "已完成 {{percent}}%",
-    "noSurveys": "您的角色没有可用的问卷"
+    "noSurveys": "您的角色没有可用的问卷",
+    "createNew": "创建新评估",
+    "viewAllSubmissions": "查看所有提交",
+    "submissionsCount": "{{count}} 个提交",
+    "submitted": "已提交 {{count}} 个",
+    "drafts": "{{count}} 个草稿"
   },
   "form": {
     "savingDraft": "保存草稿中...",
@@ -34,13 +39,38 @@
     "form1": "学习兴趣与偏好调查问卷",
     "form2": "个体学生行为评估问卷",
     "form3": "学生公平与包容性规划调查问卷",
-    "form4": "课程目录与数字化意愿调查问卷"
+    "form4": "课程目录与数字化意愿调查问卷",
+    "formB": "个体学生行为评估"
   },
   "formDescriptions": {
     "form1": "帮助我们了解你最适合的学习方式及支持需求",
     "form2": "提供关于个体学生成长和支持需求的详细见解",
     "form3": "分享您对学习中心公平、可及性和包容性的专业见解",
-    "form4": "记录现有课程并探索数字化交付意向"
+    "form4": "记录现有课程并探索数字化交付意向",
+    "formB": "为不同学生提交行为评估 - 可多次提交"
+  },
+  "behaviorAssessmentList": {
+    "title": "学生行为评估",
+    "subtitle": "查看和管理行为评估",
+    "createNew": "创建新评估",
+    "backToDashboard": "返回主页",
+    "searchPlaceholder": "按学生姓名或ID搜索",
+    "noAssessments": "未找到评估",
+    "noAssessmentsDesc": "从创建第一个行为评估开始",
+    "studentName": "学生姓名",
+    "studentId": "学生ID",
+    "assessmentDate": "评估日期",
+    "submittedDate": "提交日期",
+    "status": "状态",
+    "actions": "操作",
+    "view": "查看",
+    "edit": "编辑",
+    "delete": "删除",
+    "confirmDelete": "确定要删除此评估吗？",
+    "deleteSuccess": "评估删除成功",
+    "deleteError": "删除评估失败",
+    "loadingError": "加载评估失败",
+    "tryAgain": "重试"
   }
 }
 
