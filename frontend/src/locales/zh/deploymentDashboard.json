@@ -5,12 +5,15 @@
     "learner": "学习者仪表板",
     "special": "特殊学习者仪表板"
   },
+  "accessWithName": "访问: {{keyName}}",
+  "logout": "登出",
   "welcome": "欢迎来到您的门户",
   "welcomeSub": "访问您的资源、提交材料并跟踪您的进度",
-  "access": "访问",
+  "accessButton": "访问 {{title}}",
+  "locked": "已锁定",
   "sections": {
-    "school": [
-      {
+    "school": {
+      "surveyForms": {
         "title": "调查表格",
         "description": "完成调查以帮助我们了解和改进试点项目",
         "items": [
@@ -19,10 +22,40 @@
           "跟踪您的调查进度",
           "查看已完成的提交"
         ]
+      },
+      "protocolOverview": {
+        "title": "试点协议概述",
+        "description": "试点目标、设置步骤和时间线的可视化摘要",
+        "items": [
+          "查看试点目标",
+          "设置步骤和指南",
+          "时间线和里程碑",
+          "项目概述"
+        ]
+      },
+      "resourceHub": {
+        "title": "资源中心",
+        "description": "指南、常见问题解答和部署清单",
+        "items": [
+          "部署指南",
+          "常见问题解答",
+          "清单和模板",
+          "最佳实践"
+        ]
+      },
+      "contact": {
+        "title": "联系部分",
+        "description": "支持团队联系表或聊天",
+        "items": [
+          "联系支持团队",
+          "提交查询",
+          "实时聊天支持",
+          "请求协助"
+        ]
       }
-    ],
-    "educator": [
-      {
+    },
+    "educator": {
+      "surveyForms": {
         "title": "调查表格",
         "description": "提供有关个别学生评估的详细见解",
         "items": [
@@ -31,10 +64,40 @@
           "查看已完成的评估",
           "提交多项评估"
         ]
+      },
+      "protocolOverview": {
+        "title": "试点协议概述",
+        "description": "试点目标、设置步骤和时间线的可视化摘要",
+        "items": [
+          "查看试点目标",
+          "设置步骤和指南",
+          "时间线和里程碑",
+          "项目概述"
+        ]
+      },
+      "resourceHub": {
+        "title": "资源中心",
+        "description": "指南、常见问题解答和部署清单",
+        "items": [
+          "教学资源",
+          "评估模板",
+          "常见问题解答",
+          "最佳实践"
+        ]
+      },
+      "contact": {
+        "title": "联系部分",
+        "description": "支持团队联系表或聊天",
+        "items": [
+          "联系支持团队",
+          "提交查询",
+          "请求协助",
+          "实时聊天支持"
+        ]
       }
-    ],
-    "learner": [
-      {
+    },
+    "learner": {
+      "surveyForms": {
         "title": "调查表格",
         "description": "完成调查以帮助改善学习体验",
         "items": [
@@ -43,10 +106,40 @@
           "查看已完成的调查",
           "保存草稿并稍后继续"
         ]
+      },
+      "protocolOverview": {
+        "title": "试点协议概述",
+        "description": "试点目标和参与的可视化摘要",
+        "items": [
+          "查看试点目标",
+          "您的参与角色",
+          "项目时间表",
+          "期待什么"
+        ]
+      },
+      "resourceHub": {
+        "title": "资源中心",
+        "description": "为学生提供的指南和常见问题解答",
+        "items": [
+          "学生指南",
+          "常见问题解答",
+          "提示和资源",
+          "获得帮助"
+        ]
+      },
+      "contact": {
+        "title": "联系部分",
+        "description": "支持团队联系表或聊天",
+        "items": [
+          "联系支持团队",
+          "提问",
+          "获得帮助",
+          "实时聊天支持"
+        ]
       }
-    ],
-    "special": [
-      {
+    },
+    "special": {
+      "surveyForms": {
         "title": "调查表格",
         "description": "完成专为您的学习需求设计的调查",
         "items": [
@@ -55,7 +148,37 @@
           "跟踪您的进度",
           "保存并稍后继续"
         ]
+      },
+      "protocolOverview": {
+        "title": "试点协议概述",
+        "description": "试点目标和参与的可视化摘要",
+        "items": [
+          "查看试点目标",
+          "您的参与角色",
+          "项目时间表",
+          "期待什么"
+        ]
+      },
+      "resourceHub": {
+        "title": "资源中心",
+        "description": "无障碍指南和常见问题解答",
+        "items": [
+          "无障碍指南",
+          "常见问题解答",
+          "支持资源",
+          "获得帮助"
+        ]
+      },
+      "contact": {
+        "title": "联系部分",
+        "description": "支持团队联系表或聊天",
+        "items": [
+          "联系支持团队",
+          "请求住宿",
+          "获得协助",
+          "实时聊天支持"
+        ]
       }
-    ]
+    }
   }
 }

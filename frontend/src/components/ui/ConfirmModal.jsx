@@ -39,22 +39,13 @@ const ConfirmModal = ({
   };
 
   const getConfirmButtonClasses = () => {
-    const baseClasses = 'flex-1 px-4 py-2 rounded-lg transition-all duration-200 font-medium';
+    const baseClasses = 'flex-1 px-4 py-2 rounded-full transition-all duration-200 font-medium';
     
     if (loading) {
       return `${baseClasses} bg-gray-300 text-gray-500 cursor-not-allowed`;
     }
 
-    switch (variant) {
-      case 'danger':
-        return `${baseClasses} bg-gradient-to-r from-red-500 to-red-600 text-white hover:shadow-lg`;
-      case 'warning':
-        return `${baseClasses} bg-gradient-to-r from-yellow-500 to-yellow-600 text-white hover:shadow-lg`;
-      case 'info':
-        return `${baseClasses} bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:shadow-lg`;
-      default:
-        return `${baseClasses} bg-gradient-to-r from-green-500 to-green-600 text-white hover:shadow-lg`;
-    }
+    return `${baseClasses} bg-[#7c59b2] text-white hover:bg-[#62458f] hover:shadow-lg`;
   };
 
   return (
@@ -63,7 +54,7 @@ const ConfirmModal = ({
       onClick={handleBackdropClick}
     >
       <div 
-        className="bg-white rounded-lg max-w-md w-full p-6 shadow-2xl animate-slide-up"
+        className="bg-white rounded-[2rem] max-w-md w-full p-6 shadow-2xl animate-slide-up"
         onClick={(e) => e.stopPropagation()}
       >
         <h3 className="text-lg font-bold text-gray-900 mb-4">
@@ -76,7 +67,7 @@ const ConfirmModal = ({
           <button
             onClick={onClose}
             disabled={loading}
-            className={`flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 transition-colors duration-200 font-medium ${
+            className={`flex-1 px-4 py-2 border border-gray-300 rounded-full text-gray-700 transition-colors duration-200 font-medium ${
               loading 
                 ? 'opacity-50 cursor-not-allowed' 
                 : 'hover:bg-gray-50'

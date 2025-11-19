@@ -35,14 +35,14 @@ const SurveyNavigation = ({
 
   return (
     <>
-      <div className="bg-white border-t border-gray-200 px-6 py-4 sticky bottom-0 z-10">
+      <div className="backdrop-blur-sm px-6 py-4 sticky bottom-0 z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-2px_rgba(0,0,0,0.06)]">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between">
             {/* Previous Button */}
             <button
               onClick={onPrevious}
               disabled={isFirstSection || !canGoPrevious || saving || submitting}
-              className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
                 isFirstSection || !canGoPrevious || saving || submitting
                   ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -60,10 +60,10 @@ const SurveyNavigation = ({
             <button
               onClick={onSaveDraft}
               disabled={saving || submitting}
-              className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
-                saving
-                  ? 'bg-gray-100 text-gray-400'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
+                saving || submitting
+                  ? 'bg-gray-800 text-gray-400 cursor-not-allowed'
+                  : 'bg-black text-white hover:bg-gray-800'
               }`}
             >
               {saving ? t('pilotSurveys:form.savingDraft') : t('common:common.saveDraft')}
@@ -74,7 +74,7 @@ const SurveyNavigation = ({
               <button
                 onClick={handleSubmitClick}
                 disabled={!canGoNext || saving || submitting}
-                className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
+                className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
                   !canGoNext || saving || submitting
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     : 'bg-gradient-to-r from-green-500 to-green-600 text-white hover:shadow-lg'
@@ -86,10 +86,10 @@ const SurveyNavigation = ({
               <button
                 onClick={onNext}
                 disabled={!canGoNext || saving || submitting}
-                className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
+                className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
                   !canGoNext || saving || submitting
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-lg'
+                    : 'bg-[#7c59b2] text-white hover:bg-[#62458f] hover:shadow-lg'
                 }`}
               >
                 <div className="flex items-center">

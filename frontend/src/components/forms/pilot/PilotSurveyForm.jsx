@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDeploymentAuth } from '../../../contexts/DeploymentAuthContext';
@@ -46,7 +46,7 @@ const PilotSurveyForm = () => {
   const getRequiredFields = (formId, sectionNumber) => {
     const requiredFieldsMap = {
       form1: {
-        1: ['consent'], // Section 0: Intro & Consent
+        1: ['consents'], // Section 0: Intro & Consent
         2: ['fullName', 'dateOfBirth', 'gender', 'languages', 'location', 'dialects'], // NOT identity (optional)
         3: ['enjoyedSubjects', 'strengths', 'pride', 'difficult', 'future', 'inspiration', 'learnNew'],
         4: ['learnBest', 'tests', 'working', 'schedule', 'focus', 'taskPreference', 'challenges', 'tools', 'perfectLesson'], // NOT dislike (can skip)
@@ -114,10 +114,22 @@ const PilotSurveyForm = () => {
           (Array.isArray(value) && value.length === 0)) {
         errors[field] = true;
       }
+      
+      // Special validation for consents in form1, section 1
+      if (formId === 'form1' && sectionNumber === 1 && field === 'consents') {
+        if (!Array.isArray(value) || value.length !== 2) {
+          errors[field] = true;
+        }
+      }
     });
     
     return errors;
   };
+
+  const isCurrentSectionValid = useMemo(() => {
+    const errors = validateSection(currentSection);
+    return Object.keys(errors).length === 0;
+  }, [formData, currentSection, formId]);
 
   // Get form component
   const getFormComponent = () => {
@@ -444,7 +456,7 @@ const PilotSurveyForm = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Form Not Found</h2>
           <button
             onClick={handleBack}
-            className="px-6 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600"
+            className="px-6 py-2 bg-primary-500 text-white rounded-full hover:bg-primary-600"
           >
             Back to Surveys
           </button>
@@ -455,10 +467,10 @@ const PilotSurveyForm = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/10 to-primary-400/10 flex items-center justify-center p-4">
-        <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full text-center">
+      <div className="min-h-screen bg-gradient-to-b from-white to-neutral-200 flex items-center justify-center p-4">
+        <div className="bg-white rounded-[2.2rem] shadow-lg p-8 max-w-md w-full text-center">
           <div className="mb-4">
-            <svg className="mx-auto h-16 w-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="mx-auto h-16 w-16 text-[#7c59b2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -470,7 +482,7 @@ const PilotSurveyForm = () => {
           </p>
           <button
             onClick={handleBack}
-            className="w-full px-6 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg hover:shadow-lg transition-all duration-200"
+            className="w-full px-6 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full hover:shadow-lg transition-all duration-200"
           >
             {t('common:common.back')}
           </button>
@@ -480,14 +492,14 @@ const PilotSurveyForm = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/10 to-primary-400/10">
+    <div className="min-h-screen bg-gradient-to-b from-white to-neutral-200 flex flex-col">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <img
-                src={assetUrl('/Images/SparkOSFullLogo.svg')}
+                src={SparkOSTypoLogo}
                 alt="SparkOS Logo"
                 className="h-8 w-auto"
               />
@@ -516,7 +528,7 @@ const PilotSurveyForm = () => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={toggleLanguage}
-                className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+                className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
@@ -526,7 +538,7 @@ const PilotSurveyForm = () => {
               
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+                className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -539,11 +551,11 @@ const PilotSurveyForm = () => {
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center py-12">
+        <div className="flex justify-center items-center py-12 flex-grow">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
         </div>
       ) : (
-        <>
+        <main className="flex-grow">
           <FormComponent
             currentSection={currentSection}
             formData={formData}
@@ -559,8 +571,9 @@ const PilotSurveyForm = () => {
             submitting={submitting}
             completedSections={completedSections}
             validationErrors={validationErrors}
+            canGoNext={isCurrentSectionValid}
           />
-        </>
+        </main>
       )}
     </div>
   );

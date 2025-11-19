@@ -5,12 +5,15 @@
     "learner": "Learners Dashboard",
     "special": "Special Learners Dashboard"
   },
+  "accessWithName": "Access: {{keyName}}",
+  "logout": "Logout",
   "welcome": "Welcome to Your Portal",
   "welcomeSub": "Access your resources, submit materials, and track your progress",
-  "access": "Access",
+  "accessButton": "Access {{title}}",
+  "locked": "Locked",
   "sections": {
-    "school": [
-      {
+    "school": {
+      "surveyForms": {
         "title": "Survey Forms",
         "description": "Complete surveys to help us understand and improve the pilot program",
         "items": [
@@ -19,10 +22,40 @@
           "Track your survey progress",
           "View completed submissions"
         ]
+      },
+      "protocolOverview": {
+        "title": "Pilot Protocol Overview",
+        "description": "Visual summary of pilot objectives, setup steps, and timeline",
+        "items": [
+          "View pilot objectives",
+          "Setup steps and guidelines",
+          "Timeline and milestones",
+          "Program overview"
+        ]
+      },
+      "resourceHub": {
+        "title": "Resource Hub",
+        "description": "Guides, FAQs, and deployment checklists",
+        "items": [
+          "Deployment guides",
+          "Frequently asked questions",
+          "Checklists and templates",
+          "Best practices"
+        ]
+      },
+      "contact": {
+        "title": "Contact Section",
+        "description": "Support team contact form or chat",
+        "items": [
+          "Contact support team",
+          "Submit inquiries",
+          "Live chat support",
+          "Request assistance"
+        ]
       }
-    ],
-    "educator": [
-      {
+    },
+    "educator": {
+      "surveyForms": {
         "title": "Survey Forms",
         "description": "Provide detailed insights about individual student assessment",
         "items": [
@@ -31,10 +64,40 @@
           "View completed assessments",
           "Submit multiple assessments"
         ]
+      },
+      "protocolOverview": {
+        "title": "Pilot Protocol Overview",
+        "description": "Visual summary of pilot objectives, setup steps, and timeline",
+        "items": [
+          "View pilot objectives",
+          "Setup steps and guidelines",
+          "Timeline and milestones",
+          "Program overview"
+        ]
+      },
+      "resourceHub": {
+        "title": "Resource Hub",
+        "description": "Guides, FAQs, and deployment checklists",
+        "items": [
+          "Teaching resources",
+          "Assessment templates",
+          "Frequently asked questions",
+          "Best practices"
+        ]
+      },
+      "contact": {
+        "title": "Contact Section",
+        "description": "Support team contact form or chat",
+        "items": [
+          "Contact support team",
+          "Submit inquiries",
+          "Request assistance",
+          "Live chat support"
+        ]
       }
-    ],
-    "learner": [
-      {
+    },
+    "learner": {
+      "surveyForms": {
         "title": "Survey Forms",
         "description": "Complete surveys to help improve the learning experience",
         "items": [
@@ -43,10 +106,40 @@
           "View completed surveys",
           "Save draft and continue later"
         ]
+      },
+      "protocolOverview": {
+        "title": "Pilot Protocol Overview",
+        "description": "Visual summary of pilot objectives and participation",
+        "items": [
+          "View pilot objectives",
+          "Your participation role",
+          "Program timeline",
+          "What to expect"
+        ]
+      },
+      "resourceHub": {
+        "title": "Resource Hub",
+        "description": "Guides and FAQs for students",
+        "items": [
+          "Student guides",
+          "Frequently asked questions",
+          "Tips and resources",
+          "Getting help"
+        ]
+      },
+      "contact": {
+        "title": "Contact Section",
+        "description": "Support team contact form or chat",
+        "items": [
+          "Contact support team",
+          "Ask questions",
+          "Get help",
+          "Live chat support"
+        ]
       }
-    ],
-    "special": [
-      {
+    },
+    "special": {
+      "surveyForms": {
         "title": "Survey Forms",
         "description": "Complete surveys designed for your learning needs",
         "items": [
@@ -55,7 +148,37 @@
           "Track your progress",
           "Save and continue later"
         ]
+      },
+      "protocolOverview": {
+        "title": "Pilot Protocol Overview",
+        "description": "Visual summary of pilot objectives and participation",
+        "items": [
+          "View pilot objectives",
+          "Your participation role",
+          "Program timeline",
+          "What to expect"
+        ]
+      },
+      "resourceHub": {
+        "title": "Resource Hub",
+        "description": "Accessible guides and FAQs",
+        "items": [
+          "Accessible guides",
+          "Frequently asked questions",
+          "Support resources",
+          "Getting help"
+        ]
+      },
+      "contact": {
+        "title": "Contact Section",
+        "description": "Support team contact form or chat",
+        "items": [
+          "Contact support team",
+          "Request accommodations",
+          "Get assistance",
+          "Live chat support"
+        ]
       }
-    ]
+    }
   }
 }

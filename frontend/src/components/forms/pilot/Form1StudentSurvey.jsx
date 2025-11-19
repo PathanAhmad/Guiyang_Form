@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import TextInput from './shared/QuestionTypes/TextInput';
 import TextArea from './shared/QuestionTypes/TextArea';
 import RadioGroup from './shared/QuestionTypes/RadioGroup';
@@ -21,38 +21,36 @@ const Form1StudentSurvey = ({
   submitting,
   completedSections,
   validationErrors = {},
+  canGoNext,
 }) => {
   const { t } = useTranslation();
   const totalSections = 8;
 
   const renderSection0 = () => (
-    <Section title={t('form1:title')}>
-      <div className="space-y-6">
-        <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3">
-            {t('form1:intro.welcome')}
+    <Section>
+      <div className="space-y-6 pb-30">
+        <div className="bg-gradient-to-br from-[#7c59b2]/20 to-[#7c59b2]/40 rounded-[2rem] p-6">
+          <h3 className="text-lg font-normal text-gray-900 mb-3">
+            <Trans i18nKey="form1:intro.welcome" components={{ bold: <strong className="font-semibold" /> }} />
           </h3>
           <p className="text-gray-700 mb-4">
-            {t('form1:intro.noWrongAnswers')}
+            <Trans i18nKey="form1:intro.noWrongAnswers" components={{ bold: <strong className="font-semibold" /> }} />
           </p>
         </div>
 
-        <div className="border-t border-gray-200 pt-6">
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-            <p className="text-sm text-gray-600 italic">
-              {t('form1:consent.privacy')}
-            </p>
-          </div>
+        <div className="pt-6">
           <CheckboxGroup
             label=""
-            values={formData.consent ? ['consent'] : []}
-            onChange={(val) => onFieldChange('consent', val.includes('consent'))}
+            values={formData.consents || []}
+            onChange={(val) => onFieldChange('consents', val)}
             options={[
-              { value: 'consent', label: t('form1:consent.text') }
+              { value: 'privacy', label: t('form1:consent.privacy') },
+              { value: 'agree', label: t('form1:consent.agree') },
             ]}
             required
-            error={validationErrors.consent ? t('pilotSurveys:form.requiredField') : null}
-            fieldName="consent"
+            error={validationErrors.consents ? t('pilotSurveys:form.requiredField') : null}
+            fieldName="consents"
+            unstyled={true}
           />
         </div>
       </div>
@@ -60,7 +58,7 @@ const Form1StudentSurvey = ({
   );
 
   const renderSection1 = () => (
-    <Section title={t('form1:section1.title')}>
+    <Section title={t('form1:section1.title')} paddingClass="pt-8">
       <TextInput
         label={t('form1:section1.fullName.label')}
         value={formData.fullName}
@@ -709,13 +707,13 @@ const Form1StudentSurvey = ({
   ];
 
   return (
-    <>
+    <div className="flex flex-col h-full">
       <Progress
         currentSection={currentSection}
         totalSections={totalSections}
         completedSections={completedSections}
       />
-      <div className="pb-20">
+      <div className="pb-0 flex-grow">
         {sections[currentSection - 1]()}
       </div>
       <Navigation
@@ -727,10 +725,10 @@ const Form1StudentSurvey = ({
         onSubmit={onSubmit}
         saving={saving}
         submitting={submitting}
-        canGoNext={true}
+        canGoNext={canGoNext}
         canGoPrevious={true}
       />
-    </>
+    </div>
   );
 };
 

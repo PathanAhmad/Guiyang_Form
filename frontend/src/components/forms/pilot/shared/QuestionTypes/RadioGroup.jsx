@@ -20,7 +20,7 @@ const RadioGroup = ({ label, value, onChange, options, required, error, fieldNam
         <div className="absolute top-2 right-2 w-4 h-4 bg-red-600 rounded-full animate-pulse"></div>
       )}
       <label className="block text-sm font-medium text-gray-700">
-        {label} {required && <span className="text-red-600 text-xl font-bold">*</span>}
+        {label}
       </label>
       <div className="space-y-2">
         {options.map((option) => (

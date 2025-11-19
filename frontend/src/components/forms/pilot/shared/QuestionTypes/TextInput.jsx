@@ -20,7 +20,7 @@ const TextInput = ({ label, value, onChange, placeholder, required, error, field
         <div className="absolute top-2 right-2 w-4 h-4 bg-red-600 rounded-full animate-pulse"></div>
       )}
       <label className="block text-sm font-medium text-gray-700">
-        {label} {required && <span className="text-red-600 text-xl font-bold">*</span>}
+        {label}
       </label>
       <input
         type="text"

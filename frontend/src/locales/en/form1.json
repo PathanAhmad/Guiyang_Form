@@ -2,12 +2,12 @@
   "title": "Learning Interest & Preferences Survey",
   "subtitle": "For Students at Ugly Duck School – Kunming, China",
   "intro": {
-    "welcome": "Welcome! This survey helps us understand **how you learn best**, what makes you **feel supported**, and how we can make learning more **comfortable, interesting, and fun** for you.",
-    "noWrongAnswers": "There are **no right or wrong answers**. Just be yourself and answer honestly."
+    "welcome": "Welcome! This survey helps us understand <bold>how you learn best</bold>, what makes you <bold>feel supported</bold>, and how we can make learning more <bold>comfortable, interesting, and fun</bold> for you.",
+    "noWrongAnswers": "There are <bold>no right or wrong answers</bold>. Just be yourself and answer honestly."
   },
   "consent": {
-    "text": "I understand the purpose of this survey and agree to participate.",
-    "privacy": "Your answers are private and will only be used to support your learning experience."
+    "privacy": "Your answers are private and will only be used to support your learning experience.",
+    "agree": "I understand the purpose of this survey and agree to participate."
   },
   "section1": {
     "title": "Basic Information",
