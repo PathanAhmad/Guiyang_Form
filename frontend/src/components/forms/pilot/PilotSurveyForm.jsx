@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDeploymentAuth } from '../../../contexts/DeploymentAuthContext';
 import { useToast } from '../../../contexts/ToastContext';
-import { getResponse, saveResponse, submitResponse } from '../../../services/pilotSurveyApi';
+import { getResponse, getFormSubmissions, saveResponse, submitResponse } from '../../../services/pilotSurveyApi';
 import { assetUrl } from '../../../utils/assets';
 import SurveyProgress from './shared/SurveyProgress';
 import SurveyNavigation from './shared/SurveyNavigation';
@@ -14,10 +14,10 @@ import Form1StudentSurvey from './Form1StudentSurvey';
 import Form2TeacherAssessment from './Form2TeacherAssessment';
 import Form3EquityInclusion from './Form3EquityInclusion';
 import Form4CourseCatalog from './Form4CourseCatalog';
-import SparkOSTypoLogo from '../../../Images/SparkOSTypo.svg';
+import FormBBehaviorAssessment from './FormBBehaviorAssessment';
 
 const PilotSurveyForm = () => {
-  const { roleType, formId } = useParams();
+  const { roleType, formId, responseId } = useParams();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { isAuthenticated, roleType: currentRole, keyName, logout } = useDeploymentAuth();
@@ -85,6 +85,18 @@ const PilotSurveyForm = () => {
         6: ['newTopics', 'approaches', 'additionalSupport', 'timeline', 'integration', 'partnerships'],
         7: ['successMetrics', 'singleChange', 'additionalComments'],
       },
+      formB: {
+        1: ['consent'], // Section 0: Intro & Consent
+        2: ['studentName', 'studentId', 'assessmentDate', 'assessorName', 'assessorRole'],
+        3: ['academicEngagement', 'taskCompletion', 'learningPace'],
+        4: ['peerInteraction', 'emotionalRegulation'],
+        5: ['classParticipation', 'groupWork'],
+        6: ['supportUrgency'],
+        7: ['adultRelationships', 'expressesNeeds'],
+        8: ['overallProgress'],
+        9: [], // Section 8: Strengths & Interests - no strict required fields
+        10: ['overallSummary'], // Section 9: Overall Assessment Summary
+      },
     };
     return requiredFieldsMap[formId]?.[sectionNumber] || [];
   };
@@ -126,6 +138,7 @@ const PilotSurveyForm = () => {
       form2: Form2TeacherAssessment,
       form3: Form3EquityInclusion,
       form4: Form4CourseCatalog,
+      formB: FormBBehaviorAssessment,
     };
     return forms[formId] || null;
   };
@@ -140,21 +153,43 @@ const PilotSurveyForm = () => {
     }
 
     loadFormData();
-  }, [isAuthenticated, currentRole, roleType, formId, navigate]);
+  }, [isAuthenticated, currentRole, roleType, formId, responseId, navigate]);
 
   const loadFormData = async () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await getResponse(formId);
       
-      if (response) {
-        setFormData(response.responses || {});
-        setCompletedSections(response.completedSections || []);
+      // For multi-submission forms with "new" route, start with empty form
+      if (formId === 'formB' && responseId === 'new') {
+        setFormData({});
+        setCompletedSections([]);
+      } else if (formId === 'formB' && responseId) {
+        // Load existing response by ID for multi-submission forms
+        // Note: This uses the submissions list API which returns individual responses
+        const submissions = await getFormSubmissions(formId);
+        const response = submissions.find(s => s._id === responseId);
         
-        // If already submitted, show submitted message
-        if (response.status === 'submitted') {
-          setSubmitted(true);
+        if (response) {
+          setFormData(response.responses || {});
+          setCompletedSections(response.completedSections || []);
+          
+          if (response.status === 'submitted') {
+            setSubmitted(true);
+          }
+        }
+      } else {
+        // For single-submission forms, use existing logic
+        const response = await getResponse(formId);
+        
+        if (response) {
+          setFormData(response.responses || {});
+          setCompletedSections(response.completedSections || []);
+          
+          // If already submitted, show submitted message
+          if (response.status === 'submitted') {
+            setSubmitted(true);
+          }
         }
       }
     } catch (err) {
@@ -185,15 +220,27 @@ const PilotSurveyForm = () => {
     if (submitted) return; // Don't auto-save if already submitted
     
     try {
-      await saveResponse(formId, {
+      const saveData = {
         responses: formData,
         completedSections,
         language: normalizeLanguage(i18n.language),
-      });
+      };
+      
+      // Include responseId for multi-submission forms (except "new")
+      if (formId === 'formB' && responseId && responseId !== 'new') {
+        saveData.responseId = responseId;
+      }
+      
+      const response = await saveResponse(formId, saveData);
+      
+      // If this was a new formB submission, update URL with the real ID
+      if (formId === 'formB' && responseId === 'new' && response._id) {
+        navigate(`/deployment_portal/${roleType}/surveys/formB/${response._id}`, { replace: true });
+      }
     } catch (err) {
       console.error('Auto-save failed:', err);
     }
-  }, [formId, formData, completedSections, i18n.language, submitted]);
+  }, [formId, formData, completedSections, i18n.language, submitted, responseId, roleType, navigate]);
 
   // Auto-save on field change (debounced)
   useEffect(() => {
@@ -209,11 +256,24 @@ const PilotSurveyForm = () => {
   const handleSaveDraft = async () => {
     try {
       setSaving(true);
-      await saveResponse(formId, {
+      const saveData = {
         responses: formData,
         completedSections,
         language: normalizeLanguage(i18n.language),
-      });
+      };
+      
+      // Include responseId for multi-submission forms (except "new")
+      if (formId === 'formB' && responseId && responseId !== 'new') {
+        saveData.responseId = responseId;
+      }
+      
+      const response = await saveResponse(formId, saveData);
+      
+      // If this was a new formB submission, update URL with the real ID
+      if (formId === 'formB' && responseId === 'new' && response._id) {
+        navigate(`/deployment_portal/${roleType}/surveys/formB/${response._id}`, { replace: true });
+      }
+      
       // Show success feedback
       showToast(t('pilotSurveys:form.draftSaved'), 'success');
     } catch (err) {
@@ -227,11 +287,18 @@ const PilotSurveyForm = () => {
   const handleSubmit = async () => {
     try {
       setSubmitting(true);
-      await submitResponse(formId, {
+      const submitData = {
         responses: formData,
         completedSections,
         language: normalizeLanguage(i18n.language),
-      });
+      };
+      
+      // Include responseId for multi-submission forms (except "new")
+      if (formId === 'formB' && responseId && responseId !== 'new') {
+        submitData.responseId = responseId;
+      }
+      
+      await submitResponse(formId, submitData);
       setSubmitted(true);
     } catch (err) {
       console.error('Error submitting form:', err);
@@ -360,7 +427,12 @@ const PilotSurveyForm = () => {
   };
 
   const handleBack = () => {
-    navigate(`/deployment_portal/${roleType}/surveys`);
+    // For multi-submission forms, go back to the assessment list
+    if (formId === 'formB') {
+      navigate(`/deployment_portal/${roleType}/surveys/formB/list`);
+    } else {
+      navigate(`/deployment_portal/${roleType}/surveys`);
+    }
   };
 
   const handleLogout = () => {

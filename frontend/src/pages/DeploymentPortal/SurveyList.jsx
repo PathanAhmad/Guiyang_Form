@@ -82,6 +82,27 @@ const SurveyList = () => {
   };
 
   const getActionButton = (form) => {
+    // Multi-submission forms have different actions
+    if (form.allowMultipleSubmissions) {
+      return (
+        <div className="space-y-2">
+          <button
+            onClick={() => navigate(`/deployment_portal/${roleType}/surveys/${form.formId}/list`)}
+            className="w-full px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200"
+          >
+            {t('pilotSurveys:surveyList.viewAllSubmissions')}
+          </button>
+          <button
+            onClick={() => navigate(`/deployment_portal/${roleType}/surveys/${form.formId}/new`)}
+            className="w-full px-4 py-2 bg-white text-primary-600 border border-primary-600 rounded-lg font-medium hover:bg-primary-50 transition-colors duration-200"
+          >
+            {t('pilotSurveys:surveyList.createNew')}
+          </button>
+        </div>
+      );
+    }
+    
+    // Single-submission forms use existing logic
     if (form.status === 'submitted') {
       return (
         <button
@@ -240,29 +261,53 @@ const SurveyList = () => {
                         {t(`pilotSurveys:formDescriptions.${form.formId}`)}
                       </p>
                     </div>
-                    <div className="ml-4">
-                      {getStatusBadge(form.status)}
-                    </div>
+                    {!form.allowMultipleSubmissions && (
+                      <div className="ml-4">
+                        {getStatusBadge(form.status)}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Progress Bar */}
-                  {form.status !== 'not_started' && (
+                  {/* Progress Bar / Submission Count */}
+                  {form.allowMultipleSubmissions ? (
+                    // Show submission count for multi-submission forms
                     <div className="mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-gray-600">
-                          {t('pilotSurveys:surveyList.progress', { percent: form.completionPercentage })}
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-600">
+                          {t('pilotSurveys:surveyList.submissionsCount', { count: form.submissionCount || 0 })}
                         </span>
-                        <span className="text-sm text-gray-500">
-                          {form.completedSections.length} / {form.totalSections} sections
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-300"
-                          style={{ width: `${form.completionPercentage}%` }}
-                        ></div>
+                        <div className="flex gap-3">
+                          <span className="text-green-600 font-medium">
+                            {t('pilotSurveys:surveyList.submitted', { count: form.submittedCount || 0 })}
+                          </span>
+                          {form.draftCount > 0 && (
+                            <span className="text-yellow-600 font-medium">
+                              {t('pilotSurveys:surveyList.drafts', { count: form.draftCount })}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
+                  ) : (
+                    // Show progress bar for single-submission forms
+                    form.status !== 'not_started' && (
+                      <div className="mb-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm text-gray-600">
+                            {t('pilotSurveys:surveyList.progress', { percent: form.completionPercentage })}
+                          </span>
+                          <span className="text-sm text-gray-500">
+                            {form.completedSections.length} / {form.totalSections} sections
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-300"
+                            style={{ width: `${form.completionPercentage}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    )
                   )}
 
                   {/* Last Modified */}

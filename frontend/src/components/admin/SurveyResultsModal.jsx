@@ -66,6 +66,7 @@ const SurveyResultsModal = ({ isOpen, onClose, accessKeyData, onDataChanged }) =
       form2: 'Teacher Assessment',
       form3: 'Equity & Inclusion',
       form4: 'Course Catalog',
+      formB: 'Behavior Assessment',
     };
     return titles[formId] || formId;
   };

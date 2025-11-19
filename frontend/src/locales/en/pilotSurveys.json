@@ -16,7 +16,12 @@
     "continueSurvey": "Continue Survey",
     "viewSurvey": "View Submission",
     "progress": "{{percent}}% Complete",
-    "noSurveys": "No surveys available for your role"
+    "noSurveys": "No surveys available for your role",
+    "createNew": "Create New Assessment",
+    "viewAllSubmissions": "View All Submissions",
+    "submissionsCount": "{{count}} submission(s)",
+    "submitted": "{{count}} submitted",
+    "drafts": "{{count}} draft(s)"
   },
   "form": {
     "savingDraft": "Saving draft...",
@@ -34,13 +39,38 @@
     "form1": "Learning Interest & Preferences Survey",
     "form2": "Individual Student Behavior Assessment",
     "form3": "Student Equity & Inclusion Planning Survey",
-    "form4": "Course Catalog & Digitalization Interest Survey"
+    "form4": "Course Catalog & Digitalization Interest Survey",
+    "formB": "Individual Student Behavior Assessment"
   },
   "formDescriptions": {
     "form1": "Help us understand how you learn best and what supports your learning",
     "form2": "Provide detailed insights about individual student growth and support needs",
     "form3": "Share your professional insights on equity, access, and inclusion at your learning center",
-    "form4": "Document existing courses and explore interest in digital delivery"
+    "form4": "Document existing courses and explore interest in digital delivery",
+    "formB": "Submit behavior assessments for individual students - can be submitted multiple times"
+  },
+  "behaviorAssessmentList": {
+    "title": "Student Behavior Assessments",
+    "subtitle": "View and manage behavior assessments",
+    "createNew": "Create New Assessment",
+    "backToDashboard": "Back to Dashboard",
+    "searchPlaceholder": "Search by student name or ID",
+    "noAssessments": "No assessments found",
+    "noAssessmentsDesc": "Start by creating your first behavior assessment",
+    "studentName": "Student Name",
+    "studentId": "Student ID",
+    "assessmentDate": "Assessment Date",
+    "submittedDate": "Submitted Date",
+    "status": "Status",
+    "actions": "Actions",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDelete": "Are you sure you want to delete this assessment?",
+    "deleteSuccess": "Assessment deleted successfully",
+    "deleteError": "Failed to delete assessment",
+    "loadingError": "Failed to load assessments",
+    "tryAgain": "Try Again"
   }
 }
 

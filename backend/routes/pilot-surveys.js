@@ -60,24 +60,35 @@ const FORM_METADATA = {
     formType: 'student_survey',
     roles: ['learner', 'special'],
     totalSections: 7,
+    allowMultipleSubmissions: false,
   },
   form2: {
     formId: 'form2',
     formType: 'teacher_assessment',
     roles: ['educator'],
     totalSections: 8,
+    allowMultipleSubmissions: false,
   },
   form3: {
     formId: 'form3',
     formType: 'equity_inclusion',
     roles: ['school'],
     totalSections: 7,
+    allowMultipleSubmissions: false,
   },
   form4: {
     formId: 'form4',
     formType: 'course_catalog',
     roles: ['school'],
     totalSections: 6,
+    allowMultipleSubmissions: false,
+  },
+  formB: {
+    formId: 'formB',
+    formType: 'behavior_assessment',
+    roles: ['educator'],
+    totalSections: 9,
+    allowMultipleSubmissions: true,
   },
 };
 
@@ -94,20 +105,39 @@ router.get('/forms', validateDeploymentAuth, async (req, res) => {
     // Get completion status for each form
     const formsWithStatus = await Promise.all(
       availableForms.map(async (form) => {
-        const response = await PilotSurveyResponse.findByAccessKeyAndForm(
-          req.deploymentKey.accessKey,
-          form.formId
-        );
-        
-        return {
-          ...form,
-          status: response ? response.status : 'not_started',
-          completionPercentage: response
-            ? response.getCompletionPercentage(form.totalSections)
-            : 0,
-          completedSections: response ? response.completedSections : [],
-          lastModified: response ? response.updatedAt : null,
-        };
+        if (form.allowMultipleSubmissions) {
+          // For multi-submission forms, get count of submissions
+          const submissions = await PilotSurveyResponse.findAllByAccessKeyAndForm(
+            req.deploymentKey.accessKey,
+            form.formId
+          );
+          const submittedCount = submissions.filter(s => s.status === 'submitted').length;
+          const draftCount = submissions.filter(s => s.status === 'draft').length;
+          
+          return {
+            ...form,
+            submissionCount: submissions.length,
+            submittedCount,
+            draftCount,
+            lastModified: submissions.length > 0 ? submissions[0].updatedAt : null,
+          };
+        } else {
+          // For single-submission forms, use existing logic
+          const response = await PilotSurveyResponse.findByAccessKeyAndForm(
+            req.deploymentKey.accessKey,
+            form.formId
+          );
+          
+          return {
+            ...form,
+            status: response ? response.status : 'not_started',
+            completionPercentage: response
+              ? response.getCompletionPercentage(form.totalSections)
+              : 0,
+            completedSections: response ? response.completedSections : [],
+            lastModified: response ? response.updatedAt : null,
+          };
+        }
       })
     );
     
@@ -187,11 +217,10 @@ router.get('/responses/:formId', validateDeploymentAuth, async (req, res) => {
   }
 });
 
-// POST /api/pilot-surveys/responses/:formId - Create/update response (auto-save)
-router.post('/responses/:formId', validateDeploymentAuth, async (req, res) => {
+// GET /api/pilot-surveys/responses/:formId/all - Get all submissions for a multi-submission form
+router.get('/responses/:formId/all', validateDeploymentAuth, async (req, res) => {
   try {
     const { formId } = req.params;
-    const { responses, completedSections, language } = req.body;
     
     // Validate form ID
     if (!FORM_METADATA[formId]) {
@@ -210,14 +239,74 @@ router.post('/responses/:formId', validateDeploymentAuth, async (req, res) => {
       });
     }
     
-    // Find existing response or create new one
-    let surveyResponse = await PilotSurveyResponse.findByAccessKeyAndForm(
+    // Check if form allows multiple submissions
+    if (!formMeta.allowMultipleSubmissions) {
+      return res.status(400).json({
+        success: false,
+        message: 'This form does not support multiple submissions',
+      });
+    }
+    
+    const submissions = await PilotSurveyResponse.findAllByAccessKeyAndForm(
       req.deploymentKey.accessKey,
       formId
     );
     
-    if (surveyResponse) {
-      // Update existing response (only if still in draft status)
+    res.json({
+      success: true,
+      submissions,
+      count: submissions.length,
+    });
+  } catch (error) {
+    console.error('Error fetching submissions:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch submissions',
+      error: error.message,
+    });
+  }
+});
+
+// POST /api/pilot-surveys/responses/:formId - Create/update response (auto-save)
+router.post('/responses/:formId', validateDeploymentAuth, async (req, res) => {
+  try {
+    const { formId } = req.params;
+    const { responses, completedSections, language, responseId } = req.body;
+    
+    // Validate form ID
+    if (!FORM_METADATA[formId]) {
+      return res.status(404).json({
+        success: false,
+        message: 'Form not found',
+      });
+    }
+    
+    // Check if user has access to this form
+    const formMeta = FORM_METADATA[formId];
+    if (!formMeta.roles.includes(req.deploymentKey.roleType)) {
+      return res.status(403).json({
+        success: false,
+        message: 'You do not have access to this form',
+      });
+    }
+    
+    let surveyResponse;
+    
+    // For multi-submission forms, use responseId if provided
+    if (formMeta.allowMultipleSubmissions && responseId) {
+      surveyResponse = await PilotSurveyResponse.findOne({
+        _id: responseId,
+        accessKey: req.deploymentKey.accessKey,
+        formId,
+      });
+      
+      if (!surveyResponse) {
+        return res.status(404).json({
+          success: false,
+          message: 'Response not found',
+        });
+      }
+      
       if (surveyResponse.status === 'submitted') {
         return res.status(400).json({
           success: false,
@@ -229,8 +318,41 @@ router.post('/responses/:formId', validateDeploymentAuth, async (req, res) => {
       surveyResponse.completedSections = completedSections || surveyResponse.completedSections;
       surveyResponse.language = language || surveyResponse.language;
       await surveyResponse.save();
+    } else if (!formMeta.allowMultipleSubmissions) {
+      // For single-submission forms, use existing logic
+      surveyResponse = await PilotSurveyResponse.findByAccessKeyAndForm(
+        req.deploymentKey.accessKey,
+        formId
+      );
+      
+      if (surveyResponse) {
+        // Update existing response (only if still in draft status)
+        if (surveyResponse.status === 'submitted') {
+          return res.status(400).json({
+            success: false,
+            message: 'Cannot update a submitted form',
+          });
+        }
+        
+        surveyResponse.responses = responses || surveyResponse.responses;
+        surveyResponse.completedSections = completedSections || surveyResponse.completedSections;
+        surveyResponse.language = language || surveyResponse.language;
+        await surveyResponse.save();
+      } else {
+        // Create new response
+        surveyResponse = new PilotSurveyResponse({
+          accessKey: req.deploymentKey.accessKey,
+          formId,
+          formType: formMeta.formType,
+          responses: responses || {},
+          completedSections: completedSections || [],
+          language: language || 'en',
+          status: 'draft',
+        });
+        await surveyResponse.save();
+      }
     } else {
-      // Create new response
+      // Create new response for multi-submission form
       surveyResponse = new PilotSurveyResponse({
         accessKey: req.deploymentKey.accessKey,
         formId,
@@ -262,7 +384,7 @@ router.post('/responses/:formId', validateDeploymentAuth, async (req, res) => {
 router.post('/responses/:formId/submit', validateDeploymentAuth, async (req, res) => {
   try {
     const { formId } = req.params;
-    const { responses, completedSections, language } = req.body;
+    const { responses, completedSections, language, responseId } = req.body;
     
     // Validate form ID
     if (!FORM_METADATA[formId]) {
@@ -281,14 +403,36 @@ router.post('/responses/:formId/submit', validateDeploymentAuth, async (req, res
       });
     }
     
-    // Find existing response
-    let surveyResponse = await PilotSurveyResponse.findByAccessKeyAndForm(
-      req.deploymentKey.accessKey,
-      formId
-    );
+    let surveyResponse;
     
-    if (!surveyResponse) {
-      // Create new response if it doesn't exist
+    // For multi-submission forms, use responseId if provided
+    if (formMeta.allowMultipleSubmissions && responseId) {
+      surveyResponse = await PilotSurveyResponse.findOne({
+        _id: responseId,
+        accessKey: req.deploymentKey.accessKey,
+        formId,
+      });
+      
+      if (!surveyResponse) {
+        return res.status(404).json({
+          success: false,
+          message: 'Response not found',
+        });
+      }
+      
+      if (surveyResponse.status === 'submitted') {
+        return res.status(400).json({
+          success: false,
+          message: 'Form has already been submitted',
+        });
+      }
+      
+      // Update with final data before submission
+      surveyResponse.responses = responses || surveyResponse.responses;
+      surveyResponse.completedSections = completedSections || surveyResponse.completedSections;
+      surveyResponse.language = language || surveyResponse.language;
+    } else if (formMeta.allowMultipleSubmissions && !responseId) {
+      // Create new submission for multi-submission form
       surveyResponse = new PilotSurveyResponse({
         accessKey: req.deploymentKey.accessKey,
         formId,
@@ -297,16 +441,34 @@ router.post('/responses/:formId/submit', validateDeploymentAuth, async (req, res
         completedSections: completedSections || [],
         language: language || 'en',
       });
-    } else if (surveyResponse.status === 'submitted') {
-      return res.status(400).json({
-        success: false,
-        message: 'Form has already been submitted',
-      });
     } else {
-      // Update with final data before submission
-      surveyResponse.responses = responses || surveyResponse.responses;
-      surveyResponse.completedSections = completedSections || surveyResponse.completedSections;
-      surveyResponse.language = language || surveyResponse.language;
+      // Single-submission form logic
+      surveyResponse = await PilotSurveyResponse.findByAccessKeyAndForm(
+        req.deploymentKey.accessKey,
+        formId
+      );
+      
+      if (!surveyResponse) {
+        // Create new response if it doesn't exist
+        surveyResponse = new PilotSurveyResponse({
+          accessKey: req.deploymentKey.accessKey,
+          formId,
+          formType: formMeta.formType,
+          responses: responses || {},
+          completedSections: completedSections || [],
+          language: language || 'en',
+        });
+      } else if (surveyResponse.status === 'submitted') {
+        return res.status(400).json({
+          success: false,
+          message: 'Form has already been submitted',
+        });
+      } else {
+        // Update with final data before submission
+        surveyResponse.responses = responses || surveyResponse.responses;
+        surveyResponse.completedSections = completedSections || surveyResponse.completedSections;
+        surveyResponse.language = language || surveyResponse.language;
+      }
     }
     
     // Mark as submitted
@@ -361,6 +523,7 @@ router.get('/admin/export', authenticateAdmin, async (req, res) => {
       form2: [],
       form3: [],
       form4: [],
+      formB: [],
     };
     
     responses.forEach(response => {
@@ -378,6 +541,7 @@ router.get('/admin/export', authenticateAdmin, async (req, res) => {
       form2: 'teacher_assessment',
       form3: 'equity_inclusion',
       form4: 'course_catalog',
+      formB: 'behavior_assessment',
     };
     
     Object.keys(responsesByForm).forEach(formId => {
@@ -399,7 +563,7 @@ router.get('/admin/export', authenticateAdmin, async (req, res) => {
       console.log(`  📄 Generated ${filename} with ${formResponses.length} response(s)`);
     });
     
-    // Create ZIP with all 4 CSVs
+    // Create ZIP with all CSVs
     const zipBuffer = await createZipArchive(csvFiles);
     const zipFilename = `pilot-survey-all-forms-${timestamp}.zip`;
     
@@ -407,7 +571,7 @@ router.get('/admin/export', authenticateAdmin, async (req, res) => {
     res.setHeader('Content-Disposition', `attachment; filename=${zipFilename}`);
     res.send(zipBuffer);
     
-    console.log(`✅ Exported ${responses.length} survey responses across 4 forms to ZIP`);
+    console.log(`✅ Exported ${responses.length} survey responses across ${Object.keys(formMetadata).length} forms to ZIP`);
   } catch (error) {
     console.error('Error exporting survey responses:', error);
     res.status(500).json({

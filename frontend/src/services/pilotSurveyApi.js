@@ -66,7 +66,7 @@ export const getResponses = async () => {
 
 /**
  * Get a specific form response
- * @param {string} formId - The form ID (form1, form2, form3, form4)
+ * @param {string} formId - The form ID (form1, form2, form3, form4, formB)
  * @returns {Promise<Object|null>} Survey response or null if not found
  */
 export const getResponse = async (formId) => {
@@ -81,12 +81,29 @@ export const getResponse = async (formId) => {
 };
 
 /**
+ * Get all submissions for a multi-submission form
+ * @param {string} formId - The form ID (e.g., formB)
+ * @returns {Promise<Array>} Array of submissions
+ */
+export const getFormSubmissions = async (formId) => {
+  try {
+    const config = getConfig();
+    const response = await api.get(`/pilot-surveys/responses/${formId}/all`, config);
+    return response.data.submissions || [];
+  } catch (error) {
+    console.error(`Error fetching submissions for ${formId}:`, error);
+    throw error;
+  }
+};
+
+/**
  * Save a form response (create or update draft)
  * @param {string} formId - The form ID
  * @param {Object} data - Form data
  * @param {Object} data.responses - Form responses
  * @param {Array} data.completedSections - Array of completed section IDs
  * @param {string} data.language - Language used (en/zh)
+ * @param {string} [data.responseId] - Optional: For multi-submission forms, ID of specific response to update
  * @returns {Promise<Object>} Saved response
  */
 export const saveResponse = async (formId, data) => {
@@ -107,6 +124,7 @@ export const saveResponse = async (formId, data) => {
  * @param {Object} data.responses - Form responses
  * @param {Array} data.completedSections - Array of completed section IDs
  * @param {string} data.language - Language used (en/zh)
+ * @param {string} [data.responseId] - Optional: For multi-submission forms, ID of specific response to submit
  * @returns {Promise<Object>} Submitted response
  */
 export const submitResponse = async (formId, data) => {
@@ -143,6 +161,7 @@ export default {
   getAvailableForms,
   getResponses,
   getResponse,
+  getFormSubmissions,
   saveResponse,
   submitResponse,
   autoSave,

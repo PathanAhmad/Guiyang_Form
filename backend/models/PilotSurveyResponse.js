@@ -13,7 +13,7 @@ const pilotSurveyResponseSchema = new mongoose.Schema(
     formId: {
       type: String,
       required: true,
-      enum: ['form1', 'form2', 'form3', 'form4'],
+      enum: ['form1', 'form2', 'form3', 'form4', 'formB'],
       index: true,
     },
     
@@ -21,7 +21,7 @@ const pilotSurveyResponseSchema = new mongoose.Schema(
     formType: {
       type: String,
       required: true,
-      enum: ['student_survey', 'teacher_assessment', 'equity_inclusion', 'course_catalog'],
+      enum: ['student_survey', 'teacher_assessment', 'equity_inclusion', 'course_catalog', 'behavior_assessment'],
     },
     
     // Survey responses (flexible JSON structure)
@@ -69,8 +69,8 @@ const pilotSurveyResponseSchema = new mongoose.Schema(
   }
 );
 
-// Compound index for efficient queries
-pilotSurveyResponseSchema.index({ accessKey: 1, formId: 1 }, { unique: true });
+// Compound index for efficient queries (non-unique to allow multiple submissions per form)
+pilotSurveyResponseSchema.index({ accessKey: 1, formId: 1 });
 pilotSurveyResponseSchema.index({ status: 1, createdAt: -1 });
 
 // Instance method: Mark form as submitted
@@ -104,6 +104,11 @@ pilotSurveyResponseSchema.statics.findByAccessKeyAndForm = async function(access
 // Static method: Get all responses for an access key
 pilotSurveyResponseSchema.statics.findByAccessKey = async function(accessKey) {
   return this.find({ accessKey }).sort({ createdAt: -1 });
+};
+
+// Static method: Get all responses by access key and form ID (for multi-submission forms)
+pilotSurveyResponseSchema.statics.findAllByAccessKeyAndForm = async function(accessKey, formId) {
+  return this.find({ accessKey, formId }).sort({ createdAt: -1 });
 };
 
 // Static method: Get all responses grouped by access key with metadata

@@ -1,0 +1,330 @@
+{
+  "title": "个体学生行为评估",
+  "subtitle": "教师用 | 可重复提交的评估表",
+  "intro": {
+    "purpose": "本表格允许您为不同学生提交行为评估。您可以为多个学生多次提交此表格。",
+    "helps": "你的反馈有助于我们：",
+    "bullet1": "追踪学生随时间的进步",
+    "bullet2": "识别模式和支持需求",
+    "bullet3": "提供针对性的干预和支持",
+    "confidential": "所有信息将严格保密，仅用于改进学生支持。"
+  },
+  "consent": {
+    "text": "我理解并同意为本评估中的学生提供反馈。我明白我的回答将保密，并只用于优化教育规划和学生支持。"
+  },
+  "section1": {
+    "title": "学生识别信息",
+    "studentName": {
+      "label": "学生姓名",
+      "placeholder": "请输入学生姓名"
+    },
+    "studentId": {
+      "label": "学生ID或编号",
+      "placeholder": "请输入学生ID"
+    },
+    "assessmentDate": {
+      "label": "评估日期",
+      "placeholder": "选择日期"
+    },
+    "assessorName": {
+      "label": "您的姓名",
+      "placeholder": "请输入您的姓名"
+    },
+    "assessorRole": {
+      "label": "您的职务",
+      "educator": "教师",
+      "specialist": "学习支持专家",
+      "coordinator": "项目协调员",
+      "other": "其他",
+      "otherPlaceholder": "请注明职务"
+    }
+  },
+  "section2": {
+    "title": "学业表现",
+    "academicEngagement": {
+      "label": "学生在学业活动中的参与度如何？",
+      "excellent": "优秀 - 高度参与",
+      "good": "良好 - 通常参与",
+      "fair": "一般 - 偶尔不参与",
+      "poor": "较差 - 经常不参与"
+    },
+    "taskCompletion": {
+      "label": "学生完成作业的一致性如何？",
+      "always": "总是完成",
+      "usually": "通常完成",
+      "sometimes": "有时完成",
+      "rarely": "很少完成"
+    },
+    "learningPace": {
+      "label": "您如何描述学生的学习速度？",
+      "advanced": "超前 - 快速掌握概念",
+      "onTrack": "正常 - 按预期进度",
+      "needsSupport": "需要支持 - 需要额外帮助",
+      "significant": "显著挑战 - 需要密集支持"
+    },
+    "strengths": {
+      "label": "学业优势（可多选）",
+      "reading": "阅读理解",
+      "writing": "写作能力",
+      "math": "数学推理",
+      "science": "科学思维",
+      "arts": "创意艺术",
+      "technology": "技术能力",
+      "other": "其他",
+      "otherPlaceholder": "请注明优势"
+    },
+    "challenges": {
+      "label": "学业挑战（可多选）",
+      "attention": "注意力和专注",
+      "comprehension": "阅读理解",
+      "expression": "书面表达",
+      "math": "数学概念",
+      "organization": "组织和计划",
+      "timeManagement": "时间管理",
+      "other": "其他",
+      "otherPlaceholder": "请注明挑战"
+    },
+    "notes": {
+      "label": "额外学业备注",
+      "placeholder": "关于学业表现的任何额外观察"
+    }
+  },
+  "section3": {
+    "title": "社交情感行为",
+    "peerInteraction": {
+      "label": "学生如何与同龄人互动？",
+      "positive": "非常积极 - 容易建立友谊",
+      "adequate": "适当 - 有一些朋友",
+      "limited": "有限 - 难以建立联系",
+      "conflict": "经常与同龄人冲突"
+    },
+    "emotionalRegulation": {
+      "label": "学生管理情绪的能力如何？",
+      "excellent": "优秀 - 有效自我调节",
+      "good": "良好 - 通常能管理情绪",
+      "developing": "发展中 - 有时困难",
+      "challenged": "挑战 - 经常困难"
+    },
+    "behaviorConcerns": {
+      "label": "行为关注点（可多选）",
+      "none": "无重大关注",
+      "aggression": "肢体或语言攻击",
+      "withdrawal": "社交退缩",
+      "anxiety": "焦虑或恐惧反应",
+      "defiance": "对抗行为",
+      "impulsivity": "冲动行为",
+      "attention": "寻求关注行为",
+      "other": "其他",
+      "otherPlaceholder": "请注明关注点"
+    },
+    "positiveTraits": {
+      "label": "积极的社交情感特质（可多选）",
+      "empathy": "表现同理心",
+      "cooperation": "与他人合作",
+      "leadership": "展现领导力",
+      "resilience": "展现韧性",
+      "respect": "尊重成人和同龄人",
+      "kindness": "善良行为",
+      "other": "其他",
+      "otherPlaceholder": "请注明特质"
+    },
+    "notes": {
+      "label": "社交情感备注",
+      "placeholder": "关于社交情感行为的任何额外观察"
+    }
+  },
+  "section4": {
+    "title": "参与度和投入度",
+    "classParticipation": {
+      "label": "学生在课堂上的参与度如何？",
+      "veryActive": "非常积极 - 经常贡献",
+      "moderate": "适度 - 在提示时参与",
+      "limited": "有限 - 很少主动",
+      "minimal": "最小 - 避免参与"
+    },
+    "groupWork": {
+      "label": "学生在小组工作中的表现如何？",
+      "leader": "承担领导角色",
+      "contributor": "积极贡献者",
+      "follower": "愿意追随",
+      "reluctant": "不情愿或不投入"
+    },
+    "motivation": {
+      "label": "什么激励着学生？（可多选）",
+      "intrinsic": "对学习的内在兴趣",
+      "praise": "表扬和认可",
+      "grades": "成绩和成就",
+      "peer": "同龄人认可",
+      "rewards": "外部奖励",
+      "avoidance": "避免负面后果",
+      "unclear": "不清楚或缺乏动力",
+      "other": "其他",
+      "otherPlaceholder": "请注明动机"
+    },
+    "notes": {
+      "label": "参与度备注",
+      "placeholder": "关于参与度和投入度的任何额外观察"
+    }
+  },
+  "section5": {
+    "title": "支持需求",
+    "currentSupport": {
+      "label": "学生当前接受的支持（可多选）",
+      "none": "无额外支持",
+      "individualized": "个性化教学",
+      "smallGroup": "小组干预",
+      "behavioral": "行为支持",
+      "academic": "学业辅导",
+      "counseling": "咨询服务",
+      "accommodations": "课堂调整",
+      "other": "其他",
+      "otherPlaceholder": "请注明支持"
+    },
+    "recommendedSupport": {
+      "label": "哪些额外支持对学生有益？（可多选）",
+      "none": "不需要额外支持",
+      "academic": "学业干预",
+      "behavioral": "行为干预",
+      "socialSkills": "社交技能培训",
+      "counseling": "咨询或治疗",
+      "parentEngagement": "家长/监护人参与",
+      "peerSupport": "同伴辅导",
+      "accommodations": "课堂调整",
+      "other": "其他",
+      "otherPlaceholder": "请注明建议支持"
+    },
+    "urgency": {
+      "label": "额外支持的紧急程度如何？",
+      "notUrgent": "不紧急 - 常规监测",
+      "moderate": "中等 - 一个月内处理",
+      "urgent": "紧急 - 一周内处理",
+      "immediate": "立即 - 需要及时干预"
+    },
+    "notes": {
+      "label": "支持需求备注",
+      "placeholder": "关于支持需求的任何额外观察"
+    }
+  },
+  "section6": {
+    "title": "沟通与关系",
+    "adultRelationships": {
+      "label": "学生与教师和员工的关系如何？",
+      "positive": "非常积极 - 建立信任关系",
+      "respectful": "尊重 - 遵循指示",
+      "cautious": "谨慎 - 需要时间热身",
+      "challenging": "挑战 - 抗拒权威"
+    },
+    "communication": {
+      "label": "学生如何沟通？（可多选）",
+      "verbal": "语言沟通",
+      "nonverbal": "非语言暗示",
+      "written": "书面沟通",
+      "digital": "数字/技术沟通",
+      "limited": "有限沟通",
+      "other": "其他",
+      "otherPlaceholder": "请注明沟通方式"
+    },
+    "expressesNeeds": {
+      "label": "学生能否有效表达需求？",
+      "consistently": "持续且清晰",
+      "usually": "通常需要一些提示",
+      "sometimes": "有时 - 需要支持",
+      "rarely": "很少或非常困难"
+    },
+    "notes": {
+      "label": "沟通备注",
+      "placeholder": "关于沟通和关系的任何额外观察"
+    }
+  },
+  "section7": {
+    "title": "进步与成长",
+    "overallProgress": {
+      "label": "您如何评价学生的整体进步？",
+      "excellent": "优秀 - 超出预期",
+      "good": "良好 - 符合预期",
+      "fair": "一般 - 在支持下有所进步",
+      "concern": "关注 - 进步有限"
+    },
+    "areasOfGrowth": {
+      "label": "显著成长领域（可多选）",
+      "academic": "学业表现",
+      "social": "社交技能",
+      "emotional": "情绪调节",
+      "behavior": "行为改善",
+      "confidence": "自信心",
+      "independence": "独立性",
+      "participation": "课堂参与",
+      "other": "其他",
+      "otherPlaceholder": "请注明成长领域"
+    },
+    "priorityAreas": {
+      "label": "优先发展领域（可多选）",
+      "academic": "学业技能",
+      "social": "社交技能",
+      "emotional": "情绪调节",
+      "behavior": "行为管理",
+      "communication": "沟通技能",
+      "organization": "组织技能",
+      "selfAdvocacy": "自我倡导",
+      "other": "其他",
+      "otherPlaceholder": "请注明优先领域"
+    },
+    "notes": {
+      "label": "进步备注",
+      "placeholder": "关于进步和成长的任何额外观察"
+    }
+  },
+  "section8": {
+    "title": "优势与兴趣",
+    "personalStrengths": {
+      "label": "学生的个人优势是什么？（可多选）",
+      "creative": "创造性思维",
+      "analytical": "分析能力",
+      "practical": "实际问题解决",
+      "artistic": "艺术能力",
+      "athletic": "运动能力",
+      "technical": "技术能力",
+      "interpersonal": "人际交往能力",
+      "leadership": "领导素质",
+      "perseverance": "毅力",
+      "empathy": "同理心和同情心",
+      "other": "其他",
+      "otherPlaceholder": "请注明优势"
+    },
+    "interests": {
+      "label": "学生的兴趣或爱好是什么？",
+      "placeholder": "描述学生的兴趣、爱好或热情领域"
+    },
+    "learningStyle": {
+      "label": "学生如何学得最好？（可多选）",
+      "visual": "视觉学习（图表、视频）",
+      "auditory": "听觉学习（讲座、讨论）",
+      "kinesthetic": "动觉学习（动手）",
+      "reading": "阅读和写作",
+      "social": "社交/协作学习",
+      "independent": "独立学习",
+      "other": "其他",
+      "otherPlaceholder": "请注明学习风格"
+    },
+    "notes": {
+      "label": "优势与兴趣备注",
+      "placeholder": "关于优势和兴趣的任何额外观察"
+    }
+  },
+  "section9": {
+    "title": "整体评估总结",
+    "summary": {
+      "label": "整体评估总结",
+      "placeholder": "简要概述学生当前状况、进步和建议"
+    },
+    "followUp": {
+      "label": "建议的后续行动",
+      "placeholder": "列出任何具体的后续行动、会议或建议的干预措施"
+    },
+    "additionalComments": {
+      "label": "额外评论或观察",
+      "placeholder": "任何其他有助于支持该学生的信息"
+    }
+  }
+}
+

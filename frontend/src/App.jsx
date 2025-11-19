@@ -17,6 +17,7 @@ import DeploymentLogin from './pages/DeploymentPortal/DeploymentLogin.jsx';
 import DeploymentDashboard from './pages/DeploymentPortal/DeploymentDashboard.jsx';
 import SurveyList from './pages/DeploymentPortal/SurveyList.jsx';
 import PilotSurveyForm from '@/components/forms/pilot/PilotSurveyForm.jsx';
+import BehaviorAssessmentList from './pages/DeploymentPortal/BehaviorAssessmentList.jsx';
 
 const TitleUpdater = () => {
   const location = useLocation();
@@ -48,6 +49,13 @@ function App() {
               <Route path="/deployment_portal/:roleType" element={<DeploymentLogin />} />
               <Route path="/deployment_portal/:roleType/dashboard" element={<DeploymentDashboard />} />
               <Route path="/deployment_portal/:roleType/surveys" element={<SurveyList />} />
+              
+              {/* Behavior Assessment (formB) - Multi-submission routes */}
+              <Route path="/deployment_portal/:roleType/surveys/formB/list" element={<BehaviorAssessmentList />} />
+              <Route path="/deployment_portal/:roleType/surveys/formB/new" element={<PilotSurveyForm />} />
+              <Route path="/deployment_portal/:roleType/surveys/formB/:responseId" element={<PilotSurveyForm />} />
+              
+              {/* General survey form route */}
               <Route path="/deployment_portal/:roleType/surveys/:formId" element={<PilotSurveyForm />} />
               
               {/* Admin login route */}
