@@ -21,6 +21,7 @@ const FormBBehaviorAssessment = ({
   submitting,
   completedSections,
   validationErrors = {},
+  canGoNext,
 }) => {
   const { t } = useTranslation();
   const totalSections = 10; // 0 (intro) + 9 sections
@@ -741,7 +742,7 @@ const FormBBehaviorAssessment = ({
         onSubmit={onSubmit}
         saving={saving}
         submitting={submitting}
-        canGoNext={true}
+        canGoNext={canGoNext}
         canGoPrevious={true}
       />
     </>

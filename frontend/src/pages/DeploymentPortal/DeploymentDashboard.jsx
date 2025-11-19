@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDeploymentAuth } from '../../contexts/DeploymentAuthContext';
-import SparkOSTypoLogo from '../../Images/SparkOSTypo.svg';
+import SparkOSTypoLogo from '../../Images/SparkOStypo.svg';
 
 const DeploymentDashboard = () => {
   const { roleType } = useParams();
