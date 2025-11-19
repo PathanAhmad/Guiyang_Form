@@ -5,6 +5,7 @@ import SchoolIcon from '../../Images/School.png';
 import TeacherIcon from '../../Images/teacher.png';
 import StudentIcon from '../../Images/Student.png';
 import SpecialIcon from '../../Images/Special.png';
+import SparkOSTypo from '../../Images/SparkOSTypo.svg';
 import DeploymentPortalHeader from './DeploymentPortalHeader';
 
 const DeploymentPortalHome = () => {
@@ -51,8 +52,9 @@ const DeploymentPortalHome = () => {
         {/* Welcome Section */}
         <div className="text-center mb-12">
           <h2 className="text-3xl text-gray-900 mb-4">
-            <span className="block pb-2 text-2xl md:text-4xl font-regular">
-              {t('welcome')} <span className="font-extrabold">SparkOS</span>
+            <span className="flex justify-center items-center pb-2 text-2xl md:text-4xl font-regular">
+              {t('welcome')} 
+              <img src={SparkOSTypo} alt="SparkOS" className="h-14 mx-2 inline-block relative top-" />
             </span>
             <span className="block text-4xl md:text-7xl font-extrabold pb-3 bg-gradient-to-r from-[#7c59b2] to-[#62458f] bg-clip-text text-transparent">
               {t('portalName')}
