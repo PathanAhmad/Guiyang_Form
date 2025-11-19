@@ -119,6 +119,14 @@ export const schoolAPI = {
   update: (id, schoolData) =>
     api.patch(`/schools/${id}`, schoolData),
   
+  // Admin: Deactivate school and all its keys
+  deactivate: (id) =>
+    api.post(`/schools/${id}/deactivate`),
+  
+  // Admin: Reactivate school and all its keys
+  reactivate: (id) =>
+    api.post(`/schools/${id}/reactivate`),
+  
   // Admin: Delete school
   delete: (id) =>
     api.delete(`/schools/${id}`),
@@ -147,6 +155,10 @@ export const deploymentAccessAPI = {
   // Admin: Deactivate access key
   deactivateKey: (id) =>
     api.patch(`/deployment-access/${id}/deactivate`),
+  
+  // Admin: Reactivate access key
+  reactivateKey: (id) =>
+    api.patch(`/deployment-access/${id}/reactivate`),
   
   // Admin: Delete access key
   deleteKey: (id) =>

@@ -454,6 +454,42 @@ router.patch('/:id/deactivate', authenticateAdmin, async (req, res) => {
   }
 });
 
+// Protected route: Reactivate access key (Admin only)
+router.patch('/:id/reactivate', authenticateAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const key = await DeploymentAccessKey.findById(id);
+    if (!key) {
+      return res.status(404).json({
+        success: false,
+        error: 'Access key not found',
+      });
+    }
+
+    await key.reactivate();
+
+    console.log(`✅ Deployment access key reactivated: ${key.keyName} (${key.roleType})`);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Access key reactivated successfully',
+      data: {
+        id: key._id,
+        keyName: key.keyName,
+        isActive: key.isActive,
+      },
+    });
+  } catch (error) {
+    console.error('❌ Error reactivating deployment access key:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error',
+      details: error.message,
+    });
+  }
+});
+
 // Protected route: Delete access key (Admin only)
 router.delete('/:id', authenticateAdmin, async (req, res) => {
   try {
