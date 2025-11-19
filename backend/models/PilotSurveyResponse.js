@@ -126,16 +126,46 @@ pilotSurveyResponseSchema.statics.getAllResponsesGroupedByAccessKey = async func
     grouped[response.accessKey].responses.push(response);
   });
   
-  // Enrich with access key and school metadata
+  // Extract unique access keys
+  const uniqueAccessKeys = Object.keys(grouped);
+  
+  // Batch fetch all access keys in one query
+  const accessKeys = await DeploymentAccessKey.find({ 
+    accessKey: { $in: uniqueAccessKeys } 
+  }).lean();
+  
+  // Create lookup map for access keys
+  const accessKeyMap = new Map(
+    accessKeys.map(key => [key.accessKey, key])
+  );
+  
+  // Extract unique school IDs from access keys
+  const uniqueSchoolIds = [...new Set(
+    accessKeys
+      .filter(key => key.schoolId)
+      .map(key => key.schoolId)
+  )];
+  
+  // Batch fetch all schools in one query
+  const schools = await School.find({ 
+    _id: { $in: uniqueSchoolIds } 
+  }).lean();
+  
+  // Create lookup map for schools
+  const schoolMap = new Map(
+    schools.map(school => [school._id.toString(), school])
+  );
+  
+  // Enrich with access key and school metadata using in-memory lookups
   const result = [];
   for (const accessKey in grouped) {
-    const keyDoc = await DeploymentAccessKey.findOne({ accessKey }).lean();
+    const keyDoc = accessKeyMap.get(accessKey);
     const group = grouped[accessKey];
     
     // Get school information if key exists
     let school = null;
     if (keyDoc && keyDoc.schoolId) {
-      school = await School.findById(keyDoc.schoolId).lean();
+      school = schoolMap.get(keyDoc.schoolId.toString());
     }
     
     // Count submitted forms
@@ -169,32 +199,60 @@ pilotSurveyResponseSchema.statics.getAllForExport = async function(accessKey) {
   const query = accessKey ? { accessKey } : {};
   const responses = await this.find(query).sort({ createdAt: -1 }).lean();
   
-  // Enrich with access key and school info
-  const enriched = await Promise.all(
-    responses.map(async (response) => {
-      const keyDoc = await DeploymentAccessKey.findOne({ accessKey: response.accessKey }).lean();
-      let school = null;
-      if (keyDoc && keyDoc.schoolId) {
-        school = await School.findById(keyDoc.schoolId).lean();
-      }
-      
-      return {
-        schoolName: school ? school.schoolName : 'Unknown',
-        accessKey: response.accessKey,
-        keyName: keyDoc ? keyDoc.keyName : 'Unknown',
-        roleType: keyDoc ? keyDoc.roleType : 'Unknown',
-        formId: response.formId,
-        formType: response.formType,
-        status: response.status,
-        language: response.language,
-        submittedAt: response.submittedAt,
-        createdAt: response.createdAt,
-        updatedAt: response.updatedAt,
-        completedSections: response.completedSections.join(', '),
-        responses: JSON.stringify(response.responses)
-      };
-    })
+  // Extract unique access keys from responses
+  const uniqueAccessKeys = [...new Set(responses.map(r => r.accessKey))];
+  
+  // Batch fetch all access keys in one query
+  const accessKeys = await DeploymentAccessKey.find({ 
+    accessKey: { $in: uniqueAccessKeys } 
+  }).lean();
+  
+  // Create lookup map for access keys
+  const accessKeyMap = new Map(
+    accessKeys.map(key => [key.accessKey, key])
   );
+  
+  // Extract unique school IDs from access keys
+  const uniqueSchoolIds = [...new Set(
+    accessKeys
+      .filter(key => key.schoolId)
+      .map(key => key.schoolId)
+  )];
+  
+  // Batch fetch all schools in one query
+  const schools = await School.find({ 
+    _id: { $in: uniqueSchoolIds } 
+  }).lean();
+  
+  // Create lookup map for schools
+  const schoolMap = new Map(
+    schools.map(school => [school._id.toString(), school])
+  );
+  
+  // Enrich responses with access key and school info using in-memory lookups
+  const enriched = responses.map(response => {
+    const keyDoc = accessKeyMap.get(response.accessKey);
+    let school = null;
+    if (keyDoc && keyDoc.schoolId) {
+      school = schoolMap.get(keyDoc.schoolId.toString());
+    }
+    
+    return {
+      schoolName: school ? school.schoolName : 'Unknown',
+      accessKey: response.accessKey,
+      keyName: keyDoc ? keyDoc.keyName : 'Unknown',
+      roleType: keyDoc ? keyDoc.roleType : 'Unknown',
+      formId: response.formId,
+      formType: response.formType,
+      status: response.status,
+      language: response.language,
+      submittedAt: response.submittedAt,
+      createdAt: response.createdAt,
+      updatedAt: response.updatedAt,
+      completedSections: response.completedSections.join(', '),
+      responses: JSON.stringify(response.responses)
+    };
+  });
   
   return enriched;
 };

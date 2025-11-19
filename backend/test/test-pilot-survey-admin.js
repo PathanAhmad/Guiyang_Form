@@ -1,4 +1,5 @@
 const axios = require('axios');
+const config = require('../config/environment');
 
 // Configuration
 const BASE_URL = 'http://localhost:5000';
@@ -6,9 +7,11 @@ const API_BASE = `${BASE_URL}/api/pilot-surveys/admin`;
 const AUTH_BASE = `${BASE_URL}/api/auth`;
 
 // Admin credentials for testing
+// To use real admin credentials for testing:
+// Set TEST_ADMIN_USERID and TEST_ADMIN_PASSWORD in your .env file
 const ADMIN_CREDENTIALS = {
-  userid: 'saraundre',
-  password: 'saraundre@2334'
+  userid: config.TEST_CREDENTIALS.adminUserId,
+  password: config.TEST_CREDENTIALS.adminPassword
 };
 
 // Admin token (will be obtained via login)

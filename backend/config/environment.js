@@ -29,6 +29,12 @@ module.exports = {
   },
   
   // Security
-  JWT_SECRET: process.env.JWT_SECRET || 'fallback_secret_key'
+  JWT_SECRET: process.env.JWT_SECRET || 'fallback_secret_key',
+  
+  // Test Configuration
+  TEST_CREDENTIALS: {
+    adminUserId: process.env.TEST_ADMIN_USERID || 'test_admin',
+    adminPassword: process.env.TEST_ADMIN_PASSWORD || 'test_password'
+  }
 };
 
