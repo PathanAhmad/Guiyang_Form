@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDeploymentAuth } from '../../contexts/DeploymentAuthContext';
 import { getAvailableForms } from '../../services/pilotSurveyApi';
 import { assetUrl } from '../../utils/assets';
+import SparkOSTypoLogo from '../../Images/SparkOSTypo.svg';
 
 const SurveyList = () => {
   const { roleType } = useParams();
@@ -85,7 +86,7 @@ const SurveyList = () => {
       return (
         <button
           onClick={() => handleFormClick(form.formId)}
-          className="w-full px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200"
+          className="w-full px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded-full font-medium hover:bg-gray-200 transition-colors duration-200"
         >
           {t('pilotSurveys:surveyList.viewSurvey')}
         </button>
@@ -94,7 +95,7 @@ const SurveyList = () => {
       return (
         <button
           onClick={() => handleFormClick(form.formId)}
-          className="w-full px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200"
+          className="w-full px-4 py-2 bg-[#7c59b2] text-white rounded-lg font-medium hover:bg-[#62458f] hover:shadow-lg transition-all duration-200"
         >
           {t('pilotSurveys:surveyList.continueSurvey')}
         </button>
@@ -103,7 +104,7 @@ const SurveyList = () => {
       return (
         <button
           onClick={() => handleFormClick(form.formId)}
-          className="w-full px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200"
+          className="w-full px-4 py-2 bg-[#7c59b2] text-white rounded-lg font-medium hover:bg-[#62458f] hover:shadow-lg transition-all duration-200"
         >
           {t('pilotSurveys:surveyList.startSurvey')}
         </button>
@@ -121,14 +122,14 @@ const SurveyList = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/10 to-primary-400/10">
+    <div className="min-h-screen bg-gradient-to-b from-white to-neutral-200">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <img
-                src={assetUrl('/Images/SparkOSFullLogo.svg')}
+                src={SparkOSTypoLogo}
                 alt="SparkOS Logo"
                 className="h-8 w-auto"
               />
@@ -155,7 +156,7 @@ const SurveyList = () => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={toggleLanguage}
-                className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+                className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
@@ -165,7 +166,7 @@ const SurveyList = () => {
               
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+                className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -227,12 +228,12 @@ const SurveyList = () => {
             {forms.map((form) => (
               <div
                 key={form.formId}
-                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                className="bg-white rounded-[2.2rem] shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-xl font-bold text-[#7c59b2] mb-2">
                         {t(`pilotSurveys:formTitles.${form.formId}`)}
                       </h3>
                       <p className="text-gray-600 text-sm">

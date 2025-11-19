@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CheckboxGroup = ({ label, values = [], onChange, options, required, error, fieldName }) => {
+const CheckboxGroup = ({ label, values, onChange, options, required, error, fieldName, inline, unstyled }) => {
   console.log(`CheckboxGroup ${fieldName} - error:`, error);
   
   const handleChange = (optionValue) => {
@@ -12,7 +12,7 @@ const CheckboxGroup = ({ label, values = [], onChange, options, required, error,
 
   return (
     <div 
-      className={`relative space-y-3 p-4 rounded-lg transition-all duration-300 ${
+      className={`relative space-y-2 p-4 rounded-lg transition-all duration-300 ${
         error ? '!bg-red-100 !border-4 !border-red-600' : 'border-2 border-transparent'
       }`}
       data-field-name={fieldName}
@@ -27,14 +27,14 @@ const CheckboxGroup = ({ label, values = [], onChange, options, required, error,
         <div className="absolute top-2 right-2 w-4 h-4 bg-red-600 rounded-full animate-pulse"></div>
       )}
       <label className="block text-sm font-medium text-gray-700">
-        {label} {required && <span className="text-red-600 text-xl font-bold">*</span>}
+        {label}
       </label>
-      <div className="space-y-2">
+      <div className={inline ? 'flex flex-wrap gap-x-6 gap-y-2' : 'space-y-2'}>
         {options.map((option) => (
           <label
             key={option.value}
-            className={`flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition-colors duration-200 ${
-              error ? '!border-red-400 bg-white' : 'border-gray-300'
+            className={`flex items-center cursor-pointer transition-colors duration-200 ${
+              unstyled ? '' : `p-3 border rounded-lg hover:bg-gray-50 ${error ? '!border-red-400 bg-white' : 'border-gray-300'}`
             }`}
           >
             <input

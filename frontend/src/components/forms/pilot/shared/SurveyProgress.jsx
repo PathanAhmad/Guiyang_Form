@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const SurveyProgress = ({ currentSection, totalSections, completedSections = [] }) => {
   const { t } = useTranslation();
+  const [isScrolled, setIsScrolled] = useState(false);
   const progress = (completedSections.length / totalSections) * 100;
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check on initial render
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-10">
+    <div className={`px-6 py-4 sticky top-0 z-10 transition-all duration-200 ${isScrolled ? 'backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-gray-700">
