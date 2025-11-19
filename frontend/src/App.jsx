@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { DeploymentAuthProvider } from './contexts/DeploymentAuthContext';
 import { ToastProvider } from './contexts/ToastContext';
@@ -18,12 +18,27 @@ import DeploymentDashboard from './pages/DeploymentPortal/DeploymentDashboard.js
 import SurveyList from './pages/DeploymentPortal/SurveyList.jsx';
 import PilotSurveyForm from '@/components/forms/pilot/PilotSurveyForm.jsx';
 
+const TitleUpdater = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/deployment_portal')) {
+      document.title = 'SparkOS Deployment Portal';
+    } else {
+      document.title = 'Survey Portal';
+    }
+  }, [location]);
+
+  return null;
+};
+
 function App() {
   return (
     <AuthProvider>
       <DeploymentAuthProvider>
         <ToastProvider>
           <Router>
+            <TitleUpdater />
             <Routes>
               {/* Main application routes (forms, etc.) */}
               <Route path="/*" element={<MainApp />} />

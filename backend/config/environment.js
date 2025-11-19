@@ -5,7 +5,7 @@ module.exports = {
   MONGO_URI: process.env.MONGO_URI,
   
   // Server Configuration
-  PORT: process.env.PORT || 5000,
+  PORT: process.env.PORT || 6000,
   NODE_ENV: process.env.NODE_ENV || 'development',
   
   // Cloudinary Configuration
