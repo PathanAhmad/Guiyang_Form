@@ -1,0 +1,27 @@
+{
+  "welcome": "欢迎来到",
+  "portalName": "部署门户",
+  "description1": "请选择您的角色以访问相应的部署资源和工具。",
+  "description2": "需要有效的访问密钥才能继续。",
+  "roles": {
+    "school": {
+      "title": "学校管理",
+      "description": "管理试点部署、监督教育工作者入职培训以及跟踪学校层面的绩效指标。"
+    },
+    "educator": {
+      "title": "教育工作者",
+      "description": "提交数字课程材料，完成所有调查和反馈，并遵守课堂设置指南。"
+    },
+    "learner": {
+      "title": "学习者",
+      "description": "完成调查并提供反馈。"
+    },
+    "special": {
+      "title": "特殊学习者",
+      "description": "完成调查并提供反馈。"
+    }
+  },
+  "accessPortal": "访问门户",
+  "note": "注意：",
+  "noteText": "每个角色都需要由SparkOS提供给您学校管理部门的唯一访问密钥。如果您没有访问密钥，请联系您的学校管理员。"
+}

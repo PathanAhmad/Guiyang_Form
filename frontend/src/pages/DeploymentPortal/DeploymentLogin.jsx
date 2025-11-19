@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { deploymentAccessAPI } from '../../services/api';
 import { useDeploymentAuth } from '../../contexts/DeploymentAuthContext';
-import { assetUrl } from '../../utils/assets';
 import SchoolIcon from '../../Images/School.png';
 import TeacherIcon from '../../Images/teacher.png';
 import StudentIcon from '../../Images/Student.png';
 import SpecialIcon from '../../Images/Special.png';
 import SparkOSTypo from '../../Images/SparkOStypo.svg';
+import DeploymentPortalHeader from './DeploymentPortalHeader';
 
 const DeploymentLogin = () => {
   const { roleType } = useParams();
@@ -17,6 +18,7 @@ const DeploymentLogin = () => {
   const [accessKey, setAccessKey] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const { t } = useTranslation('deploymentLogin');
 
   // Valid role types
   const validRoles = ['school', 'educator', 'learner', 'special'];
@@ -31,27 +33,19 @@ const DeploymentLogin = () => {
   // Role configuration (content only; visual styling is unified for a minimalist look)
   const roleConfig = {
     school: {
-      title: 'School Management',
       icon: SchoolIcon,
-      description: 'Access pilot deployment management tools',
       bgColor: 'bg-gradient-to-br from-yellow-200 to-orange-300',
     },
     educator: {
-      title: 'Educators',
       icon: TeacherIcon,
-      description: 'Access teaching resources and guidelines',
       bgColor: 'bg-gradient-to-br from-sky-200 to-blue-300',
     },
     learner: {
-      title: 'Learners',
       icon: StudentIcon,
-      description: 'Access surveys and feedback forms',
       bgColor: 'bg-gradient-to-br from-purple-200 to-indigo-300',
     },
     special: {
-      title: 'Special Learners',
       icon: SpecialIcon,
-      description: 'Access specialized surveys and feedback',
       bgColor: 'bg-gradient-to-br from-red-200 to-rose-300',
     },
   };
@@ -70,7 +64,7 @@ const DeploymentLogin = () => {
     setError('');
 
     if (!accessKey.trim()) {
-      setError('Please enter an access key');
+      setError(t('errorMessages.enterKey'));
       return;
     }
 
@@ -91,11 +85,11 @@ const DeploymentLogin = () => {
         // Navigate to dashboard
         navigate(`/deployment_portal/${roleType}/dashboard`);
       } else {
-        setError(data.error || 'Invalid access key');
+        setError(data.error || t('errorMessages.invalidKey'));
       }
     } catch (err) {
       console.error('Access key validation error:', err);
-      setError(err.response?.data?.error || err.message || 'Failed to validate access key');
+      setError(err.response?.data?.error || err.message || t('errorMessages.validationFailed'));
     } finally {
       setLoading(false);
     }
@@ -114,6 +108,7 @@ const DeploymentLogin = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/10 to-primary-400/10 flex items-center justify-center px-4 py-12">
+      <DeploymentPortalHeader />
       <div className="max-w-4xl w-full">
         {/* Login Card */}
         <div className="bg-white rounded-[2.2rem] shadow-lg overflow-hidden flex p-3 gap-3">
@@ -131,27 +126,27 @@ const DeploymentLogin = () => {
             </button>
             <img
               src={config.icon}
-              alt={`${config.title} icon`}
+              alt={t(`roles.${roleType}.title`)}
               className="max-w-full h-auto object-contain"
             />
           </div>
 
           {/* Right Column: Content */}
           <div className="w-3/5 p-5">
-            <h1 className="text-2xl font-extrabold text-[#7c59b2]">{config.title}</h1>
-            <p className="text-sm text-gray-600 mt-0 mb-6">{config.description}</p>
+            <h1 className="text-2xl font-extrabold text-[#7c59b2]">{t(`roles.${roleType}.title`)}</h1>
+            <p className="text-sm text-gray-600 mt-0 mb-6">{t(`roles.${roleType}.description`)}</p>
           
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="accessKey" className="block text-sm font-medium text-gray-700 mb-2">
-                  Access Key
+                  {t('accessKeyLabel')}
                 </label>
                 <input
                   type="text"
                   id="accessKey"
                   value={accessKey}
                   onChange={(e) => setAccessKey(e.target.value)}
-                  placeholder="Enter your access key"
+                  placeholder={t('accessKeyPlaceholder')}
                   className="w-full px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                   disabled={loading}
                   autoFocus
@@ -180,10 +175,10 @@ const DeploymentLogin = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Validating...
+                    {t('validatingButton')}
                   </>
                 ) : (
-                  'Access Portal'
+                  t('accessPortalButton')
                 )}
               </button>
             </form>
@@ -196,8 +191,8 @@ const DeploymentLogin = () => {
                 </svg>
                 <p className="text-sm text-gray-800">
                   {roleType === 'school'
-                    ? "School Management access requires a SparkOS-provided key. Please reach out to SparkOS if you haven't received yours"
-                    : 'Access keys are provided by SparkOS to your school administration. If you do not have an access key, please contact your school administrator for assistance.'}
+                    ? t('infoBox.school')
+                    : t('infoBox.default')}
                 </p>
               </div>
             </div>

@@ -1,0 +1,33 @@
+{
+  "roles": {
+    "school": {
+      "title": "学校管理",
+      "description": "访问试点部署管理工具"
+    },
+    "educator": {
+      "title": "教育工作者",
+      "description": "访问教学资源和指南"
+    },
+    "learner": {
+      "title": "学习者",
+      "description": "访问调查和反馈表"
+    },
+    "special": {
+      "title": "特殊学习者",
+      "description": "访问专门的调查和反馈"
+    }
+  },
+  "accessKeyLabel": "访问密钥",
+  "accessKeyPlaceholder": "请输入您的访问密钥",
+  "accessPortalButton": "访问门户",
+  "validatingButton": "验证中...",
+  "errorMessages": {
+    "enterKey": "请输入访问密钥",
+    "invalidKey": "访问密钥无效",
+    "validationFailed": "验证访问密钥失败"
+  },
+  "infoBox": {
+    "school": "学校管理访问需要SparkOS提供的密钥。如果您尚未收到，请联系SparkOS。",
+    "default": "访问密钥由SparkOS提供给您的学校管理部门。如果您没有访问密钥，请联系您的学校管理员寻求帮助。"
+  }
+}

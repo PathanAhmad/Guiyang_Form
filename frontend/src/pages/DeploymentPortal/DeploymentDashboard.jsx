@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useDeploymentAuth } from '../../contexts/DeploymentAuthContext';
 import { assetUrl } from '../../utils/assets';
-import SparkOSFullLogo from '../../Images/SparkOSFullLogo.svg';
+import DeploymentPortalHeader from './DeploymentPortalHeader';
 
 const DeploymentDashboard = () => {
   const { roleType } = useParams();
   const navigate = useNavigate();
   const { isAuthenticated, roleType: currentRole, keyName, logout } = useDeploymentAuth();
+  const { t } = useTranslation('deploymentDashboard');
 
   // Valid role types
   const validRoles = ['school', 'educator', 'learner', 'special'];
@@ -27,88 +29,15 @@ const DeploymentDashboard = () => {
     }
   }, [isAuthenticated, currentRole, roleType, navigate]);
 
-  const handleLogout = () => {
-    logout();
-    navigate('/deployment_portal');
-  };
-
-  // Role configuration (content only; visual styling is unified for a minimalist look)
-  const roleConfig = {
-    school: {
-      title: 'School Management Dashboard',
-      icon: '🏫',
-      sections: [
-        {
-          title: 'Survey Forms',
-          description: 'Complete surveys to help us understand and improve the pilot program',
-          items: [
-            'Equity & Inclusion Planning Survey',
-            'Course Catalog & Digitalization Survey',
-            'Track your survey progress',
-            'View completed submissions',
-          ],
-          available: true,
-          route: 'surveys',
-        },
-      ],
-    },
-    educator: {
-      title: 'Educators Dashboard',
-      icon: '👨‍🏫',
-      sections: [
-        {
-          title: 'Survey Forms',
-          description: 'Provide detailed insights about individual student assessment',
-          items: [
-            'Student Behavior Assessment',
-            'Track assessment progress',
-            'View completed assessments',
-            'Submit multiple assessments',
-          ],
-          available: true,
-          route: 'surveys',
-        },
-      ],
-    },
-    learner: {
-      title: 'Learners Dashboard',
-      icon: '🎓',
-      sections: [
-        {
-          title: 'Survey Forms',
-          description: 'Complete surveys to help improve the learning experience',
-          items: [
-            'Learning Interest & Preferences Survey',
-            'Track your progress',
-            'View completed surveys',
-            'Save draft and continue later',
-          ],
-          available: true,
-          route: 'surveys',
-        },
-      ],
-    },
-    special: {
-      title: 'Special Learners Dashboard',
-      icon: '✨',
-      sections: [
-        {
-          title: 'Survey Forms',
-          description: 'Complete surveys designed for your learning needs',
-          items: [
-            'Learning Interest & Preferences Survey',
-            'Accessible survey format',
-            'Track your progress',
-            'Save and continue later',
-          ],
-          available: true,
-          route: 'surveys',
-        },
-      ],
+  const config = {
+    icon: {
+      school: '🏫',
+      educator: '👨‍🏫',
+      learner: '🎓',
+      special: '✨',
     },
   };
-
-  const config = roleConfig[roleType] || roleConfig.school;
+  const currentSections = t(`sections.${roleType}`, { returnObjects: true }) || t('sections.school', { returnObjects: true });
 
   // Use a single primary color system to match the main survey site's minimalist theme
   const getColorClasses = () => ({
@@ -127,55 +56,35 @@ const DeploymentDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/10 to-primary-400/10">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
+      <DeploymentPortalHeader />
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
+        <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-4">
-              <img
-                src={SparkOSFullLogo}
-                alt="SparkOS Logo"
-                className="h-8 w-auto"
-              />
-              <div className="border-l border-gray-300 pl-4">
+              <div className="border-l-4 border-primary-500 pl-4">
                 <div className="flex items-center space-x-3">
-                  <span className="text-2xl">{config.icon}</span>
+                  <span className="text-3xl">{config.icon[roleType]}</span>
                   <div>
-                    <h1 className="text-xl font-bold text-gray-900">{config.title}</h1>
+                    <h1 className="text-2xl font-bold text-gray-900">{t(`dashboardTitles.${roleType}`)}</h1>
                     {keyName && (
-                      <p className="text-xs text-gray-500">Access: {keyName}</p>
+                      <p className="text-sm text-gray-500">{t('access')}: {keyName}</p>
                     )}
                   </div>
                 </div>
               </div>
             </div>
-
-            <button
-              onClick={handleLogout}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
-            >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-              </svg>
-              Logout
-            </button>
-          </div>
         </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Banner */}
         <div className={`bg-gradient-to-r ${colorClasses.gradient} rounded-xl shadow-lg p-8 mb-8 text-white`}>
-          <h2 className="text-3xl font-bold mb-2">Welcome to Your Portal</h2>
+          <h2 className="text-3xl font-bold mb-2">{t('welcome')}</h2>
           <p className="text-blue-100 text-lg">
-            Access your resources, submit materials, and track your progress
+            {t('welcomeSub')}
           </p>
         </div>
 
         {/* Sections Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {config.sections.map((section, index) => (
+          {currentSections.map((section, index) => (
             <div
               key={index}
               className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
@@ -208,10 +117,10 @@ const DeploymentDashboard = () => {
                   ))}
                 </ul>
                 <button
-                  onClick={() => navigate(`/deployment_portal/${roleType}/${section.route}`)}
+                  onClick={() => navigate(`/deployment_portal/${roleType}/surveys`)}
                   className={`mt-6 w-full px-4 py-2 bg-gradient-to-r ${colorClasses.gradient} text-white rounded-lg font-medium hover:shadow-lg transition-all duration-200`}
                 >
-                  Access {section.title}
+                  {t('access')} {section.title}
                 </button>
               </div>
             </div>

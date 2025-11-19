@@ -1,0 +1,27 @@
+{
+  "welcome": "Welcome to the",
+  "portalName": "Deployment Portal",
+  "description1": "Select your role to access the appropriate deployment resources and tools.",
+  "description2": "A valid access key is required to proceed.",
+  "roles": {
+    "school": {
+      "title": "School Management",
+      "description": "Manage pilot deployment, oversee educator onboarding, and track school-level performance metrics."
+    },
+    "educator": {
+      "title": "Educators",
+      "description": "Submit digital course materials, complete all surveys and feedback, and adhere to classroom setup guidelines."
+    },
+    "learner": {
+      "title": "Learners",
+      "description": "Complete surveys and provide feedback."
+    },
+    "special": {
+      "title": "Special Learners",
+      "description": "Complete surveys and provide feedback."
+    }
+  },
+  "accessPortal": "Access Portal",
+  "note": "Note:",
+  "noteText": "Each role requires a unique access key provided by SparkOS to your school administration. If you do not have an access key, please contact your school administrator."
+}

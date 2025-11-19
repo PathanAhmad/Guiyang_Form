@@ -1,0 +1,33 @@
+{
+  "roles": {
+    "school": {
+      "title": "School Management",
+      "description": "Access pilot deployment management tools"
+    },
+    "educator": {
+      "title": "Educators",
+      "description": "Access teaching resources and guidelines"
+    },
+    "learner": {
+      "title": "Learners",
+      "description": "Access surveys and feedback forms"
+    },
+    "special": {
+      "title": "Special Learners",
+      "description": "Access specialized surveys and feedback"
+    }
+  },
+  "accessKeyLabel": "Access Key",
+  "accessKeyPlaceholder": "Enter your access key",
+  "accessPortalButton": "Access Portal",
+  "validatingButton": "Validating...",
+  "errorMessages": {
+    "enterKey": "Please enter an access key",
+    "invalidKey": "Invalid access key",
+    "validationFailed": "Failed to validate access key"
+  },
+  "infoBox": {
+    "school": "School Management access requires a SparkOS-provided key. Please reach out to SparkOS if you haven't received yours",
+    "default": "Access keys are provided by SparkOS to your school administration. If you do not have an access key, please contact your school administrator for assistance."
+  }
+}

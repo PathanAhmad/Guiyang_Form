@@ -9,6 +9,9 @@ import enForm1 from '../locales/en/form1.json';
 import enForm2 from '../locales/en/form2.json';
 import enForm3 from '../locales/en/form3.json';
 import enForm4 from '../locales/en/form4.json';
+import enDeploymentHome from '../locales/en/deploymentHome.json';
+import enDeploymentLogin from '../locales/en/deploymentLogin.json';
+import enDeploymentDashboard from '../locales/en/deploymentDashboard.json';
 
 // Import legacy translations (for backward compatibility)
 import enLegacy from '../locales/en.json';
@@ -21,6 +24,9 @@ import zhForm1 from '../locales/zh/form1.json';
 import zhForm2 from '../locales/zh/form2.json';
 import zhForm3 from '../locales/zh/form3.json';
 import zhForm4 from '../locales/zh/form4.json';
+import zhDeploymentHome from '../locales/zh/deploymentHome.json';
+import zhDeploymentLogin from '../locales/zh/deploymentLogin.json';
+import zhDeploymentDashboard from '../locales/zh/deploymentDashboard.json';
 
 const resources = {
   en: {
@@ -31,6 +37,9 @@ const resources = {
     form2: enForm2,
     form3: enForm3,
     form4: enForm4,
+    deploymentHome: enDeploymentHome,
+    deploymentLogin: enDeploymentLogin,
+    deploymentDashboard: enDeploymentDashboard,
   },
   zh: {
     translation: zhLegacy, // Keep legacy translations for backward compatibility
@@ -40,6 +49,9 @@ const resources = {
     form2: zhForm2,
     form3: zhForm3,
     form4: zhForm4,
+    deploymentHome: zhDeploymentHome,
+    deploymentLogin: zhDeploymentLogin,
+    deploymentDashboard: zhDeploymentDashboard,
   },
 };
 
@@ -50,7 +62,7 @@ i18n
     resources,
     fallbackLng: 'en',
     debug: false,
-    ns: ['translation', 'common', 'pilotSurveys', 'form1', 'form2', 'form3', 'form4'], // Declare namespaces
+    ns: ['translation', 'common', 'pilotSurveys', 'form1', 'form2', 'form3', 'form4', 'deploymentHome', 'deploymentLogin', 'deploymentDashboard'], // Declare namespaces
     defaultNS: 'translation', // Default namespace for backward compatibility
     
     detection: {

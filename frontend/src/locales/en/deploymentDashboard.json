@@ -1,0 +1,61 @@
+{
+  "dashboardTitles": {
+    "school": "School Management Dashboard",
+    "educator": "Educators Dashboard",
+    "learner": "Learners Dashboard",
+    "special": "Special Learners Dashboard"
+  },
+  "welcome": "Welcome to Your Portal",
+  "welcomeSub": "Access your resources, submit materials, and track your progress",
+  "access": "Access",
+  "sections": {
+    "school": [
+      {
+        "title": "Survey Forms",
+        "description": "Complete surveys to help us understand and improve the pilot program",
+        "items": [
+          "Equity & Inclusion Planning Survey",
+          "Course Catalog & Digitalization Survey",
+          "Track your survey progress",
+          "View completed submissions"
+        ]
+      }
+    ],
+    "educator": [
+      {
+        "title": "Survey Forms",
+        "description": "Provide detailed insights about individual student assessment",
+        "items": [
+          "Student Behavior Assessment",
+          "Track assessment progress",
+          "View completed assessments",
+          "Submit multiple assessments"
+        ]
+      }
+    ],
+    "learner": [
+      {
+        "title": "Survey Forms",
+        "description": "Complete surveys to help improve the learning experience",
+        "items": [
+          "Learning Interest & Preferences Survey",
+          "Track your progress",
+          "View completed surveys",
+          "Save draft and continue later"
+        ]
+      }
+    ],
+    "special": [
+      {
+        "title": "Survey Forms",
+        "description": "Complete surveys designed for your learning needs",
+        "items": [
+          "Learning Interest & Preferences Survey",
+          "Accessible survey format",
+          "Track your progress",
+          "Save and continue later"
+        ]
+      }
+    ]
+  }
+}
