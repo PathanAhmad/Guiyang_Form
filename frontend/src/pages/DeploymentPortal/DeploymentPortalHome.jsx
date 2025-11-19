@@ -99,8 +99,8 @@ const DeploymentPortalHome = () => {
         {/* Welcome Section */}
         <div className="text-center mb-12">
           <h2 className="text-3xl text-gray-900 mb-4">
-            <span className="block pb-2 text-2xl md:text-4xl font-regular">Welcome to the</span>
-            <span className="block text-4xl md:text-7xl font-extrabold pb-3 bg-gradient-to-r from-[#ff4848] to-[#c62222] bg-clip-text text-transparent">
+            <span className="block pb-2 text-2xl md:text-4xl font-regular">Welcome to the SparkOS</span>
+            <span className="block text-4xl md:text-7xl font-extrabold pb-3 bg-gradient-to-r from-[#7c59b2] to-[#62458f] bg-clip-text text-transparent">
               Deployment Portal
             </span>
           </h2>
@@ -143,7 +143,7 @@ const DeploymentPortalHome = () => {
                   </p>
                 </div>
                 <div className="mt-6">
-                  <div className="inline-flex items-center justify-center px-4 py-2 font-semibold text-white bg-[#ff4848] rounded-full shadow-sm group-hover:bg-[#e04040] transition-colors duration-200">
+                  <div className="inline-flex items-center justify-center px-4 py-2 font-semibold text-white bg-[#7c59b2] rounded-full shadow-sm group-hover:bg-[#62458f] transition-colors duration-200">
                     <span>Access Portal</span>
                     <svg
                       className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-200"

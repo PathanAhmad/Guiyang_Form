@@ -104,7 +104,7 @@ const DeploymentLogin = () => {
   // Use a single primary color system to match the main survey site's minimalist theme
   const getColorClasses = () => ({
     gradient: 'from-primary-500 to-primary-600',
-    button: 'bg-primary-600 hover:bg-primary-700 focus:ring-primary-500',
+    button: 'bg-[#7c59b2] hover:bg-[#62458f] focus:ring-[#7c59b2]',
     text: 'text-primary-600',
     border: 'border-primary-200',
     bg: 'bg-primary-50',
@@ -138,7 +138,7 @@ const DeploymentLogin = () => {
 
           {/* Right Column: Content */}
           <div className="w-3/5 p-5">
-            <h1 className="text-2xl font-extrabold text-[#ff4848]">{config.title}</h1>
+            <h1 className="text-2xl font-extrabold text-[#7c59b2]">{config.title}</h1>
             <p className="text-sm text-gray-600 mt-0 mb-6">{config.description}</p>
           
             <form onSubmit={handleSubmit} className="space-y-6">
