@@ -24,6 +24,7 @@
   "errorMessages": {
     "enterKey": "请输入访问密钥",
     "invalidKey": "访问密钥无效",
+    "invalidKeyForRole": "此访问密钥与当前角色不匹配",
     "validationFailed": "验证访问密钥失败"
   },
   "infoBox": {

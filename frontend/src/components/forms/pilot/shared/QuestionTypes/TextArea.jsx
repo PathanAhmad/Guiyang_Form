@@ -21,6 +21,7 @@ const TextArea = ({ label, value, onChange, placeholder, required, error, rows =
       )}
       <label className="block text-sm font-medium text-gray-700">
         {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       <textarea
         value={value || ''}

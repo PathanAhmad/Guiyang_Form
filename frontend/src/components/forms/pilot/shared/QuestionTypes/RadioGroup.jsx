@@ -21,6 +21,7 @@ const RadioGroup = ({ label, value, onChange, options, required, error, fieldNam
       )}
       <label className="block text-sm font-medium text-gray-700">
         {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       <div className="space-y-2">
         {options.map((option) => (

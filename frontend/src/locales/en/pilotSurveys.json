@@ -4,6 +4,7 @@
     "description": "Complete surveys to help us understand and improve the pilot program",
     "viewAll": "View All Surveys"
   },
+  "accessWithName": "Access: {{keyName}}",
   "surveyList": {
     "title": "Available Surveys",
     "subtitle": "Select a survey to begin or continue",
@@ -21,7 +22,9 @@
     "viewAllSubmissions": "View All Submissions",
     "submissionsCount": "{{count}} submission(s)",
     "submitted": "{{count}} submitted",
-    "drafts": "{{count}} draft(s)"
+    "drafts": "{{count}} draft(s)",
+    "sectionsLabel": "{{completed}} / {{total}} sections",
+    "lastModified": "Last modified: {{date}}"
   },
   "form": {
     "savingDraft": "Saving draft...",

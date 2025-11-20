@@ -154,7 +154,7 @@ const SurveyList = () => {
                 alt="SparkOS Logo"
                 className="h-8 w-auto"
               />
-              <div className="border-l border-gray-300 pl-4">
+                  <div className="border-l border-gray-300 pl-4">
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={handleBack}
@@ -167,7 +167,9 @@ const SurveyList = () => {
                   <div>
                     <h1 className="text-xl font-bold text-gray-900">{t('pilotSurveys:surveyList.title')}</h1>
                     {keyName && (
-                      <p className="text-xs text-gray-500">Access: {keyName}</p>
+                      <p className="text-xs text-gray-500">
+                        {t('deploymentDashboard:accessWithName', { keyName })}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -297,7 +299,10 @@ const SurveyList = () => {
                             {t('pilotSurveys:surveyList.progress', { percent: form.completionPercentage })}
                           </span>
                           <span className="text-sm text-gray-500">
-                            {form.completedSections.length} / {form.totalSections} sections
+                            {t('pilotSurveys:surveyList.sectionsLabel', {
+                              completed: form.completedSections.length,
+                              total: form.totalSections,
+                            })}
                           </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
@@ -313,7 +318,15 @@ const SurveyList = () => {
                   {/* Last Modified */}
                   {form.lastModified && (
                     <p className="text-xs text-gray-500 mb-4">
-                      Last modified: {new Date(form.lastModified).toLocaleDateString()}
+                      {t('pilotSurveys:surveyList.lastModified', {
+                        date: (() => {
+                          const date = new Date(form.lastModified);
+                          const day = String(date.getDate()).padStart(2, '0');
+                          const month = String(date.getMonth() + 1).padStart(2, '0');
+                          const year = date.getFullYear();
+                          return `${day}/${month}/${year}`;
+                        })(),
+                      })}
                     </p>
                   )}
 

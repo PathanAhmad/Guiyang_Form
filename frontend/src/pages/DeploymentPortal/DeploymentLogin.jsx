@@ -59,6 +59,20 @@ const DeploymentLogin = () => {
     }
   }, [isAuthenticated, currentRole, roleType, navigate]);
 
+  const mapServerErrorToLocalizedMessage = (rawError) => {
+    if (!rawError) return '';
+
+    if (rawError === 'Invalid access key for this role') {
+      return t('errorMessages.invalidKeyForRole');
+    }
+
+    if (rawError === 'Access key is required') {
+      return t('errorMessages.enterKey');
+    }
+
+    return rawError;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -85,11 +99,12 @@ const DeploymentLogin = () => {
         // Navigate to dashboard
         navigate(`/deployment_portal/${roleType}/dashboard`);
       } else {
-        setError(data.error || t('errorMessages.invalidKey'));
+        setError(data.error ? mapServerErrorToLocalizedMessage(data.error) : t('errorMessages.invalidKey'));
       }
     } catch (err) {
       console.error('Access key validation error:', err);
-      setError(err.response?.data?.error || err.message || t('errorMessages.validationFailed'));
+      const serverError = err.response?.data?.error || err.message;
+      setError(serverError ? mapServerErrorToLocalizedMessage(serverError) : t('errorMessages.validationFailed'));
     } finally {
       setLoading(false);
     }

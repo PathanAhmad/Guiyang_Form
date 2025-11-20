@@ -4,6 +4,7 @@
     "description": "完成问卷以帮助我们了解和改进试点项目",
     "viewAll": "查看所有问卷"
   },
+  "accessWithName": "访问: {{keyName}}",
   "surveyList": {
     "title": "可用问卷",
     "subtitle": "选择一个问卷开始或继续",
@@ -21,7 +22,9 @@
     "viewAllSubmissions": "查看所有提交",
     "submissionsCount": "{{count}} 个提交",
     "submitted": "已提交 {{count}} 个",
-    "drafts": "{{count}} 个草稿"
+    "drafts": "{{count}} 个草稿",
+    "sectionsLabel": "{{completed}} / {{total}} 部分",
+    "lastModified": "最后修改时间：{{date}}"
   },
   "form": {
     "savingDraft": "保存草稿中...",

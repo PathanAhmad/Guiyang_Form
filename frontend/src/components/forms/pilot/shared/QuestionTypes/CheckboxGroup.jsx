@@ -28,6 +28,7 @@ const CheckboxGroup = ({ label, values, onChange, options, required, error, fiel
       )}
       <label className="block text-sm font-medium text-gray-700">
         {label}
+        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       <div className={inline ? 'flex flex-wrap gap-x-6 gap-y-2' : 'space-y-2'}>
         {options.map((option) => (

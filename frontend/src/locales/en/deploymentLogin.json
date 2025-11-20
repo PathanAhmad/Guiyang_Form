@@ -24,6 +24,7 @@
   "errorMessages": {
     "enterKey": "Please enter an access key",
     "invalidKey": "Invalid access key",
+    "invalidKeyForRole": "Invalid access key for this role",
     "validationFailed": "Failed to validate access key"
   },
   "infoBox": {

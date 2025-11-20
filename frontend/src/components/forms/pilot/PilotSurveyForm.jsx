@@ -519,7 +519,7 @@ const PilotSurveyForm = () => {
                       {t(`pilotSurveys:formTitles.${formId}`)}
                     </h1>
                     {keyName && (
-                      <p className="text-xs text-gray-500">Access: {keyName}</p>
+                      <p className="text-xs text-gray-500">{t('pilotSurveys:accessWithName', { keyName })}</p>
                     )}
                   </div>
                 </div>
