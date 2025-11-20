@@ -5,6 +5,7 @@ import TextArea from './shared/QuestionTypes/TextArea';
 import RadioGroup from './shared/QuestionTypes/RadioGroup';
 import CheckboxGroup from './shared/QuestionTypes/CheckboxGroup';
 import DateInput from './shared/QuestionTypes/DateInput';
+import LocationDropdowns from './shared/QuestionTypes/LocationDropdowns';
 
 const Form1StudentSurvey = ({
   currentSection,
@@ -102,11 +103,23 @@ const Form1StudentSurvey = ({
         error={validationErrors.languages ? t('pilotSurveys:form.requiredField') : null}
         fieldName="languages"
       />
-      <TextInput
+      <LocationDropdowns
         label={t('form1:section1.location.label')}
-        value={formData.location}
-        onChange={(val) => onFieldChange('location', val)}
-        placeholder={t('form1:section1.location.placeholder')}
+        countryLabel={t('form1:section1.location.countryLabel')}
+        provinceLabel={t('form1:section1.location.provinceLabel')}
+        cityLabel={t('form1:section1.location.cityLabel')}
+        countryPlaceholder={t('form1:section1.location.countryPlaceholder')}
+        provincePlaceholder={t('form1:section1.location.provincePlaceholder')}
+        cityPlaceholder={t('form1:section1.location.cityPlaceholder')}
+        countryValue={formData.locationCountry || ''}
+        provinceValue={formData.locationProvince || ''}
+        cityValue={formData.locationCity || ''}
+        onChange={({ country, province, city, displayValue }) => {
+          onFieldChange('locationCountry', country);
+          onFieldChange('locationProvince', province);
+          onFieldChange('locationCity', city);
+          onFieldChange('location', displayValue);
+        }}
         required
         error={validationErrors.location ? t('pilotSurveys:form.requiredField') : null}
         fieldName="location"

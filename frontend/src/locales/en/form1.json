@@ -33,7 +33,13 @@
     },
     "location": {
       "label": "Country | Province/State | City",
-      "placeholder": "Enter your location"
+      "placeholder": "Enter your location",
+      "countryLabel": "Country",
+      "provinceLabel": "Province/State",
+      "cityLabel": "City",
+      "countryPlaceholder": "Select country",
+      "provincePlaceholder": "Select province/state",
+      "cityPlaceholder": "Select city"
     },
     "dialects": {
       "label": "Language / Dialects (Languages you speak or understand well)",

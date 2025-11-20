@@ -33,7 +33,13 @@
     },
     "location": {
       "label": "国家 | 省份/州 | 城市",
-      "placeholder": "请输入您的位置"
+      "placeholder": "请输入您的位置",
+      "countryLabel": "国家",
+      "provinceLabel": "省份/州",
+      "cityLabel": "城市",
+      "countryPlaceholder": "选择国家",
+      "provincePlaceholder": "选择省份/州",
+      "cityPlaceholder": "选择城市"
     },
     "dialects": {
       "label": "掌握或擅长的语言/方言",

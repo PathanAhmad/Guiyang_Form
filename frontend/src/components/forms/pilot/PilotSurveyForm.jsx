@@ -108,6 +108,24 @@ const PilotSurveyForm = () => {
     const errors = {};
     
     requiredFields.forEach(field => {
+      // Special handling for form1 location (now split into 3 dropdowns)
+      if (formId === 'form1' && field === 'location') {
+        const country = formData.locationCountry;
+        const province = formData.locationProvince;
+        const city = formData.locationCity;
+        const legacyLocation = formData.location;
+
+        const hasStructured = country && province && city;
+        const hasLegacy =
+          typeof legacyLocation === 'string' && legacyLocation.trim() !== '';
+
+        if (!hasStructured && !hasLegacy) {
+          errors.location = true;
+        }
+
+        return;
+      }
+
       const value = formData[field];
       // Check for empty values, empty strings, or empty arrays
       if (!value || 
