@@ -103,6 +103,15 @@ const Form1StudentSurvey = ({
         error={validationErrors.languages ? t('pilotSurveys:form.requiredField') : null}
         fieldName="languages"
       />
+      {formData.languages?.includes('other') && (
+        <TextInput
+          label={t('form1:section1.languages.otherPlaceholder')}
+          value={formData.languagesOther}
+          onChange={(val) => onFieldChange('languagesOther', val)}
+          placeholder={t('form1:section1.languages.otherPlaceholder')}
+          fieldName="languagesOther"
+        />
+      )}
       <LocationDropdowns
         label={t('form1:section1.location.label')}
         countryLabel={t('form1:section1.location.countryLabel')}
@@ -191,15 +200,29 @@ const Form1StudentSurvey = ({
         error={validationErrors.pride ? t('pilotSurveys:form.requiredField') : null}
         fieldName="pride"
       />
-      <TextArea
+      <RadioGroup
         label={t('form1:section2.difficult.label')}
-        value={formData.difficult}
-        onChange={(val) => onFieldChange('difficult', val)}
-        placeholder={t('form1:section2.difficult.placeholder')}
+        value={formData.difficultHasSubjects}
+        onChange={(val) => onFieldChange('difficultHasSubjects', val)}
+        options={[
+          { value: 'yes', label: t('form1:section2.difficult.yes') },
+          { value: 'no', label: t('form1:section2.difficult.no') },
+        ]}
         required
-        error={validationErrors.difficult ? t('pilotSurveys:form.requiredField') : null}
-        fieldName="difficult"
+        error={validationErrors.difficultHasSubjects ? t('pilotSurveys:form.requiredField') : null}
+        fieldName="difficultHasSubjects"
       />
+      {formData.difficultHasSubjects === 'yes' && (
+        <TextArea
+          label={t('form1:section2.difficult.placeholder')}
+          value={formData.difficult}
+          onChange={(val) => onFieldChange('difficult', val)}
+          placeholder={t('form1:section2.difficult.placeholder')}
+          required
+          error={validationErrors.difficult ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="difficult"
+        />
+      )}
       <CheckboxGroup
         label={t('form1:section2.future.label')}
         values={formData.future || []}

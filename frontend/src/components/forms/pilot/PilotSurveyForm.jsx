@@ -49,7 +49,7 @@ const PilotSurveyForm = () => {
       form1: {
         1: ['consents'], // Section 0: Intro & Consent
         2: ['fullName', 'dateOfBirth', 'gender', 'languages', 'location', 'dialects'], // NOT identity (optional)
-        3: ['enjoyedSubjects', 'strengths', 'pride', 'difficult', 'future', 'inspiration', 'learnNew'],
+        3: ['enjoyedSubjects', 'strengths', 'pride', 'difficultHasSubjects', 'future', 'inspiration', 'learnNew'],
         4: ['learnBest', 'tests', 'working', 'schedule', 'focus', 'taskPreference', 'challenges', 'tools', 'perfectLesson'], // NOT dislike (can skip)
         5: ['technology', 'learningTools', 'noisyClassroom', 'changes', 'bothers', 'calm'],
         6: ['aiFrequency', 'aiActivities', 'aiEnjoyMost', 'aiConcerns', 'aiFutureSupport'],
@@ -121,6 +121,28 @@ const PilotSurveyForm = () => {
 
         if (!hasStructured && !hasLegacy) {
           errors.location = true;
+        }
+
+        return;
+      }
+
+      // Special handling for \"difficult\" question flow in form1, section 3
+      if (formId === 'form1' && sectionNumber === 3 && field === 'difficultHasSubjects') {
+        const hasSubjectsValue = formData.difficultHasSubjects;
+
+        if (
+          !hasSubjectsValue ||
+          (typeof hasSubjectsValue === 'string' && hasSubjectsValue.trim() === '')
+        ) {
+          errors.difficultHasSubjects = true;
+        } else if (hasSubjectsValue === 'yes') {
+          const difficultValue = formData.difficult;
+          if (
+            !difficultValue ||
+            (typeof difficultValue === 'string' && difficultValue.trim() === '')
+          ) {
+            errors.difficult = true;
+          }
         }
 
         return;

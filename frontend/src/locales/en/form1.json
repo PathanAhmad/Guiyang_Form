@@ -25,7 +25,7 @@
       "female": "Female"
     },
     "languages": {
-      "label": "Languages you're comfortable using in class (check all)",
+      "label": "Languages you're comfortable using in class (check all applicable)",
       "english": "English",
       "chinese": "Chinese",
       "other": "Other",
@@ -83,7 +83,9 @@
     },
     "difficult": {
       "label": "Are there any subjects you find difficult or frustrating?",
-      "placeholder": "Describe difficult subjects"
+      "yes": "Yes",
+      "no": "No",
+      "placeholder": "If yes, which subjects feel difficult or frustrating?"
     },
     "future": {
       "label": "What do you hope to do in the future? (Select all that apply)",
