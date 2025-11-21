@@ -54,7 +54,7 @@ const DeploymentDashboard = () => {
           id: 'resourceHub', available: false,
         },
         {
-          id: 'contact', available: false,
+          id: 'contact', route: 'contact', available: true,
         },
       ],
     },
@@ -72,7 +72,7 @@ const DeploymentDashboard = () => {
           id: 'resourceHub', available: false,
         },
         {
-          id: 'contact', available: false,
+          id: 'contact', route: 'contact', available: true,
         },
       ],
     },
@@ -90,7 +90,7 @@ const DeploymentDashboard = () => {
           id: 'resourceHub', available: false,
         },
         {
-          id: 'contact', available: false,
+          id: 'contact', route: 'contact', available: true,
         },
       ],
     },
@@ -108,7 +108,7 @@ const DeploymentDashboard = () => {
           id: 'resourceHub', available: false,
         },
         {
-          id: 'contact', available: false,
+          id: 'contact', route: 'contact', available: true,
         },
       ],
     },
@@ -198,7 +198,7 @@ const DeploymentDashboard = () => {
             return (
               <div
                 key={index}
-                className="bg-white rounded-[2rem] shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                className="bg-white rounded-[2rem] shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
               >
                 <div className={`${colorClasses.bg} border-b ${colorClasses.border} px-6 py-4`}>
                   <h3 className="text-xl font-bold text-gray-900">
@@ -206,7 +206,7 @@ const DeploymentDashboard = () => {
                   </h3>
                   <p className="text-gray-600 text-sm mt-1">{description}</p>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <ul className="space-y-3">
                     {items.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start">
@@ -227,23 +227,25 @@ const DeploymentDashboard = () => {
                       </li>
                     ))}
                   </ul>
-                  {section.available ? (
-                    <button
-                      onClick={() => navigate(`/deployment_portal/${roleType}/${section.route}`)}
-                      className="mt-6 w-full px-4 py-2 bg-black text-white rounded-full font-medium hover:bg-gray-800 hover:shadow-lg transition-all duration-200"
-                    >
-                      {t('accessButton', { title })}
-                    </button>
-                  ) : (
-                    <div className="mt-6 w-full px-4 py-2 bg-gray-100 text-gray-400 border border-gray-200 rounded-full font-medium text-center">
-                      <span className="flex items-center justify-center">
-                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                        {t('locked')}
-                      </span>
-                    </div>
-                  )}
+                  <div className="mt-auto pt-6">
+                    {section.available ? (
+                      <button
+                        onClick={() => navigate(`/deployment_portal/${roleType}/${section.route}`)}
+                        className="w-full px-4 py-2 bg-black text-white rounded-full font-medium hover:bg-gray-800 hover:shadow-lg transition-all duration-200"
+                      >
+                        {section.id === 'contact' ? t('reachUs') : t('accessButton', { title })}
+                      </button>
+                    ) : (
+                      <div className="w-full px-4 py-2 bg-gray-100 text-gray-400 border border-gray-200 rounded-full font-medium text-center">
+                        <span className="flex items-center justify-center">
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                          {t('locked')}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             );

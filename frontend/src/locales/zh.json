@@ -1190,5 +1190,49 @@
     "Yemen": "也门",
     "Zambia": "赞比亚",
     "Zimbabwe": "津巴布韦"
+  },
+  "contactSection": {
+    "title": "联系我们",
+    "subtitle": "如果您有任何问题或建议，请通过以下方式联系我们：",
+    "email": {
+      "label": "电子邮箱",
+      "placeholder": "请输入您的电子邮箱地址"
+    },
+    "phone": {
+      "label": "联系电话",
+      "placeholder": "请输入您的电话号码"
+    },
+    "wechatId": {
+      "label": "微信号",
+      "placeholder": "请输入您的微信号"
+    },
+    "whatsappId": {
+      "label": "WhatsApp ID",
+      "placeholder": "请输入您的WhatsApp ID"
+    },
+    "message": {
+      "label": "附加信息",
+      "placeholder": "请告诉我们您的具体需求和要求"
+    },
+    "submit": "提交",
+    "successTitle": "联系已提交！",
+    "successMessage": "感谢您的联系。我们将在24小时内回复您。",
+    "validation": {
+      "emailRequired": "电子邮箱为必填项",
+      "emailInvalid": "请输入有效的电子邮箱地址",
+      "phoneRequired": "联系电话为必填项",
+      "phoneInvalid": "电话号码必须是10-20个字符",
+      "wechatRequired": "微信号为必填项",
+      "wechatTooLong": "微信号不得超过100个字符",
+      "whatsappRequired": "WhatsApp ID为必填项",
+      "whatsappTooLong": "WhatsApp ID不得超过100个字符",
+      "messageRequired": "附加信息为必填项"
+    },
+    "errors": {
+      "submissionError": "提交错误",
+      "networkError": "网络错误。请重试。",
+      "serverError": "服务器错误。请稍后重试。",
+      "unknownError": "发生意外错误。请重试。"
+    }
   }
 }

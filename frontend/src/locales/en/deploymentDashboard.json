@@ -49,7 +49,6 @@
         "items": [
           "Contact support team",
           "Submit inquiries",
-          "Live chat support",
           "Request assistance"
         ]
       }
@@ -91,8 +90,7 @@
         "items": [
           "Contact support team",
           "Submit inquiries",
-          "Request assistance",
-          "Live chat support"
+          "Request assistance"
         ]
       }
     },
@@ -133,8 +131,7 @@
         "items": [
           "Contact support team",
           "Ask questions",
-          "Get help",
-          "Live chat support"
+          "Get help"
         ]
       }
     },
@@ -175,10 +172,10 @@
         "items": [
           "Contact support team",
           "Request accommodations",
-          "Get assistance",
-          "Live chat support"
+          "Get assistance"
         ]
       }
     }
-  }
+  },
+  "reachUs": "Reach Us"
 }

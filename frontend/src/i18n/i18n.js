@@ -13,6 +13,7 @@ import enFormB from '../locales/en/formB.json';
 import enDeploymentHome from '../locales/en/deploymentHome.json';
 import enDeploymentLogin from '../locales/en/deploymentLogin.json';
 import enDeploymentDashboard from '../locales/en/deploymentDashboard.json';
+import contactSection_en from '../locales/en/contactSection.json';
 
 // Import legacy translations (for backward compatibility)
 import enLegacy from '../locales/en.json';
@@ -29,6 +30,7 @@ import zhFormB from '../locales/zh/formB.json';
 import zhDeploymentHome from '../locales/zh/deploymentHome.json';
 import zhDeploymentLogin from '../locales/zh/deploymentLogin.json';
 import zhDeploymentDashboard from '../locales/zh/deploymentDashboard.json';
+import contactSection_zh from '../locales/zh/contactSection.json';
 
 const resources = {
   en: {
@@ -43,6 +45,7 @@ const resources = {
     deploymentHome: enDeploymentHome,
     deploymentLogin: enDeploymentLogin,
     deploymentDashboard: enDeploymentDashboard,
+    contactSection: contactSection_en,
   },
   zh: {
     translation: zhLegacy, // Keep legacy translations for backward compatibility
@@ -56,6 +59,7 @@ const resources = {
     deploymentHome: zhDeploymentHome,
     deploymentLogin: zhDeploymentLogin,
     deploymentDashboard: zhDeploymentDashboard,
+    contactSection: contactSection_zh,
   },
 };
 
@@ -66,7 +70,7 @@ i18n
     resources,
     fallbackLng: 'en',
     debug: false,
-    ns: ['translation', 'common', 'pilotSurveys', 'form1', 'form2', 'form3', 'form4', 'formB', 'deploymentHome', 'deploymentLogin', 'deploymentDashboard'], // Declare namespaces
+    ns: ['translation', 'common', 'pilotSurveys', 'form1', 'form2', 'form3', 'form4', 'formB', 'deploymentHome', 'deploymentLogin', 'deploymentDashboard', 'contactSection'], // Declare namespaces
     defaultNS: 'translation', // Default namespace for backward compatibility
     
     detection: {

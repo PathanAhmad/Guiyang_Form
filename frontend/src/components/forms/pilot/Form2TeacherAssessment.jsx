@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import TextInput from './shared/QuestionTypes/TextInput';
 import TextArea from './shared/QuestionTypes/TextArea';
 import RadioGroup from './shared/QuestionTypes/RadioGroup';
 import CheckboxGroup from './shared/QuestionTypes/CheckboxGroup';
 import DateInput from './shared/QuestionTypes/DateInput';
+import { countries } from '../../../utils/countries';
 
 const Form2TeacherAssessment = ({
   currentSection,
@@ -25,6 +26,15 @@ const Form2TeacherAssessment = ({
 }) => {
   const { t } = useTranslation();
   const totalSections = 6;
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+
+  const countryCodeQuery = (formData.countryCode || '').replace(/^\+/, '').trim();
+  const filteredCountryList = countryCodeQuery
+    ? countries.filter((c) =>
+        c.dialCode.startsWith(countryCodeQuery) ||
+        c.name.toLowerCase().includes(countryCodeQuery.toLowerCase())
+      )
+    : countries;
 
   // Section 0: Introduction and Consent
   const renderSection0 = () => (
@@ -98,15 +108,65 @@ const Form2TeacherAssessment = ({
         fieldName="email"
       />
       
-      <TextInput
-        label={t('form2:section1.phone.label')}
-        value={formData.phone}
-        onChange={(val) => onFieldChange('phone', val)}
-        placeholder={t('form2:section1.phone.placeholder')}
-        required
-        error={validationErrors.phone ? t('pilotSurveys:form.requiredField') : null}
-        fieldName="phone"
-      />
+      <div className="space-y-1 p-4 rounded-lg transition-all duration-300 border-2 border-transparent">
+        <label className="text-sm font-medium text-gray-700 block mb-1">
+          {t('form2:section1.phone.label')}
+          <span className="text-gray-400 ml-1">*</span>
+        </label>
+        <div className="relative">
+          <div className="flex items-center w-full rounded-lg border border-gray-300 bg-transparent px-3 py-3 text-sm">
+            <div className="relative flex items-center">
+              <input
+                name="countryCode"
+                value={formData.countryCode || '+86'}
+                onChange={(e) => onFieldChange('countryCode', e.target.value)}
+                onFocus={() => setIsCountryDropdownOpen(true)}
+                className="w-[50px] bg-transparent outline-none font-medium text-gray-900 text-center"
+              />
+              <button
+                type="button"
+                onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                className="ml-1 text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+            <div className="h-5 w-px bg-gray-200 mx-2" />
+            <input
+              name="phone"
+              value={formData.phone}
+              onChange={(e) => onFieldChange('phone', e.target.value)}
+              placeholder={t('form2:section1.phone.placeholder')}
+              className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-400"
+            />
+          </div>
+
+          {isCountryDropdownOpen && (
+            <>
+              <div className="fixed inset-0 z-10" onClick={() => setIsCountryDropdownOpen(false)} />
+              <div className="absolute bottom-full left-0 mb-2 w-[320px] max-h-[240px] overflow-y-auto bg-white border border-gray-200 rounded-xl shadow-xl z-20">
+                {filteredCountryList.map((c) => (
+                  <button
+                    key={c.name}
+                    type="button"
+                    onClick={() => {
+                      onFieldChange('countryCode', `+${c.dialCode}`);
+                      setIsCountryDropdownOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-50 text-sm flex items-center justify-between group"
+                  >
+                    <span className="text-gray-900">{c.name}</span>
+                    <span className="text-gray-500 group-hover:text-[#7c59b2] font-medium">+{c.dialCode}</span>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        {validationErrors.phone && <p className="mt-1 text-sm text-red-600">{t('pilotSurveys:form.requiredField')}</p>}
+      </div>
     </Section>
   );
 
