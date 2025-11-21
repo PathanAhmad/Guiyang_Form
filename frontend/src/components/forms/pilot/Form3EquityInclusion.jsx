@@ -171,16 +171,20 @@ const Form3EquityInclusion = ({
         required
         error={validationErrors.identities ? t('pilotSurveys:form.requiredField') : null}
         fieldName="identities"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.identitiesOther}
+                onChange={(val) => onFieldChange('identitiesOther', val)}
+                placeholder={t('form3:section2.identities.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.identities?.includes('other') && (
-        <TextInput
-          label={t('form3:section2.identities.otherPlaceholder')}
-          value={formData.identitiesOther}
-          onChange={(val) => onFieldChange('identitiesOther', val)}
-          placeholder={t('form3:section2.identities.otherPlaceholder')}
-        />
-      )}
       
       <TableInput
         label={t('form3:section2.challenges.label')}
@@ -241,7 +245,7 @@ const Form3EquityInclusion = ({
                 label={null}
                 value={formData.gapsDynamicsOther}
                 onChange={(val) => onFieldChange('gapsDynamicsOther', val)}
-                placeholder="Specify Dynamics"
+                placeholder={t('form3:section2.gapsDynamics.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
               />
             );
@@ -356,18 +360,22 @@ const Form3EquityInclusion = ({
         required
         error={validationErrors.leastSupported ? t('pilotSurveys:form.requiredField') : null}
         fieldName="leastSupported"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.leastSupportedOther}
+                onChange={(val) => onFieldChange('leastSupportedOther', val)}
+                placeholder={t('form3:section3.leastSupported.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
       {formData.leastSupported && formData.leastSupported.length === 3 && (
-        <p className="text-sm text-blue-600 -mt-4 mb-4">Maximum 3 selections reached</p>
-      )}
-      
-      {formData.leastSupported?.includes('other') && (
-        <TextInput
-          label={t('form3:section3.leastSupported.otherPlaceholder')}
-          value={formData.leastSupportedOther}
-          onChange={(val) => onFieldChange('leastSupportedOther', val)}
-          placeholder={t('form3:section3.leastSupported.otherPlaceholder')}
-        />
+        <p className="text-sm text-blue-600 -mt-4 mb-4">{t('pilotSurveys:form.maxSelections', { count: 3 })}</p>
       )}
       
       <CheckboxGroup
@@ -395,7 +403,7 @@ const Form3EquityInclusion = ({
                 label={null}
                 value={formData.schoolSystemsOther}
                 onChange={(val) => onFieldChange('schoolSystemsOther', val)}
-                placeholder="Specify Systems"
+                placeholder={t('form3:section3.schoolSystems.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
               />
             );
@@ -460,7 +468,7 @@ const Form3EquityInclusion = ({
                 label={null}
                 value={formData.limitsOther}
                 onChange={(val) => onFieldChange('limitsOther', val)}
-                placeholder="Specify Limits"
+                placeholder={t('form3:section4.limits.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
               />
             );
@@ -493,7 +501,7 @@ const Form3EquityInclusion = ({
                 label={null}
                 value={formData.pdNeedsOther}
                 onChange={(val) => onFieldChange('pdNeedsOther', val)}
-                placeholder="Specify PD needs"
+                placeholder={t('form3:section4.pdNeeds.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
               />
             );
@@ -534,7 +542,7 @@ const Form3EquityInclusion = ({
                 label={null}
                 value={formData.feedbackLoopsOther}
                 onChange={(val) => onFieldChange('feedbackLoopsOther', val)}
-                placeholder="Specify Feedback loops"
+                placeholder={t('form3:section4.feedbackLoops.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
               />
             );
@@ -593,16 +601,20 @@ const Form3EquityInclusion = ({
         required
         error={validationErrors.educatorTasks ? t('pilotSurveys:form.requiredField') : null}
         fieldName="educatorTasks"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.educatorTasksOther}
+                onChange={(val) => onFieldChange('educatorTasksOther', val)}
+                placeholder={t('form3:section5.educatorTasks.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.educatorTasks?.includes('other') && (
-        <TextInput
-          label={t('form3:section5.educatorTasks.otherPlaceholder')}
-          value={formData.educatorTasksOther}
-          onChange={(val) => onFieldChange('educatorTasksOther', val)}
-          placeholder={t('form3:section5.educatorTasks.otherPlaceholder')}
-        />
-      )}
       
       <RadioGroup
         label={t('form3:section5.studentPercentage.label')}

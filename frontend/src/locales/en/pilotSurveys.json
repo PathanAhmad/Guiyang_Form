@@ -36,6 +36,7 @@
     "progress": "Section {{current}} of {{total}}",
     "requiredField": "* Required",
     "requiredFields": "Please fill in all required fields before proceeding.",
+    "maxSelections": "Maximum {{count}} selections reached",
     "languageSwitch": "Switch Language"
   },
   "formTitles": {
