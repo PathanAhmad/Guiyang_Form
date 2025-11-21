@@ -90,9 +90,9 @@ const Form1StudentSurvey = ({
         error={validationErrors.gender ? t('pilotSurveys:form.requiredField') : null}
         fieldName="gender"
       />
-      <CheckboxGroup
+      <RadioGroup
         label={t('form1:section1.languages.label')}
-        values={formData.languages || []}
+        value={formData.languages || ''}
         onChange={(val) => onFieldChange('languages', val)}
         options={[
           { value: 'english', label: t('form1:section1.languages.english') },
@@ -103,7 +103,7 @@ const Form1StudentSurvey = ({
         error={validationErrors.languages ? t('pilotSurveys:form.requiredField') : null}
         fieldName="languages"
       />
-      {formData.languages?.includes('other') && (
+      {formData.languages === 'other' && (
         <TextInput
           label={t('form1:section1.languages.otherPlaceholder')}
           value={formData.languagesOther}

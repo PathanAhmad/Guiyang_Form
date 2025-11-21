@@ -236,7 +236,7 @@ const Form3EquityInclusion = ({
           label={t('form3:section2.gapsDynamics.otherPlaceholder')}
           value={formData.gapsDynamicsOther}
           onChange={(val) => onFieldChange('gapsDynamicsOther', val)}
-          placeholder={t('form3:section2.gapsDynamics.otherPlaceholder')}
+          placeholder=""
         />
       )}
     </Section>
