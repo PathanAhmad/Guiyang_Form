@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDeploymentAuth } from '../../contexts/DeploymentAuthContext';
-import { getFormSubmissions } from '../../services/pilotSurveyApi';
+import { getFormSubmissions, deleteSubmission } from '../../services/pilotSurveyApi';
+import ConfirmModal from '../../components/ui/ConfirmModal';
 import { assetUrl } from '../../utils/assets';
 
 const BehaviorAssessmentList = () => {
@@ -16,6 +17,8 @@ const BehaviorAssessmentList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     // Redirect if not authenticated or wrong role
@@ -72,6 +75,22 @@ const BehaviorAssessmentList = () => {
   const handleLogout = () => {
     logout();
     navigate('/deployment_portal');
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!deleteTarget) return;
+
+    try {
+      setDeleting(true);
+      await deleteSubmission(formId, deleteTarget._id);
+      await loadSubmissions();
+    } catch (err) {
+      console.error('Error deleting submission:', err);
+      setError(err.message || t('pilotSurveys:behaviorAssessmentList.deleteError'));
+    } finally {
+      setDeleting(false);
+      setDeleteTarget(null);
+    }
   };
 
   const toggleLanguage = () => {
@@ -319,7 +338,7 @@ const BehaviorAssessmentList = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         {getStatusBadge(submission.status)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-4">
                         <button
                           onClick={() => handleViewSubmission(submission._id)}
                           className="text-primary-600 hover:text-primary-900"
@@ -328,6 +347,12 @@ const BehaviorAssessmentList = () => {
                             ? t('pilotSurveys:behaviorAssessmentList.view')
                             : t('pilotSurveys:behaviorAssessmentList.edit')
                           }
+                        </button>
+                        <button
+                          onClick={() => setDeleteTarget(submission)}
+                          className="text-red-600 hover:text-red-800"
+                        >
+                          {t('pilotSurveys:behaviorAssessmentList.delete')}
                         </button>
                       </td>
                     </tr>
@@ -359,6 +384,16 @@ const BehaviorAssessmentList = () => {
             </div>
           </div>
         )}
+        <ConfirmModal
+          isOpen={!!deleteTarget}
+          onClose={() => !deleting && setDeleteTarget(null)}
+          onConfirm={handleConfirmDelete}
+          title={t('pilotSurveys:behaviorAssessmentList.delete')}
+          message={t('pilotSurveys:behaviorAssessmentList.confirmDelete')}
+          confirmText={t('pilotSurveys:behaviorAssessmentList.delete')}
+          cancelText={t('common:common.cancel')}
+          loading={deleting}
+        />
       </div>
     </div>
   );

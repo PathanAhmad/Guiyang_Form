@@ -97,6 +97,23 @@ export const getFormSubmissions = async (formId) => {
 };
 
 /**
+ * Delete a single submission for a multi-submission form
+ * @param {string} formId - The form ID (e.g., formB)
+ * @param {string} responseId - The response ID to delete
+ * @returns {Promise<Object>} API response data
+ */
+export const deleteSubmission = async (formId, responseId) => {
+  try {
+    const config = getConfig();
+    const response = await api.delete(`/pilot-surveys/responses/${formId}/${responseId}`, config);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting submission ${responseId} for ${formId}:`, error);
+    throw error;
+  }
+};
+
+/**
  * Save a form response (create or update draft)
  * @param {string} formId - The form ID
  * @param {Object} data - Form data
@@ -162,6 +179,7 @@ export default {
   getResponses,
   getResponse,
   getFormSubmissions,
+  deleteSubmission,
   saveResponse,
   submitResponse,
   autoSave,

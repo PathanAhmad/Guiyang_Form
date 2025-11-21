@@ -267,6 +267,55 @@ router.get('/responses/:formId/all', validateDeploymentAuth, async (req, res) =>
   }
 });
 
+// DELETE /api/pilot-surveys/responses/:formId/:responseId - Delete a single response for current access key
+router.delete('/responses/:formId/:responseId', validateDeploymentAuth, async (req, res) => {
+  try {
+    const { formId, responseId } = req.params;
+
+    const formMeta = FORM_METADATA[formId];
+    if (!formMeta) {
+      return res.status(404).json({
+        success: false,
+        message: 'Form not found',
+      });
+    }
+
+    // Only allow deleting individual submissions on multi-submission forms
+    if (!formMeta.allowMultipleSubmissions) {
+      return res.status(400).json({
+        success: false,
+        message: 'This form does not support deleting individual submissions',
+      });
+    }
+
+    // Ensure the response belongs to the current deployment access key
+    const response = await PilotSurveyResponse.findOneAndDelete({
+      _id: responseId,
+      accessKey: req.deploymentKey.accessKey,
+      formId,
+    });
+
+    if (!response) {
+      return res.status(404).json({
+        success: false,
+        message: 'Response not found',
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'Response deleted successfully',
+    });
+  } catch (error) {
+    console.error('Error deleting response:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to delete response',
+      error: error.message,
+    });
+  }
+});
+
 // POST /api/pilot-surveys/responses/:formId - Create/update response (auto-save)
 router.post('/responses/:formId', validateDeploymentAuth, async (req, res) => {
   try {
