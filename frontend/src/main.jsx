@@ -5,7 +5,7 @@ import App from './App.jsx'
 import './i18n/i18n.js'
 import { setAssetConfig, assetUrl } from './utils/assets'
 import api from './services/api'
-import LocalFavicon from './Images/Sparkie.png'
+import LocalFavicon from './Images/Sparkie.svg'
 
 function ensureFaviconLink() {
   let link = document.querySelector("link[rel='icon']")
@@ -31,7 +31,7 @@ async function bootstrap() {
       const folder = data?.cloudinary?.folder || ''
       setAssetConfig({ base, folder })
       const link = ensureFaviconLink()
-      link.href = assetUrl('/Images/Sparkie.png')
+      link.href = assetUrl('/Images/Sparkie.svg')
     }
   } catch (e) {
     // ignore, fallback to local assets
