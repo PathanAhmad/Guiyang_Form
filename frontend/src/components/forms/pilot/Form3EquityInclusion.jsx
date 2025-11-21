@@ -27,9 +27,9 @@ const Form3EquityInclusion = ({
 
   // Section 0: Introduction and Consent
   const renderSection0 = () => (
-    <Section title={t('form3:title')}>
+    <Section title="">
       <div className="space-y-6">
-        <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
+        <div className="bg-[#7c59b2]/5 border border-[#7c59b2]/100 rounded-3xl p-6">
           <p className="text-gray-700 mb-4">
             {t('form3:intro.purpose')}
           </p>
@@ -43,19 +43,18 @@ const Form3EquityInclusion = ({
             {t('form3:intro.confidential')}
           </p>
         </div>
-
-        <div className="border-t border-gray-200 pt-6">
-          <CheckboxGroup
-            label=""
-            values={formData.consent ? ['consent'] : []}
-            onChange={(val) => onFieldChange('consent', val.includes('consent'))}
-            options={[
-              { value: 'consent', label: t('form3:consent.text') }
-            ]}
-            required
-            error={validationErrors.consent ? t('pilotSurveys:form.requiredField') : null}
-            fieldName="consent"
-          />
+        <div className='mt-'>
+        <CheckboxGroup
+          label=""
+          values={formData.consent ? ['consent'] : []}
+          onChange={(val) => onFieldChange('consent', val.includes('consent'))}
+          options={[
+            { value: 'consent', label: t('form3:consent.text') }
+          ]}
+          unstyled
+          error={validationErrors.consent ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="consent"
+        />
         </div>
       </div>
     </Section>
@@ -63,71 +62,77 @@ const Form3EquityInclusion = ({
 
   // Section 1: Your Information
   const renderSection1 = () => (
-    <Section title={t('form3:section1.title')}>
-      <TextInput
-        label={t('form3:section1.fullName.label')}
-        value={formData.fullName}
-        onChange={(val) => onFieldChange('fullName', val)}
-        placeholder={t('form3:section1.fullName.placeholder')}
-        required
-        error={validationErrors.fullName ? t('pilotSurveys:form.requiredField') : null}
-        fieldName="fullName"
-      />
-      
-      <RadioGroup
-        label={t('form3:section1.role.label')}
-        value={formData.role}
-        onChange={(val) => onFieldChange('role', val)}
-        options={[
-          { value: 'educator', label: t('form3:section1.role.educator') },
-          { value: 'support', label: t('form3:section1.role.support') },
-          { value: 'coordinator', label: t('form3:section1.role.coordinator') },
-          { value: 'admin', label: t('form3:section1.role.admin') },
-          { value: 'other', label: t('form3:section1.role.other') },
-        ]}
-        required
-        error={validationErrors.role ? t('pilotSurveys:form.requiredField') : null}
-        fieldName="role"
-      />
-      
-      {formData.role === 'other' && (
+    <Section title={t('form3:section1.title')} paddingClass="py-4">
+      <div className="pb-0">
         <TextInput
-          label={t('form3:section1.role.otherPlaceholder')}
-          value={formData.roleOther}
-          onChange={(val) => onFieldChange('roleOther', val)}
-          placeholder={t('form3:section1.role.otherPlaceholder')}
+          label={t('form3:section1.fullName.label')}
+          value={formData.fullName}
+          onChange={(val) => onFieldChange('fullName', val)}
+          placeholder={t('form3:section1.fullName.placeholder')}
+          required
+          error={validationErrors.fullName ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="fullName"
         />
-      )}
-      
-      <CheckboxGroup
-        label={t('form3:section1.campusLevels.label')}
-        values={formData.campusLevels || []}
-        onChange={(val) => onFieldChange('campusLevels', val)}
-        options={[
-          { value: 'lowerPrimary', label: t('form3:section1.campusLevels.lowerPrimary') },
-          { value: 'upperPrimary', label: t('form3:section1.campusLevels.upperPrimary') },
-          { value: 'middle', label: t('form3:section1.campusLevels.middle') },
-          { value: 'secondary', label: t('form3:section1.campusLevels.secondary') },
-          { value: 'vocational', label: t('form3:section1.campusLevels.vocational') },
-          { value: 'alternative', label: t('form3:section1.campusLevels.alternative') },
-        ]}
-      />
-      
-      <RadioGroup
-        label={t('form3:section1.tenure.label')}
-        value={formData.tenure}
-        onChange={(val) => onFieldChange('tenure', val)}
-        options={[
-          { value: 'less6', label: t('form3:section1.tenure.less6') },
-          { value: '6to12', label: t('form3:section1.tenure.6to12') },
-          { value: '1to2', label: t('form3:section1.tenure.1to2') },
-          { value: '2to5', label: t('form3:section1.tenure.2to5') },
-          { value: '5plus', label: t('form3:section1.tenure.5plus') },
-        ]}
-        required
-        error={validationErrors.tenure ? t('pilotSurveys:form.requiredField') : null}
-        fieldName="tenure"
-      />
+        
+        <RadioGroup
+          label={t('form3:section1.role.label')}
+          value={formData.role}
+          onChange={(val) => onFieldChange('role', val)}
+          options={[
+            { value: 'educator', label: t('form3:section1.role.educator') },
+            { value: 'support', label: t('form3:section1.role.support') },
+            { value: 'coordinator', label: t('form3:section1.role.coordinator') },
+            { value: 'admin', label: t('form3:section1.role.admin') },
+            { value: 'other', label: t('form3:section1.role.other') },
+          ]}
+          required
+          error={validationErrors.role ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="role"
+          renderInline={(value) => {
+            if (value === 'other') {
+              return (
+                <TextInput
+                  label={null}
+                  value={formData.roleOther}
+                  onChange={(val) => onFieldChange('roleOther', val)}
+                  placeholder={t('form3:section1.role.otherPlaceholder')}
+                  containerClassName="!p-0 !border-0 -mt-2"
+                />
+              );
+            }
+          }}
+        />
+        
+        <CheckboxGroup
+          label={t('form3:section1.campusLevels.label')}
+          values={formData.campusLevels || []}
+          onChange={(val) => onFieldChange('campusLevels', val)}
+          options={[
+            { value: 'lowerPrimary', label: t('form3:section1.campusLevels.lowerPrimary') },
+            { value: 'upperPrimary', label: t('form3:section1.campusLevels.upperPrimary') },
+            { value: 'middle', label: t('form3:section1.campusLevels.middle') },
+            { value: 'secondary', label: t('form3:section1.campusLevels.secondary') },
+            { value: 'vocational', label: t('form3:section1.campusLevels.vocational') },
+            { value: 'alternative', label: t('form3:section1.campusLevels.alternative') },
+          ]}
+        />
+        
+        <RadioGroup
+          label={t('form3:section1.tenure.label')}
+          value={formData.tenure}
+          onChange={(val) => onFieldChange('tenure', val)}
+          options={[
+            { value: 'less6', label: t('form3:section1.tenure.less6') },
+            { value: '6to12', label: t('form3:section1.tenure.6to12') },
+            { value: '1to2', label: t('form3:section1.tenure.1to2') },
+            { value: '2to5', label: t('form3:section1.tenure.2to5') },
+            { value: '5plus', label: t('form3:section1.tenure.5plus') },
+          ]}
+          required
+          error={validationErrors.tenure ? t('pilotSurveys:form.requiredField') : null}
+          fieldName="tenure"
+        />
+      </div>
     </Section>
   );
 
@@ -201,7 +206,7 @@ const Form3EquityInclusion = ({
         fieldName="challengesTable"
       />
       
-      <div className="-mt-4">
+      <div className="-mt-10">
         <TextArea
           label={t('form3:section2.otherChallenges.label')}
           value={formData.otherChallenges}
@@ -229,16 +234,20 @@ const Form3EquityInclusion = ({
         required
         error={validationErrors.gapsDynamics ? t('pilotSurveys:form.requiredField') : null}
         fieldName="gapsDynamics"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.gapsDynamicsOther}
+                onChange={(val) => onFieldChange('gapsDynamicsOther', val)}
+                placeholder="Specify Dynamics"
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.gapsDynamics?.includes('other') && (
-        <TextInput
-          label={t('form3:section2.gapsDynamics.otherPlaceholder')}
-          value={formData.gapsDynamicsOther}
-          onChange={(val) => onFieldChange('gapsDynamicsOther', val)}
-          placeholder=""
-        />
-      )}
     </Section>
   );
 
@@ -379,16 +388,20 @@ const Form3EquityInclusion = ({
         required
         error={validationErrors.schoolSystems ? t('pilotSurveys:form.requiredField') : null}
         fieldName="schoolSystems"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.schoolSystemsOther}
+                onChange={(val) => onFieldChange('schoolSystemsOther', val)}
+                placeholder="Specify Systems"
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.schoolSystems?.includes('other') && (
-        <TextInput
-          label={t('form3:section3.schoolSystems.otherPlaceholder')}
-          value={formData.schoolSystemsOther}
-          onChange={(val) => onFieldChange('schoolSystemsOther', val)}
-          placeholder={t('form3:section3.schoolSystems.otherPlaceholder')}
-        />
-      )}
     </Section>
   );
 
@@ -440,16 +453,20 @@ const Form3EquityInclusion = ({
         required
         error={validationErrors.limits ? t('pilotSurveys:form.requiredField') : null}
         fieldName="limits"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.limitsOther}
+                onChange={(val) => onFieldChange('limitsOther', val)}
+                placeholder="Specify Limits"
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.limits?.includes('other') && (
-        <TextInput
-          label={t('form3:section4.limits.otherPlaceholder')}
-          value={formData.limitsOther}
-          onChange={(val) => onFieldChange('limitsOther', val)}
-          placeholder={t('form3:section4.limits.otherPlaceholder')}
-        />
-      )}
       
       <CheckboxGroup
         label={t('form3:section4.pdNeeds.label')}
@@ -469,16 +486,20 @@ const Form3EquityInclusion = ({
         required
         error={validationErrors.pdNeeds ? t('pilotSurveys:form.requiredField') : null}
         fieldName="pdNeeds"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.pdNeedsOther}
+                onChange={(val) => onFieldChange('pdNeedsOther', val)}
+                placeholder="Specify PD needs"
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.pdNeeds?.includes('other') && (
-        <TextInput
-          label={t('form3:section4.pdNeeds.otherPlaceholder')}
-          value={formData.pdNeedsOther}
-          onChange={(val) => onFieldChange('pdNeedsOther', val)}
-          placeholder={t('form3:section4.pdNeeds.otherPlaceholder')}
-        />
-      )}
       
       <TextArea
         label={t('form3:section4.urgentGaps.label')}
@@ -506,16 +527,20 @@ const Form3EquityInclusion = ({
         required
         error={validationErrors.feedbackLoops ? t('pilotSurveys:form.requiredField') : null}
         fieldName="feedbackLoops"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.feedbackLoopsOther}
+                onChange={(val) => onFieldChange('feedbackLoopsOther', val)}
+                placeholder="Specify Feedback loops"
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.feedbackLoops?.includes('other') && (
-        <TextInput
-          label={t('form3:section4.feedbackLoops.otherPlaceholder')}
-          value={formData.feedbackLoopsOther}
-          onChange={(val) => onFieldChange('feedbackLoopsOther', val)}
-          placeholder={t('form3:section4.feedbackLoops.otherPlaceholder')}
-        />
-      )}
       
       <RadioGroup
         label={t('form3:section4.confidence.label')}
@@ -800,7 +825,7 @@ const Form3EquityInclusion = ({
         totalSections={totalSections}
         completedSections={completedSections}
       />
-      <div className="pb-20">
+      <div>
         {sections[currentSection - 1]()}
       </div>
       <Navigation
@@ -814,6 +839,7 @@ const Form3EquityInclusion = ({
         submitting={submitting}
         canGoNext={true}
         canGoPrevious={true}
+        isTransparent={currentSection === 1}
       />
     </>
   );

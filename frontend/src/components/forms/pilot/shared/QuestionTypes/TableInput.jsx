@@ -37,19 +37,10 @@ const TableInput = ({
   return (
     <div 
       className={`relative mb-6 p-4 rounded-lg transition-all duration-300 ${
-        error ? '!bg-red-100 !border-4 !border-red-600' : 'border-2 border-transparent'
+        error ? '!bg-red-50/50' : 'border-2 border-transparent'
       }`}
       data-field-name={fieldName}
-      style={error ? {
-        borderColor: '#DC2626',
-        borderWidth: '4px',
-        borderStyle: 'solid',
-        backgroundColor: '#FEE2E2'
-      } : {}}
     >
-      {error && (
-        <div className="absolute top-2 right-2 w-4 h-4 bg-red-600 rounded-full animate-pulse"></div>
-      )}
       <label className="block text-sm font-medium text-gray-700 mb-3">
         {label}
         {required && <span className="text-red-600 text-xl font-bold ml-1">*</span>}
@@ -103,9 +94,9 @@ const TableInput = ({
       </div>
       
       {error && (
-        <div className="flex items-center gap-2 mt-2 p-2 bg-red-50 rounded">
-          <span className="text-red-600 text-2xl">⚠️</span>
-          <p className="text-base text-red-700 font-bold">{error}</p>
+        <div className="flex items-center gap-1 mt-1 p-1">
+          <span className="text-red-600 text-sm">⚠️</span>
+          <p className="text-sm text-red-600 font-medium">{error}</p>
         </div>
       )}
     </div>
@@ -113,5 +104,3 @@ const TableInput = ({
 };
 
 export default TableInput;
-
-

@@ -13,6 +13,7 @@ const SurveyNavigation = ({
   submitting,
   canGoNext = true,
   canGoPrevious = true,
+  isTransparent = false,
 }) => {
   const { t } = useTranslation();
   const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
@@ -33,41 +34,49 @@ const SurveyNavigation = ({
     setShowSubmitConfirm(false);
   };
 
+  const wrapperClass = isTransparent
+    ? 'px-6 py-4 sticky bottom-0 z-10'
+    : 'backdrop-blur-sm px-6 py-4 sticky bottom-0 z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-2px_rgba(0,0,0,0.06)]';
+
   return (
     <>
-      <div className="backdrop-blur-sm px-6 py-4 sticky bottom-0 z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-2px_rgba(0,0,0,0.06)]">
+      <div className={wrapperClass}>
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
+          <div className={`flex items-center ${isFirstSection ? 'justify-center' : 'justify-between'}`}>
             {/* Previous Button */}
-            <button
-              onClick={onPrevious}
-              disabled={isFirstSection || !canGoPrevious || saving || submitting}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
-                isFirstSection || !canGoPrevious || saving || submitting
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
-            >
-              <div className="flex items-center">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                {t('common:common.previous')}
-              </div>
-            </button>
+            {!isFirstSection && (
+              <button
+                onClick={onPrevious}
+                disabled={!canGoPrevious || saving || submitting}
+                className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
+                  !canGoPrevious || saving || submitting
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                  {t('common:common.previous')}
+                </div>
+              </button>
+            )}
 
             {/* Save Draft Button */}
-            <button
-              onClick={onSaveDraft}
-              disabled={saving || submitting}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
-                saving || submitting
-                  ? 'bg-gray-800 text-gray-400 cursor-not-allowed'
-                  : 'bg-black text-white hover:bg-gray-800'
-              }`}
-            >
-              {saving ? t('pilotSurveys:form.savingDraft') : t('common:common.saveDraft')}
-            </button>
+            {!isFirstSection && (
+              <button
+                onClick={onSaveDraft}
+                disabled={saving || submitting}
+                className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
+                  saving || submitting
+                    ? 'bg-gray-800 text-gray-400 cursor-not-allowed'
+                    : 'bg-black text-white hover:bg-gray-800'
+                }`}
+              >
+                {saving ? t('pilotSurveys:form.savingDraft') : t('common:common.saveDraft')}
+              </button>
+            )}
 
             {/* Next/Submit Button */}
             {isLastSection ? (

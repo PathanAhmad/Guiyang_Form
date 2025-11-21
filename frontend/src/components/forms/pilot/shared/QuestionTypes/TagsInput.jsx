@@ -26,12 +26,18 @@ const TagsInput = ({ label, value, onChange, placeholder, required, error, field
   };
 
   return (
-    <div className="p-4">
+    <div 
+      className={`relative space-y-2 p-4 rounded-lg transition-all duration-300 ${
+        error ? '!bg-red-50/50' : ''
+      }`}
+    >
       <label htmlFor={fieldName} className="block text-sm font-medium text-gray-700 pb-2">
         {label}
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
-      <div className="w-full px-4 py-2 border rounded-lg flex flex-wrap items-center gap-2 border-gray-300">
+      <div className={`w-full px-4 py-2 border rounded-lg flex flex-wrap items-center gap-2 ${
+        error ? '!border-red-400 !bg-white' : 'border-gray-300'
+      }`}>
         {tags.map((tag, index) => (
           <div key={index} className="bg-[#7c59b2]/100 text-white rounded-full px-2.5 py-1 text-sm flex items-center">
             <span>{tag}</span>
@@ -55,7 +61,12 @@ const TagsInput = ({ label, value, onChange, placeholder, required, error, field
           className="flex-grow bg-transparent outline-none"
         />
       </div>
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+      {error && (
+        <div className="flex items-center gap-1 mt-1 p-1">
+          <span className="text-red-600 text-sm">⚠️</span>
+          <p className="text-sm text-red-600 font-medium">{error}</p>
+        </div>
+      )}
     </div>
   );
 };

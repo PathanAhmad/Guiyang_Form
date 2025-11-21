@@ -22,7 +22,12 @@ export default {
           800: '#171D3C',
           900: '#171D3C',
           950: '#171D3C',
-        }
+        },
+        'pastel-purple': {
+          'start': 'rgba(124, 89, 178, 0.1)',
+          'end': 'rgba(124, 89, 178, 0.05)',
+        },
+        'dark-purple-border': '#7c59b2',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

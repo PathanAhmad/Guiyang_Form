@@ -17,7 +17,7 @@ const Select = ({
   return (
     <div
       className={`relative space-y-2 rounded-lg transition-all duration-300 ${
-        error ? 'p-1 bg-red-100 border-2 border-red-600' : ''
+        error ? 'p-1 bg-red-50/50' : ''
       }`}
       data-field-name={fieldName}
     >
@@ -28,7 +28,7 @@ const Select = ({
           </Listbox.Label>
           <Listbox.Button
             className={`relative mt-2 w-full cursor-default rounded-lg bg-transparent py-2 pl-3 pr-10 text-left border focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ${
-              error ? 'border-red-500' : 'border-gray-300'
+              error ? 'border-red-400' : 'border-gray-300'
             }`}
           >
             <span className="block truncate">
@@ -87,5 +87,3 @@ const Select = ({
 };
 
 export default Select;
-
-

@@ -356,8 +356,6 @@ const PilotSurveyForm = () => {
     if (Object.keys(errors).length > 0) {
       // Set validation errors to show in the form
       setValidationErrors(errors);
-      // Show a user-friendly message
-      showToast(t('pilotSurveys:form.requiredFields'), 'warning');
       
       // Debug logging
       console.log('Validation errors:', errors);
