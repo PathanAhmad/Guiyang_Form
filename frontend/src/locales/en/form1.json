@@ -295,13 +295,14 @@
       "rather": "I'd rather not speak in groups"
     },
     "feelSchool": {
-      "label": "How do you usually feel at school? (Choose any that apply)",
+      "label": "How do you usually feel at school? (Choose any one that apply)",
       "calm": "Calm",
       "anxious": "Anxious",
       "curious": "Curious",
       "bored": "Bored",
       "overwhelmed": "Overwhelmed",
       "excited": "Excited",
+      "unsure": "I'm not sure",
       "other": "Other",
       "otherPlaceholder": "Specify feeling"
     },

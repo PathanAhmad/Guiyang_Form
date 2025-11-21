@@ -144,3 +144,19 @@ body {
   height: 500px; /* Adjust as needed */
   width: 100%;
 }
+
+/* Selection control color overrides */
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: #7c59b2;
+}
+
+/* Ensure Tailwind's primary ring on inputs matches the selection color */
+input.focus\:ring-primary-500:focus {
+  --tw-ring-color: #7c59b2 !important;
+}
+
+/* Headless UI Listbox active option text should use the selection color */
+[role="listbox"] .text-primary-500 {
+  color: #7c59b2 !important;
+}

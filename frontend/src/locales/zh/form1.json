@@ -295,13 +295,14 @@
       "rather": "我不喜欢在集体面前发言"
     },
     "feelSchool": {
-      "label": "你通常在学校的感受如何？（可多选）",
+      "label": "你通常在学校的感受如何？（单选）",
       "calm": "平静",
       "anxious": "焦虑",
       "curious": "好奇",
       "bored": "无聊",
       "overwhelmed": "不知所措",
       "excited": "兴奋",
+      "unsure": "我不确定",
       "other": "其他",
       "otherPlaceholder": "请注明感受"
     },

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const TextArea = ({ label, value, onChange, placeholder, required, error, rows = 4, fieldName }) => {
+const TextArea = ({ label, value, onChange, placeholder, required, error, rows = 4, fieldName, containerClassName }) => {
   console.log(`TextArea ${fieldName} - error:`, error);
   
   return (
     <div 
       className={`relative space-y-2 p-4 rounded-lg transition-all duration-300 ${
         error ? '!bg-red-100 !border-4 !border-red-600' : 'border-2 border-transparent'
-      }`}
+      } ${containerClassName || ''}`}
       data-field-name={fieldName}
       style={error ? {
         borderColor: '#DC2626',
@@ -19,10 +19,12 @@ const TextArea = ({ label, value, onChange, placeholder, required, error, rows =
       {error && (
         <div className="absolute top-2 right-2 w-4 h-4 bg-red-600 rounded-full animate-pulse"></div>
       )}
-      <label className="block text-sm font-medium text-gray-700">
-        {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
-      </label>
+      {label ? (
+        <label className="block text-sm font-medium text-gray-700">
+          {label}
+          {required && <span className="text-red-500 ml-1">*</span>}
+        </label>
+      ) : null}
       <textarea
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}

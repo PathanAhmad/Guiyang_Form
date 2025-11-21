@@ -212,18 +212,19 @@ const Form1StudentSurvey = ({
         required
         error={validationErrors.difficultHasSubjects ? t('pilotSurveys:form.requiredField') : null}
         fieldName="difficultHasSubjects"
+        renderInline={(optionValue) => optionValue === 'yes' ? (
+          <TextArea
+            label=""
+            value={formData.difficult}
+            onChange={(val) => onFieldChange('difficult', val)}
+            placeholder={t('form1:section2.difficult.placeholder')}
+            required
+            error={validationErrors.difficult ? t('pilotSurveys:form.requiredField') : null}
+            fieldName="difficult"
+            containerClassName="!p-0"
+          />
+        ) : null}
       />
-      {formData.difficultHasSubjects === 'yes' && (
-        <TextArea
-          label={t('form1:section2.difficult.placeholder')}
-          value={formData.difficult}
-          onChange={(val) => onFieldChange('difficult', val)}
-          placeholder={t('form1:section2.difficult.placeholder')}
-          required
-          error={validationErrors.difficult ? t('pilotSurveys:form.requiredField') : null}
-          fieldName="difficult"
-        />
-      )}
       <CheckboxGroup
         label={t('form1:section2.future.label')}
         values={formData.future || []}
@@ -608,9 +609,9 @@ const Form1StudentSurvey = ({
         error={validationErrors.sharing ? t('pilotSurveys:form.requiredField') : null}
         fieldName="sharing"
       />
-      <CheckboxGroup
+      <RadioGroup
         label={t('form1:section6.feelSchool.label')}
-        values={formData.feelSchool || []}
+        value={Array.isArray(formData.feelSchool) ? (formData.feelSchool[0] || '') : (formData.feelSchool || '')}
         onChange={(val) => onFieldChange('feelSchool', val)}
         options={[
           { value: 'calm', label: t('form1:section6.feelSchool.calm') },
@@ -619,6 +620,7 @@ const Form1StudentSurvey = ({
           { value: 'bored', label: t('form1:section6.feelSchool.bored') },
           { value: 'overwhelmed', label: t('form1:section6.feelSchool.overwhelmed') },
           { value: 'excited', label: t('form1:section6.feelSchool.excited') },
+          { value: 'unsure', label: t('form1:section6.feelSchool.unsure') },
         ]}
         required
         error={validationErrors.feelSchool ? t('pilotSurveys:form.requiredField') : null}
