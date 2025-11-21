@@ -28,8 +28,8 @@ const TextArea = ({ label, value, onChange, placeholder, required, error, rows =
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         rows={rows}
-        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 resize-y ${
-          error ? '!border-red-600 !bg-white !ring-2 !ring-red-300' : 'border-gray-300'
+        className={`w-full px-4 py-2 border rounded-lg focus:ring-1 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 resize-y ${
+          error ? '!border-red-600 !bg-white !ring-1 !ring-red-300' : 'border-gray-300'
         }`}
       />
       {error && (

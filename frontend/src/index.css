@@ -38,6 +38,11 @@ body {
   letter-spacing: -0.03em;
 }
 
+/* Remove default focus outline */
+*:focus {
+  outline: none;
+}
+
 /* Custom component classes */
 @layer components {
   .btn-primary {
@@ -133,4 +138,9 @@ body {
   font-family: "Elms Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: italic;
+}
+
+.rbc-calendar {
+  height: 500px; /* Adjust as needed */
+  width: 100%;
 }

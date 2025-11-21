@@ -25,7 +25,7 @@
       "female": "Female"
     },
     "languages": {
-      "label": "Languages you're comfortable using in class (check all applicable)",
+      "label": "Languages you're comfortable using in class",
       "english": "English",
       "chinese": "Chinese",
       "other": "Other",
@@ -46,7 +46,7 @@
       "placeholder": "List languages and dialects"
     },
     "identity": {
-      "label": "Anything else about your identity or culture you'd like to share? (optional)",
+      "label": "Anything else about your identity or culture you'd like to share?",
       "placeholder": "Optional"
     }
   },

@@ -6,6 +6,7 @@ import RadioGroup from './shared/QuestionTypes/RadioGroup';
 import CheckboxGroup from './shared/QuestionTypes/CheckboxGroup';
 import DateInput from './shared/QuestionTypes/DateInput';
 import LocationDropdowns from './shared/QuestionTypes/LocationDropdowns';
+import TagsInput from './shared/QuestionTypes/TagsInput';
 
 const Form1StudentSurvey = ({
   currentSection,
@@ -45,10 +46,9 @@ const Form1StudentSurvey = ({
             values={formData.consents || []}
             onChange={(val) => onFieldChange('consents', val)}
             options={[
-              { value: 'privacy', label: t('form1:consent.privacy') },
-              { value: 'agree', label: t('form1:consent.agree') },
+              { value: 'privacy', label: <>{t('form1:consent.privacy')}<span className="text-red-500 ml-1">*</span></> },
+              { value: 'agree', label: <>{t('form1:consent.agree')}<span className="text-red-500 ml-1">*</span></> },
             ]}
-            required
             error={validationErrors.consents ? t('pilotSurveys:form.requiredField') : null}
             fieldName="consents"
             unstyled={true}
@@ -105,11 +105,12 @@ const Form1StudentSurvey = ({
       />
       {formData.languages === 'other' && (
         <TextInput
-          label={t('form1:section1.languages.otherPlaceholder')}
+          label=""
           value={formData.languagesOther}
           onChange={(val) => onFieldChange('languagesOther', val)}
           placeholder={t('form1:section1.languages.otherPlaceholder')}
           fieldName="languagesOther"
+          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
         />
       )}
       <LocationDropdowns
@@ -133,7 +134,7 @@ const Form1StudentSurvey = ({
         error={validationErrors.location ? t('pilotSurveys:form.requiredField') : null}
         fieldName="location"
       />
-      <TextInput
+      <TagsInput
         label={t('form1:section1.dialects.label')}
         value={formData.dialects}
         onChange={(val) => onFieldChange('dialects', val)}

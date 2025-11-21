@@ -1,13 +1,13 @@
 import React from 'react';
 
-const TextInput = ({ label, value, onChange, placeholder, required, error, fieldName }) => {
+const TextInput = ({ label, value, onChange, placeholder, required, error, fieldName, containerClassName }) => {
   console.log(`TextInput ${fieldName} - error:`, error);
   
   return (
     <div 
       className={`relative space-y-2 p-4 rounded-lg transition-all duration-300 ${
         error ? '!bg-red-100 !border-4 !border-red-600' : 'border-2 border-transparent'
-      }`}
+      } ${containerClassName || ''}`}
       data-field-name={fieldName}
       style={error ? {
         borderColor: '#DC2626',
@@ -28,8 +28,8 @@ const TextInput = ({ label, value, onChange, placeholder, required, error, field
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 ${
-          error ? '!border-red-600 !bg-white !ring-2 !ring-red-300' : 'border-gray-300'
+        className={`w-full px-4 py-2 border rounded-lg focus:ring-1 focus:ring-primary-500 focus:border-transparent transition-colors duration-200 ${
+          error ? '!border-red-600 !bg-white !ring-1 !ring-red-300' : 'border-gray-300'
         }`}
       />
       {error && (
