@@ -28,9 +28,9 @@ const Form2TeacherAssessment = ({
 
   // Section 0: Introduction and Consent
   const renderSection0 = () => (
-    <Section>
-      <div className="space-y-6 pb-30">
-        <div className="bg-gradient-to-br from-[#7c59b2]/20 to-[#7c59b2]/40 rounded-[2rem] p-6">
+    <Section title="">
+      <div className="space-y-6">
+        <div className="bg-[#7c59b2]/5 border border-[#7c59b2]/100 rounded-3xl p-6">
           <h3 className="text-lg font-normal text-gray-900 mb-3">
             {t('form2:intro.welcome')}
           </h3>
@@ -47,7 +47,7 @@ const Form2TeacherAssessment = ({
           </p>
         </div>
 
-        <div className="pt-6">
+        <div className="mt-6">
           <CheckboxGroup
             label=""
             values={formData.consent ? ['consent'] : []}
@@ -58,6 +58,7 @@ const Form2TeacherAssessment = ({
             error={validationErrors.consent ? t('pilotSurveys:form.requiredField') : null}
             fieldName="consent"
             unstyled={true}
+            alignStart={true}
           />
         </div>
       </div>
@@ -126,18 +127,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.role ? t('pilotSurveys:form.requiredField') : null}
         fieldName="role"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.roleOther}
+                onChange={(val) => onFieldChange('roleOther', val)}
+                placeholder={t('form2:section2.role.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.role?.includes('other') && (
-        <TextInput
-          label={t('form2:section2.role.otherPlaceholder')}
-          value={formData.roleOther}
-          onChange={(val) => onFieldChange('roleOther', val)}
-          placeholder={t('form2:section2.role.otherPlaceholder')}
-          fieldName="roleOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <RadioGroup
         label={t('form2:section2.experience.label')}
@@ -171,7 +174,7 @@ const Form2TeacherAssessment = ({
       />
       
       <CheckboxGroup
-        label={t('form2:section2.ageGroups.label')}
+        label={t('form2:section2.ageGroups.label').replace(' (Specify)', '')}
         values={formData.ageGroups || []}
         onChange={(val) => onFieldChange('ageGroups', val)}
         options={[
@@ -185,21 +188,23 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.ageGroups ? t('pilotSurveys:form.requiredField') : null}
         fieldName="ageGroups"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.ageGroupsOther}
+                onChange={(val) => onFieldChange('ageGroupsOther', val)}
+                placeholder={t('form2:section2.ageGroups.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
       
-      {formData.ageGroups?.includes('other') && (
-        <TextInput
-          label={t('form2:section2.ageGroups.otherPlaceholder')}
-          value={formData.ageGroupsOther}
-          onChange={(val) => onFieldChange('ageGroupsOther', val)}
-          placeholder={t('form2:section2.ageGroups.otherPlaceholder')}
-          fieldName="ageGroupsOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
-      
       <CheckboxGroup
-        label={t('form2:section2.schedule.label')}
+        label={t('form2:section2.schedule.label').replace(' (Specify)', '')}
         values={formData.schedule || []}
         onChange={(val) => onFieldChange('schedule', val)}
         options={[
@@ -211,18 +216,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.schedule ? t('pilotSurveys:form.requiredField') : null}
         fieldName="schedule"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.scheduleOther}
+                onChange={(val) => onFieldChange('scheduleOther', val)}
+                placeholder={t('form2:section2.schedule.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.schedule?.includes('other') && (
-        <TextInput
-          label={t('form2:section2.schedule.otherPlaceholder')}
-          value={formData.scheduleOther}
-          onChange={(val) => onFieldChange('scheduleOther', val)}
-          placeholder={t('form2:section2.schedule.otherPlaceholder')}
-          fieldName="scheduleOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
     </Section>
   );
 
@@ -244,18 +251,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.education ? t('pilotSurveys:form.requiredField') : null}
         fieldName="education"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.educationOther}
+                onChange={(val) => onFieldChange('educationOther', val)}
+                placeholder={t('form2:section3.education.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.education === 'other' && (
-        <TextInput
-          label={t('form2:section3.education.otherPlaceholder')}
-          value={formData.educationOther}
-          onChange={(val) => onFieldChange('educationOther', val)}
-          placeholder={t('form2:section3.education.otherPlaceholder')}
-          fieldName="educationOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <TextArea
         label={t('form2:section3.specialization.label')}
@@ -283,18 +292,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.certifications ? t('pilotSurveys:form.requiredField') : null}
         fieldName="certifications"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.certificationsOther}
+                onChange={(val) => onFieldChange('certificationsOther', val)}
+                placeholder={t('form2:section3.certifications.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.certifications?.includes('other') && (
-        <TextInput
-          label={t('form2:section3.certifications.otherPlaceholder')}
-          value={formData.certificationsOther}
-          onChange={(val) => onFieldChange('certificationsOther', val)}
-          placeholder={t('form2:section3.certifications.otherPlaceholder')}
-          fieldName="certificationsOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <TextArea
         label={t('form2:section3.training.label')}
@@ -327,18 +338,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.subjects ? t('pilotSurveys:form.requiredField') : null}
         fieldName="subjects"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.subjectsOther}
+                onChange={(val) => onFieldChange('subjectsOther', val)}
+                placeholder={t('form2:section4.subjects.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.subjects?.includes('other') && (
-        <TextInput
-          label={t('form2:section4.subjects.otherPlaceholder')}
-          value={formData.subjectsOther}
-          onChange={(val) => onFieldChange('subjectsOther', val)}
-          placeholder={t('form2:section4.subjects.otherPlaceholder')}
-          fieldName="subjectsOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <RadioGroup
         label={t('form2:section4.classSize.label')}
@@ -389,18 +402,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.approach ? t('pilotSurveys:form.requiredField') : null}
         fieldName="approach"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.approachOther}
+                onChange={(val) => onFieldChange('approachOther', val)}
+                placeholder={t('form2:section4.approach.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.approach?.includes('other') && (
-        <TextInput
-          label={t('form2:section4.approach.otherPlaceholder')}
-          value={formData.approachOther}
-          onChange={(val) => onFieldChange('approachOther', val)}
-          placeholder={t('form2:section4.approach.otherPlaceholder')}
-          fieldName="approachOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <CheckboxGroup
         label={t('form2:section4.assessment.label')}
@@ -418,18 +433,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.assessment ? t('pilotSurveys:form.requiredField') : null}
         fieldName="assessment"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.assessmentOther}
+                onChange={(val) => onFieldChange('assessmentOther', val)}
+                placeholder={t('form2:section4.assessment.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.assessment?.includes('other') && (
-        <TextInput
-          label={t('form2:section4.assessment.otherPlaceholder')}
-          value={formData.assessmentOther}
-          onChange={(val) => onFieldChange('assessmentOther', val)}
-          placeholder={t('form2:section4.assessment.otherPlaceholder')}
-          fieldName="assessmentOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <CheckboxGroup
         label={t('form2:section4.strategies.label')}
@@ -446,18 +463,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.strategies ? t('pilotSurveys:form.requiredField') : null}
         fieldName="strategies"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.strategiesOther}
+                onChange={(val) => onFieldChange('strategiesOther', val)}
+                placeholder={t('form2:section4.strategies.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.strategies?.includes('other') && (
-        <TextInput
-          label={t('form2:section4.strategies.otherPlaceholder')}
-          value={formData.strategiesOther}
-          onChange={(val) => onFieldChange('strategiesOther', val)}
-          placeholder={t('form2:section4.strategies.otherPlaceholder')}
-          fieldName="strategiesOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
     </Section>
   );
 
@@ -498,18 +517,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.aiTasks ? t('pilotSurveys:form.requiredField') : null}
         fieldName="aiTasks"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.aiTasksOther}
+                onChange={(val) => onFieldChange('aiTasksOther', val)}
+                placeholder={t('form2:section5.tasks.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.aiTasks?.includes('other') && (
-        <TextInput
-          label={t('form2:section5.tasks.otherPlaceholder')}
-          value={formData.aiTasksOther}
-          onChange={(val) => onFieldChange('aiTasksOther', val)}
-          placeholder={t('form2:section5.tasks.otherPlaceholder')}
-          fieldName="aiTasksOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <RadioGroup
         label={t('form2:section5.confidence.label')}
@@ -541,18 +562,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.aiChallenges ? t('pilotSurveys:form.requiredField') : null}
         fieldName="aiChallenges"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.aiChallengesOther}
+                onChange={(val) => onFieldChange('aiChallengesOther', val)}
+                placeholder={t('form2:section5.challenges.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.aiChallenges?.includes('other') && (
-        <TextInput
-          label={t('form2:section5.challenges.otherPlaceholder')}
-          value={formData.aiChallengesOther}
-          onChange={(val) => onFieldChange('aiChallengesOther', val)}
-          placeholder={t('form2:section5.challenges.otherPlaceholder')}
-          fieldName="aiChallengesOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <CheckboxGroup
         label={t('form2:section5.digitalTools.label')}
@@ -569,18 +592,20 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.digitalTools ? t('pilotSurveys:form.requiredField') : null}
         fieldName="digitalTools"
+        renderInline={(value) => {
+          if (value === 'other') {
+            return (
+              <TextInput
+                label={null}
+                value={formData.digitalToolsOther}
+                onChange={(val) => onFieldChange('digitalToolsOther', val)}
+                placeholder={t('form2:section5.digitalTools.otherPlaceholder')}
+                containerClassName="!p-0 !border-0 -mt-2"
+              />
+            );
+          }
+        }}
       />
-      
-      {formData.digitalTools?.includes('other') && (
-        <TextInput
-          label={t('form2:section5.digitalTools.otherPlaceholder')}
-          value={formData.digitalToolsOther}
-          onChange={(val) => onFieldChange('digitalToolsOther', val)}
-          placeholder={t('form2:section5.digitalTools.otherPlaceholder')}
-          fieldName="digitalToolsOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
-        />
-      )}
       
       <RadioGroup
         label={t('form2:section5.helpfulness.label')}
@@ -619,13 +644,13 @@ const Form2TeacherAssessment = ({
   ];
 
   return (
-    <div className="flex flex-col h-full">
+    <>
       <Progress
         currentSection={currentSection}
         totalSections={totalSections}
         completedSections={completedSections}
       />
-      <div className="pb-0 flex-grow">
+      <div className="pb-5 flex-grow">
         {sections[currentSection - 1]()}
       </div>
       <Navigation
@@ -637,10 +662,11 @@ const Form2TeacherAssessment = ({
         onSubmit={onSubmit}
         saving={saving}
         submitting={submitting}
-        canGoNext={canGoNext}
+        canGoNext={true}
         canGoPrevious={true}
+        isTransparent={currentSection === 1 || currentSection === 2}
       />
-    </div>
+    </>
   );
 };
 

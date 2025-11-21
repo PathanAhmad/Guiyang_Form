@@ -233,5 +233,9 @@
       "label": "Additional comments about technology and AI integration in your teaching/support practice",
       "placeholder": "Share your thoughts on technology and AI integration"
     }
+  },
+  "thankYou": {
+    "title": "Thank you for sharing!",
+    "message": "Your professional insights are invaluable for our planning and support strategies."
   }
 }

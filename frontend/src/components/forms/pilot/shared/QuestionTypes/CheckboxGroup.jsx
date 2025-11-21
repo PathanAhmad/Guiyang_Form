@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CheckboxGroup = ({ label, values, onChange, options, required, error, fieldName, inline, unstyled, renderInline }) => {
+const CheckboxGroup = ({ label, values, onChange, options, required, error, fieldName, inline, unstyled, renderInline, alignStart }) => {
   console.log(`CheckboxGroup ${fieldName} - error:`, error);
   
   const handleChange = (optionValue) => {
@@ -27,7 +27,7 @@ const CheckboxGroup = ({ label, values, onChange, options, required, error, fiel
         {options.map((option) => (
           <div key={option.value}>
             <label
-              className={`flex items-center cursor-pointer transition-colors duration-200 ${
+              className={`flex ${alignStart ? 'items-start' : 'items-center'} cursor-pointer transition-colors duration-200 ${
                 unstyled ? '' : `p-3 border rounded-lg hover:bg-gray-50 ${error ? '!border-red-400 bg-white' : 'border-gray-300'}`
               }`}
             >
@@ -36,7 +36,7 @@ const CheckboxGroup = ({ label, values, onChange, options, required, error, fiel
                 value={option.value}
                 checked={values.includes(option.value)}
                 onChange={() => handleChange(option.value)}
-                className="w-4 h-4 text-primary-500 rounded focus:ring-primary-500"
+                className={`w-4 h-4 text-primary-500 rounded focus:ring-primary-500 ${alignStart ? 'mt-1' : ''}`}
               />
               <span className="ml-3 text-gray-700">{option.label}</span>
             </label>
