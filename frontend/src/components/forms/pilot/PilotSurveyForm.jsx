@@ -58,14 +58,11 @@ const PilotSurveyForm = () => {
       },
       form2: {
         1: ['consent'], // Section 0: Intro & Consent
-        2: ['assessorName', 'assessorRole', 'frequency'],
-        3: ['studentName', 'studentDOB', 'gradeLevel', 'livingSituation', 'educationHistory', 'supportFlags', 'supportNetwork', 'homeResources', 'emotionalSupport', 'pastStress', 'trustedAdult', 'identityStress'],
-        4: ['overallProgress', 'strengths', 'supportAreas', 'learningStyle', 'taskApproach', 'executiveFunction', 'progressOverTime', 'gaps', 'extendedTasks', 'metacognitive'],
-        5: ['enrollmentReasons', 'goals', 'passion', 'futureReaction', 'selfDoubt', 'barriers'],
-        6: ['interaction', 'feedbackResponse', 'emotionalRegulation', 'behavioral', 'selfRegulate', 'triggers', 'empathy'],
-        7: ['currentSupport', 'effectiveMethods', 'additionalSupport', 'recommendedGoals', 'timeOfDay', 'visualAids', 'familyResponsive', 'environmentalChanges'],
-        8: ['studentAiUsage', 'studentAiActivities', 'futureAiSupport'],
-        9: ['additionalObservations', 'suggestions'],
+        2: ['fullName', 'dateOfBirth', 'email', 'phone'], // Section 1: Personal Information
+        3: ['role', 'experience', 'frequency', 'ageGroups', 'schedule'], // Section 2: Professional Information
+        4: ['education', 'specialization', 'certifications'], // Section 3: Educational Background (training is optional)
+        5: ['subjects', 'classSize', 'collaboration', 'approach', 'assessment', 'strategies'], // Section 4: Teaching & Professional Practice
+        6: ['aiFrequency', 'aiTasks', 'aiConfidence', 'aiChallenges', 'digitalTools', 'aiHelpfulness'], // Section 5: Technology & AI Use (comments optional)
       },
       form3: {
         1: ['consent'], // Section 0: Intro & Consent
@@ -88,15 +85,14 @@ const PilotSurveyForm = () => {
       },
       formB: {
         1: ['consent'], // Section 0: Intro & Consent
-        2: ['studentName', 'studentId', 'assessmentDate', 'assessorName', 'assessorRole'],
-        3: ['academicEngagement', 'taskCompletion', 'learningPace'],
-        4: ['peerInteraction', 'emotionalRegulation'],
-        5: ['classParticipation', 'groupWork'],
-        6: ['supportUrgency'],
-        7: ['adultRelationships', 'expressesNeeds'],
-        8: ['overallProgress'],
-        9: [], // Section 8: Strengths & Interests - no strict required fields
-        10: ['overallSummary'], // Section 9: Overall Assessment Summary
+        2: ['studentName', 'studentId', 'assessorName', 'assessorRole'], // Section 1: Student Identification
+        3: ['studentDOB', 'gradeLevel', 'livingSituation', 'educationHistory', 'supportFlags', 'supportNetwork', 'homeResources', 'emotionalSupport', 'pastStress', 'trustedAdult', 'identityStress'], // Section 2: Student Profile
+        4: ['overallProgress', 'strengths', 'supportAreas', 'learningStyle', 'taskApproach', 'executiveFunction', 'progressOverTime', 'gaps', 'extendedTasks', 'metacognitive'], // Section 3: Academic Progress
+        5: ['enrollmentReasons', 'goals', 'passion', 'futureReaction', 'selfDoubt', 'barriers'], // Section 4: Student Motivation
+        6: ['interaction', 'feedbackResponse', 'emotionalRegulation', 'behavioral', 'selfRegulate', 'triggers', 'empathy'], // Section 5: Social & Emotional Development
+        7: ['currentSupport', 'effectiveMethods', 'additionalSupport', 'recommendedGoals', 'timeOfDay', 'visualAids', 'familyResponsive', 'environmentalChanges'], // Section 6: Support Needs
+        8: ['studentAiUsage', 'studentAiActivities', 'futureAiSupport'], // Section 7: AI Usage
+        9: ['additionalObservations', 'suggestions'], // Section 8: Additional Comments
       },
     };
     return requiredFieldsMap[formId]?.[sectionNumber] || [];

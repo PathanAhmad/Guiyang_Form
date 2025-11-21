@@ -1,16 +1,16 @@
 {
-  "title": "Individual Student Behavior Assessment",
-  "subtitle": "For Educators | Repeatable Assessment Form",
+  "title": "Individual Student Behaviour Assessment Survey",
+  "subtitle": "For Teachers & Support Staff | Ugly Duck School – Kunming, China",
   "intro": {
-    "purpose": "This form allows you to submit behavior assessments for individual students. You can submit this form multiple times for different students.",
-    "helps": "Your input helps us:",
-    "bullet1": "Track student progress over time",
-    "bullet2": "Identify patterns and support needs",
-    "bullet3": "Provide targeted interventions and support",
-    "confidential": "All responses are confidential and used only to improve student support."
+    "purpose": "This survey is designed to collect insights from educators, learning specialists, and program staff about a student's academic growth, social-emotional development, and support needs.",
+    "helps": "Your input will help us:",
+    "bullet1": "Identify each student's strengths and growth areas",
+    "bullet2": "Tailor instruction and support plans effectively",
+    "bullet3": "Ensure every student has the resources and guidance they need to thrive",
+    "confidential": "All responses are confidential and will only be used to improve student support and learning strategies. Your professional observations are invaluable in shaping meaningful, individualized learning experiences."
   },
   "consent": {
-    "text": "I understand and consent to provide feedback about the student named in this assessment. I understand my responses will remain confidential and will be used to enhance educational planning and support."
+    "text": "I understand and agree to provide feedback about the student named in this survey. I acknowledge that my responses will remain confidential and will be used solely to enhance educational planning, student support, and professional development initiatives."
   },
   "section1": {
     "title": "Student Identification",
@@ -19,312 +19,428 @@
       "placeholder": "Enter student name"
     },
     "studentId": {
-      "label": "Student ID or Code",
+      "label": "Student ID",
       "placeholder": "Enter student ID"
     },
-    "assessmentDate": {
-      "label": "Assessment Date",
-      "placeholder": "Select date"
-    },
     "assessorName": {
-      "label": "Your Name",
-      "placeholder": "Enter your name"
+      "label": "Your Full Name (Assessor)",
+      "placeholder": "Enter your full name"
     },
     "assessorRole": {
-      "label": "Your Role",
-      "educator": "Educator / Teacher",
+      "label": "Your Role at the Learning Center",
+      "educator": "Educator / Facilitator",
       "specialist": "Learning Support Specialist",
-      "coordinator": "Program Coordinator",
+      "coordinator": "Program Coordinator / Administrator",
       "other": "Other",
       "otherPlaceholder": "Specify your role"
     }
   },
   "section2": {
-    "title": "Academic Performance",
-    "academicEngagement": {
-      "label": "How engaged is the student in academic activities?",
-      "excellent": "Excellent - Highly engaged",
-      "good": "Good - Generally engaged",
-      "fair": "Fair - Occasionally disengaged",
-      "poor": "Poor - Frequently disengaged"
+    "title": "Student Profile",
+    "dateOfBirth": {
+      "label": "Date of Birth (DD / MM / YYYY)",
+      "placeholder": "DD / MM / YYYY"
     },
-    "taskCompletion": {
-      "label": "How consistently does the student complete assigned tasks?",
-      "always": "Always completes tasks",
-      "usually": "Usually completes tasks",
-      "sometimes": "Sometimes completes tasks",
-      "rarely": "Rarely completes tasks"
+    "gradeLevel": {
+      "label": "Current Learning Level or Grade",
+      "placeholder": "Enter grade level"
     },
-    "learningPace": {
-      "label": "How would you describe the student's learning pace?",
-      "advanced": "Advanced - Grasps concepts quickly",
-      "onTrack": "On track - Progresses as expected",
-      "needsSupport": "Needs support - Requires additional help",
-      "significant": "Significant challenges - Requires intensive support"
-    },
-    "strengths": {
-      "label": "Academic Strengths (Select all that apply)",
-      "reading": "Reading comprehension",
-      "writing": "Writing skills",
-      "math": "Mathematical reasoning",
-      "science": "Scientific thinking",
-      "arts": "Creative arts",
-      "technology": "Technology skills",
+    "livingSituation": {
+      "label": "Student's Primary Living Situation (Select all that apply)",
+      "bothParents": "Lives with both parents",
+      "oneParent": "Lives with one parent",
+      "extendedFamily": "Lives with extended family",
+      "foster": "Foster care / guardianship",
+      "boarding": "In school-provided boarding or dorm",
+      "independent": "Independent or non-family housing",
+      "unknown": "Unknown or not shared",
       "other": "Other",
-      "otherPlaceholder": "Specify strengths"
+      "otherPlaceholder": "Specify living situation"
     },
-    "challenges": {
-      "label": "Academic Challenges (Select all that apply)",
-      "attention": "Attention and focus",
-      "comprehension": "Reading comprehension",
-      "expression": "Written expression",
-      "math": "Mathematical concepts",
-      "organization": "Organization and planning",
-      "timeManagement": "Time management",
+    "educationHistory": {
+      "label": "Educational History (prior to Enrolling in This School) (Select all that apply)",
+      "public": "Public schooling (traditional)",
+      "private": "Private or international school",
+      "special": "Special education program or resource center",
+      "homeschool": "Homeschooled / self-directed learning",
+      "disrupted": "Periods of disrupted education or Irregular attendance",
+      "migrated": "Migrated between multiple education systems",
       "other": "Other",
-      "otherPlaceholder": "Specify challenges"
+      "otherPlaceholder": "Specify education history"
     },
-    "notes": {
-      "label": "Additional Academic Notes",
-      "placeholder": "Any additional observations about academic performance"
+    "supportFlags": {
+      "label": "Known Identity, Neurodiversity, or Support Flags (Select all that apply)",
+      "autistic": "Autistic spectrum traits",
+      "adhd": "ADHD / executive functioning challenges",
+      "anxiety": "Anxiety, depression, or trauma background",
+      "signLanguage": "Sign Language or language learner",
+      "sensory": "Sensory processing sensitivity",
+      "physical": "Physical, speech, or health-related disability",
+      "cultural": "Cultural or religious considerations",
+      "notDisclosed": "Not disclosed",
+      "other": "Other",
+      "otherPlaceholder": "Specify support flags"
+    },
+    "supportNetwork": {
+      "label": "Support Network Accessibility (Home or External) (Select all that apply)",
+      "parents": "Actively involved parents or guardians",
+      "siblings": "Older siblings or peer support",
+      "counseling": "Regular access to counseling or therapy",
+      "family": "Extended family or religious/community mentors",
+      "none": "No known support network",
+      "other": "Other",
+      "otherPlaceholder": "Specify support network"
+    },
+    "homeResources": {
+      "label": "Student's Access to Learning Resources at Home (Select all that apply)",
+      "personal": "Personal laptop or desktop",
+      "shared": "Shared family device",
+      "smartphone": "Smartphone used for schoolwork",
+      "internet": "Stable internet connection",
+      "books": "Books and educational materials",
+      "space": "Dedicated quiet study space",
+      "minimal": "Minimal or no access to resources"
+    },
+    "emotionalSupport": {
+      "label": "Emotional & Social Support Systems Available (Select all that apply)",
+      "checkins": "Regular check-ins with educators",
+      "peer": "Peer support or group activities",
+      "counseling": "School counseling services",
+      "family": "Family involvement in well-being",
+      "none": "No current formal support",
+      "other": "Other",
+      "otherPlaceholder": "Specify emotional support"
+    },
+    "pastStress": {
+      "label": "Has the student ever expressed or demonstrated stress related to past school experiences?",
+      "yes": "Yes – visibly anxious about schooling",
+      "occasionally": "Occasionally avoids learning due to past trauma",
+      "not": "Not observed",
+      "unknown": "Unknown"
+    },
+    "trustedAdult": {
+      "label": "Does the student have a trusted adult or mentor within the school?",
+      "yes": "Yes – actively seeks them out",
+      "somewhat": "Somewhat – comfortable but not proactive",
+      "no": "No known connection",
+      "benefit": "Student may benefit from being matched with one"
+    },
+    "identityStress": {
+      "label": "Does the student express or show signs of cultural, racial, or identity-based stress or exclusion? (e.g., language challenges, religious differences, gender identity discomfort)",
+      "yes": "Yes – known challenges or requests",
+      "sometimes": "Sometimes appears isolated or misunderstood",
+      "no": "No known issues",
+      "unsure": "Unsure / not discussed"
     }
   },
   "section3": {
-    "title": "Social-Emotional Behavior",
-    "peerInteraction": {
-      "label": "How does the student interact with peers?",
-      "positive": "Very positive - Forms friendships easily",
-      "adequate": "Adequate - Has some friends",
-      "limited": "Limited - Struggles to connect",
-      "conflict": "Frequent conflicts with peers"
+    "title": "Academic Progress & Learning Profile",
+    "overallProgress": {
+      "label": "How would you rate the student's overall academic progress?",
+      "exceeds": "Exceeds expectations (Significantly above grade level)",
+      "expected": "At expected level for age",
+      "progressing": "Progressing with support (Slightly below expected level)",
+      "requires": "Requires intensive academic support"
     },
-    "emotionalRegulation": {
-      "label": "How well does the student manage emotions?",
-      "excellent": "Excellent - Self-regulates effectively",
-      "good": "Good - Usually manages emotions",
-      "developing": "Developing - Sometimes struggles",
-      "challenged": "Challenged - Frequently struggles"
-    },
-    "behaviorConcerns": {
-      "label": "Behavioral Concerns (Select all that apply)",
-      "none": "No significant concerns",
-      "aggression": "Physical or verbal aggression",
-      "withdrawal": "Social withdrawal",
-      "anxiety": "Anxiety or fear responses",
-      "defiance": "Oppositional behavior",
-      "impulsivity": "Impulsive actions",
-      "attention": "Attention-seeking behavior",
+    "strengths": {
+      "label": "Strength Areas (Select all that apply)",
+      "oral": "Oral communication",
+      "reading": "Reading comprehension",
+      "writing": "Writing and expression",
+      "numeracy": "Numeracy and problem-solving",
+      "scientific": "Scientific reasoning",
+      "artistic": "Artistic creativity or music",
+      "physical": "Physical coordination / motor skills",
+      "leadership": "Leadership / initiative-taking",
+      "technology": "Technology or digital fluency",
       "other": "Other",
-      "otherPlaceholder": "Specify concerns"
+      "otherPlaceholder": "Specify other strengths"
     },
-    "positiveTraits": {
-      "label": "Positive Social-Emotional Traits (Select all that apply)",
-      "empathy": "Shows empathy",
-      "cooperation": "Cooperative with others",
-      "leadership": "Demonstrates leadership",
-      "resilience": "Shows resilience",
-      "respect": "Respectful to adults and peers",
-      "kindness": "Acts with kindness",
+    "supportAreas": {
+      "label": "Areas Requiring Additional Support (Check all that apply)",
+      "language": "Language processing or writing",
+      "numeracy": "Basic numeracy or logical sequencing",
+      "scientific": "Scientific or abstract reasoning",
+      "attention": "Attention or focus consistency",
+      "taskCompletion": "Task completion and motivation",
+      "social": "Social learning / collaboration",
+      "instructions": "Following multi-step instructions",
       "other": "Other",
-      "otherPlaceholder": "Specify traits"
+      "otherPlaceholder": "Specify other areas"
     },
-    "notes": {
-      "label": "Social-Emotional Notes",
-      "placeholder": "Any additional observations about social-emotional behavior"
+    "learningStyle": {
+      "label": "Observed Learning Style or Preferences (Check all that apply)",
+      "visual": "Visual learner",
+      "kinesthetic": "Kinesthetic / hands-on learner",
+      "auditory": "Auditory or verbal learner",
+      "smallGroup": "Prefers small group settings",
+      "structured": "Thrives in structured environments",
+      "creative": "Thrives in creative, open-ended projects",
+      "other": "Other",
+      "otherPlaceholder": "Specify other preferences"
+    },
+    "taskApproach": {
+      "label": "Observed task approach (Select all that apply)",
+      "independent": "Independent and self-motivated",
+      "participates": "Participates actively with occasional guidance",
+      "needs": "Needs frequent redirection and encouragement",
+      "avoids": "Often avoids or disengages from tasks"
+    },
+    "executiveFunction": {
+      "label": "Executive Function Skills – Observed Challenges (Check all that apply)",
+      "initiation": "Task initiation (getting started)",
+      "switching": "Task switching / transitions",
+      "time": "Time estimation or time management",
+      "memory": "Memory and retention",
+      "organization": "Organization of materials or ideas",
+      "monitoring": "Self-monitoring or reflection"
+    },
+    "progressOverTime": {
+      "label": "Academic Progress Over Time (Past 3–6 months)",
+      "noticeable": "Noticeable, consistent growth",
+      "slow": "Slow but steady improvement",
+      "noChange": "No significant change",
+      "regressive": "Regressive or inconsistent progress"
+    },
+    "gaps": {
+      "label": "Has the student experienced any significant gaps or interruptions in schooling (e.g., COVID, relocation, trauma, illness)?",
+      "major": "Yes – major disruptions",
+      "short": "Yes – short-term or partial gaps",
+      "no": "No significant gaps",
+      "unknown": "Unknown"
+    },
+    "extendedTasks": {
+      "label": "How does the student respond to extended or multi-step academic tasks?",
+      "breaks": "Breaks it down and manages independently",
+      "needs": "Needs chunking and scaffolding",
+      "overwhelmed": "Gets overwhelmed or avoids the task",
+      "unsure": "Unsure – hasn't been observed yet"
+    },
+    "metacognitive": {
+      "label": "Does the student demonstrate metacognitive awareness (ability to reflect on how they learn)?",
+      "yes": "Yes – verbalizes their process and needs",
+      "sometimes": "Sometimes notices and asks for help",
+      "rarely": "Rarely or not yet",
+      "unsure": "Unsure"
     }
   },
   "section4": {
-    "title": "Participation & Engagement",
-    "classParticipation": {
-      "label": "How actively does the student participate in class?",
-      "veryActive": "Very active - Frequently contributes",
-      "moderate": "Moderate - Participates when prompted",
-      "limited": "Limited - Rarely volunteers",
-      "minimal": "Minimal - Avoids participation"
-    },
-    "groupWork": {
-      "label": "How does the student perform in group work?",
-      "leader": "Takes leadership role",
-      "contributor": "Active contributor",
-      "follower": "Willing follower",
-      "reluctant": "Reluctant or disengaged"
-    },
-    "motivation": {
-      "label": "What motivates the student? (Select all that apply)",
-      "intrinsic": "Intrinsic interest in learning",
-      "praise": "Praise and recognition",
-      "grades": "Grades and achievement",
-      "peer": "Peer approval",
-      "rewards": "External rewards",
-      "avoidance": "Avoiding negative consequences",
-      "unclear": "Unclear or unmotivated",
+    "title": "Student Motivation & Future Orientation",
+    "enrollmentReasons": {
+      "label": "What are the main reasons the student is enrolled in this program? (Select all that apply)",
+      "flexible": "Flexible learning environment",
+      "difficulty": "Difficulty with traditional schooling",
+      "targeted": "Targeted support in certain subjects",
+      "handson": "Preference for hands-on or creative methods",
+      "safer": "Need for a safer or more supportive setting",
       "other": "Other",
-      "otherPlaceholder": "Specify motivations"
+      "otherPlaceholder": "Specify reasons"
     },
-    "notes": {
-      "label": "Participation Notes",
-      "placeholder": "Any additional observations about participation and engagement"
+    "goals": {
+      "label": "Student's Self-Identified or Observed Goals (Select all that apply)",
+      "university": "University or academic pathway",
+      "career": "Career or technical skill development",
+      "creative": "Creative or entrepreneurial pursuits",
+      "life": "Gaining life / social skills",
+      "exploring": "Still exploring or unsure",
+      "other": "Other",
+      "otherPlaceholder": "Specify goals"
+    },
+    "passion": {
+      "label": "Has the student shared or demonstrated a long-term passion or personal project?",
+      "placeholder": "Describe passions or projects"
+    },
+    "futureReaction": {
+      "label": "How does the student react to conversations about their future (e.g., goals, careers, life after school)?",
+      "engaged": "Engaged and motivated",
+      "curious": "Curious but uncertain",
+      "avoidant": "Avoidant or indifferent",
+      "anxious": "Anxious or overwhelmed by future plans"
+    },
+    "selfDoubt": {
+      "label": "Does the student express self-doubt or fear of failure around learning or future planning?",
+      "frequently": "Frequently",
+      "occasionally": "Occasionally",
+      "rarely": "Rarely",
+      "not": "Not observed"
+    },
+    "barriers": {
+      "label": "Barriers to Goal Progression (Check all that apply)",
+      "confidence": "Lack of confidence or self-belief",
+      "emotional": "Emotional distress or anxiety",
+      "external": "External challenges (e.g. home situation)",
+      "peer": "Peer influence / social dynamics",
+      "structure": "Difficulty with structure or routine",
+      "none": "No specific barriers identified"
     }
   },
   "section5": {
-    "title": "Support Needs",
-    "currentSupport": {
-      "label": "What support is the student currently receiving? (Select all that apply)",
-      "none": "No additional support",
-      "individualized": "Individualized instruction",
-      "smallGroup": "Small group interventions",
-      "behavioral": "Behavioral support",
-      "academic": "Academic tutoring",
-      "counseling": "Counseling services",
-      "accommodations": "Classroom accommodations",
+    "title": "Social & Emotional Development",
+    "interaction": {
+      "label": "How does the student interact with others?",
+      "highly": "Highly social and cooperative",
+      "capable": "Socially capable in small groups",
+      "difficulty": "Has difficulty with peer interaction",
+      "withdrawn": "Frequently withdrawn or avoids contact"
+    },
+    "feedback": {
+      "label": "Response to feedback or challenges:",
+      "accepts": "Accepts feedback and grows from it",
+      "resistant": "Resistant at first, but improves over time",
+      "frustrated": "Becomes frustrated or defensive to correction",
+      "avoids": "Avoids challenges or gives up easily"
+    },
+    "emotionalRegulation": {
+      "label": "Emotional Regulation Skills (Select all that apply)",
+      "manages": "Manages stress and emotions well",
+      "most": "Manages most stress with support: Sometimes overwhelmed by frustration",
+      "often": "Often shows emotional distress: Frequently overwhelmed or reactive",
+      "difficulty": "Has difficulty calming down without help: Needs significant emotional support"
+    },
+    "behavioral": {
+      "label": "Behavioral observations (Select all that apply)",
+      "cooperative": "Cooperative and engaged: Follows rules and routines consistently",
+      "distracted": "Easily distracted or impulsive",
+      "defiance": "Mild defiance or oppositional behavior",
+      "withdrawn": "Withdrawn or shutdown under pressure",
+      "aggressive": "Aggressive or confrontational behaviors",
+      "none": "No significant behavioral concerns",
       "other": "Other",
-      "otherPlaceholder": "Specify support"
+      "otherPlaceholder": "Specify behaviors"
     },
-    "recommendedSupport": {
-      "label": "What additional support would benefit the student? (Select all that apply)",
-      "none": "No additional support needed",
-      "academic": "Academic intervention",
-      "behavioral": "Behavioral intervention",
-      "socialSkills": "Social skills training",
-      "counseling": "Counseling or therapy",
-      "parentEngagement": "Parent/guardian engagement",
-      "peerSupport": "Peer mentoring",
-      "accommodations": "Classroom accommodations",
+    "selfRegulate": {
+      "label": "What strategies does the student use to calm themselves or self-regulate? (Select all that apply)",
+      "breathing": "Breathing or mindfulness",
+      "leaving": "Leaving the room or taking a walk",
+      "sensory": "Using sensory tools (fidget, headphones, etc.)",
+      "talking": "Talking to a trusted adult",
+      "drawing": "Drawing / music / writing",
+      "none": "None observed",
       "other": "Other",
-      "otherPlaceholder": "Specify recommended support"
+      "otherPlaceholder": "Specify strategies"
     },
-    "urgency": {
-      "label": "How urgent is the need for additional support?",
-      "notUrgent": "Not urgent - Routine monitoring",
-      "moderate": "Moderate - Address within month",
-      "urgent": "Urgent - Address within week",
-      "immediate": "Immediate - Requires prompt intervention"
+    "triggers": {
+      "label": "What triggers emotional dysregulation for this student? (Select all that apply)",
+      "loud": "Loud noises or overstimulation",
+      "peer": "Peer conflict or social tension",
+      "transitions": "Transitions / change in routine",
+      "corrected": "Being corrected or challenged",
+      "academic": "Academic pressure",
+      "unclear": "Not clear / unknown",
+      "none": "None"
     },
-    "notes": {
-      "label": "Support Needs Notes",
-      "placeholder": "Any additional observations about support needs"
+    "empathy": {
+      "label": "Does the student show empathy or emotional awareness of others?",
+      "yes": "Yes – often checks in with peers",
+      "occasionally": "Occasionally responds to others' emotions",
+      "rarely": "Rarely notices or reacts",
+      "not": "Not observed"
     }
   },
   "section6": {
-    "title": "Communication & Relationships",
-    "adultRelationships": {
-      "label": "How does the student relate to teachers and staff?",
-      "positive": "Very positive - Trusting relationships",
-      "respectful": "Respectful - Follows directions",
-      "cautious": "Cautious - Takes time to warm up",
-      "challenging": "Challenging - Resists authority"
-    },
-    "communication": {
-      "label": "How does the student communicate? (Select all that apply)",
-      "verbal": "Verbal communication",
-      "nonverbal": "Non-verbal cues",
-      "written": "Written communication",
-      "digital": "Digital/technology-based",
-      "limited": "Limited communication",
+    "title": "Support Needs & Recommendations",
+    "currentSupport": {
+      "label": "What support is the student currently receiving? (Select all that apply)",
+      "individual": "Individual learning plan",
+      "oneOnOne": "One-on-one academic support",
+      "emotional": "Emotional or mental health counseling",
+      "behavior": "Behavior management plan",
+      "peer": "Peer mentoring or buddy system",
+      "none": "None at this time",
       "other": "Other",
-      "otherPlaceholder": "Specify communication methods"
+      "otherPlaceholder": "Specify support"
     },
-    "expressesNeeds": {
-      "label": "Can the student effectively express their needs?",
-      "consistently": "Consistently and clearly",
-      "usually": "Usually with some prompting",
-      "sometimes": "Sometimes - needs support",
-      "rarely": "Rarely or with great difficulty"
+    "effectiveMethods": {
+      "label": "What teaching methods work well for this student? (Select all that apply)",
+      "clear": "Clear structure, routines and consistent expectations",
+      "personalized": "Personalized learning tasks",
+      "handson": "Hands-on or project-based learning",
+      "breaks": "Frequent breaks or check-ins",
+      "positive": "Positive reinforcement or encouragement",
+      "visual": "Visual aids, diagram-based instruction",
+      "collaboration": "Peer collaboration in small groups",
+      "other": "Other",
+      "otherPlaceholder": "Specify methods"
     },
-    "notes": {
-      "label": "Communication Notes",
-      "placeholder": "Any additional observations about communication and relationships"
+    "additionalSupport": {
+      "label": "Additional support that may benefit the student (Select all that apply)",
+      "academic": "More personalized academic adjustments",
+      "socialEmotional": "Social-emotional interventions",
+      "mentorship": "Increased one-on-one mentorship",
+      "counseling": "Counseling, mental health support or trauma-informed care",
+      "peerLed": "Peer-led groups or social coaching",
+      "other": "Other",
+      "otherPlaceholder": "Specify support"
+    },
+    "goals": {
+      "label": "Recommended goals or milestones for this student (Academic or Behavioral)",
+      "placeholder": "Describe recommended goals"
+    },
+    "timeOfDay": {
+      "label": "What time of day does the student typically engage most effectively?",
+      "morning": "Morning",
+      "midday": "Midday",
+      "afternoon": "Afternoon",
+      "varies": "Varies depending on subject or support"
+    },
+    "visualAids": {
+      "label": "How does the student respond to visual aids, routines, or planning tools?",
+      "consistently": "Uses consistently and independently",
+      "reminders": "Needs reminders to use them",
+      "resists": "Resists or ignores tools",
+      "notYet": "Not yet introduced to these supports"
+    },
+    "familyResponsive": {
+      "label": "Is the family/caregiver responsive to school communication and support planning?",
+      "highly": "Highly involved and collaborative",
+      "somewhat": "Somewhat engaged",
+      "rarely": "Rarely responsive",
+      "barrier": "Communication barrier exists",
+      "unknown": "Unknown"
+    },
+    "environmentalChanges": {
+      "label": "Are there systemic or environmental changes that would help this student thrive (e.g., sensory room, schedule adjustment, mentor match)?",
+      "placeholder": "Describe environmental changes"
     }
   },
   "section7": {
-    "title": "Progress & Growth",
-    "overallProgress": {
-      "label": "How would you rate the student's overall progress?",
-      "excellent": "Excellent - Exceeding expectations",
-      "good": "Good - Meeting expectations",
-      "fair": "Fair - Some progress with support",
-      "concern": "Concern - Limited progress"
+    "title": "AI Usage",
+    "studentAiUsage": {
+      "label": "How often does this student use AI tools for homework or in class?",
+      "never": "Never",
+      "rarely": "Rarely",
+      "occasionally": "Occasionally",
+      "frequently": "Frequently",
+      "dontKnow": "Don't know / Not observed"
     },
-    "areasOfGrowth": {
-      "label": "Areas of Notable Growth (Select all that apply)",
-      "academic": "Academic performance",
-      "social": "Social skills",
-      "emotional": "Emotional regulation",
-      "behavior": "Behavioral improvements",
-      "confidence": "Self-confidence",
-      "independence": "Independence",
-      "participation": "Class participation",
+    "studentAiActivities": {
+      "label": "Which activities does the student use AI for? (Select all that apply)",
+      "brainstorming": "Brainstorming ideas or outlines",
+      "drafting": "Drafting essays, reports, or stories",
+      "solving": "Solving math or coding problems",
+      "language": "Language support (translation, grammar)",
+      "notes": "Creating study notes, summaries, or flashcards",
       "other": "Other",
-      "otherPlaceholder": "Specify areas of growth"
+      "otherPlaceholder": "Specify activities"
     },
-    "priorityAreas": {
-      "label": "Priority Areas for Development (Select all that apply)",
-      "academic": "Academic skills",
-      "social": "Social skills",
-      "emotional": "Emotional regulation",
-      "behavior": "Behavioral management",
-      "communication": "Communication skills",
-      "organization": "Organization skills",
-      "selfAdvocacy": "Self-advocacy",
-      "other": "Other",
-      "otherPlaceholder": "Specify priority areas"
-    },
-    "notes": {
-      "label": "Progress Notes",
-      "placeholder": "Any additional observations about progress and growth"
+    "futureAiSupport": {
+      "label": "How might AI best support this student's learning or well-being going forward?",
+      "placeholder": "Describe how AI could help"
     }
   },
   "section8": {
-    "title": "Strengths & Interests",
-    "personalStrengths": {
-      "label": "What are the student's personal strengths? (Select all that apply)",
-      "creative": "Creative thinking",
-      "analytical": "Analytical skills",
-      "practical": "Practical problem-solving",
-      "artistic": "Artistic abilities",
-      "athletic": "Athletic abilities",
-      "technical": "Technical skills",
-      "interpersonal": "Interpersonal skills",
-      "leadership": "Leadership qualities",
-      "perseverance": "Perseverance",
-      "empathy": "Empathy and compassion",
-      "other": "Other",
-      "otherPlaceholder": "Specify strengths"
+    "title": "Additional Comments",
+    "observations": {
+      "label": "Any other observations or context to consider for this student's development?",
+      "placeholder": "Share additional observations"
     },
-    "interests": {
-      "label": "What are the student's interests or passions?",
-      "placeholder": "Describe the student's interests, hobbies, or areas of passion"
-    },
-    "learningStyle": {
-      "label": "How does the student learn best? (Select all that apply)",
-      "visual": "Visual learning (diagrams, videos)",
-      "auditory": "Auditory learning (lectures, discussions)",
-      "kinesthetic": "Kinesthetic learning (hands-on)",
-      "reading": "Reading and writing",
-      "social": "Social/collaborative learning",
-      "independent": "Independent study",
-      "other": "Other",
-      "otherPlaceholder": "Specify learning style"
-    },
-    "notes": {
-      "label": "Strengths & Interests Notes",
-      "placeholder": "Any additional observations about strengths and interests"
+    "suggestions": {
+      "label": "Suggestions for how the school team can better support this student's success:",
+      "placeholder": "Share your suggestions"
     }
   },
-  "section9": {
-    "title": "Overall Assessment Summary",
-    "summary": {
-      "label": "Overall Assessment Summary",
-      "placeholder": "Provide a brief overall summary of the student's current status, progress, and recommendations"
-    },
-    "followUp": {
-      "label": "Recommended Follow-Up Actions",
-      "placeholder": "List any specific follow-up actions, meetings, or interventions recommended"
-    },
-    "additionalComments": {
-      "label": "Additional Comments or Observations",
-      "placeholder": "Any other information that would be helpful for supporting this student"
-    }
+  "thankYou": {
+    "title": "Thank you for sharing!",
+    "message": "Your responses will help us create a learning experience that celebrates students' strengths and supports their needs."
   }
 }
-

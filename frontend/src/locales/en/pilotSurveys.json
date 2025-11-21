@@ -41,17 +41,17 @@
   },
   "formTitles": {
     "form1": "Learning Interest & Preferences Survey",
-    "form2": "Individual Student Behavior Assessment",
+    "form2": "Teacher Profile & Professional Practices",
     "form3": "Student Equity & Inclusion Planning Survey",
     "form4": "Course Catalog & Digitalization Interest Survey",
-    "formB": "Individual Student Behavior Assessment"
+    "formB": "Individual Student Behaviour Assessment Survey"
   },
   "formDescriptions": {
     "form1": "Help us understand how you learn best and what supports your learning",
-    "form2": "Provide detailed insights about individual student growth and support needs",
+    "form2": "Share your professional background, teaching practices, and technology/AI integration",
     "form3": "Share your professional insights on equity, access, and inclusion at your learning center",
     "form4": "Document existing courses and explore interest in digital delivery",
-    "formB": "Submit behavior assessments for individual students - can be submitted multiple times"
+    "formB": "Provide comprehensive insights about individual student's academic growth, social-emotional development, and support needs"
   },
   "behaviorAssessmentList": {
     "title": "Student Behavior Assessments",

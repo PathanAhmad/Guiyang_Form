@@ -57,12 +57,12 @@
     "educator": {
       "surveyForms": {
         "title": "Survey Forms",
-        "description": "Provide detailed insights about individual student assessment",
+        "description": "Complete your teacher profile and provide detailed student assessments",
         "items": [
-          "Student Behavior Assessment",
+          "Teacher Profile & Professional Practices",
+          "Individual Student Behaviour Assessment",
           "Track assessment progress",
-          "View completed assessments",
-          "Submit multiple assessments"
+          "Submit multiple student assessments"
         ]
       },
       "protocolOverview": {
