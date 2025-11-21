@@ -201,14 +201,16 @@ const Form3EquityInclusion = ({
         fieldName="challengesTable"
       />
       
-      <TextArea
-        label={t('form3:section2.otherChallenges.label')}
-        value={formData.otherChallenges}
-        onChange={(val) => onFieldChange('otherChallenges', val)}
-        placeholder={t('form3:section2.otherChallenges.placeholder')}
-        rows={3}
-        fieldName="otherChallenges"
-      />
+      <div className="-mt-4">
+        <TextArea
+          label={t('form3:section2.otherChallenges.label')}
+          value={formData.otherChallenges}
+          onChange={(val) => onFieldChange('otherChallenges', val)}
+          placeholder={t('form3:section2.otherChallenges.placeholder')}
+          rows={3}
+          fieldName="otherChallenges"
+        />
+      </div>
       
       <CheckboxGroup
         label={t('form3:section2.gapsDynamics.label')}
