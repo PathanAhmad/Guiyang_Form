@@ -31,7 +31,7 @@ const DeploymentKeysSection = () => {
     { value: 'school', label: 'School Management', icon: '🏫' },
     { value: 'educator', label: 'Educators', icon: '👨‍🏫' },
     { value: 'learner', label: 'Learners', icon: '🎓' },
-    { value: 'special', label: 'Special Learners', icon: '✨' },
+    { value: 'special', label: 'Parents', icon: '✨' },
   ];
 
   const durations = [

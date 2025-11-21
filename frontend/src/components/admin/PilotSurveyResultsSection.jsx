@@ -138,7 +138,7 @@ const PilotSurveyResultsSection = () => {
       school: 'School Management',
       educator: 'Educators',
       learner: 'Learners',
-      special: 'Special Learners',
+      special: 'Parents',
     };
     return labels[roleType] || roleType;
   };

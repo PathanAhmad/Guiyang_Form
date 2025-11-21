@@ -20,7 +20,7 @@ const BulkKeyCreationModal = ({
     { value: 'school', label: 'School Management' },
     { value: 'educator', label: 'Educators' },
     { value: 'learner', label: 'Learners' },
-    { value: 'special', label: 'Special Learners' },
+    { value: 'special', label: 'Parents' },
   ];
 
   const durations = [

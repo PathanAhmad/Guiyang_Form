@@ -3,7 +3,7 @@
     "school": "学校管理仪表板",
     "educator": "教育工作者仪表板",
     "learner": "学习者仪表板",
-    "special": "特殊学习者仪表板"
+    "special": "家长仪表板"
   },
   "accessWithName": "访问: {{keyName}}",
   "logout": "登出",

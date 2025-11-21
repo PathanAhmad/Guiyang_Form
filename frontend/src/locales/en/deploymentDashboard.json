@@ -3,7 +3,7 @@
     "school": "School Management Dashboard",
     "educator": "Educators Dashboard",
     "learner": "Learners Dashboard",
-    "special": "Special Learners Dashboard"
+    "special": "Parents Dashboard"
   },
   "accessWithName": "Access: {{keyName}}",
   "logout": "Logout",
