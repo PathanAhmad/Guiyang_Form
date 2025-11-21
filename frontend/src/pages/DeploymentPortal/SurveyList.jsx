@@ -61,8 +61,8 @@ const SurveyList = () => {
         label: t('pilotSurveys:surveyList.status.notStarted'),
       },
       draft: {
-        bg: 'bg-yellow-100',
-        text: 'text-yellow-700',
+        bg: 'bg-[#7c59b2]/10',
+        text: 'text-black',
         label: t('pilotSurveys:surveyList.status.inProgress'),
       },
       submitted: {
@@ -116,7 +116,7 @@ const SurveyList = () => {
       return (
         <button
           onClick={() => handleFormClick(form.formId)}
-          className="w-full px-4 py-2 bg-[#7c59b2] text-white rounded-lg font-medium hover:bg-[#62458f] hover:shadow-lg transition-all duration-200"
+          className="w-full px-4 py-2 bg-[#7c59b2] text-white rounded-full font-medium hover:bg-[#62458f] hover:shadow-lg transition-all duration-200"
         >
           {t('pilotSurveys:surveyList.continueSurvey')}
         </button>
@@ -125,7 +125,7 @@ const SurveyList = () => {
       return (
         <button
           onClick={() => handleFormClick(form.formId)}
-          className="w-full px-4 py-2 bg-[#7c59b2] text-white rounded-lg font-medium hover:bg-[#62458f] hover:shadow-lg transition-all duration-200"
+          className="w-full px-4 py-2 bg-[#7c59b2] text-white rounded-full font-medium hover:bg-[#62458f] hover:shadow-lg transition-all duration-200"
         >
           {t('pilotSurveys:surveyList.startSurvey')}
         </button>

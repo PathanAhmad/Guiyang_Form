@@ -4,6 +4,7 @@ import TextInput from './shared/QuestionTypes/TextInput';
 import TextArea from './shared/QuestionTypes/TextArea';
 import RadioGroup from './shared/QuestionTypes/RadioGroup';
 import CheckboxGroup from './shared/QuestionTypes/CheckboxGroup';
+import UploadIcon from '../../../Images/UploadIcon.svg';
 
 const Form4CourseCatalog = ({
   currentSection,
@@ -166,25 +167,48 @@ const Form4CourseCatalog = ({
         }}
       />
       
-      <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
-        <h3 className="text-lg font-semibold text-blue-900 mb-2">
+      <div className="mt-8 p-6 bg-[#7c59b2]/15 border border-[#7c59b2] rounded-3xl">
+        <h3 className="text-lg font-semibold text-black mb-2">
           {t('form4:section2.curriculumNote.title')}
         </h3>
-        <p className="text-sm text-blue-800 mb-3">
+        <p className="text-sm text-black mb-3">
           {t('form4:section2.curriculumNote.instruction')}
         </p>
-        <p className="text-sm text-blue-800 mb-3 font-medium">
+        <p className="text-sm text-black mb-3 font-medium">
           {t('form4:section2.curriculumNote.format')}
         </p>
-        <p className="text-sm text-blue-800 mb-3">
+        <p className="text-sm text-black mb-3">
           {t('form4:section2.curriculumNote.includes')}
         </p>
-        <p className="text-sm text-blue-800 mb-2">
+        <p className="text-sm text-black mb-2">
           <strong>{t('form4:section2.curriculumNote.filename')}</strong>
         </p>
-        <p className="text-sm text-blue-800 italic">
+        <p className="text-sm text-black italic">
           {t('form4:section2.curriculumNote.upload')}
         </p>
+        
+        <div className="mt-4">
+          <label className="inline-flex items-center gap-2 px-6 py-4 border-none rounded-full bg-[#7c59b2] cursor-pointer hover:bg-[#6a4c9a] transition-colors">
+            <img src={UploadIcon} alt="Upload" className="w-5 h-5" />
+            <span className="text-white font-medium">{t('form4:section2.curriculumNote.uploadButton')}</span>
+            <input 
+              type="file" 
+              accept=".pdf" 
+              className="hidden" 
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  onFieldChange('curriculumFile', file);
+                }
+              }} 
+            />
+          </label>
+          {formData.curriculumFile && (
+            <p className="mt-2 text-sm text-gray-600">
+              Selected: {formData.curriculumFile.name}
+            </p>
+          )}
+        </div>
       </div>
     </Section>
   );

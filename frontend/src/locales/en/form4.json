@@ -56,7 +56,8 @@
       "format": "Course ID Format: Use a two- or three-letter prefix for your center (e.g., UD for Ugly Duck) followed by a three-digit sequence number (001, 002, 003…). Example: UD-001, UD-002, UD-003",
       "includes": "In your PDF, include for each course: Course ID & Name, Target Cohort, Format, Frequency & Duration, Class Size & Staffing, Prerequisites, Teaching Methodologies, Learning Objectives, Session-by-Session Syllabus, Materials & Resources, Assessment Methods, Differentiation & Accessibility, Digitalization Considerations",
       "filename": "Filename convention: Course_Curricula_[YourCenterName]_[YYYYMMDD].pdf",
-      "upload": "Upload: Attach this PDF when you submit the form."
+      "upload": "Upload: Attach this PDF when you submit the form.",
+      "uploadButton": "Upload Files"
     }
   },
   "section3": {

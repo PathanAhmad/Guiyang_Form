@@ -375,7 +375,7 @@ const Form3EquityInclusion = ({
         }}
       />
       {formData.leastSupported && formData.leastSupported.length === 3 && (
-        <p className="text-sm text-blue-600 -mt-4 mb-4">{t('pilotSurveys:form.maxSelections', { count: 3 })}</p>
+        <p className="text-sm text-[#7c59b2] -mt-4 mb-4 ml-4">{t('pilotSurveys:form.maxSelections', { count: 3 })}</p>
       )}
       
       <CheckboxGroup

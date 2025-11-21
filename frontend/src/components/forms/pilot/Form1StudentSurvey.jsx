@@ -29,9 +29,9 @@ const Form1StudentSurvey = ({
   const totalSections = 8;
 
   const renderSection0 = () => (
-    <Section>
+    <Section title="">
       <div className="space-y-6 pb-30">
-        <div className="bg-gradient-to-br from-[#7c59b2]/20 to-[#7c59b2]/40 rounded-[2rem] p-6">
+        <div className="bg-[#7c59b2]/5 border border-[#7c59b2]/100 rounded-3xl p-6">
           <h3 className="text-lg font-normal text-gray-900 mb-3">
             <Trans i18nKey="form1:intro.welcome" components={{ bold: <strong className="font-semibold" /> }} />
           </h3>
@@ -40,7 +40,7 @@ const Form1StudentSurvey = ({
           </p>
         </div>
 
-        <div className="pt-6">
+        <div className="mt-">
           <CheckboxGroup
             label=""
             values={formData.consents || []}
@@ -764,8 +764,9 @@ const Form1StudentSurvey = ({
         onSubmit={onSubmit}
         saving={saving}
         submitting={submitting}
-        canGoNext={canGoNext}
+        canGoNext={true}
         canGoPrevious={true}
+        isTransparent={currentSection === 1}
       />
     </div>
   );

@@ -155,6 +155,26 @@ const PilotSurveyForm = () => {
           (Array.isArray(value) && value.length === 0)) {
         errors[field] = true;
       }
+
+      // Check for "Other" field requirement
+      // If the value is "other" or includes "other", the corresponding [field]Other must be filled
+      let isOtherSelected = false;
+      if (Array.isArray(value)) {
+        isOtherSelected = value.includes('other');
+      } else if (value === 'other') {
+        isOtherSelected = true;
+      }
+
+      if (isOtherSelected) {
+        const otherFieldName = `${field}Other`;
+        const otherValue = formData[otherFieldName];
+        
+        if (!otherValue || (typeof otherValue === 'string' && otherValue.trim() === '')) {
+          errors[field] = true;
+          // Also set error on the specific other field if needed by UI
+          errors[otherFieldName] = true;
+        }
+      }
       
       // Special validation for consents in form1, section 1
       if (formId === 'form1' && sectionNumber === 1 && field === 'consents') {
