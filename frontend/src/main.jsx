@@ -5,7 +5,7 @@ import App from './App.jsx'
 import './i18n/i18n.js'
 import { setAssetConfig, assetUrl } from './utils/assets'
 import api from './services/api'
-import LocalFavicon from './Images/Sparkie.svg'
+import LocalFavicon from './Images/Spark.svg'
 
 function ensureFaviconLink() {
   let link = document.querySelector("link[rel='icon']")
