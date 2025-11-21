@@ -88,7 +88,7 @@ const DeploymentPortalHome = () => {
                   alt={t(`roles.${role.id}.title`)}
                   className={`h-full w-auto object-contain ${
                     role.id === 'learner' ? 'transform -scale-x-100' : ''
-                  }`}
+                  } ${role.id === 'special' ? 'transform scale-125' : ''}`}
                 />
               </div>
               <div className="flex flex-col flex-grow p-6 justify-between">
