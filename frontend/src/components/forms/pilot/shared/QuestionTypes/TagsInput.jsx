@@ -8,15 +8,19 @@ const TagsInput = ({ label, value, onChange, placeholder, required, error, field
     setInputValue(e.target.value);
   };
 
+  const addTag = () => {
+    const newTag = inputValue.trim();
+    if (newTag && !tags.includes(newTag)) {
+      const newTags = [...tags, newTag];
+      onChange(newTags);
+    }
+    setInputValue('');
+  };
+
   const handleInputKeyDown = (e) => {
     if (e.key === ' ' || e.key === 'Tab' || e.key === 'Enter') {
       e.preventDefault();
-      const newTag = inputValue.trim();
-      if (newTag && !tags.includes(newTag)) {
-        const newTags = [...tags, newTag];
-        onChange(newTags);
-      }
-      setInputValue('');
+      addTag();
     }
   };
 
@@ -57,6 +61,7 @@ const TagsInput = ({ label, value, onChange, placeholder, required, error, field
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleInputKeyDown}
+          onBlur={addTag}
           placeholder={placeholder}
           className="flex-grow bg-transparent outline-none"
         />
