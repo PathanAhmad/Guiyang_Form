@@ -108,13 +108,13 @@ const Form2TeacherAssessment = ({
         fieldName="email"
       />
       
-      <div className="space-y-1 p-4 rounded-lg transition-all duration-300 border-2 border-transparent">
+      <div className={`space-y-1 p-4 rounded-lg transition-all duration-300 ${validationErrors.phone ? '!bg-red-50/50' : 'border-2 border-transparent'}`}>
         <label className="text-sm font-medium text-gray-700 block mb-1">
           {t('form2:section1.phone.label')}
-          <span className="text-gray-400 ml-1">*</span>
+          <span className="text-red-500 ml-1">*</span>
         </label>
         <div className="relative">
-          <div className="flex items-center w-full rounded-lg border border-gray-300 bg-transparent px-3 py-3 text-sm">
+          <div className={`flex items-center w-full rounded-lg border bg-transparent px-3 py-3 text-sm ${validationErrors.phone ? '!border-red-400 !bg-white !ring-1 !ring-red-200' : 'border-gray-300'}`}>
             <div className="relative flex items-center">
               <input
                 name="countryCode"
@@ -165,7 +165,12 @@ const Form2TeacherAssessment = ({
             </>
           )}
         </div>
-        {validationErrors.phone && <p className="mt-1 text-sm text-red-600">{t('pilotSurveys:form.requiredField')}</p>}
+        {validationErrors.phone && (
+          <div className="flex items-center gap-1 mt-1 p-1">
+            <span className="text-red-600 text-sm">⚠️</span>
+            <p className="text-sm text-red-600 font-medium">{t('pilotSurveys:form.requiredField')}</p>
+          </div>
+        )}
       </div>
     </Section>
   );
