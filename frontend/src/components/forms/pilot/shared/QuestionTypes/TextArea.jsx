@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextArea = ({ label, value, onChange, placeholder, required, error, rows = 4, fieldName, containerClassName }) => {
+const TextArea = ({ label, value, onChange, placeholder, required, error, rows = 4, fieldName, containerClassName, showErrorMessage = true }) => {
   console.log(`TextArea ${fieldName} - error:`, error);
   
   return (
@@ -25,7 +25,7 @@ const TextArea = ({ label, value, onChange, placeholder, required, error, rows =
           error ? '!border-red-400 !bg-white !ring-1 !ring-red-200' : 'border-gray-300'
         }`}
       />
-      {error && (
+      {error && showErrorMessage && (
         <div className="flex items-center gap-1 mt-1 p-1">
           <span className="text-red-600 text-sm">⚠️</span>
           <p className="text-sm text-red-600 font-medium">{error}</p>
