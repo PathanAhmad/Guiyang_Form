@@ -340,7 +340,7 @@ const ContactSection = () => {
                 </p>
                 <Button 
                   variant="secondary" 
-                  className="w-full bg-white text-[#7c59b2] border-none hover:bg-gray-100 font-bold shadow-lg"
+                  className="w-full bg-white text-[#7c59b2] border-none hover:bg-gray-100 font-bold shadow-lg rounded-full"
                 >
                   {t('raiseCriticalTicketButton')}
                 </Button>
