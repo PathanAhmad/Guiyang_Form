@@ -66,7 +66,7 @@ const FORM_METADATA = {
     formId: 'form2',
     formType: 'teacher_profile',
     roles: ['educator'],
-    totalSections: 5,
+    totalSections: 6,
     allowMultipleSubmissions: false,
   },
   form3: {
@@ -87,7 +87,7 @@ const FORM_METADATA = {
     formId: 'formB',
     formType: 'student_behavior_assessment',
     roles: ['educator'],
-    totalSections: 8,
+    totalSections: 9,
     allowMultipleSubmissions: true,
   },
 };
