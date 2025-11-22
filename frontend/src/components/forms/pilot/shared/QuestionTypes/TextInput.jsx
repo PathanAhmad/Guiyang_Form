@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextInput = ({ label, value, onChange, placeholder, required, error, fieldName, containerClassName, showErrorMessage = true }) => {
+const TextInput = ({ label, value, onChange, placeholder, required, error, fieldName, containerClassName }) => {
   console.log(`TextInput ${fieldName} - error:`, error);
   
   return (
@@ -23,7 +23,7 @@ const TextInput = ({ label, value, onChange, placeholder, required, error, field
           error ? '!border-red-400 !bg-white !ring-1 !ring-red-200' : 'border-gray-300'
         }`}
       />
-      {error && showErrorMessage && (
+      {error && (
         <div className="flex items-center gap-1 mt-1 p-1">
           <span className="text-red-600 text-sm">⚠️</span>
           <p className="text-sm text-red-600 font-medium">{error}</p>

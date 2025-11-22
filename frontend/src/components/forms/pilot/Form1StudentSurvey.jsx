@@ -102,22 +102,17 @@ const Form1StudentSurvey = ({
         required
         error={validationErrors.languages ? t('pilotSurveys:form.requiredField') : null}
         fieldName="languages"
-        renderInline={(value, error) => {
-          if (value === 'other') {
-            return (
-              <TextInput
-                label={null}
-                value={formData.languagesOther}
-                onChange={(val) => onFieldChange('languagesOther', val)}
-                placeholder={t('form1:section1.languages.otherPlaceholder')}
-                containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
-              />
-            );
-          }
-        }}
       />
+      {formData.languages === 'other' && (
+        <TextInput
+          label=""
+          value={formData.languagesOther}
+          onChange={(val) => onFieldChange('languagesOther', val)}
+          placeholder={t('form1:section1.languages.otherPlaceholder')}
+          fieldName="languagesOther"
+          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
+        />
+      )}
       <LocationDropdowns
         label={t('form1:section1.location.label')}
         countryLabel={t('form1:section1.location.countryLabel')}
@@ -217,17 +212,16 @@ const Form1StudentSurvey = ({
         required
         error={validationErrors.difficultHasSubjects ? t('pilotSurveys:form.requiredField') : null}
         fieldName="difficultHasSubjects"
-        renderInline={(optionValue, error) => optionValue === 'yes' ? (
+        renderInline={(optionValue) => optionValue === 'yes' ? (
           <TextArea
-            label={null}
+            label=""
             value={formData.difficult}
             onChange={(val) => onFieldChange('difficult', val)}
             placeholder={t('form1:section2.difficult.placeholder')}
             required
-            error={error}
+            error={validationErrors.difficult ? t('pilotSurveys:form.requiredField') : null}
             fieldName="difficult"
             containerClassName="!p-0"
-            showErrorMessage={false}
           />
         ) : null}
       />

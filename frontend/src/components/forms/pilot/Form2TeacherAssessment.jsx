@@ -192,7 +192,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.role ? t('pilotSurveys:form.requiredField') : null}
         fieldName="role"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -201,8 +201,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('roleOther', val)}
                 placeholder={t('form2:section2.role.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -255,7 +253,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.ageGroups ? t('pilotSurveys:form.requiredField') : null}
         fieldName="ageGroups"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -264,8 +262,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('ageGroupsOther', val)}
                 placeholder={t('form2:section2.ageGroups.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -285,7 +281,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.schedule ? t('pilotSurveys:form.requiredField') : null}
         fieldName="schedule"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -294,8 +290,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('scheduleOther', val)}
                 placeholder={t('form2:section2.schedule.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -322,7 +316,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.education ? t('pilotSurveys:form.requiredField') : null}
         fieldName="education"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -331,8 +325,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('educationOther', val)}
                 placeholder={t('form2:section3.education.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -365,7 +357,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.certifications ? t('pilotSurveys:form.requiredField') : null}
         fieldName="certifications"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -374,8 +366,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('certificationsOther', val)}
                 placeholder={t('form2:section3.certifications.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -413,7 +403,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.subjects ? t('pilotSurveys:form.requiredField') : null}
         fieldName="subjects"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -422,8 +412,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('subjectsOther', val)}
                 placeholder={t('form2:section4.subjects.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -479,7 +467,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.approach ? t('pilotSurveys:form.requiredField') : null}
         fieldName="approach"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -488,8 +476,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('approachOther', val)}
                 placeholder={t('form2:section4.approach.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -512,7 +498,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.assessment ? t('pilotSurveys:form.requiredField') : null}
         fieldName="assessment"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -521,8 +507,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('assessmentOther', val)}
                 placeholder={t('form2:section4.assessment.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -544,7 +528,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.strategies ? t('pilotSurveys:form.requiredField') : null}
         fieldName="strategies"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -553,8 +537,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('strategiesOther', val)}
                 placeholder={t('form2:section4.strategies.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -600,7 +582,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.aiTasks ? t('pilotSurveys:form.requiredField') : null}
         fieldName="aiTasks"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -609,8 +591,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('aiTasksOther', val)}
                 placeholder={t('form2:section5.tasks.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -647,7 +627,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.aiChallenges ? t('pilotSurveys:form.requiredField') : null}
         fieldName="aiChallenges"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -656,8 +636,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('aiChallengesOther', val)}
                 placeholder={t('form2:section5.challenges.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }
@@ -679,7 +657,7 @@ const Form2TeacherAssessment = ({
         required
         error={validationErrors.digitalTools ? t('pilotSurveys:form.requiredField') : null}
         fieldName="digitalTools"
-        renderInline={(value, error) => {
+        renderInline={(value) => {
           if (value === 'other') {
             return (
               <TextInput
@@ -688,8 +666,6 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('digitalToolsOther', val)}
                 placeholder={t('form2:section5.digitalTools.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
-                error={error}
-                showErrorMessage={false}
               />
             );
           }

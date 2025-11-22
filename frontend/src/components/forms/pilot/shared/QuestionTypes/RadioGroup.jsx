@@ -33,7 +33,7 @@ const RadioGroup = ({ label, value, onChange, options, required, error, fieldNam
             </label>
             {renderInline && value === option.value && (
               <div className="pl-0 pt-2">
-                {renderInline(option.value, error)}
+                {renderInline(option.value)}
               </div>
             )}
           </div>

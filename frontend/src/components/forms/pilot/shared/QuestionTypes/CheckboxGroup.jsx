@@ -42,7 +42,7 @@ const CheckboxGroup = ({ label, values, onChange, options, required, error, fiel
             </label>
             {renderInline && values.includes(option.value) && (
               <div className="pl-0 pt-2">
-                {renderInline(option.value, error)}
+                {renderInline(option.value)}
               </div>
             )}
           </div>
