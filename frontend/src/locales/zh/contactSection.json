@@ -1,0 +1,30 @@
+{
+  "title": "联系我们",
+  "sendUsMessage": "给我们留言",
+  "supportTeamMessage": "我们的专业支持团队随时可以帮助您解决任何问题或疑问。",
+  "fullNameLabel": "全名",
+  "fullNamePlaceholder": "张三",
+  "emailLabel": "电子邮件",
+  "emailPlaceholder": "zhangsan@example.com",
+  "categoryLabel": "类别",
+  "categoryPlaceholder": "选择一个类别",
+  "categoryOptions": {
+    "general": "一般咨询",
+    "support": "技术支持",
+    "feedback": "反馈"
+  },
+  "phoneNumberLabel": "电话号码",
+  "phonePlaceholder": "000-000-0000",
+  "messageLabel": "信息",
+  "messagePlaceholder": "我们能为您做些什么？",
+  "sendMessageButton": "发送信息",
+  "alwaysHereToHelp": "您好！我们随时准备为您提供帮助。",
+  "officeHoursDays": "周一至周五",
+  "officeHoursTime": "上午9:00 - 下午6:00 (北京时间)",
+  "emailUs": "发送邮件",
+  "criticalIssueTitle": "紧急问题？",
+  "criticalIssueDescription": "遇到技术障碍，无法完成调查？",
+  "raiseCriticalTicketButton": "提交紧急工单",
+  "requiredField": "*",
+  "searchCountryPlaceholder": "搜索国家..."
+}

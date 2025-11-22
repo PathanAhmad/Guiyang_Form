@@ -1,0 +1,30 @@
+{
+  "title": "Contact Section",
+  "sendUsMessage": "Send us a message",
+  "supportTeamMessage": "Our dedicated support team is always available to assist you with any questions or issues.",
+  "fullNameLabel": "Full Name",
+  "fullNamePlaceholder": "John Doe",
+  "emailLabel": "Email",
+  "emailPlaceholder": "john@example.com",
+  "categoryLabel": "Category",
+  "categoryPlaceholder": "Select a category",
+  "categoryOptions": {
+    "general": "General Inquiry",
+    "support": "Technical Support",
+    "feedback": "Feedback"
+  },
+  "phoneNumberLabel": "Phone Number",
+  "phonePlaceholder": "000-000-0000",
+  "messageLabel": "Message",
+  "messagePlaceholder": "How can we help you?",
+  "sendMessageButton": "Send Message",
+  "alwaysHereToHelp": "Hi! We are always here to help you.",
+  "officeHoursDays": "Mon - Fri",
+  "officeHoursTime": "9:00 AM - 6:00 PM BJT",
+  "emailUs": "Email Us",
+  "criticalIssueTitle": "Critical Issue?",
+  "criticalIssueDescription": "Experiencing a technical blocker preventing you from completing surveys?",
+  "raiseCriticalTicketButton": "Raise Critical Ticket",
+  "requiredField": "*",
+  "searchCountryPlaceholder": "Search country..."
+}

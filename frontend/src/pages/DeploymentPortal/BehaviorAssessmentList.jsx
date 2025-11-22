@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDeploymentAuth } from '../../contexts/DeploymentAuthContext';
 import { getFormSubmissions, deleteSubmission } from '../../services/pilotSurveyApi';
 import ConfirmModal from '../../components/ui/ConfirmModal';
-import { assetUrl } from '../../utils/assets';
+import SparkOSTypo from '../../Images/SparkOStypo.svg';
 
 const BehaviorAssessmentList = () => {
   const { roleType, formId } = useParams();
@@ -110,8 +110,8 @@ const BehaviorAssessmentList = () => {
   const getStatusBadge = (status) => {
     const badges = {
       draft: {
-        bg: 'bg-yellow-100',
-        text: 'text-yellow-700',
+        bg: 'bg-[#7c59b2]/10',
+        text: 'text-black',
         label: t('pilotSurveys:surveyList.status.inProgress'),
       },
       submitted: {
@@ -135,14 +135,14 @@ const BehaviorAssessmentList = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-primary-300/10 to-primary-400/10">
+    <div className="min-h-screen bg-gradient-to-b from-white to-neutral-200">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <img
-                src={assetUrl('/Images/SparkOSFullLogo.svg')}
+                src={SparkOSTypo}
                 alt="SparkOS Logo"
                 className="h-8 w-auto"
               />
@@ -367,17 +367,17 @@ const BehaviorAssessmentList = () => {
         {!loading && !error && submissions.length > 0 && (
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white rounded-lg shadow p-4">
-              <div className="text-sm text-gray-600">Total Assessments</div>
+              <div className="text-sm text-gray-600">{t('pilotSurveys:behaviorAssessmentList.totalAssessments')}</div>
               <div className="text-2xl font-bold text-gray-900">{submissions.length}</div>
             </div>
             <div className="bg-white rounded-lg shadow p-4">
-              <div className="text-sm text-gray-600">Submitted</div>
+              <div className="text-sm text-gray-600">{t('pilotSurveys:behaviorAssessmentList.submittedCount')}</div>
               <div className="text-2xl font-bold text-green-600">
                 {submissions.filter(s => s.status === 'submitted').length}
               </div>
             </div>
             <div className="bg-white rounded-lg shadow p-4">
-              <div className="text-sm text-gray-600">Drafts</div>
+              <div className="text-sm text-gray-600">{t('pilotSurveys:behaviorAssessmentList.draftsCount')}</div>
               <div className="text-2xl font-bold text-yellow-600">
                 {submissions.filter(s => s.status === 'draft').length}
               </div>

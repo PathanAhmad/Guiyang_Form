@@ -953,5 +953,18 @@
     "France": "France",
     "Hong Kong": "Hong Kong",
     "Taiwan": "Taiwan"
+  },
+  "contactSection": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team to learn more about SparkOS and how we can help your child.",
+    "form": {
+      "name": { "label": "Your Name", "placeholder": "Enter your name" },
+      "email": { "label": "Your Email", "placeholder": "Enter your email address" },
+      "phone": { "label": "Your Phone", "placeholder": "Enter your phone number" },
+      "message": { "label": "Your Message", "placeholder": "Write your message here" },
+      "submit": "Send Message"
+    },
+    "success": "Your message has been sent successfully!",
+    "error": "There was an error sending your message. Please try again later."
   }
 }
