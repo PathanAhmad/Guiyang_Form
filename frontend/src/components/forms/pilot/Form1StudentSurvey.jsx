@@ -100,7 +100,7 @@ const Form1StudentSurvey = ({
           { value: 'other', label: t('form1:section1.languages.other') },
         ]}
         required
-        error={validationErrors.languages ? t('pilotSurveys:form.requiredField') : null}
+        error={(validationErrors.languages && formData.languages !== 'other') ? t('pilotSurveys:form.requiredField') : null}
         fieldName="languages"
       />
       {formData.languages === 'other' && (
@@ -110,7 +110,9 @@ const Form1StudentSurvey = ({
           onChange={(val) => onFieldChange('languagesOther', val)}
           placeholder={t('form1:section1.languages.otherPlaceholder')}
           fieldName="languagesOther"
-          containerClassName="!p-0 !pl-4 !pr-4 !-mt-4"
+          containerClassName="!p-0 !pl-4 !pr-4 !-mt-2"
+          required
+          error={validationErrors.languagesOther ? t('pilotSurveys:form.requiredField') : null}
         />
       )}
       <LocationDropdowns

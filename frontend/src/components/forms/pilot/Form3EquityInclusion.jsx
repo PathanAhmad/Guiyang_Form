@@ -97,6 +97,8 @@ const Form3EquityInclusion = ({
                   onChange={(val) => onFieldChange('roleOther', val)}
                   placeholder={t('form3:section1.role.otherPlaceholder')}
                   containerClassName="!p-0 !border-0 -mt-2"
+                  required
+                  error={validationErrors.roleOther ? t('pilotSurveys:form.requiredField') : null}
                 />
               );
             }
@@ -180,6 +182,8 @@ const Form3EquityInclusion = ({
                 onChange={(val) => onFieldChange('identitiesOther', val)}
                 placeholder={t('form3:section2.identities.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.identitiesOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -247,6 +251,8 @@ const Form3EquityInclusion = ({
                 onChange={(val) => onFieldChange('gapsDynamicsOther', val)}
                 placeholder={t('form3:section2.gapsDynamics.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.gapsDynamicsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -369,6 +375,8 @@ const Form3EquityInclusion = ({
                 onChange={(val) => onFieldChange('leastSupportedOther', val)}
                 placeholder={t('form3:section3.leastSupported.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.leastSupportedOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -405,6 +413,8 @@ const Form3EquityInclusion = ({
                 onChange={(val) => onFieldChange('schoolSystemsOther', val)}
                 placeholder={t('form3:section3.schoolSystems.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.schoolSystemsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -470,6 +480,8 @@ const Form3EquityInclusion = ({
                 onChange={(val) => onFieldChange('limitsOther', val)}
                 placeholder={t('form3:section4.limits.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.limitsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -503,6 +515,8 @@ const Form3EquityInclusion = ({
                 onChange={(val) => onFieldChange('pdNeedsOther', val)}
                 placeholder={t('form3:section4.pdNeeds.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.pdNeedsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -544,6 +558,8 @@ const Form3EquityInclusion = ({
                 onChange={(val) => onFieldChange('feedbackLoopsOther', val)}
                 placeholder={t('form3:section4.feedbackLoops.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.feedbackLoopsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -610,6 +626,8 @@ const Form3EquityInclusion = ({
                 onChange={(val) => onFieldChange('educatorTasksOther', val)}
                 placeholder={t('form3:section5.educatorTasks.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.educatorTasksOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -686,6 +704,8 @@ const Form3EquityInclusion = ({
           value={formData.barriersOther}
           onChange={(val) => onFieldChange('barriersOther', val)}
           placeholder={t('form3:section6.barriers.otherPlaceholder')}
+          required
+          error={validationErrors.barriersOther ? t('pilotSurveys:form.requiredField') : null}
         />
       )}
       
@@ -726,6 +746,8 @@ const Form3EquityInclusion = ({
           value={formData.eventsOther}
           onChange={(val) => onFieldChange('eventsOther', val)}
           placeholder={t('form3:section6.events.otherPlaceholder')}
+          required
+          error={validationErrors.eventsOther ? t('pilotSurveys:form.requiredField') : null}
         />
       )}
       
@@ -751,6 +773,8 @@ const Form3EquityInclusion = ({
           value={formData.partnershipsOther}
           onChange={(val) => onFieldChange('partnershipsOther', val)}
           placeholder={t('form3:section6.partnerships.otherPlaceholder')}
+          required
+          error={validationErrors.partnershipsOther ? t('pilotSurveys:form.requiredField') : null}
         />
       )}
     </Section>

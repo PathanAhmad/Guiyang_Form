@@ -107,6 +107,8 @@ const Form4CourseCatalog = ({
                   onChange={(val) => onFieldChange('roleOther', val)}
                   placeholder={t('form4:section1.role.otherPlaceholder')}
                   containerClassName="!p-0 !border-0 -mt-2"
+                  required
+                  error={validationErrors.roleOther ? t('pilotSurveys:form.requiredField') : null}
                 />
               );
             }
@@ -161,6 +163,8 @@ const Form4CourseCatalog = ({
                 onChange={(val) => onFieldChange('methodologiesOther', val)}
                 placeholder={t('form4:section2.methodologies.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.methodologiesOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -256,6 +260,8 @@ const Form4CourseCatalog = ({
                 onChange={(val) => onFieldChange('whatWorksOther', val)}
                 placeholder={t('form4:section3.whatWorks.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.whatWorksOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -289,6 +295,8 @@ const Form4CourseCatalog = ({
                 onChange={(val) => onFieldChange('barriersOther', val)}
                 placeholder={t('form4:section3.barriers.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.barriersOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -346,6 +354,8 @@ const Form4CourseCatalog = ({
                     onChange={(val) => onFieldChange('assessmentMetricsOther', val)}
                     placeholder={t('form4:section3.assessmentMethods.otherPlaceholder')}
                     containerClassName="!p-0 !border-0 -mt-2"
+                    required
+                    error={validationErrors.assessmentMetricsOther ? t('pilotSurveys:form.requiredField') : null}
                   />
                 );
               }
@@ -393,6 +403,8 @@ const Form4CourseCatalog = ({
                 onChange={(val) => onFieldChange('effectiveFormatsOther', val)}
                 placeholder={t('form4:section3.effectiveFormats.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.effectiveFormatsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -455,6 +467,8 @@ const Form4CourseCatalog = ({
                 onChange={(val) => onFieldChange('digitalFeaturesOther', val)}
                 placeholder={t('form4:section4.digitalFeatures.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.digitalFeaturesOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -485,6 +499,8 @@ const Form4CourseCatalog = ({
                 onChange={(val) => onFieldChange('digitalChallengesOther', val)}
                 placeholder={t('form4:section4.challenges.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.digitalChallengesOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -541,6 +557,8 @@ const Form4CourseCatalog = ({
                 onChange={(val) => onFieldChange('supportNeededOther', val)}
                 placeholder={t('form4:section4.supportNeeded.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.supportNeededOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -636,6 +654,8 @@ const Form4CourseCatalog = ({
             value={formData.approachesOther}
             onChange={(val) => onFieldChange('approachesOther', val)}
             placeholder={t('form4:section5.approaches.otherPlaceholder')}
+            required
+            error={validationErrors.approachesOther ? t('pilotSurveys:form.requiredField') : null}
           />
         )}
         
@@ -659,6 +679,8 @@ const Form4CourseCatalog = ({
             value={formData.additionalSupportOther}
             onChange={(val) => onFieldChange('additionalSupportOther', val)}
             placeholder={t('form4:section5.additionalSupport.otherPlaceholder')}
+            required
+            error={validationErrors.additionalSupportOther ? t('pilotSurveys:form.requiredField') : null}
           />
         )}
         
@@ -741,6 +763,8 @@ const Form4CourseCatalog = ({
           value={formData.successMetricsOther}
           onChange={(val) => onFieldChange('successMetricsOther', val)}
           placeholder={t('form4:section6.successMetrics.otherPlaceholder')}
+          required
+          error={validationErrors.successMetricsOther ? t('pilotSurveys:form.requiredField') : null}
         />
       )}
       

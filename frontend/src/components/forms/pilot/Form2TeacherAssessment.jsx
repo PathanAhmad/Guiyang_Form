@@ -201,6 +201,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('roleOther', val)}
                 placeholder={t('form2:section2.role.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.roleOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -262,6 +264,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('ageGroupsOther', val)}
                 placeholder={t('form2:section2.ageGroups.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.ageGroupsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -290,6 +294,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('scheduleOther', val)}
                 placeholder={t('form2:section2.schedule.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.scheduleOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -325,6 +331,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('educationOther', val)}
                 placeholder={t('form2:section3.education.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.educationOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -366,6 +374,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('certificationsOther', val)}
                 placeholder={t('form2:section3.certifications.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.certificationsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -412,6 +422,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('subjectsOther', val)}
                 placeholder={t('form2:section4.subjects.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.subjectsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -476,6 +488,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('approachOther', val)}
                 placeholder={t('form2:section4.approach.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.approachOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -507,6 +521,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('assessmentOther', val)}
                 placeholder={t('form2:section4.assessment.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.assessmentOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -537,6 +553,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('strategiesOther', val)}
                 placeholder={t('form2:section4.strategies.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.strategiesOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -591,6 +609,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('aiTasksOther', val)}
                 placeholder={t('form2:section5.tasks.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.aiTasksOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -636,6 +656,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('aiChallengesOther', val)}
                 placeholder={t('form2:section5.challenges.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.aiChallengesOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }
@@ -666,6 +688,8 @@ const Form2TeacherAssessment = ({
                 onChange={(val) => onFieldChange('digitalToolsOther', val)}
                 placeholder={t('form2:section5.digitalTools.otherPlaceholder')}
                 containerClassName="!p-0 !border-0 -mt-2"
+                required
+                error={validationErrors.digitalToolsOther ? t('pilotSurveys:form.requiredField') : null}
               />
             );
           }

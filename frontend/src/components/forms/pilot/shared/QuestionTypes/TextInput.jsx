@@ -10,10 +10,12 @@ const TextInput = ({ label, value, onChange, placeholder, required, error, field
       } ${containerClassName || ''}`}
       data-field-name={fieldName}
     >
-      <label className="block text-sm font-medium text-gray-700">
-        {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
-      </label>
+      {label && (
+        <label className="block text-sm font-medium text-gray-700">
+          {label}
+          {required && <span className="text-red-500 ml-1">*</span>}
+        </label>
+      )}
       <input
         type="text"
         value={value || ''}
